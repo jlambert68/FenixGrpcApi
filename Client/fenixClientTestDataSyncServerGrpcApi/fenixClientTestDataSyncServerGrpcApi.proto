@@ -1,6 +1,6 @@
 syntax = "proto3";
 package fenixClientTestDataSyncServerGrpcApi;
-option go_package ="./proto";
+option go_package ="./go_grpc_api";
 
 // Used to have client and server in sync with using the same proto file version
 // Minor changes is backwards compatible with previous version
