@@ -1,0 +1,161 @@
+syntax = "proto3";
+package fenixTestDataSyncServerGrpcApi;
+option go_package ="./proto";
+
+// Used to have client and server in sync with using the same proto file version
+// Minor changes is backwards compatible with previous version
+// Major changes changes needs to be the same for server and client
+enum CurrentFenixTestDataProtoFileVersionEnum {
+    VERSION_0_9 = 0 [deprecated = true];
+    VERSION_1_0 = 1; // Current version
+}
+
+// Error codes - for now a test
+enum ErrorCodesEnum {
+    OK = 0;
+    ERROR_UNKNOWN_CALLER = 1;
+    ERROR_WRONG_PROTO_FILE_VERSION = 2;
+}
+
+// Parameter used for Empty inputs, only containing current proto-file version
+message EmptyParameter {
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 1;
+}
+
+// Ack/Nack- Response message with comment
+message AckNackResponse {
+    bool acknack = 1; // True=Ack, False=Nack
+    string comments = 2; //Comments if needed
+    repeated ErrorCodesEnum ErrorCodes = 3;
+}
+
+
+
+// Fenix Testdata sync server service definition.
+// ***********************
+service FenixTestDataGrpcServices {
+
+    //Fenix client can check if Fenix Testdata sync server is alive with this service
+    rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+    }
+
+    // Fenix client can register itself with the Fenix Testdata sync server
+    rpc RegisterTestDataClient(TestDataClientInformationMessage) returns (AckNackResponse) {
+    }
+
+    // Fenix client can send TestData MerkleHash to Fenix Testdata sync server with this service
+    rpc SendMerkleHash (MerkleHashMessage) returns (AckNackResponse) {
+    }
+
+    // Fenix client can send TestData MerkleTree to Fenix Testdata sync server with this service
+    rpc SendMerkleTree (MerkleTreeMessage) returns (AckNackResponse) {
+    }
+
+    // Fenix client can send TestDataHeaderHash to Fenix Testdata sync server with this service
+    rpc SendTestDataHeaderHash (TestDataHeaderHashMessage) returns (AckNackResponse) {
+    }
+
+    // Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
+    rpc SendTestDataHeaders (TestDataHeaderMessage) returns (AckNackResponse) {
+    }    // Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
+
+
+    // Fenix client can send TestData rows to Fenix Testdata sync server with this service
+    rpc SendTestDataRows (TestdataRowsMessages) returns (AckNackResponse) {
+    }
+
+}
+
+// Message Holding information about the TestDataClient
+message TestDataClientInformationMessage {
+    string TestDataClientGuid = 1;
+    string TestDomainGuid = 2;
+    string TestDomainName = 3;
+    string TestDataClientIpAddress = 4;
+    string TestDataClientPort = 5;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 6;
+}
+
+// Message holding the top MerkleTree hash
+message MerkleHashMessage {
+    string TestDataClientGuid = 1;
+    string MerkleHash = 2;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
+
+}
+
+// Message holding the complete MerkleTree for the hashes
+message MerkleTreeMessage {
+    string TestDataClientGuid = 1;
+    repeated MerkleTreeNodeMessage MerkleTreeNodes = 2;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
+}
+
+// Message holding one node of the MerkleTree
+message MerkleTreeNodeMessage {
+    int64 MerkleLevel = 1;
+    string MerklePath = 2;
+    string MerkleHash = 3;
+    string MerkleChildHash = 4;
+}
+
+
+// Message holding the hash for all header information
+message TestDataHeaderHashMessage {
+    string TestDataClientGuid = 1;
+    string HeadersHash = 2;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
+}
+
+// Message holding all headers for the testdata
+message TestDataHeaderMessage {
+    string TestDataClientGuid = 1;
+    string HeadersHash = 2;
+    repeated TestDataHeaderItemMessage TestDataHeaderItems = 3;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 4;
+}
+
+// Message holding one Header Item
+message TestDataHeaderItemMessage {
+    string HeaderPresentationsLabel = 1;
+    string HeaderDataLabel = 2;
+    bool HeaderShouldbBeUsedForTestDataFilter = 3;
+    bool HeaderIsMandatoryInTestDataFilter = 4;
+    HeaderSelectionTypeEnum HeaderSelectionType = 5;
+   repeated HeaderFilterValue HeaderFilterValues = 6;
+
+}
+
+// How TestData filter can be selected
+enum HeaderSelectionTypeEnum {
+    HEADER_IS_SINGLE_SELECT = 0;
+    HEADER_IS_MULTI_SELECT = 1;
+}
+
+// One Filter value
+message HeaderFilterValue {
+    string HeaderFilterValuesAsString = 1;
+}
+
+
+// Message holding rows with TestData
+message TestdataRowsMessages {
+    string TestDataClientGuid = 1;
+    repeated TestDataRowMessage TestDataRows = 2;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
+}
+
+// Message Holding one TestData row
+message TestDataRowMessage {
+    string RowHash = 1;
+    repeated TestDataItemMessage TestDataItems = 2;
+}
+
+// Message holding one TestData item
+message TestDataItemMessage {
+    string TestDataItemValueAsString = 2;
+}
+
+
+
+
