@@ -36,8 +36,8 @@ compileClientEchoProto:
 
  # generate the messages
 # protoc --go_out="$GO_GEN_PATH" -I "$dependecies" "$proto"
-	cd Client/fenixClientTestDataSyncServerGrpcApi/echo && protoc --go_out=. echo.proto
+	cd Client/fenixClientTestDataSyncServerGrpcApi && protoc --go_out=. echo.proto
 
 # generate the services
 # protoc --go-grpc_out="$GO_GEN_PATH" -I "$dependecies" "$proto"
-	cd Client/fenixClientTestDataSyncServerGrpcApi/echo && protoc --go-grpc_out=. echo.proto
+	cd Client/fenixClientTestDataSyncServerGrpcApi && protoc --go-grpc_out=. echo.proto
