@@ -18,6 +18,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FenixClientTestDataGrpcServicesClient interface {
+	//Ask Client to call Fenix Server to check if Fenix Testdata Server is alive with this service
+	AreFenixTestDataSyncServerAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	//Fenix Server can check if Fenix Client Testdata sync server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix Server asks Fenix client to register itself with the Fenix Testdata sync server
@@ -40,6 +42,15 @@ type fenixClientTestDataGrpcServicesClient struct {
 
 func NewFenixClientTestDataGrpcServicesClient(cc grpc.ClientConnInterface) FenixClientTestDataGrpcServicesClient {
 	return &fenixClientTestDataGrpcServicesClient{cc}
+}
+
+func (c *fenixClientTestDataGrpcServicesClient) AreFenixTestDataSyncServerAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixClientTestDataSyncServerGrpcApi.FenixClientTestDataGrpcServices/AreFenixTestDataSyncServerAlive", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *fenixClientTestDataGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
@@ -109,6 +120,8 @@ func (c *fenixClientTestDataGrpcServicesClient) SendTestDataRows(ctx context.Con
 // All implementations must embed UnimplementedFenixClientTestDataGrpcServicesServer
 // for forward compatibility
 type FenixClientTestDataGrpcServicesServer interface {
+	//Ask Client to call Fenix Server to check if Fenix Testdata Server is alive with this service
+	AreFenixTestDataSyncServerAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	//Fenix Server can check if Fenix Client Testdata sync server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Fenix Server asks Fenix client to register itself with the Fenix Testdata sync server
@@ -130,6 +143,9 @@ type FenixClientTestDataGrpcServicesServer interface {
 type UnimplementedFenixClientTestDataGrpcServicesServer struct {
 }
 
+func (UnimplementedFenixClientTestDataGrpcServicesServer) AreFenixTestDataSyncServerAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AreFenixTestDataSyncServerAlive not implemented")
+}
 func (UnimplementedFenixClientTestDataGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
 }
@@ -163,6 +179,24 @@ type UnsafeFenixClientTestDataGrpcServicesServer interface {
 
 func RegisterFenixClientTestDataGrpcServicesServer(s grpc.ServiceRegistrar, srv FenixClientTestDataGrpcServicesServer) {
 	s.RegisterService(&FenixClientTestDataGrpcServices_ServiceDesc, srv)
+}
+
+func _FenixClientTestDataGrpcServices_AreFenixTestDataSyncServerAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixClientTestDataGrpcServicesServer).AreFenixTestDataSyncServerAlive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixClientTestDataSyncServerGrpcApi.FenixClientTestDataGrpcServices/AreFenixTestDataSyncServerAlive",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixClientTestDataGrpcServicesServer).AreFenixTestDataSyncServerAlive(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _FenixClientTestDataGrpcServices_AreYouAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -298,6 +332,10 @@ var FenixClientTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "fenixClientTestDataSyncServerGrpcApi.FenixClientTestDataGrpcServices",
 	HandlerType: (*FenixClientTestDataGrpcServicesServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AreFenixTestDataSyncServerAlive",
+			Handler:    _FenixClientTestDataGrpcServices_AreFenixTestDataSyncServerAlive_Handler,
+		},
 		{
 			MethodName: "AreYouAlive",
 			Handler:    _FenixClientTestDataGrpcServices_AreYouAlive_Handler,

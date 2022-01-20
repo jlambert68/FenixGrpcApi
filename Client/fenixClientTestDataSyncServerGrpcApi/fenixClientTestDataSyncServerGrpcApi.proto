@@ -25,6 +25,10 @@ message AckNackResponse {
 // ***********************
 service FenixClientTestDataGrpcServices {
 
+    //Ask Client to call Fenix Server to check if Fenix Testdata Server is alive with this service
+    rpc AreFenixTestDataSyncServerAlive (EmptyParameter) returns (AckNackResponse) {
+    }
+
     //Fenix Server can check if Fenix Client Testdata sync server is alive with this service
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
     }
