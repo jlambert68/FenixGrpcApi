@@ -20,7 +20,7 @@ syntax = "proto3";
 
 option go_package ="./go_grpc_api";
 
-package fenixClientTestDataSyncServerGrpcApi;
+package fenixClientTestDataSyncServerGrpcApiEcho;
 
 // EchoRequest is the request for echo.
 message EchoRequest {

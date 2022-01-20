@@ -38,7 +38,7 @@ func NewEchoClient(cc grpc.ClientConnInterface) EchoClient {
 
 func (c *echoClient) UnaryEcho(ctx context.Context, in *EchoRequest, opts ...grpc.CallOption) (*EchoResponse, error) {
 	out := new(EchoResponse)
-	err := c.cc.Invoke(ctx, "/fenixClientTestDataSyncServerGrpcApi.Echo/UnaryEcho", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixClientTestDataSyncServerGrpcApiEcho.Echo/UnaryEcho", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +46,7 @@ func (c *echoClient) UnaryEcho(ctx context.Context, in *EchoRequest, opts ...grp
 }
 
 func (c *echoClient) ServerStreamingEcho(ctx context.Context, in *EchoRequest, opts ...grpc.CallOption) (Echo_ServerStreamingEchoClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Echo_ServiceDesc.Streams[0], "/fenixClientTestDataSyncServerGrpcApi.Echo/ServerStreamingEcho", opts...)
+	stream, err := c.cc.NewStream(ctx, &Echo_ServiceDesc.Streams[0], "/fenixClientTestDataSyncServerGrpcApiEcho.Echo/ServerStreamingEcho", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (x *echoServerStreamingEchoClient) Recv() (*EchoResponse, error) {
 }
 
 func (c *echoClient) ClientStreamingEcho(ctx context.Context, opts ...grpc.CallOption) (Echo_ClientStreamingEchoClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Echo_ServiceDesc.Streams[1], "/fenixClientTestDataSyncServerGrpcApi.Echo/ClientStreamingEcho", opts...)
+	stream, err := c.cc.NewStream(ctx, &Echo_ServiceDesc.Streams[1], "/fenixClientTestDataSyncServerGrpcApiEcho.Echo/ClientStreamingEcho", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func (x *echoClientStreamingEchoClient) CloseAndRecv() (*EchoResponse, error) {
 }
 
 func (c *echoClient) BidirectionalStreamingEcho(ctx context.Context, opts ...grpc.CallOption) (Echo_BidirectionalStreamingEchoClient, error) {
-	stream, err := c.cc.NewStream(ctx, &Echo_ServiceDesc.Streams[2], "/fenixClientTestDataSyncServerGrpcApi.Echo/BidirectionalStreamingEcho", opts...)
+	stream, err := c.cc.NewStream(ctx, &Echo_ServiceDesc.Streams[2], "/fenixClientTestDataSyncServerGrpcApiEcho.Echo/BidirectionalStreamingEcho", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -196,7 +196,7 @@ func _Echo_UnaryEcho_Handler(srv interface{}, ctx context.Context, dec func(inte
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixClientTestDataSyncServerGrpcApi.Echo/UnaryEcho",
+		FullMethod: "/fenixClientTestDataSyncServerGrpcApiEcho.Echo/UnaryEcho",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EchoServer).UnaryEcho(ctx, req.(*EchoRequest))
@@ -281,7 +281,7 @@ func (x *echoBidirectionalStreamingEchoServer) Recv() (*EchoRequest, error) {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Echo_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fenixClientTestDataSyncServerGrpcApi.Echo",
+	ServiceName: "fenixClientTestDataSyncServerGrpcApiEcho.Echo",
 	HandlerType: (*EchoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
