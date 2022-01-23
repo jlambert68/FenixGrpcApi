@@ -10,16 +10,25 @@ enum CurrentFenixClientTestDataProtoFileVersionEnum {
     VERSION_1_0 = 1; // Current version
 }
 
-// Parameter used for Empty inputs
+// Error codes - for now a test
+enum ErrorCodesEnum {
+    OK = 0;
+    ERROR_UNKNOWN_CALLER = 1;
+    ERROR_WRONG_PROTO_FILE_VERSION = 2;
+}
+
+// Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
-    CurrentFenixClientTestDataProtoFileVersionEnum ProtoFileVersionUsedByCaller = 1;
+    CurrentFenixClientTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 1;
 }
 
 // Ack/Nack- Response message with comment
 message AckNackResponse {
     bool acknack = 1; // True=Ack, False=Nack
     string comments = 2; //Comments if needed
+    repeated ErrorCodesEnum ErrorCodes = 3;
 }
+
 
 // Fenix Client Testdata sync server service definition.
 // ***********************
@@ -51,6 +60,10 @@ service FenixClientTestDataGrpcServices {
 
     // Fenix Server asks Fenix client to send TestDataHeaders to Fenix Testdata sync server with this service
     rpc SendTestDataHeaders (EmptyParameter) returns (AckNackResponse) {
+    }
+
+    // Fenix Server asks Fenix client to send all TestData rows to Fenix Testdata sync server with this service
+    rpc SendAllTestDataRows (EmptyParameter) returns (AckNackResponse) {
     }
 
     // Fenix Server asks Fenix client to  send TestData rows, based on list of MerklePaths, to Fenix Testdata sync server with this service

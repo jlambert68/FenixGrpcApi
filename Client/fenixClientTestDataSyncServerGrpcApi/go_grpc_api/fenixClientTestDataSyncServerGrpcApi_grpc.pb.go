@@ -32,6 +32,8 @@ type FenixClientTestDataGrpcServicesClient interface {
 	SendTestDataHeaderHash(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix Server asks Fenix client to send TestDataHeaders to Fenix Testdata sync server with this service
 	SendTestDataHeaders(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Fenix Server asks Fenix client to send all TestData rows to Fenix Testdata sync server with this service
+	SendAllTestDataRows(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix Server asks Fenix client to  send TestData rows, based on list of MerklePaths, to Fenix Testdata sync server with this service
 	SendTestDataRows(ctx context.Context, in *MerklePathsMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
@@ -107,6 +109,15 @@ func (c *fenixClientTestDataGrpcServicesClient) SendTestDataHeaders(ctx context.
 	return out, nil
 }
 
+func (c *fenixClientTestDataGrpcServicesClient) SendAllTestDataRows(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixClientTestDataSyncServerGrpcApi.FenixClientTestDataGrpcServices/SendAllTestDataRows", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fenixClientTestDataGrpcServicesClient) SendTestDataRows(ctx context.Context, in *MerklePathsMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixClientTestDataSyncServerGrpcApi.FenixClientTestDataGrpcServices/SendTestDataRows", in, out, opts...)
@@ -134,6 +145,8 @@ type FenixClientTestDataGrpcServicesServer interface {
 	SendTestDataHeaderHash(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Fenix Server asks Fenix client to send TestDataHeaders to Fenix Testdata sync server with this service
 	SendTestDataHeaders(context.Context, *EmptyParameter) (*AckNackResponse, error)
+	// Fenix Server asks Fenix client to send all TestData rows to Fenix Testdata sync server with this service
+	SendAllTestDataRows(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Fenix Server asks Fenix client to  send TestData rows, based on list of MerklePaths, to Fenix Testdata sync server with this service
 	SendTestDataRows(context.Context, *MerklePathsMessage) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixClientTestDataGrpcServicesServer()
@@ -163,6 +176,9 @@ func (UnimplementedFenixClientTestDataGrpcServicesServer) SendTestDataHeaderHash
 }
 func (UnimplementedFenixClientTestDataGrpcServicesServer) SendTestDataHeaders(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTestDataHeaders not implemented")
+}
+func (UnimplementedFenixClientTestDataGrpcServicesServer) SendAllTestDataRows(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendAllTestDataRows not implemented")
 }
 func (UnimplementedFenixClientTestDataGrpcServicesServer) SendTestDataRows(context.Context, *MerklePathsMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTestDataRows not implemented")
@@ -307,6 +323,24 @@ func _FenixClientTestDataGrpcServices_SendTestDataHeaders_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixClientTestDataGrpcServices_SendAllTestDataRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixClientTestDataGrpcServicesServer).SendAllTestDataRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixClientTestDataSyncServerGrpcApi.FenixClientTestDataGrpcServices/SendAllTestDataRows",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixClientTestDataGrpcServicesServer).SendAllTestDataRows(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixClientTestDataGrpcServices_SendTestDataRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MerklePathsMessage)
 	if err := dec(in); err != nil {
@@ -359,6 +393,10 @@ var FenixClientTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendTestDataHeaders",
 			Handler:    _FenixClientTestDataGrpcServices_SendTestDataHeaders_Handler,
+		},
+		{
+			MethodName: "SendAllTestDataRows",
+			Handler:    _FenixClientTestDataGrpcServices_SendAllTestDataRows_Handler,
 		},
 		{
 			MethodName: "SendTestDataRows",
