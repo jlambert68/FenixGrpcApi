@@ -15,6 +15,9 @@ enum ErrorCodesEnum {
     OK = 0;
     ERROR_UNKNOWN_CALLER = 1;
     ERROR_WRONG_PROTO_FILE_VERSION = 2;
+    ERROR_ROWHASH_NOT_CORRECT_CALCULATED = 3;
+    ERROR_MERKLEHASH_NOT_CORRECT_CALCULATED = 4;
+
 }
 
 // Parameter used for Empty inputs, only containing current proto-file version
