@@ -62,11 +62,34 @@ service FenixTestDataGrpcServices {
     rpc SendTestDataHeaders (TestDataHeaderMessage) returns (AckNackResponse) {
     }    // Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
 
-
     // Fenix client can send TestData rows to Fenix Testdata sync server with this service
     rpc SendTestDataRows (TestdataRowsMessages) returns (AckNackResponse) {
     }
 
+    // Fenix client can send TestData rows to Fenix Testdata sync server with this service
+    rpc GetTestDataInDBRequestTest (TestDataInDBRequestTest) returns (TestDataInDBResponseTest) {
+    }
+
+}
+
+// Server or Client
+enum ServerOrClientDBEnumTest {
+    SERVER_IN_DB = 0;
+    CLIENT_IN_DB = 1;
+}
+message TestDataInDBRequestTest {
+    ServerOrClientDBEnumTest ServerOrClientDB = 1;
+    string TestDataClientGuid = 2;
+}
+
+message TestDataInDBResponseTest {
+    ServerOrClientDBEnumTest ServerOrClientDB = 1;
+    string merkleHash = 2;
+        string MerkleTree = 3;
+        string HeaderHash = 4;
+        repeated string Headers = 5;
+    string TestDataRows = 6;
+    string TestDataClientGuid = 7;
 }
 
 // Message Holding information about the TestDataClient
