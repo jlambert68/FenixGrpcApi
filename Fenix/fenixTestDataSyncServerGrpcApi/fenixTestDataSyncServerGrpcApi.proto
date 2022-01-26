@@ -64,7 +64,7 @@ service FenixTestDataGrpcServices {
     }
 
     // Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
-    rpc SendTestDataHeaders (TestDataHeaderMessage) returns (AckNackResponse) {
+    rpc SendTestDataHeaders (TestDataHeadersMessage) returns (AckNackResponse) {
     }    // Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
 
     // Fenix client can send TestData rows to Fenix Testdata sync server with this service
@@ -126,7 +126,7 @@ message TestDataHeaderHashMessage {
 }
 
 // Message holding all headers for the testdata
-message TestDataHeaderMessage {
+message TestDataHeadersMessage {
     string TestDataClientGuid = 1;
     string TestDataHeaderLabelsHash = 2;
     string TestDataHeaderItemsHash = 3;
