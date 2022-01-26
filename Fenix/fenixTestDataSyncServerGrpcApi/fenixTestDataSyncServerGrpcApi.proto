@@ -78,8 +78,8 @@ service FenixTestDataGrpcServices {
 
 // Message Holding information about the TestDataClient
 message TestDataClientInformationMessage {
-    string TestDataClientGuid = 1;
-    string TestDomainGuid = 2;
+    string TestDataClientUuid = 1;
+    string TestDomainUuid = 2;
     string TestDomainName = 3;
     string TestDataClientIpAddress = 4;
     string TestDataClientPort = 5;
@@ -91,7 +91,7 @@ message TestDataClientInformationMessage {
 
 // Message holding the top MerkleTree hash
 message MerkleHashMessage {
-    string TestDataClientGuid = 1;
+    string TestDataClientUuid = 1;
     string MerkleHash = 2;
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
 
@@ -101,7 +101,7 @@ message MerkleHashMessage {
 
 // Message holding the complete MerkleTree for the hashes
 message MerkleTreeMessage {
-    string TestDataClientGuid = 1;
+    string TestDataClientUuid = 1;
     repeated MerkleTreeNodeMessage MerkleTreeNodes = 2;
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
 }
@@ -120,14 +120,14 @@ message MerkleTreeNodeMessage {
 
 // Message holding the hash for all header information
 message TestDataHeaderHashMessage {
-    string TestDataClientGuid = 1;
+    string TestDataClientUuid = 1;
     string HeadersHash = 2;
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
 }
 
 // Message holding all headers for the testdata
 message TestDataHeadersMessage {
-    string TestDataClientGuid = 1;
+    string TestDataClientUuid = 1;
     string TestDataHeaderLabelsHash = 2;
     string TestDataHeaderItemsHash = 3;
     repeated TestDataHeaderItemMessage TestDataHeaderItems = 4;
@@ -164,7 +164,7 @@ message HeaderFilterValue {
 
 // Message holding rows with TestData
 message TestdataRowsMessages {
-    string TestDataClientGuid = 1;
+    string TestDataClientUuid = 1;
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
     TestDataHeaderLabelsMessage TestDataHeaderLabels = 3;
     repeated TestDataRowMessage TestDataRows = 4;

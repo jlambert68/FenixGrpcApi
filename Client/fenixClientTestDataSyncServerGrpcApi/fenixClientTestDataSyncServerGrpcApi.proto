@@ -7,7 +7,7 @@ option go_package ="./go_grpc_api";
 // Major changes changes needs to be the same for server and client
 enum CurrentFenixClientTestDataProtoFileVersionEnum {
     VERSION_0_9 = 0 [deprecated = true];
-    VERSION_1_0 = 1; // Current version
+    VERSION_0_10 = 1; // Current version
 }
 
 // Error codes - for now a test
