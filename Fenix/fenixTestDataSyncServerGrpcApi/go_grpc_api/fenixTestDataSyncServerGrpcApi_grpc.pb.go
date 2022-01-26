@@ -32,8 +32,6 @@ type FenixTestDataGrpcServicesClient interface {
 	SendTestDataHeaders(ctx context.Context, in *TestDataHeaderMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
 	SendTestDataRows(ctx context.Context, in *TestdataRowsMessages, opts ...grpc.CallOption) (*AckNackResponse, error)
-	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
-	GetTestDataInDBRequestTest(ctx context.Context, in *TestDataInDBRequestTest, opts ...grpc.CallOption) (*TestDataInDBResponseTest, error)
 }
 
 type fenixTestDataGrpcServicesClient struct {
@@ -107,15 +105,6 @@ func (c *fenixTestDataGrpcServicesClient) SendTestDataRows(ctx context.Context, 
 	return out, nil
 }
 
-func (c *fenixTestDataGrpcServicesClient) GetTestDataInDBRequestTest(ctx context.Context, in *TestDataInDBRequestTest, opts ...grpc.CallOption) (*TestDataInDBResponseTest, error) {
-	out := new(TestDataInDBResponseTest)
-	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/GetTestDataInDBRequestTest", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // FenixTestDataGrpcServicesServer is the server API for FenixTestDataGrpcServices service.
 // All implementations must embed UnimplementedFenixTestDataGrpcServicesServer
 // for forward compatibility
@@ -134,8 +123,6 @@ type FenixTestDataGrpcServicesServer interface {
 	SendTestDataHeaders(context.Context, *TestDataHeaderMessage) (*AckNackResponse, error)
 	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
 	SendTestDataRows(context.Context, *TestdataRowsMessages) (*AckNackResponse, error)
-	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
-	GetTestDataInDBRequestTest(context.Context, *TestDataInDBRequestTest) (*TestDataInDBResponseTest, error)
 	mustEmbedUnimplementedFenixTestDataGrpcServicesServer()
 }
 
@@ -163,9 +150,6 @@ func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataHeaders(context.
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataRows(context.Context, *TestdataRowsMessages) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTestDataRows not implemented")
-}
-func (UnimplementedFenixTestDataGrpcServicesServer) GetTestDataInDBRequestTest(context.Context, *TestDataInDBRequestTest) (*TestDataInDBResponseTest, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTestDataInDBRequestTest not implemented")
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) mustEmbedUnimplementedFenixTestDataGrpcServicesServer() {
 }
@@ -307,24 +291,6 @@ func _FenixTestDataGrpcServices_SendTestDataRows_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestDataGrpcServices_GetTestDataInDBRequestTest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestDataInDBRequestTest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(FenixTestDataGrpcServicesServer).GetTestDataInDBRequestTest(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/GetTestDataInDBRequestTest",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestDataGrpcServicesServer).GetTestDataInDBRequestTest(ctx, req.(*TestDataInDBRequestTest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // FenixTestDataGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestDataGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -359,10 +325,6 @@ var FenixTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendTestDataRows",
 			Handler:    _FenixTestDataGrpcServices_SendTestDataRows_Handler,
-		},
-		{
-			MethodName: "GetTestDataInDBRequestTest",
-			Handler:    _FenixTestDataGrpcServices_GetTestDataInDBRequestTest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

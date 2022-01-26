@@ -2,12 +2,16 @@ syntax = "proto3";
 package fenixTestDataSyncServerGrpcApi;
 option go_package ="./go_grpc_api";
 
+
+// ****************************************************************************************************
+// General messages and Enumerations
+
 // Used to have client and server in sync with using the same proto file version
 // Minor changes is backwards compatible with previous version
 // Major changes changes needs to be the same for server and client
 enum CurrentFenixTestDataProtoFileVersionEnum {
     VERSION_0_9 = 0 [deprecated = true];
-    VERSION_1_0 = 1; // Current version
+    VERSION_0_10 = 1; // Current version
 }
 
 // Error codes - for now a test
@@ -17,6 +21,7 @@ enum ErrorCodesEnum {
     ERROR_WRONG_PROTO_FILE_VERSION = 2;
     ERROR_ROWHASH_NOT_CORRECT_CALCULATED = 3;
     ERROR_MERKLEHASH_NOT_CORRECT_CALCULATED = 4;
+    ERROR_HEADERLABELHASH_NOT_CORRECT_CALCULATED = 5;
 
 }
 
@@ -27,15 +32,15 @@ message EmptyParameter {
 
 // Ack/Nack- Response message with comment
 message AckNackResponse {
-    bool acknack = 1; // True=Ack, False=Nack
-    string comments = 2; //Comments if needed
+    bool AckNack = 1; // True=Ack, False=Nack
+    string Comments = 2; //Comments if needed
     repeated ErrorCodesEnum ErrorCodes = 3;
 }
 
 
-
+// ****************************************************************************************************
 // Fenix Testdata sync server service definition.
-// ***********************
+
 service FenixTestDataGrpcServices {
 
     //Fenix client can check if Fenix Testdata sync server is alive with this service
@@ -66,31 +71,10 @@ service FenixTestDataGrpcServices {
     rpc SendTestDataRows (TestdataRowsMessages) returns (AckNackResponse) {
     }
 
-    // Fenix client can send TestData rows to Fenix Testdata sync server with this service
-    rpc GetTestDataInDBRequestTest (TestDataInDBRequestTest) returns (TestDataInDBResponseTest) {
-    }
-
 }
 
-// Server or Client
-enum ServerOrClientDBEnumTest {
-    SERVER_IN_DB = 0;
-    CLIENT_IN_DB = 1;
-}
-message TestDataInDBRequestTest {
-    ServerOrClientDBEnumTest ServerOrClientDB = 1;
-    string TestDataClientGuid = 2;
-}
-
-message TestDataInDBResponseTest {
-    ServerOrClientDBEnumTest ServerOrClientDB = 1;
-    string merkleHash = 2;
-        string MerkleTree = 3;
-        string HeaderHash = 4;
-        repeated string Headers = 5;
-    string TestDataRows = 6;
-    string TestDataClientGuid = 7;
-}
+// ****************************************************************************************************
+// Client Information
 
 // Message Holding information about the TestDataClient
 message TestDataClientInformationMessage {
@@ -102,6 +86,9 @@ message TestDataClientInformationMessage {
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 6;
 }
 
+// ****************************************************************************************************
+// MerkleHash
+
 // Message holding the top MerkleTree hash
 message MerkleHashMessage {
     string TestDataClientGuid = 1;
@@ -109,6 +96,8 @@ message MerkleHashMessage {
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
 
 }
+// ****************************************************************************************************
+// MerkleTree
 
 // Message holding the complete MerkleTree for the hashes
 message MerkleTreeMessage {
@@ -119,12 +108,15 @@ message MerkleTreeMessage {
 
 // Message holding one node of the MerkleTree
 message MerkleTreeNodeMessage {
-    int64 MerkleLevel = 1;
-    string MerklePath = 2;
-    string MerkleHash = 3;
-    string MerkleChildHash = 4;
+    uint32 NodeLevel = 1;
+    string NodeName = 2;
+    string NodePath = 3;
+    string NodeHash = 4;
+    string NodeChildHash = 5;
 }
 
+// ****************************************************************************************************
+// TestDataHeaders
 
 // Message holding the hash for all header information
 message TestDataHeaderHashMessage {
@@ -136,23 +128,25 @@ message TestDataHeaderHashMessage {
 // Message holding all headers for the testdata
 message TestDataHeaderMessage {
     string TestDataClientGuid = 1;
-    string HeadersHash = 2;
-    repeated TestDataHeaderItemMessage TestDataHeaderItems = 3;
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 4;
+    string TestDataHeaderLabelsHash = 2;
+    string TestDataHeaderItemsHash = 3;
+    repeated TestDataHeaderItemMessage TestDataHeaderItems = 4;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 5;
 }
 
 // Message holding one Header Item
 message TestDataHeaderItemMessage {
-    string HeaderPresentationsLabel = 1;
-    string HeaderDataLabel = 2;
-    bool HeaderShouldbBeUsedForTestDataFilter = 3;
-    bool HeaderIsMandatoryInTestDataFilter = 4;
-    HeaderSelectionTypeEnum HeaderSelectionType = 5;
-   repeated HeaderFilterValue HeaderFilterValues = 6;
+    string TestDataHeaderItemMessageHash = 1;
+    string HeaderPresentationsLabel = 2;
+    string HeaderDataLabel = 3;
+    bool HeaderShouldBeUsedForTestDataFilter = 4;
+    bool HeaderIsMandatoryInTestDataFilter = 5;
+    HeaderSelectionTypeEnum HeaderSelectionType = 6;
+   repeated HeaderFilterValue HeaderFilterValues = 7;
 
 }
 
-// How TestData filter can be selected
+// How a TestData filter column can be selected
 enum HeaderSelectionTypeEnum {
     HEADER_IS_SINGLE_SELECT = 0;
     HEADER_IS_MULTI_SELECT = 1;
@@ -164,11 +158,28 @@ message HeaderFilterValue {
 }
 
 
+
+// ****************************************************************************************************
+// TestData
+
 // Message holding rows with TestData
 message TestdataRowsMessages {
     string TestDataClientGuid = 1;
-    repeated TestDataRowMessage TestDataRows = 2;
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 3;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
+    TestDataHeaderLabelsMessage TestDataHeaderLabels = 3;
+    repeated TestDataRowMessage TestDataRows = 4;
+
+}
+
+// Message holding data labels for column data
+message TestDataHeaderLabelsMessage {
+    string HeadersHash = 1;
+    repeated TestDataItemHeaderDataLabelMessage TestDataItemHeaderDataLabels = 2;
+}
+
+// Message Holding one TestDataItemHeaderDataLabel
+message TestDataItemHeaderDataLabelMessage {
+    string TestDataItemHeaderDataLabel = 1;
 }
 
 // Message Holding one TestData row
@@ -179,7 +190,7 @@ message TestDataRowMessage {
 
 // Message holding one TestData item
 message TestDataItemMessage {
-    string TestDataItemValueAsString = 2;
+    string TestDataItemValueAsString = 1;
 }
 
 
