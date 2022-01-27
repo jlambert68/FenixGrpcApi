@@ -142,7 +142,8 @@ message TestDataHeaderItemMessage {
     bool HeaderShouldBeUsedForTestDataFilter = 3;
     bool HeaderIsMandatoryInTestDataFilter = 4;
     HeaderSelectionTypeEnum HeaderSelectionType = 5;
-   repeated HeaderFilterValue HeaderFilterValues = 6;
+    string HeaderFilterValuesHash = 6;
+   repeated HeaderFilterValue HeaderFilterValues = 7;
 
 }
 
