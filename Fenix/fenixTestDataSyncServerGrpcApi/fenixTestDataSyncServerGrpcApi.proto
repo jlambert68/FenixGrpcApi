@@ -137,12 +137,11 @@ message TestDataHeadersMessage {
 // Message holding one Header Item
 message TestDataHeaderItemMessage {
     string TestDataHeaderItemMessageHash = 1;
-    string HeaderPresentationsLabel = 2;
-    string HeaderDataLabel = 3;
-    bool HeaderShouldBeUsedForTestDataFilter = 4;
-    bool HeaderIsMandatoryInTestDataFilter = 5;
-    HeaderSelectionTypeEnum HeaderSelectionType = 6;
-   repeated HeaderFilterValue HeaderFilterValues = 7;
+    string HeaderLabel = 2;
+    bool HeaderShouldBeUsedForTestDataFilter = 3;
+    bool HeaderIsMandatoryInTestDataFilter = 4;
+    HeaderSelectionTypeEnum HeaderSelectionType = 5;
+   repeated HeaderFilterValue HeaderFilterValues = 6;
 
 }
 
@@ -173,13 +172,13 @@ message TestdataRowsMessages {
 
 // Message holding data labels for column data
 message TestDataHeaderLabelsMessage {
-    string HeadersHash = 1;
-    repeated TestDataItemHeaderDataLabelMessage TestDataItemHeaderDataLabels = 2;
+    string HeaderLabelsHash = 1;
+    repeated TestDataItemHeaderLabelMessage TestDataItemHeaderLabels = 2;
 }
 
-// Message Holding one TestDataItemHeaderDataLabel
-message TestDataItemHeaderDataLabelMessage {
-    string TestDataItemHeaderDataLabel = 1;
+// Message Holding one TestDataItemHeaderLabel
+message TestDataItemHeaderLabelMessage {
+    string TestDataItemHeaderLabel = 1;
 }
 
 // Message Holding one TestData row
