@@ -186,7 +186,9 @@ message TestDataItemHeaderLabelMessage {
 // Message Holding one TestData row
 message TestDataRowMessage {
     string RowHash = 1;
-    repeated TestDataItemMessage TestDataItems = 2;
+    string LeafNodeName = 2;
+    string LeafNodePath = 3;
+    repeated TestDataItemMessage TestDataItems = 4;
 }
 
 // Message holding one TestData item
