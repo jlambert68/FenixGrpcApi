@@ -130,8 +130,9 @@ message TestDataHeaderHashMessage {
 message TestDataHeadersMessage {
     string TestDataClientUuid = 1;
     string TestDataHeaderItemsHash = 2;
-    repeated TestDataHeaderItemMessage TestDataHeaderItems = 3;
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 4;
+    string HeaderLabelsHash = 3;
+    repeated TestDataHeaderItemMessage TestDataHeaderItems = 4;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 5;
 }
 
 // Message holding one Header Item
