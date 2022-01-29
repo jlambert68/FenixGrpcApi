@@ -71,6 +71,13 @@ service FenixTestDataGrpcServices {
     rpc SendTestDataRows (TestdataRowsMessages) returns (AckNackResponse) {
     }
 
+    // Retry to allow incoming gRPC calls and process outgoing calls
+    rpc AllowIncomingAndOutgoingMessages(EmptyParameter) returns (AckNackResponse) {
+    }
+
+    // Restart Fenix TestData Server processes
+    rpc RestartFenixServerProcesses(EmptyParameter) returns (AckNackResponse) {
+    }
 }
 
 // ****************************************************************************************************
@@ -169,7 +176,6 @@ message TestdataRowsMessages {
     CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
     TestDataHeaderLabelsMessage TestDataHeaderLabels = 3;
     repeated TestDataRowMessage TestDataRows = 4;
-
 }
 
 // Message holding data labels for column data

@@ -32,6 +32,10 @@ type FenixTestDataGrpcServicesClient interface {
 	SendTestDataHeaders(ctx context.Context, in *TestDataHeadersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
 	SendTestDataRows(ctx context.Context, in *TestdataRowsMessages, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Retry to allow incoming gRPC calls and process outgoing calls
+	AllowIncomingAndOutgoingMessages(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Restart Fenix TestData Server processes
+	RestartFenixServerProcesses(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixTestDataGrpcServicesClient struct {
@@ -105,6 +109,24 @@ func (c *fenixTestDataGrpcServicesClient) SendTestDataRows(ctx context.Context, 
 	return out, nil
 }
 
+func (c *fenixTestDataGrpcServicesClient) AllowIncomingAndOutgoingMessages(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/AllowIncomingAndOutgoingMessages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixTestDataGrpcServicesClient) RestartFenixServerProcesses(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/RestartFenixServerProcesses", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixTestDataGrpcServicesServer is the server API for FenixTestDataGrpcServices service.
 // All implementations must embed UnimplementedFenixTestDataGrpcServicesServer
 // for forward compatibility
@@ -123,6 +145,10 @@ type FenixTestDataGrpcServicesServer interface {
 	SendTestDataHeaders(context.Context, *TestDataHeadersMessage) (*AckNackResponse, error)
 	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
 	SendTestDataRows(context.Context, *TestdataRowsMessages) (*AckNackResponse, error)
+	// Retry to allow incoming gRPC calls and process outgoing calls
+	AllowIncomingAndOutgoingMessages(context.Context, *EmptyParameter) (*AckNackResponse, error)
+	// Restart Fenix TestData Server processes
+	RestartFenixServerProcesses(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixTestDataGrpcServicesServer()
 }
 
@@ -150,6 +176,12 @@ func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataHeaders(context.
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataRows(context.Context, *TestdataRowsMessages) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTestDataRows not implemented")
+}
+func (UnimplementedFenixTestDataGrpcServicesServer) AllowIncomingAndOutgoingMessages(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AllowIncomingAndOutgoingMessages not implemented")
+}
+func (UnimplementedFenixTestDataGrpcServicesServer) RestartFenixServerProcesses(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RestartFenixServerProcesses not implemented")
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) mustEmbedUnimplementedFenixTestDataGrpcServicesServer() {
 }
@@ -291,6 +323,42 @@ func _FenixTestDataGrpcServices_SendTestDataRows_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestDataGrpcServices_AllowIncomingAndOutgoingMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestDataGrpcServicesServer).AllowIncomingAndOutgoingMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/AllowIncomingAndOutgoingMessages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestDataGrpcServicesServer).AllowIncomingAndOutgoingMessages(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixTestDataGrpcServices_RestartFenixServerProcesses_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestDataGrpcServicesServer).RestartFenixServerProcesses(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/RestartFenixServerProcesses",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestDataGrpcServicesServer).RestartFenixServerProcesses(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixTestDataGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestDataGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -325,6 +393,14 @@ var FenixTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendTestDataRows",
 			Handler:    _FenixTestDataGrpcServices_SendTestDataRows_Handler,
+		},
+		{
+			MethodName: "AllowIncomingAndOutgoingMessages",
+			Handler:    _FenixTestDataGrpcServices_AllowIncomingAndOutgoingMessages_Handler,
+		},
+		{
+			MethodName: "RestartFenixServerProcesses",
+			Handler:    _FenixTestDataGrpcServices_RestartFenixServerProcesses_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
