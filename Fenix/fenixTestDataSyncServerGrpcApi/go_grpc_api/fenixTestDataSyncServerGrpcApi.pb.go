@@ -1185,7 +1185,8 @@ type AllowOrDisallowIncomingAndOutgoingMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AllowInAndOutgoingMessages bool `protobuf:"varint,1,opt,name=AllowInAndOutgoingMessages,proto3" json:"AllowInAndOutgoingMessages,omitempty"`
+	AllowInAndOutgoingMessages   bool                                     `protobuf:"varint,1,opt,name=AllowInAndOutgoingMessages,proto3" json:"AllowInAndOutgoingMessages,omitempty"`
+	ProtoFileVersionUsedByClient CurrentFenixTestDataProtoFileVersionEnum `protobuf:"varint,2,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixTestDataSyncServerGrpcApi.CurrentFenixTestDataProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"`
 }
 
 func (x *AllowOrDisallowIncomingAndOutgoingMessage) Reset() {
@@ -1225,6 +1226,13 @@ func (x *AllowOrDisallowIncomingAndOutgoingMessage) GetAllowInAndOutgoingMessage
 		return x.AllowInAndOutgoingMessages
 	}
 	return false
+}
+
+func (x *AllowOrDisallowIncomingAndOutgoingMessage) GetProtoFileVersionUsedByClient() CurrentFenixTestDataProtoFileVersionEnum {
+	if x != nil {
+		return x.ProtoFileVersionUsedByClient
+	}
+	return CurrentFenixTestDataProtoFileVersionEnum_VERSION_0_9
 }
 
 var File_fenixTestDataSyncServerGrpcApi_proto protoreflect.FileDescriptor
@@ -1475,14 +1483,23 @@ var file_fenixTestDataSyncServerGrpcApi_proto_rawDesc = []byte{
 	0x74, 0x61, 0x49, 0x74, 0x65, 0x6d, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x41, 0x73, 0x53, 0x74, 0x72,
 	0x69, 0x6e, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x19, 0x54, 0x65, 0x73, 0x74, 0x44,
 	0x61, 0x74, 0x61, 0x49, 0x74, 0x65, 0x6d, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x41, 0x73, 0x53, 0x74,
-	0x72, 0x69, 0x6e, 0x67, 0x22, 0x6b, 0x0a, 0x29, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x4f, 0x72, 0x44,
-	0x69, 0x73, 0x61, 0x6c, 0x6c, 0x6f, 0x77, 0x49, 0x6e, 0x63, 0x6f, 0x6d, 0x69, 0x6e, 0x67, 0x41,
+	0x72, 0x69, 0x6e, 0x67, 0x22, 0xfa, 0x01, 0x0a, 0x29, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x4f, 0x72,
+	0x44, 0x69, 0x73, 0x61, 0x6c, 0x6c, 0x6f, 0x77, 0x49, 0x6e, 0x63, 0x6f, 0x6d, 0x69, 0x6e, 0x67,
+	0x41, 0x6e, 0x64, 0x4f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x12, 0x3e, 0x0a, 0x1a, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x49, 0x6e, 0x41, 0x6e, 0x64,
+	0x4f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x1a, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x49, 0x6e, 0x41,
 	0x6e, 0x64, 0x4f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
-	0x65, 0x12, 0x3e, 0x0a, 0x1a, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x49, 0x6e, 0x41, 0x6e, 0x64, 0x4f,
-	0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x1a, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x49, 0x6e, 0x41, 0x6e,
-	0x64, 0x4f, 0x75, 0x74, 0x67, 0x6f, 0x69, 0x6e, 0x67, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x73, 0x2a, 0x51, 0x0a, 0x28, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69,
+	0x65, 0x73, 0x12, 0x8c, 0x01, 0x0a, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69,
+	0x65, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x48, 0x2e, 0x66, 0x65, 0x6e, 0x69,
+	0x78, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x53, 0x79, 0x6e, 0x63, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65,
+	0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x45,
+	0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65, 0x6e,
+	0x74, 0x2a, 0x51, 0x0a, 0x28, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69,
 	0x78, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69,
 	0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x12, 0x13, 0x0a,
 	0x0b, 0x56, 0x45, 0x52, 0x53, 0x49, 0x4f, 0x4e, 0x5f, 0x30, 0x5f, 0x39, 0x10, 0x00, 0x1a, 0x02,
@@ -1642,29 +1659,30 @@ var file_fenixTestDataSyncServerGrpcApi_proto_depIdxs = []int32{
 	16, // 13: fenixTestDataSyncServerGrpcApi.TestdataRowsMessages.TestDataRows:type_name -> fenixTestDataSyncServerGrpcApi.TestDataRowMessage
 	15, // 14: fenixTestDataSyncServerGrpcApi.TestDataHeaderLabelsMessage.TestDataItemHeaderLabels:type_name -> fenixTestDataSyncServerGrpcApi.TestDataItemHeaderLabelMessage
 	17, // 15: fenixTestDataSyncServerGrpcApi.TestDataRowMessage.TestDataItems:type_name -> fenixTestDataSyncServerGrpcApi.TestDataItemMessage
-	3,  // 16: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AreYouAlive:input_type -> fenixTestDataSyncServerGrpcApi.EmptyParameter
-	5,  // 17: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RegisterTestDataClient:input_type -> fenixTestDataSyncServerGrpcApi.TestDataClientInformationMessage
-	6,  // 18: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleHash:input_type -> fenixTestDataSyncServerGrpcApi.MerkleHashMessage
-	7,  // 19: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleTree:input_type -> fenixTestDataSyncServerGrpcApi.MerkleTreeMessage
-	9,  // 20: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaderHash:input_type -> fenixTestDataSyncServerGrpcApi.TestDataHeaderHashMessage
-	10, // 21: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaders:input_type -> fenixTestDataSyncServerGrpcApi.TestDataHeadersMessage
-	13, // 22: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataRows:input_type -> fenixTestDataSyncServerGrpcApi.TestdataRowsMessages
-	18, // 23: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AllowOrDisallowIncomingAndOutgoingMessages:input_type -> fenixTestDataSyncServerGrpcApi.AllowOrDisallowIncomingAndOutgoingMessage
-	3,  // 24: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RestartFenixServerProcesses:input_type -> fenixTestDataSyncServerGrpcApi.EmptyParameter
-	4,  // 25: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AreYouAlive:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 26: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RegisterTestDataClient:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 27: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleHash:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 28: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleTree:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 29: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaderHash:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 30: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaders:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 31: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataRows:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 32: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AllowOrDisallowIncomingAndOutgoingMessages:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	4,  // 33: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RestartFenixServerProcesses:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
-	25, // [25:34] is the sub-list for method output_type
-	16, // [16:25] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	0,  // 16: fenixTestDataSyncServerGrpcApi.AllowOrDisallowIncomingAndOutgoingMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestDataSyncServerGrpcApi.CurrentFenixTestDataProtoFileVersionEnum
+	3,  // 17: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AreYouAlive:input_type -> fenixTestDataSyncServerGrpcApi.EmptyParameter
+	5,  // 18: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RegisterTestDataClient:input_type -> fenixTestDataSyncServerGrpcApi.TestDataClientInformationMessage
+	6,  // 19: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleHash:input_type -> fenixTestDataSyncServerGrpcApi.MerkleHashMessage
+	7,  // 20: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleTree:input_type -> fenixTestDataSyncServerGrpcApi.MerkleTreeMessage
+	9,  // 21: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaderHash:input_type -> fenixTestDataSyncServerGrpcApi.TestDataHeaderHashMessage
+	10, // 22: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaders:input_type -> fenixTestDataSyncServerGrpcApi.TestDataHeadersMessage
+	13, // 23: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataRows:input_type -> fenixTestDataSyncServerGrpcApi.TestdataRowsMessages
+	18, // 24: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AllowOrDisallowIncomingAndOutgoingMessages:input_type -> fenixTestDataSyncServerGrpcApi.AllowOrDisallowIncomingAndOutgoingMessage
+	3,  // 25: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RestartFenixServerProcesses:input_type -> fenixTestDataSyncServerGrpcApi.EmptyParameter
+	4,  // 26: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AreYouAlive:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 27: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RegisterTestDataClient:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 28: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleHash:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 29: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendMerkleTree:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 30: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaderHash:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 31: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataHeaders:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 32: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.SendTestDataRows:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 33: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.AllowOrDisallowIncomingAndOutgoingMessages:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	4,  // 34: fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices.RestartFenixServerProcesses:output_type -> fenixTestDataSyncServerGrpcApi.AckNackResponse
+	26, // [26:35] is the sub-list for method output_type
+	17, // [17:26] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_fenixTestDataSyncServerGrpcApi_proto_init() }

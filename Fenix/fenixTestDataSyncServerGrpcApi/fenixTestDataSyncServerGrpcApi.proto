@@ -206,6 +206,7 @@ message TestDataItemMessage {
 // Message for turning on or off in- and outgoing messages for Fenix TestData Sync Server
 message AllowOrDisallowIncomingAndOutgoingMessage {
     bool AllowInAndOutgoingMessages = 1;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
 }
 
 
