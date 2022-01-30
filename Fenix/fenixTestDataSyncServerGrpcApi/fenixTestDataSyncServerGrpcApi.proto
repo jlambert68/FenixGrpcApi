@@ -73,7 +73,7 @@ service FenixTestDataGrpcServices {
     }
 
     // Retry to allow incoming gRPC calls and process outgoing calls
-    rpc AllowIncomingAndOutgoingMessages(EmptyParameter) returns (AckNackResponse) {
+    rpc AllowOrDisallowIncomingAndOutgoingMessages(AllowOrDisallowIncomingAndOutgoingMessage) returns (AckNackResponse) {
     }
 
     // Restart Fenix TestData Server processes
@@ -203,6 +203,10 @@ message TestDataItemMessage {
     string TestDataItemValueAsString = 1;
 }
 
+// Message for turning on or off in- and outgoing messages for Fenix TestData Sync Server
+message AllowOrDisallowIncomingAndOutgoingMessage {
+    bool AllowInAndOutgoingMessages = 1;
+}
 
 
 
