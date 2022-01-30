@@ -24,7 +24,7 @@ message EmptyParameter {
 
 // Ack/Nack- Response message with comment
 message AckNackResponse {
-    bool acknack = 1; // True=Ack, False=Nack
+    bool AckNack = 1; // True=Ack, False=Nack
     string comments = 2; //Comments if needed
     repeated ErrorCodesEnum ErrorCodes = 3;
 }
