@@ -38,6 +38,12 @@ message AckNackResponse {
     repeated ErrorCodesEnum ErrorCodes = 3;
 }
 
+// Message for Verifying Client's ability to send correct rows based on incoming Request paths
+message AbilityToSendCorrectTestDataRowsMessage {
+    string TestDataClientUuid = 1;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
+}
+
 
 // ****************************************************************************************************
 // Fenix Testdata sync server service definition.
@@ -78,6 +84,10 @@ service FenixTestDataGrpcServices {
 
     // Restart Fenix TestData Server processes
     rpc RestartFenixServerProcesses(EmptyParameter) returns (AckNackResponse) {
+    }
+
+    // Verify Client's ability to send correct rows based on incoming Request paths
+    rpc VerifyClientsAbilityToSendCorrectTestDataRows(AbilityToSendCorrectTestDataRowsMessage) returns (AckNackResponse) {
     }
 }
 

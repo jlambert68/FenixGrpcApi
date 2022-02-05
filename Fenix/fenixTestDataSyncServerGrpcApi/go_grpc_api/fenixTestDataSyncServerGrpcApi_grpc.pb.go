@@ -36,6 +36,8 @@ type FenixTestDataGrpcServicesClient interface {
 	AllowOrDisallowIncomingAndOutgoingMessages(ctx context.Context, in *AllowOrDisallowIncomingAndOutgoingMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Restart Fenix TestData Server processes
 	RestartFenixServerProcesses(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Verify Client's ability to send correct rows based on incoming Request paths
+	VerifyClientsAbilityToSendCorrectTestDataRows(ctx context.Context, in *AbilityToSendCorrectTestDataRowsMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixTestDataGrpcServicesClient struct {
@@ -127,6 +129,15 @@ func (c *fenixTestDataGrpcServicesClient) RestartFenixServerProcesses(ctx contex
 	return out, nil
 }
 
+func (c *fenixTestDataGrpcServicesClient) VerifyClientsAbilityToSendCorrectTestDataRows(ctx context.Context, in *AbilityToSendCorrectTestDataRowsMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/VerifyClientsAbilityToSendCorrectTestDataRows", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixTestDataGrpcServicesServer is the server API for FenixTestDataGrpcServices service.
 // All implementations must embed UnimplementedFenixTestDataGrpcServicesServer
 // for forward compatibility
@@ -149,6 +160,8 @@ type FenixTestDataGrpcServicesServer interface {
 	AllowOrDisallowIncomingAndOutgoingMessages(context.Context, *AllowOrDisallowIncomingAndOutgoingMessage) (*AckNackResponse, error)
 	// Restart Fenix TestData Server processes
 	RestartFenixServerProcesses(context.Context, *EmptyParameter) (*AckNackResponse, error)
+	// Verify Client's ability to send correct rows based on incoming Request paths
+	VerifyClientsAbilityToSendCorrectTestDataRows(context.Context, *AbilityToSendCorrectTestDataRowsMessage) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixTestDataGrpcServicesServer()
 }
 
@@ -182,6 +195,9 @@ func (UnimplementedFenixTestDataGrpcServicesServer) AllowOrDisallowIncomingAndOu
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) RestartFenixServerProcesses(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestartFenixServerProcesses not implemented")
+}
+func (UnimplementedFenixTestDataGrpcServicesServer) VerifyClientsAbilityToSendCorrectTestDataRows(context.Context, *AbilityToSendCorrectTestDataRowsMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyClientsAbilityToSendCorrectTestDataRows not implemented")
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) mustEmbedUnimplementedFenixTestDataGrpcServicesServer() {
 }
@@ -359,6 +375,24 @@ func _FenixTestDataGrpcServices_RestartFenixServerProcesses_Handler(srv interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestDataGrpcServices_VerifyClientsAbilityToSendCorrectTestDataRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AbilityToSendCorrectTestDataRowsMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestDataGrpcServicesServer).VerifyClientsAbilityToSendCorrectTestDataRows(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/VerifyClientsAbilityToSendCorrectTestDataRows",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestDataGrpcServicesServer).VerifyClientsAbilityToSendCorrectTestDataRows(ctx, req.(*AbilityToSendCorrectTestDataRowsMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixTestDataGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestDataGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -401,6 +435,10 @@ var FenixTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RestartFenixServerProcesses",
 			Handler:    _FenixTestDataGrpcServices_RestartFenixServerProcesses_Handler,
+		},
+		{
+			MethodName: "VerifyClientsAbilityToSendCorrectTestDataRows",
+			Handler:    _FenixTestDataGrpcServices_VerifyClientsAbilityToSendCorrectTestDataRows_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
