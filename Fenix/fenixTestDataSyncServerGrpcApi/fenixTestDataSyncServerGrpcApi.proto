@@ -112,7 +112,8 @@ message MerkleHashMessage {
     string TestDataClientUuid = 1;
     string MerkleHash = 2;
     string MerkleFilter = 3;
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 4;
+    string MerkleFilterHash = 4;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 5;
 
 }
 // ****************************************************************************************************
