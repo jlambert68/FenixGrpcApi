@@ -36,9 +36,9 @@ message AckNackResponse {
 
 
 // ****************************************************************************************************
-// Fenix Testdata sync server service definition.
+// Fenix Testdata sync Admin Server service definition.
 
-service FenixTestDataGrpcServices {
+service FenixTestDataGrpcAdminServices {
 
     //Caller can check if Fenix Testdata sync server is alive with this service
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
