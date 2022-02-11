@@ -3,8 +3,6 @@ package fenixClientTestDataSyncServerGrpcApi;
 option go_package ="./go_grpc_api";
 
 // Used to have client and server in sync with using the same proto file version
-// Minor changes is backwards compatible with previous version
-// Major changes changes needs to be the same for server and client
 enum CurrentFenixClientTestDataProtoFileVersionEnum {
     VERSION_0_9 = 0 [deprecated = true];
     VERSION_0_10 = 1[deprecated = true];

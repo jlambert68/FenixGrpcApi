@@ -1,0 +1,73 @@
+syntax = "proto3";
+package fenixTestDataSyncServerGrpcApi;
+option go_package ="./go_grpc_api";
+
+
+// ****************************************************************************************************
+// General messages and Enumerations
+
+// Used to have client and server in sync with using the same proto file version
+enum CurrentFenixTestDataProtoFileVersionEnum {
+    VERSION_0_9 = 0 [deprecated = true];
+    VERSION_0_10 = 1; // Current version
+}
+
+// Error codes - for now a test
+enum ErrorCodesEnum {
+    OK = 0;
+    ERROR_UNKNOWN_CALLER = 1;
+    ERROR_WRONG_PROTO_FILE_VERSION = 2;
+
+}
+
+// Parameter used for Empty inputs, only containing current proto-file version
+message EmptyParameter {
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 1;
+}
+
+// Ack/Nack- Response message with comment
+message AckNackResponse {
+    bool AckNack = 1; // True=Ack, False=Nack
+    string Comments = 2; //Comments if needed
+    repeated ErrorCodesEnum ErrorCodes = 3;
+}
+
+
+
+
+// ****************************************************************************************************
+// Fenix Testdata sync server service definition.
+
+service FenixTestDataGrpcServices {
+
+    //Caller can check if Fenix Testdata sync server is alive with this service
+    rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+    }
+
+    // Retry to allow incoming gRPC calls and process outgoing calls
+    rpc AllowOrDisallowIncomingAndOutgoingMessages(AllowOrDisallowIncomingAndOutgoingMessage) returns (AckNackResponse) {
+    }
+
+    // Restart Fenix TestData Server processes
+    rpc RestartFenixServerProcesses(EmptyParameter) returns (AckNackResponse) {
+    }
+
+    // Verify Client's ability to send correct rows based on incoming Request paths
+    rpc VerifyClientsAbilityToSendCorrectTestDataRows(AbilityToSendCorrectTestDataRowsMessage) returns (AckNackResponse) {
+    }
+}
+
+// Message for turning on or off in- and outgoing messages for Fenix TestData Sync Server
+message AllowOrDisallowIncomingAndOutgoingMessage {
+    bool AllowInAndOutgoingMessages = 1;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
+}
+
+// Message for Verifying Client's ability to send correct rows based on incoming Request paths
+message AbilityToSendCorrectTestDataRowsMessage {
+    string TestDataClientUuid = 1;
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
+}
+
+
+

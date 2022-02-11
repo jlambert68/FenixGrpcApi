@@ -7,12 +7,12 @@ option go_package ="./go_grpc_api";
 // General messages and Enumerations
 
 // Used to have client and server in sync with using the same proto file version
-// Minor changes is backwards compatible with previous version
-// Major changes changes needs to be the same for server and client
+
 enum CurrentFenixTestDataProtoFileVersionEnum {
     VERSION_0_9 = 0 [deprecated = true];
     VERSION_0_10 = 1 [deprecated = true];
-    VERSION_0_11 = 2; // Current version
+    VERSION_0_11 = 2 [deprecated = true];
+    VERSION_0_12 = 3; // Current version // Current version
 }
 
 // Error codes - for now a test
@@ -39,13 +39,6 @@ message AckNackResponse {
     string Comments = 2; //Comments if needed
     repeated ErrorCodesEnum ErrorCodes = 3;
 }
-
-// Message for Verifying Client's ability to send correct rows based on incoming Request paths
-message AbilityToSendCorrectTestDataRowsMessage {
-    string TestDataClientUuid = 1;
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
-}
-
 
 // ****************************************************************************************************
 // Fenix Testdata sync server service definition.
@@ -80,17 +73,6 @@ service FenixTestDataGrpcServices {
     rpc SendTestDataRows (TestdataRowsMessages) returns (AckNackResponse) {
     }
 
-    // Retry to allow incoming gRPC calls and process outgoing calls
-    rpc AllowOrDisallowIncomingAndOutgoingMessages(AllowOrDisallowIncomingAndOutgoingMessage) returns (AckNackResponse) {
-    }
-
-    // Restart Fenix TestData Server processes
-    rpc RestartFenixServerProcesses(EmptyParameter) returns (AckNackResponse) {
-    }
-
-    // Verify Client's ability to send correct rows based on incoming Request paths
-    rpc VerifyClientsAbilityToSendCorrectTestDataRows(AbilityToSendCorrectTestDataRowsMessage) returns (AckNackResponse) {
-    }
 }
 
 // ****************************************************************************************************
@@ -216,11 +198,6 @@ message TestDataItemMessage {
     string TestDataItemValueAsString = 1;
 }
 
-// Message for turning on or off in- and outgoing messages for Fenix TestData Sync Server
-message AllowOrDisallowIncomingAndOutgoingMessage {
-    bool AllowInAndOutgoingMessages = 1;
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2;
-}
 
 
 
