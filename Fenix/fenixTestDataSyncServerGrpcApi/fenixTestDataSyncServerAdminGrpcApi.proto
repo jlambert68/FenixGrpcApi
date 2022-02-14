@@ -1,5 +1,5 @@
 syntax = "proto3";
-package fenixTestDataSyncServerGrpcApi;
+package fenixTestDataSyncServerGrpcAdminApi;
 option go_package ="./go_grpc_admin_api";
 
 

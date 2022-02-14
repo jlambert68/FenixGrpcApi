@@ -38,7 +38,7 @@ func NewFenixTestDataGrpcAdminServicesClient(cc grpc.ClientConnInterface) FenixT
 
 func (c *fenixTestDataGrpcAdminServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/AreYouAlive", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/AreYouAlive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *fenixTestDataGrpcAdminServicesClient) AreYouAlive(ctx context.Context, 
 
 func (c *fenixTestDataGrpcAdminServicesClient) AllowOrDisallowIncomingAndOutgoingMessages(ctx context.Context, in *AllowOrDisallowIncomingAndOutgoingMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/AllowOrDisallowIncomingAndOutgoingMessages", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/AllowOrDisallowIncomingAndOutgoingMessages", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *fenixTestDataGrpcAdminServicesClient) AllowOrDisallowIncomingAndOutgoin
 
 func (c *fenixTestDataGrpcAdminServicesClient) RestartFenixServerProcesses(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/RestartFenixServerProcesses", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/RestartFenixServerProcesses", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,7 +65,7 @@ func (c *fenixTestDataGrpcAdminServicesClient) RestartFenixServerProcesses(ctx c
 
 func (c *fenixTestDataGrpcAdminServicesClient) VerifyClientsAbilityToSendCorrectTestDataRows(ctx context.Context, in *AbilityToSendCorrectTestDataRowsMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/VerifyClientsAbilityToSendCorrectTestDataRows", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/VerifyClientsAbilityToSendCorrectTestDataRows", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,7 +127,7 @@ func _FenixTestDataGrpcAdminServices_AreYouAlive_Handler(srv interface{}, ctx co
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/AreYouAlive",
+		FullMethod: "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/AreYouAlive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixTestDataGrpcAdminServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
@@ -145,7 +145,7 @@ func _FenixTestDataGrpcAdminServices_AllowOrDisallowIncomingAndOutgoingMessages_
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/AllowOrDisallowIncomingAndOutgoingMessages",
+		FullMethod: "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/AllowOrDisallowIncomingAndOutgoingMessages",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixTestDataGrpcAdminServicesServer).AllowOrDisallowIncomingAndOutgoingMessages(ctx, req.(*AllowOrDisallowIncomingAndOutgoingMessage))
@@ -163,7 +163,7 @@ func _FenixTestDataGrpcAdminServices_RestartFenixServerProcesses_Handler(srv int
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/RestartFenixServerProcesses",
+		FullMethod: "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/RestartFenixServerProcesses",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixTestDataGrpcAdminServicesServer).RestartFenixServerProcesses(ctx, req.(*EmptyParameter))
@@ -181,7 +181,7 @@ func _FenixTestDataGrpcAdminServices_VerifyClientsAbilityToSendCorrectTestDataRo
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices/VerifyClientsAbilityToSendCorrectTestDataRows",
+		FullMethod: "/fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices/VerifyClientsAbilityToSendCorrectTestDataRows",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixTestDataGrpcAdminServicesServer).VerifyClientsAbilityToSendCorrectTestDataRows(ctx, req.(*AbilityToSendCorrectTestDataRowsMessage))
@@ -193,7 +193,7 @@ func _FenixTestDataGrpcAdminServices_VerifyClientsAbilityToSendCorrectTestDataRo
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FenixTestDataGrpcAdminServices_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcAdminServices",
+	ServiceName: "fenixTestDataSyncServerGrpcAdminApi.FenixTestDataGrpcAdminServices",
 	HandlerType: (*FenixTestDataGrpcAdminServicesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
