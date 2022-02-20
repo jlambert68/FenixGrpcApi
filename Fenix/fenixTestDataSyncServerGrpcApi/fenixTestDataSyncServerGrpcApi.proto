@@ -12,7 +12,8 @@ enum CurrentFenixTestDataProtoFileVersionEnum {
     VERSION_0_9 = 0 [deprecated = true];
     VERSION_0_10 = 1 [deprecated = true];
     VERSION_0_11 = 2 [deprecated = true];
-    VERSION_0_12 = 3; // Current version // Current version
+    VERSION_0_12 = 3 [deprecated = true];
+    VERSION_0_13 = 4; // Current version // Current version
 }
 
 // Error codes - for now a test
@@ -25,6 +26,7 @@ enum ErrorCodesEnum {
     ERROR_HEADERLABELHASH_NOT_CORRECT_CALCULATED = 5;
     ERROR_TEMPORARY_STOP_IN_PROCESSING = 6;
     ERROR_MERKLEPATHHASH_IS_NOT_CORRECT_CALCULATED = 7;
+
 
 }
 
@@ -70,7 +72,8 @@ service FenixTestDataGrpcServices {
     }    // Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
 
     // Fenix client can send TestData rows to Fenix Testdata sync server with this service
-    rpc SendTestDataRows (TestdataRowsMessages) returns (AckNackResponse) {
+    // TestdataRowsMessages are sent as a stream to handle max size for gRPC-message
+    rpc SendTestDataRows (stream TestdataRowsMessages) returns (AckNackResponse) {
     }
 
 }

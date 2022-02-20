@@ -31,7 +31,8 @@ type FenixTestDataGrpcServicesClient interface {
 	// Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
 	SendTestDataHeaders(ctx context.Context, in *TestDataHeadersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
-	SendTestDataRows(ctx context.Context, in *TestdataRowsMessages, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// TestdataRowsMessages are sent as a stream to handle max size for gRPC-message
+	SendTestDataRows(ctx context.Context, opts ...grpc.CallOption) (FenixTestDataGrpcServices_SendTestDataRowsClient, error)
 }
 
 type fenixTestDataGrpcServicesClient struct {
@@ -96,13 +97,38 @@ func (c *fenixTestDataGrpcServicesClient) SendTestDataHeaders(ctx context.Contex
 	return out, nil
 }
 
-func (c *fenixTestDataGrpcServicesClient) SendTestDataRows(ctx context.Context, in *TestdataRowsMessages, opts ...grpc.CallOption) (*AckNackResponse, error) {
-	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/SendTestDataRows", in, out, opts...)
+func (c *fenixTestDataGrpcServicesClient) SendTestDataRows(ctx context.Context, opts ...grpc.CallOption) (FenixTestDataGrpcServices_SendTestDataRowsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &FenixTestDataGrpcServices_ServiceDesc.Streams[0], "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/SendTestDataRows", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &fenixTestDataGrpcServicesSendTestDataRowsClient{stream}
+	return x, nil
+}
+
+type FenixTestDataGrpcServices_SendTestDataRowsClient interface {
+	Send(*TestdataRowsMessages) error
+	CloseAndRecv() (*AckNackResponse, error)
+	grpc.ClientStream
+}
+
+type fenixTestDataGrpcServicesSendTestDataRowsClient struct {
+	grpc.ClientStream
+}
+
+func (x *fenixTestDataGrpcServicesSendTestDataRowsClient) Send(m *TestdataRowsMessages) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *fenixTestDataGrpcServicesSendTestDataRowsClient) CloseAndRecv() (*AckNackResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(AckNackResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // FenixTestDataGrpcServicesServer is the server API for FenixTestDataGrpcServices service.
@@ -122,7 +148,8 @@ type FenixTestDataGrpcServicesServer interface {
 	// Fenix client can send TestDataHeaders to Fenix Testdata sync server with this service
 	SendTestDataHeaders(context.Context, *TestDataHeadersMessage) (*AckNackResponse, error)
 	// Fenix client can send TestData rows to Fenix Testdata sync server with this service
-	SendTestDataRows(context.Context, *TestdataRowsMessages) (*AckNackResponse, error)
+	// TestdataRowsMessages are sent as a stream to handle max size for gRPC-message
+	SendTestDataRows(FenixTestDataGrpcServices_SendTestDataRowsServer) error
 	mustEmbedUnimplementedFenixTestDataGrpcServicesServer()
 }
 
@@ -148,8 +175,8 @@ func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataHeaderHash(conte
 func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataHeaders(context.Context, *TestDataHeadersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTestDataHeaders not implemented")
 }
-func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataRows(context.Context, *TestdataRowsMessages) (*AckNackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendTestDataRows not implemented")
+func (UnimplementedFenixTestDataGrpcServicesServer) SendTestDataRows(FenixTestDataGrpcServices_SendTestDataRowsServer) error {
+	return status.Errorf(codes.Unimplemented, "method SendTestDataRows not implemented")
 }
 func (UnimplementedFenixTestDataGrpcServicesServer) mustEmbedUnimplementedFenixTestDataGrpcServicesServer() {
 }
@@ -273,22 +300,30 @@ func _FenixTestDataGrpcServices_SendTestDataHeaders_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestDataGrpcServices_SendTestDataRows_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestdataRowsMessages)
-	if err := dec(in); err != nil {
+func _FenixTestDataGrpcServices_SendTestDataRows_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(FenixTestDataGrpcServicesServer).SendTestDataRows(&fenixTestDataGrpcServicesSendTestDataRowsServer{stream})
+}
+
+type FenixTestDataGrpcServices_SendTestDataRowsServer interface {
+	SendAndClose(*AckNackResponse) error
+	Recv() (*TestdataRowsMessages, error)
+	grpc.ServerStream
+}
+
+type fenixTestDataGrpcServicesSendTestDataRowsServer struct {
+	grpc.ServerStream
+}
+
+func (x *fenixTestDataGrpcServicesSendTestDataRowsServer) SendAndClose(m *AckNackResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *fenixTestDataGrpcServicesSendTestDataRowsServer) Recv() (*TestdataRowsMessages, error) {
+	m := new(TestdataRowsMessages)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
-	if interceptor == nil {
-		return srv.(FenixTestDataGrpcServicesServer).SendTestDataRows(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/fenixTestDataSyncServerGrpcApi.FenixTestDataGrpcServices/SendTestDataRows",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestDataGrpcServicesServer).SendTestDataRows(ctx, req.(*TestdataRowsMessages))
-	}
-	return interceptor(ctx, in, info, handler)
+	return m, nil
 }
 
 // FenixTestDataGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestDataGrpcServices service.
@@ -322,11 +357,13 @@ var FenixTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "SendTestDataHeaders",
 			Handler:    _FenixTestDataGrpcServices_SendTestDataHeaders_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "SendTestDataRows",
-			Handler:    _FenixTestDataGrpcServices_SendTestDataRows_Handler,
+			StreamName:    "SendTestDataRows",
+			Handler:       _FenixTestDataGrpcServices_SendTestDataRows_Handler,
+			ClientStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "fenixTestDataSyncServerGrpcApi.proto",
 }
