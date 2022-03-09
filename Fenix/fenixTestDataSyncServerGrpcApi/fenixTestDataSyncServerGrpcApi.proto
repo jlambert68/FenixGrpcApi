@@ -13,7 +13,8 @@ enum CurrentFenixTestDataProtoFileVersionEnum {
     VERSION_0_10 = 1 [deprecated = true];
     VERSION_0_11 = 2 [deprecated = true];
     VERSION_0_12 = 3 [deprecated = true];
-    VERSION_0_13 = 4; // Current version // Current version
+    VERSION_0_13 = 4 [deprecated = true];
+    VERSION_0_14 = 5; // Current version // Current version
 }
 
 // Error codes - for now a test
@@ -26,6 +27,9 @@ enum ErrorCodesEnum {
     ERROR_HEADERLABELHASH_NOT_CORRECT_CALCULATED = 5;
     ERROR_TEMPORARY_STOP_IN_PROCESSING = 6;
     ERROR_MERKLEPATHHASH_IS_NOT_CORRECT_CALCULATED = 7;
+    ERROR_UNSPECIFIED = 8;
+    ERROR_TESTDATASERVER_INTERNAL_STATE_NOT_MATCHING_GRPC_CALL = 9;
+
 
 
 }
