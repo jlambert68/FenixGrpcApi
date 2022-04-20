@@ -1,0 +1,102 @@
+syntax = "proto3";
+package fenixTestDataSyncServerGrpcApi;
+option go_package ="./go_grpc_api";
+
+
+// ****************************************************************************************************
+// General messages and Enumerations
+
+// Used to have client and server in sync with using the same proto file version
+enum CurrentFenixTestDataProtoFileVersionEnum {
+    VERSION_0_0 = 0 [deprecated = true];
+    VERSION_0_1 = 1; // Current version // Current version
+}
+
+// Error codes - for now a test
+enum ErrorCodesEnum {
+    OK = 0;
+    ERROR_UNKNOWN_CALLER = 1;
+    ERROR_WRONG_PROTO_FILE_VERSION = 2;
+    ERROR_UNSPECIFIED = 3;
+}
+
+// How a TestInstructionContainer is processed
+enum TestInstructionContainerExecutionTypeEnum {
+    PARALLELLED_PROCESSED = 0; // Children in container is parallelled processed
+    SERIAL_PROCESSED = 1; // Children in container is serial processed
+}
+
+// Parameter used for Empty inputs, only containing current proto-file version
+message EmptyParameter {
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+}
+
+// Ack/Nack- Response message with comment
+message AckNackResponse {
+    bool AckNack = 1; // True=Ack, False=Nack
+    string Comments = 2; //Comments if needed
+    repeated ErrorCodesEnum ErrorCodes = 3; // List of Error codes
+}
+
+// ****************************************************************************************************
+// Fenix Testdata sync server service definition.
+
+service FenixTestDataGrpcServices {
+
+    //Fenix client can check if Fenix Testdata sync server is alive with this service
+    rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+    }
+
+
+    // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
+    rpc SendTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
+    }
+
+
+}
+
+// ****************************************************************************************************
+// Client Identification Message
+
+// Message Holding information about who is the calling client
+message UserIdentificationMessage {
+    string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+}
+
+// ****************************************************************************************************
+// TestInstructionsAndTestContainersMessage
+
+// Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
+message TestInstructionsAndTestContainersMessage {
+    string DomainUuid = 1; // The Domain, UUID, where the system resides
+    string DomainName = 2; // The Domain, Name, where the system resides
+    string SystemUuid = 3; // The System, UUID, where the TestInstructions and TestInstruction can be used
+    string SystemName = 4; // The System, Name, where the TestInstructions and TestInstruction can be used
+    repeated TestInstructionMessage TestInstructionMessages = 5; // List of all TestInstruction for the System
+
+
+}
+// ****************************************************************************************************
+// TestInstructionMessage
+
+// Message holding one TestInstruction
+message TestInstructionMessage {
+    string TestInstructionUuid = 1; // TestInstruction UUID
+    string TestInstructionName = 2; // TestInstruction Name
+    bool Deprecated = 3; // Indicates that this TestInstruction shouldn't be used anymore
+    bool Enabled = 4; // TestInstruction can be disabled when the user shouldn't use anymore
+}
+
+// ****************************************************************************************************
+// TestInstructionContainerMessage
+
+// Message holding one TestInstruction
+message TestInstructionContainerMessage {
+    string TestInstructionContainerUuid = 1;
+    string TestInstructionContainerName = 2;
+    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 3; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
+    repeated string TestInstructionContainerChildren = 4; // A list of the children in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified as order in the array
+}
+
+
