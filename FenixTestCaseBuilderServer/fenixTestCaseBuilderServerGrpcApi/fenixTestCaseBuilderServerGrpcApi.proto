@@ -1,5 +1,5 @@
 syntax = "proto3";
-package fenixTestDataSyncServerGrpcApi;
+package fenixTestCaseBuilderServerGrpcApi;
 option go_package ="./go_grpc_api";
 
 
@@ -47,11 +47,17 @@ service FenixTestDataGrpcServices {
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
     }
 
-
     // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
-    rpc SendTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
+    rpc GetTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
     }
 
+    // The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
+    rpc GetPinnedTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
+    }
+
+    // The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
+    rpc SendTestInstructionsAndTestContainers (PinnedTestInstructionsAndTestContainersMessage) returns (AckNackResponse) {
+    }
 
 }
 
@@ -74,9 +80,26 @@ message TestInstructionsAndTestContainersMessage {
     string SystemUuid = 3; // The System, UUID, where the TestInstructions and TestInstruction can be used
     string SystemName = 4; // The System, Name, where the TestInstructions and TestInstruction can be used
     repeated TestInstructionMessage TestInstructionMessages = 5; // List of all TestInstruction for the System
-
+    repeated TestInstructionContainerMessage TestInstructionContainerMessages = 6; // List of all pre-defined TestInstructionContainers for the System
 
 }
+
+// ****************************************************************************************************
+// PinnedTestInstructionsAndTestContainersMessage
+
+// Message holding TestInstructions and Pre-defined TestInstructionContainers that the user can has pinned in the GUI
+message PinnedTestInstructionsAndTestContainersMessage {
+    string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+    string DomainUuid = 3; // The Domain, UUID, where the system resides
+    string DomainName = 4; // The Domain, Name, where the system resides
+    string SystemUuid = 5; // The System, UUID, where the TestInstructions and TestInstruction can be used
+    string SystemName = 6; // The System, Name, where the TestInstructions and TestInstruction can be used
+    repeated TestInstructionMessage TestInstructionMessages = 7; // List of all TestInstruction for the System
+    repeated TestInstructionContainerMessage TestInstructionContainerMessages = 8; // List of all pre-defined TestInstructionContainers for the System
+
+}
+
 // ****************************************************************************************************
 // TestInstructionMessage
 
@@ -84,19 +107,23 @@ message TestInstructionsAndTestContainersMessage {
 message TestInstructionMessage {
     string TestInstructionUuid = 1; // TestInstruction UUID
     string TestInstructionName = 2; // TestInstruction Name
-    bool Deprecated = 3; // Indicates that this TestInstruction shouldn't be used anymore
-    bool Enabled = 4; // TestInstruction can be disabled when the user shouldn't use anymore
+    string TestInstructionTypeUuid = 3; // The Type(Group), Uuid, of TestInstruction
+    string TestInstructionTypeName = 4; // The Type(Group), Name, of TestInstruction
+    bool Deprecated = 5; // Indicates that this TestInstruction shouldn't be used anymore
+    bool Enabled = 6; // TestInstruction can be disabled when the user shouldn't use anymore
 }
 
 // ****************************************************************************************************
 // TestInstructionContainerMessage
 
-// Message holding one TestInstruction
+// Message holding one TestInstructionContainer and reference to its children
 message TestInstructionContainerMessage {
-    string TestInstructionContainerUuid = 1;
-    string TestInstructionContainerName = 2;
-    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 3; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
-    repeated string TestInstructionContainerChildren = 4; // A list of the children in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified as order in the array
+    string TestInstructionContainerUuid = 1; // TestInstructionContainer UUID
+    string TestInstructionContainerName = 2; // TestInstructionContainer Name
+    string TestInstructionTypeUuid = 3; // The Type(Group), Uuid, of TestInstructionContainer
+    string TestInstructionTypeName = 4; // The Type(Group), Name, of TestInstructionContainer
+    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 5; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
+    repeated string TestInstructionContainerChildren = 6; // A list of the children in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
 }
 
 
