@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FenixTestCaseBuilderServerGrpcServicesClient interface {
-	//Fenix client can check if Fenix Testdata sync server is alive with this service
+	//Anyone can check if Fenix TestCase Builder server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
 	GetTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error)
@@ -76,7 +76,7 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) SendTestInstructionsAndTe
 // All implementations must embed UnimplementedFenixTestCaseBuilderServerGrpcServicesServer
 // for forward compatibility
 type FenixTestCaseBuilderServerGrpcServicesServer interface {
-	//Fenix client can check if Fenix Testdata sync server is alive with this service
+	//Anyone can check if Fenix TestCase Builder server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
 	GetTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error)

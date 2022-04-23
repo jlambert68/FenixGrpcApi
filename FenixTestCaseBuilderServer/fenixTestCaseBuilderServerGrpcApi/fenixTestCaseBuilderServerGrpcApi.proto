@@ -43,7 +43,7 @@ message AckNackResponse {
 
 service FenixTestCaseBuilderServerGrpcServices {
 
-    //Fenix client can check if Fenix Testdata sync server is alive with this service
+    //Anyone can check if Fenix TestCase Builder server is alive with this service
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
     }
 
@@ -81,7 +81,7 @@ message TestInstructionsAndTestContainersMessage {
     string SystemName = 4; // The System, Name, where the TestInstructions and TestInstruction can be used
     repeated TestInstructionMessage TestInstructionMessages = 5; // List of all TestInstruction for the System
     repeated TestInstructionContainerMessage TestInstructionContainerMessages = 6; // List of all pre-defined TestInstructionContainers for the System
-
+    AckNackResponse ackNackResponse = 7; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
 // ****************************************************************************************************
@@ -110,7 +110,7 @@ message TestInstructionMessage {
     string TestInstructionTypeUuid = 3; // The Type(Group), Uuid, of TestInstruction
     string TestInstructionTypeName = 4; // The Type(Group), Name, of TestInstruction
     bool Deprecated = 5; // Indicates that this TestInstruction shouldn't be used anymore
-    bool Enabled = 6; // TestInstruction can be disabled when the user shouldn't use anymore
+    bool Enabled = 6; // TestInstruction can be disabled when the user shouldn't use it anymore
 }
 
 // ****************************************************************************************************
