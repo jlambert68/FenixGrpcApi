@@ -7,7 +7,7 @@ option go_package ="./go_grpc_api";
 // General messages and Enumerations
 
 // Used to have client and server in sync with using the same proto file version
-enum CurrentFenixTestDataProtoFileVersionEnum {
+enum CurrentFenixTestCaseBuilderProtoFileVersionEnum {
     VERSION_0_0 = 0 [deprecated = true];
     VERSION_0_1 = 1; // Current version // Current version
 }
@@ -28,7 +28,7 @@ enum TestInstructionContainerExecutionTypeEnum {
 
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+    CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
 }
 
 // Ack/Nack- Response message with comment
@@ -39,9 +39,9 @@ message AckNackResponse {
 }
 
 // ****************************************************************************************************
-// Fenix Testdata sync server service definition.
+// Fenix TestCase-builder server service definition. (Will support Test Suite building in feature, and will then be renamed)
 
-service FenixTestDataGrpcServices {
+service FenixTestCaseBuilderServerGrpcServices {
 
     //Fenix client can check if Fenix Testdata sync server is alive with this service
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
@@ -67,7 +67,7 @@ service FenixTestDataGrpcServices {
 // Message Holding information about who is the calling client
 message UserIdentificationMessage {
     string UserId = 1; // The Users Id, SEB S-id will be used for SEB
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+    CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
 }
 
 // ****************************************************************************************************
@@ -90,7 +90,7 @@ message TestInstructionsAndTestContainersMessage {
 // Message holding TestInstructions and Pre-defined TestInstructionContainers that the user can has pinned in the GUI
 message PinnedTestInstructionsAndTestContainersMessage {
     string UserId = 1; // The Users Id, SEB S-id will be used for SEB
-    CurrentFenixTestDataProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+    CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
     string DomainUuid = 3; // The Domain, UUID, where the system resides
     string DomainName = 4; // The Domain, Name, where the system resides
     string SystemUuid = 5; // The System, UUID, where the TestInstructions and TestInstruction can be used

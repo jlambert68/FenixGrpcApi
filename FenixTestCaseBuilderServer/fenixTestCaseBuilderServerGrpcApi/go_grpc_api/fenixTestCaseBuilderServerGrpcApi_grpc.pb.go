@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// FenixTestDataGrpcServicesClient is the client API for FenixTestDataGrpcServices service.
+// FenixTestCaseBuilderServerGrpcServicesClient is the client API for FenixTestCaseBuilderServerGrpcServices service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type FenixTestDataGrpcServicesClient interface {
+type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	//Fenix client can check if Fenix Testdata sync server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
@@ -28,54 +28,54 @@ type FenixTestDataGrpcServicesClient interface {
 	SendTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
-type fenixTestDataGrpcServicesClient struct {
+type fenixTestCaseBuilderServerGrpcServicesClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewFenixTestDataGrpcServicesClient(cc grpc.ClientConnInterface) FenixTestDataGrpcServicesClient {
-	return &fenixTestDataGrpcServicesClient{cc}
+func NewFenixTestCaseBuilderServerGrpcServicesClient(cc grpc.ClientConnInterface) FenixTestCaseBuilderServerGrpcServicesClient {
+	return &fenixTestCaseBuilderServerGrpcServicesClient{cc}
 }
 
-func (c *fenixTestDataGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/AreYouAlive", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/AreYouAlive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixTestDataGrpcServicesClient) GetTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error) {
 	out := new(TestInstructionsAndTestContainersMessage)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/GetTestInstructionsAndTestContainers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestInstructionsAndTestContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixTestDataGrpcServicesClient) GetPinnedTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetPinnedTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error) {
 	out := new(TestInstructionsAndTestContainersMessage)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/GetPinnedTestInstructionsAndTestContainers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetPinnedTestInstructionsAndTestContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixTestDataGrpcServicesClient) SendTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) SendTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/SendTestInstructionsAndTestContainers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SendTestInstructionsAndTestContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FenixTestDataGrpcServicesServer is the server API for FenixTestDataGrpcServices service.
-// All implementations must embed UnimplementedFenixTestDataGrpcServicesServer
+// FenixTestCaseBuilderServerGrpcServicesServer is the server API for FenixTestCaseBuilderServerGrpcServices service.
+// All implementations must embed UnimplementedFenixTestCaseBuilderServerGrpcServicesServer
 // for forward compatibility
-type FenixTestDataGrpcServicesServer interface {
+type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	//Fenix client can check if Fenix Testdata sync server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
@@ -84,133 +84,133 @@ type FenixTestDataGrpcServicesServer interface {
 	GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	SendTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error)
-	mustEmbedUnimplementedFenixTestDataGrpcServicesServer()
+	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer()
 }
 
-// UnimplementedFenixTestDataGrpcServicesServer must be embedded to have forward compatible implementations.
-type UnimplementedFenixTestDataGrpcServicesServer struct {
+// UnimplementedFenixTestCaseBuilderServerGrpcServicesServer must be embedded to have forward compatible implementations.
+type UnimplementedFenixTestCaseBuilderServerGrpcServicesServer struct {
 }
 
-func (UnimplementedFenixTestDataGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
 }
-func (UnimplementedFenixTestDataGrpcServicesServer) GetTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTestInstructionsAndTestContainers not implemented")
 }
-func (UnimplementedFenixTestDataGrpcServicesServer) GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPinnedTestInstructionsAndTestContainers not implemented")
 }
-func (UnimplementedFenixTestDataGrpcServicesServer) SendTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SendTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendTestInstructionsAndTestContainers not implemented")
 }
-func (UnimplementedFenixTestDataGrpcServicesServer) mustEmbedUnimplementedFenixTestDataGrpcServicesServer() {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer() {
 }
 
-// UnsafeFenixTestDataGrpcServicesServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to FenixTestDataGrpcServicesServer will
+// UnsafeFenixTestCaseBuilderServerGrpcServicesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FenixTestCaseBuilderServerGrpcServicesServer will
 // result in compilation errors.
-type UnsafeFenixTestDataGrpcServicesServer interface {
-	mustEmbedUnimplementedFenixTestDataGrpcServicesServer()
+type UnsafeFenixTestCaseBuilderServerGrpcServicesServer interface {
+	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer()
 }
 
-func RegisterFenixTestDataGrpcServicesServer(s grpc.ServiceRegistrar, srv FenixTestDataGrpcServicesServer) {
-	s.RegisterService(&FenixTestDataGrpcServices_ServiceDesc, srv)
+func RegisterFenixTestCaseBuilderServerGrpcServicesServer(s grpc.ServiceRegistrar, srv FenixTestCaseBuilderServerGrpcServicesServer) {
+	s.RegisterService(&FenixTestCaseBuilderServerGrpcServices_ServiceDesc, srv)
 }
 
-func _FenixTestDataGrpcServices_AreYouAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_AreYouAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyParameter)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestDataGrpcServicesServer).AreYouAlive(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).AreYouAlive(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/AreYouAlive",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/AreYouAlive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestDataGrpcServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestDataGrpcServices_GetTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_GetTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserIdentificationMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestDataGrpcServicesServer).GetTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetTestInstructionsAndTestContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/GetTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestInstructionsAndTestContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestDataGrpcServicesServer).GetTestInstructionsAndTestContainers(ctx, req.(*UserIdentificationMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetTestInstructionsAndTestContainers(ctx, req.(*UserIdentificationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestDataGrpcServices_GetPinnedTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_GetPinnedTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserIdentificationMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestDataGrpcServicesServer).GetPinnedTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetPinnedTestInstructionsAndTestContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/GetPinnedTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetPinnedTestInstructionsAndTestContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestDataGrpcServicesServer).GetPinnedTestInstructionsAndTestContainers(ctx, req.(*UserIdentificationMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetPinnedTestInstructionsAndTestContainers(ctx, req.(*UserIdentificationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestDataGrpcServices_SendTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_SendTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PinnedTestInstructionsAndTestContainersMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestDataGrpcServicesServer).SendTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SendTestInstructionsAndTestContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices/SendTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SendTestInstructionsAndTestContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestDataGrpcServicesServer).SendTestInstructionsAndTestContainers(ctx, req.(*PinnedTestInstructionsAndTestContainersMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SendTestInstructionsAndTestContainers(ctx, req.(*PinnedTestInstructionsAndTestContainersMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// FenixTestDataGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestDataGrpcServices service.
+// FenixTestCaseBuilderServerGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestCaseBuilderServerGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var FenixTestDataGrpcServices_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fenixTestCaseBuilderServerGrpcApi.FenixTestDataGrpcServices",
-	HandlerType: (*FenixTestDataGrpcServicesServer)(nil),
+var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices",
+	HandlerType: (*FenixTestCaseBuilderServerGrpcServicesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "AreYouAlive",
-			Handler:    _FenixTestDataGrpcServices_AreYouAlive_Handler,
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_AreYouAlive_Handler,
 		},
 		{
 			MethodName: "GetTestInstructionsAndTestContainers",
-			Handler:    _FenixTestDataGrpcServices_GetTestInstructionsAndTestContainers_Handler,
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetTestInstructionsAndTestContainers_Handler,
 		},
 		{
 			MethodName: "GetPinnedTestInstructionsAndTestContainers",
-			Handler:    _FenixTestDataGrpcServices_GetPinnedTestInstructionsAndTestContainers_Handler,
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetPinnedTestInstructionsAndTestContainers_Handler,
 		},
 		{
 			MethodName: "SendTestInstructionsAndTestContainers",
-			Handler:    _FenixTestDataGrpcServices_SendTestInstructionsAndTestContainers_Handler,
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_SendTestInstructionsAndTestContainers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
