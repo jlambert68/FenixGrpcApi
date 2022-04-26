@@ -43,9 +43,13 @@ message AckNackResponse {
 
 service FenixTestCaseBuilderServerGrpcServices {
 
+    // Admin
+
     //Anyone can check if Fenix TestCase Builder server is alive with this service
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
     }
+
+    // Get data from server
 
     // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
     rpc GetTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
@@ -54,6 +58,8 @@ service FenixTestCaseBuilderServerGrpcServices {
     // The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
     rpc GetPinnedTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
     }
+
+    // Send data to server
 
     // The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
     rpc SendTestInstructionsAndTestContainers (PinnedTestInstructionsAndTestContainersMessage) returns (AckNackResponse) {
@@ -93,8 +99,8 @@ message PinnedTestInstructionsAndTestContainersMessage {
     CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
     string DomainUuid = 3; // The Domain, UUID, where the system resides
     string DomainName = 4; // The Domain, Name, where the system resides
-    string SystemUuid = 5; // The System, UUID, where the TestInstructions and TestInstruction can be used
-    string SystemName = 6; // The System, Name, where the TestInstructions and TestInstruction can be used
+    string SystemUuid = 5; // The System, UUID, where the TestInstructions and TestInstructionContainer can be used
+    string SystemName = 6; // The System, Name, where the TestInstructions and TestInstructionContainer can be used
     repeated TestInstructionMessage TestInstructionMessages = 7; // List of all TestInstruction for the System
     repeated TestInstructionContainerMessage TestInstructionContainerMessages = 8; // List of all pre-defined TestInstructionContainers for the System
 
@@ -109,21 +115,31 @@ message TestInstructionMessage {
     string TestInstructionName = 2; // TestInstruction Name
     string TestInstructionTypeUuid = 3; // The Type(Group), Uuid, of TestInstruction
     string TestInstructionTypeName = 4; // The Type(Group), Name, of TestInstruction
-    bool Deprecated = 5; // Indicates that this TestInstruction shouldn't be used anymore
-    bool Enabled = 6; // TestInstruction can be disabled when the user shouldn't use it anymore
+    string TestInstructionMouseOverText = 5; // The mouse over text when hovering over TestInstruction
+    bool Deprecated = 6; // Indicates that this TestInstruction shouldn't be used anymore
+    bool Enabled = 7; // TestInstruction can be disabled when the user shouldn't use it anymore
+    uint32 MajorVersionNumber = 8; // Change in Major Version Number means that user must act on change
+    uint32 MinorVersionNumber = 9; // Change in Minor Version Number means that user must NOT act on change
+    uint32 UpdatedTimeStamp = 10; // The TimeStamp when the TestInstruction was last updated
 }
 
 // ****************************************************************************************************
-// TestInstructionContainerMessage
+// Pre-created TestInstructionContainerMessage
 
 // Message holding one TestInstructionContainer and reference to its children
 message TestInstructionContainerMessage {
     string TestInstructionContainerUuid = 1; // TestInstructionContainer UUID
     string TestInstructionContainerName = 2; // TestInstructionContainer Name
-    string TestInstructionTypeUuid = 3; // The Type(Group), Uuid, of TestInstructionContainer
-    string TestInstructionTypeName = 4; // The Type(Group), Name, of TestInstructionContainer
-    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 5; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
-    repeated string TestInstructionContainerChildren = 6; // A list of the children in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
+    string TestInstructionContainerTypeUuid = 3; // The Type(Group), Uuid, of TestInstructionContainer
+    string TestInstructionContainerTypeName = 4; // The Type(Group), Name, of TestInstructionContainer
+    string TestInstructionContinerMouseOverText = 5; // The mouse over text when hovering over TestInstructionContainer
+    bool Deprecated = 6; // Indicates that this TestInstructionContainer shouldn't be used anymore
+    bool Enabled = 7; // TestInstructionContainer can be disabled when the user shouldn't use it anymore
+    uint32 MajorVersionNumber = 8; // Change in Major Version Number means that user must act on change
+    uint32 MinorVersionNumber = 9; // Change in Minor Version Number means that user must NOT act on change
+    uint32 UpdatedTimeStamp = 10; // The TimeStamp when the TestInstructionContainer was last updated
+    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 11; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
+    repeated string TestInstructionContainerChildren = 12; // A list of the children in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
 }
 
 
