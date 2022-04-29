@@ -102,21 +102,19 @@ message PinnedTestInstructionsAndTestContainersMessage {
 
 // Message holding one TestInstruction
 message TestInstructionMessage {
-    string DomainUuid = 1; // The Domain, UUID, where the system resides
-    string DomainName = 2; // The Domain, Name, where the system resides
-    string SystemUuid = 3; // The System, UUID, where the TestInstructions and TestInstruction can be used
-    string SystemName = 4; // The System, Name, where the TestInstructions and TestInstruction can be used
-    string TestInstructionUuid = 5; // TestInstruction UUID
-    string TestInstructionName = 6; // TestInstruction Name
-    string TestInstructionTypeUuid = 7; // The Type(Group), Uuid, of TestInstruction
-    string TestInstructionTypeName = 8; // The Type(Group), Name, of TestInstruction
-    string TestInstructionDescription = 9; // The description of the TestInstruction
-    string TestInstructionMouseOverText = 10; // The mouse over text when hovering over TestInstruction
-    bool Deprecated = 11; // Indicates that this TestInstruction shouldn't be used anymore
-    bool Enabled = 12; // TestInstruction can be disabled when the user shouldn't use it anymore
-    uint32 MajorVersionNumber = 13; // Change in Major Version Number means that user must act on change
-    uint32 MinorVersionNumber = 14; // Change in Minor Version Number means that user must NOT act on change
-    google.protobuf.Timestamp UpdatedTimeStamp = 15; // The TimeStamp when the TestInstruction was last updated
+    string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+    string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+    string TestInstructionUuid = 3; // TestInstruction UUID
+    string TestInstructionName = 4; // TestInstruction Name
+    string TestInstructionTypeUuid = 5; // The Type(Group), Uuid, of TestInstruction
+    string TestInstructionTypeName = 6; // The Type(Group), Name, of TestInstruction
+    string TestInstructionDescription = 7; // The description of the TestInstruction
+    string TestInstructionMouseOverText = 8; // The mouse over text when hovering over TestInstruction
+    bool Deprecated = 9; // Indicates that this TestInstruction shouldn't be used anymore
+    bool Enabled = 10; // TestInstruction can be disabled when the user shouldn't use it anymore
+    uint32 MajorVersionNumber = 11; // Change in Major Version Number means that user must act on change
+    uint32 MinorVersionNumber = 12; // Change in Minor Version Number means that user must NOT act on change
+    google.protobuf.Timestamp UpdatedTimeStamp = 13; // The TimeStamp when the TestInstruction was last updated
 }
 
 // ****************************************************************************************************
@@ -124,23 +122,21 @@ message TestInstructionMessage {
 
 // Message holding one TestInstructionContainer and reference to its children
 message TestInstructionContainerMessage {
-    string DomainUuid = 1; // The Domain, UUID, where the system resides
-    string DomainName = 2; // The Domain, Name, where the system resides
-    string SystemUuid = 3; // The System, UUID, where the TestInstructions and TestInstruction can be used
-    string SystemName = 4; // The System, Name, where the TestInstructions and TestInstruction can be used
-    string TestInstructionContainerUuid = 5; // TestInstructionContainer UUID
-    string TestInstructionContainerName = 6; // TestInstructionContainer Name
-    string TestInstructionContainerTypeUuid = 7; // The Type(Group), Uuid, of TestInstructionContainer
-    string TestInstructionContainerTypeName = 8; // The Type(Group), Name, of TestInstructionContainer
-    string TestInstructionContainerDescription = 9; // The description of the TestInstructionContainer
-    string TestInstructionContainerMouseOverText = 10; // The mouse over text when hovering over TestInstructionContainer
-    bool Deprecated = 11; // Indicates that this TestInstructionContainer shouldn't be used anymore
-    bool Enabled = 12; // TestInstructionContainer can be disabled when the user shouldn't use it anymore
-    uint32 MajorVersionNumber = 13; // Change in Major Version Number means that user must act on change
-    uint32 MinorVersionNumber = 14; // Change in Minor Version Number means that user must NOT act on change
-    google.protobuf.Timestamp UpdatedTimeStamp = 15; // The TimeStamp when the TestInstructionContainer was last updated
-    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 16; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
-    repeated string TestInstructionContainerChildren = 17; // A list of the children[UUID's] in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
+    string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+    string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+    string TestInstructionContainerUuid = 3; // TestInstructionContainer UUID
+    string TestInstructionContainerName = 4; // TestInstructionContainer Name
+    string TestInstructionContainerTypeUuid = 5; // The Type(Group), Uuid, of TestInstructionContainer
+    string TestInstructionContainerTypeName = 6; // The Type(Group), Name, of TestInstructionContainer
+    string TestInstructionContainerDescription = 7; // The description of the TestInstructionContainer
+    string TestInstructionContainerMouseOverText = 8; // The mouse over text when hovering over TestInstructionContainer
+    bool Deprecated = 9; // Indicates that this TestInstructionContainer shouldn't be used anymore
+    bool Enabled = 10; // TestInstructionContainer can be disabled when the user shouldn't use it anymore
+    uint32 MajorVersionNumber = 11; // Change in Major Version Number means that user must act on change
+    uint32 MinorVersionNumber = 12; // Change in Minor Version Number means that user must NOT act on change
+    google.protobuf.Timestamp UpdatedTimeStamp = 13; // The TimeStamp when the TestInstructionContainer was last updated
+    TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 14; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
+    repeated string TestInstructionContainerChildren = 15; // A list of the children[UUID's] in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
 }
 
 
