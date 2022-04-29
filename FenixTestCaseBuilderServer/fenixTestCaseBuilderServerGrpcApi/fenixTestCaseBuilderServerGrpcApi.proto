@@ -1,6 +1,7 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package ="./go_grpc_api";
+import "google/protobuf/timestamp.proto";
 
 
 // ****************************************************************************************************
@@ -115,7 +116,7 @@ message TestInstructionMessage {
     bool Enabled = 12; // TestInstruction can be disabled when the user shouldn't use it anymore
     uint32 MajorVersionNumber = 13; // Change in Major Version Number means that user must act on change
     uint32 MinorVersionNumber = 14; // Change in Minor Version Number means that user must NOT act on change
-    uint32 UpdatedTimeStamp = 15; // The TimeStamp when the TestInstruction was last updated
+    google.protobuf.Timestamp UpdatedTimeStamp = 15; // The TimeStamp when the TestInstruction was last updated
 }
 
 // ****************************************************************************************************
@@ -137,7 +138,7 @@ message TestInstructionContainerMessage {
     bool Enabled = 12; // TestInstructionContainer can be disabled when the user shouldn't use it anymore
     uint32 MajorVersionNumber = 13; // Change in Major Version Number means that user must act on change
     uint32 MinorVersionNumber = 14; // Change in Minor Version Number means that user must NOT act on change
-    uint32 UpdatedTimeStamp = 15; // The TimeStamp when the TestInstructionContainer was last updated
+    google.protobuf.Timestamp UpdatedTimeStamp = 15; // The TimeStamp when the TestInstructionContainer was last updated
     TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 16; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
     repeated string TestInstructionContainerChildren = 17; // A list of the children[UUID's] in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
 }
