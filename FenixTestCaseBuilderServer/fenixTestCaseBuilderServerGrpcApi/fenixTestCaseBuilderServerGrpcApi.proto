@@ -19,6 +19,7 @@ enum ErrorCodesEnum {
     ERROR_UNKNOWN_CALLER = 1;
     ERROR_WRONG_PROTO_FILE_VERSION = 2;
     ERROR_UNSPECIFIED = 3;
+    ERROR_DATABASE_PROBLEM = 4;
 }
 
 // How a TestInstructionContainer is processed
@@ -50,7 +51,7 @@ service FenixTestCaseBuilderServerGrpcServices {
     rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
     }
 
-    // Get data from server
+    // *** Get data from server ***
 
     // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
     rpc GetTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
@@ -60,10 +61,10 @@ service FenixTestCaseBuilderServerGrpcServices {
     rpc GetPinnedTestInstructionsAndTestContainers (UserIdentificationMessage) returns (TestInstructionsAndTestContainersMessage) {
     }
 
-    // Send data to server
+    // *** Send data to server ***
 
     // The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-    rpc SendTestInstructionsAndTestContainers (PinnedTestInstructionsAndTestContainersMessage) returns (AckNackResponse) {
+    rpc SavePinnedTestInstructionsAndTestContainers (PinnedTestInstructionsAndTestContainersMessage) returns (AckNackResponse) {
     }
 
 }
@@ -82,8 +83,8 @@ message UserIdentificationMessage {
 
 // Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
 message TestInstructionsAndTestContainersMessage {
-    repeated TestInstructionMessage TestInstructionMessages = 1; // List of all TestInstruction for the System
-    repeated TestInstructionContainerMessage TestInstructionContainerMessages = 2; // List of all pre-defined TestInstructionContainers for the System
+    repeated TestInstructionMessage TestInstructionMessages = 1; // List of all TestInstruction for the Domain
+    repeated TestInstructionContainerMessage TestInstructionContainerMessages = 2; // List of all pre-defined TestInstructionContainers for the Domain
     AckNackResponse ackNackResponse = 3; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
@@ -92,9 +93,10 @@ message TestInstructionsAndTestContainersMessage {
 
 // Message holding TestInstructions and Pre-defined TestInstructionContainers that the user can has pinned in the GUI
 message PinnedTestInstructionsAndTestContainersMessage {
-    repeated TestInstructionMessage TestInstructionMessages = 1; // List of all TestInstruction for the System
-    repeated TestInstructionContainerMessage TestInstructionContainerMessages = 2; // List of all pre-defined TestInstructionContainers for the System
-    AckNackResponse ackNackResponse = 3; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+    string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+    CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+    repeated TestInstructionMessage TestInstructionMessages = 3; // List of all pinned, by user, TestInstruction for the Domain
+    repeated TestInstructionContainerMessage TestInstructionContainerMessages = 4; //  List of all pinned, by user, pre-defined TestInstructionContainers for the Domain
 }
 
 // ****************************************************************************************************

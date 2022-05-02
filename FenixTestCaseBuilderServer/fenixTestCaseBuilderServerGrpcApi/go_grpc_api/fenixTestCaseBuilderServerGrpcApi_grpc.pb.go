@@ -25,7 +25,7 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	// The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	GetPinnedTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-	SendTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	SavePinnedTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixTestCaseBuilderServerGrpcServicesClient struct {
@@ -63,9 +63,9 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetPinnedTestInstructions
 	return out, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcServicesClient) SendTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) SavePinnedTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SendTestInstructionsAndTestContainers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SavePinnedTestInstructionsAndTestContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	// The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-	SendTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error)
+	SavePinnedTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer()
 }
 
@@ -100,8 +100,8 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetTestInstruct
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPinnedTestInstructionsAndTestContainers not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SendTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendTestInstructionsAndTestContainers not implemented")
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SavePinnedTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SavePinnedTestInstructionsAndTestContainers not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer() {
 }
@@ -171,20 +171,20 @@ func _FenixTestCaseBuilderServerGrpcServices_GetPinnedTestInstructionsAndTestCon
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestCaseBuilderServerGrpcServices_SendTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_SavePinnedTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PinnedTestInstructionsAndTestContainersMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SendTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SavePinnedTestInstructionsAndTestContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SendTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SavePinnedTestInstructionsAndTestContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SendTestInstructionsAndTestContainers(ctx, req.(*PinnedTestInstructionsAndTestContainersMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SavePinnedTestInstructionsAndTestContainers(ctx, req.(*PinnedTestInstructionsAndTestContainersMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -209,8 +209,8 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetPinnedTestInstructionsAndTestContainers_Handler,
 		},
 		{
-			MethodName: "SendTestInstructionsAndTestContainers",
-			Handler:    _FenixTestCaseBuilderServerGrpcServices_SendTestInstructionsAndTestContainers_Handler,
+			MethodName: "SavePinnedTestInstructionsAndTestContainers",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_SavePinnedTestInstructionsAndTestContainers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
