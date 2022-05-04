@@ -24,6 +24,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	GetTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error)
 	// The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	GetPinnedTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionsAndTestContainersMessage, error)
+	// The TestCase Builder asks for one TestInstructionAttribute that belongs to a TestInstruction
+	GetTestInstructionAttributes(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionAttributeMessages, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	SavePinnedTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
@@ -63,6 +65,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetPinnedTestInstructions
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetTestInstructionAttributes(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*TestInstructionAttributeMessages, error) {
+	out := new(TestInstructionAttributeMessages)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestInstructionAttributes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fenixTestCaseBuilderServerGrpcServicesClient) SavePinnedTestInstructionsAndTestContainers(ctx context.Context, in *PinnedTestInstructionsAndTestContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SavePinnedTestInstructionsAndTestContainers", in, out, opts...)
@@ -82,6 +93,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	GetTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error)
 	// The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error)
+	// The TestCase Builder asks for one TestInstructionAttribute that belongs to a TestInstruction
+	GetTestInstructionAttributes(context.Context, *UserIdentificationMessage) (*TestInstructionAttributeMessages, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
 	SavePinnedTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer()
@@ -99,6 +112,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetTestInstruct
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetPinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*TestInstructionsAndTestContainersMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPinnedTestInstructionsAndTestContainers not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetTestInstructionAttributes(context.Context, *UserIdentificationMessage) (*TestInstructionAttributeMessages, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTestInstructionAttributes not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SavePinnedTestInstructionsAndTestContainers(context.Context, *PinnedTestInstructionsAndTestContainersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SavePinnedTestInstructionsAndTestContainers not implemented")
@@ -171,6 +187,24 @@ func _FenixTestCaseBuilderServerGrpcServices_GetPinnedTestInstructionsAndTestCon
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcServices_GetTestInstructionAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserIdentificationMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetTestInstructionAttributes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestInstructionAttributes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetTestInstructionAttributes(ctx, req.(*UserIdentificationMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixTestCaseBuilderServerGrpcServices_SavePinnedTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PinnedTestInstructionsAndTestContainersMessage)
 	if err := dec(in); err != nil {
@@ -207,6 +241,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPinnedTestInstructionsAndTestContainers",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetPinnedTestInstructionsAndTestContainers_Handler,
+		},
+		{
+			MethodName: "GetTestInstructionAttributes",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetTestInstructionAttributes_Handler,
 		},
 		{
 			MethodName: "SavePinnedTestInstructionsAndTestContainers",
