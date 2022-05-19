@@ -72,12 +72,20 @@ service FenixTestCaseBuilderServerGrpcServices {
 
     // * Used in a TestCase *
 
+    // The TestCase Builder asks for a complete TestCase
+    rpc GetTestCase(GetTestCaseMessage) returns (GetTestCaseResponseMessage) {
+    }
+
     // The TestCase Builder asks for all TestInstructions and TestInstructionContainer that is in a specific TestCase
     rpc GetTestInstructionsAndTestContainersInTestCase (UserIdentificationMessage) returns (TestInstructionsAndTestContainersInTestCaseMessage) {
     }
 
-    // The TestCase Builder asks for one TestInstructionAttribute that belongs to a TestInstruction
-    rpc GetTestInstructionAttributes (UserIdentificationMessage) returns (TestInstructionAttributeMessages) {
+    // The TestCase Builder asks for Attributes that belongs to a list of 'new' TestInstructions
+    rpc GetAttributesForNewTestInstructionInTestCase (TestCaseInstructionListMessage) returns (AttributesForNewTestInstructionMessages) {
+    }
+
+    // The TestCase Builder asks for Attributes that belongs to 'existing' TestInstructions in a specific TestCase
+    rpc GetAttributesForExistingTestInstructionInTestCase (UserIdentificationAndTestCaseMessage) returns (AttributesForExistingTestInstructionsMessages) {
     }
 
 
@@ -258,12 +266,39 @@ message TestInstructionsAndTestContainersInTestCaseMessage {
     repeated TestInstructionContainerInTestCaseMessage TestInstructionContainerMessages = 2; // List of all pre-defined TestInstructionContainers
 }
 
+// ****************************************************************************************************
+// Get TestCase Request Message
+
+// Message holding information about who is the user and which TestCase that is requested
+message GetTestCaseMessage {
+    string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+    CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+    string TestCaseUuid = 3; // The TestCase, UUID, that is requested from DB-Server
+}
+
+// ****************************************************************************************************
+// Get TestCase Response Message
+
+// Message holding information about a complete TestCase that was retrieved from DB
+message GetTestCaseResponseMessage {
+    string TestCaseUuid = 1; // The TestCase, UUID, for the TestInstructionContainer
+    string TestCaseName = 2; // The TestCase, NAme, for the TestInstructionContainer
+    BasetestCaseInformationMessage BasetestCaseInformation = 3; // All basic information about the testcase, like created by, changed by, Description ...
+    MetaDataMessage MetaData = 3; // The TestCase's metadata
+    repeated TestInstructionInTestCaseMessage TestInstructionsInTestCase = 4; // All TestInstructions in the TestCase
+    repeated TestInstructionContainerInTestCaseMessage TestInstructionContainersInTestCase = 5; // All TestInstructionContainers in the TestCase
+    repeated AttributesForExistingTestInstructionMessages AttributesForExistingTestInstructions = 6; // All Attributes for all TestInstructions in the TestCase
+
+
+}
+
+
 
 // ****************************************************************************************************
 // TestInstructionAttributeMessages
 
 // Message holding one Pinned TestInstructionContainer
-message TestInstructionAttributeMessages {
+message AttributesForNewTestInstructionMessages {
     repeated TestInstructionAttribute TestInstructionAttributes = 1; // A list of all TestInstructionAttributes that belongs to one TestInstruction
     AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives if everything was OK or not
 }
