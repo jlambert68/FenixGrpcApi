@@ -1,0 +1,9 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package ="./go_grpc_api";
+import "google/protobuf/timestamp.proto";
+
+// All messages in this file is used to define a TestInstruction, both available and in-use in TestCase
+
+// ****************************************************************************************************
+// TestInstructionContainerMessage

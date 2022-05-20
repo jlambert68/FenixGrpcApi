@@ -31,10 +31,19 @@ message TestInstructionInTestCaseMessage {
   google.protobuf.Timestamp UpdatedTimeStamp = 15; // The TimeStamp when the TestInstruction was last updated
   string ParentTestInstructionContainerUuid = 16;// A UUID-reference to TestInstructionContainer where this TestInstruction exists
   string TestInstructionColor = 17; // The color used for presenting the TestInstruction, e.g. #FAF437
-  repeated string AvailableDropZonesUuid = 18; // A DropZone is a collection of pre-defined values that the TestInstruction will have when placed in TestCase
-  string ChosenDropZoneUuid = 19; // The chosen drop zone which sets potential attributes in TestInstruction when that is added to the TestCase
+  repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will have when placed in TestCase
+  AvailableDropZoneMessage ChosenDropZone = 19; // The chosen drop zone which sets potential attributes in TestInstruction when that is added to the TestCase
   repeated TestInstructionAttributeListMessage TestInstructionAttributesList = 20; // A list of all attributes, UUID and NAme, that belongs to the TestInstruction
 
+}
+
+// ****************************************************************************************************
+// AvailableDropZoneMessage
+
+// Message holding one item in the DropZone-list in the TestInstruction
+message AvailableDropZoneMessage {
+  string DropZoneUuid = 1; // A DropZone, UUID, for the TestCaseInstruction
+  string DropZoneName = 2; // A DropZone, Name, for the TestCaseInstruction
 }
 
 // ****************************************************************************************************
