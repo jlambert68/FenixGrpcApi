@@ -1,0 +1,67 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package ="./go_grpc_api";
+import "google/protobuf/timestamp.proto";
+
+
+
+// ****************************************************************************************************
+// General messages and Enumerations
+
+// Used to have client and server in sync with using the same proto file version
+enum CurrentFenixTestCaseBuilderProtoFileVersionEnum {
+  VERSION_0_0 = 0 [deprecated = true];
+  VERSION_0_1 = 1 [deprecated = true];
+  VERSION_0_2 = 2; // Current version
+}
+
+// Error codes - for now a test
+enum ErrorCodesEnum {
+  OK = 0;
+  ERROR_UNKNOWN_CALLER = 1;
+  ERROR_WRONG_PROTO_FILE_VERSION = 2;
+  ERROR_UNSPECIFIED = 3;
+  ERROR_DATABASE_PROBLEM = 4;
+}
+
+// How a TestInstructionContainer is processed
+enum TestInstructionContainerExecutionTypeEnum {
+  PARALLELLED_PROCESSED = 0; // Children in container is parallelled processed
+  SERIAL_PROCESSED = 1; // Children in container is serial processed
+}
+
+// TestInstructionContainer Child Type
+enum TestInstructionContainerChildTypeEnum {
+  TESTINSTRUCTION = 0; // Child os of type TestInstruction
+  TESTINSTRUCTIONCONTAINER = 1; // Child os of type TestInstructionContainer
+}
+
+// Parameter used for Empty inputs, only containing current proto-file version
+message EmptyParameter {
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+}
+
+// Ack/Nack- Response message with comment
+message AckNackResponse {
+  bool AckNack = 1; // True=Ack, False=Nack
+  string Comments = 2; //Comments if needed
+  repeated ErrorCodesEnum ErrorCodes = 3; // List of Error codes
+}
+
+// ****************************************************************************************************
+// Client Identification Message
+
+// Message Holding information about who is the calling client
+message UserIdentificationMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+}
+
+// ****************************************************************************************************
+// TestInstructionContainerChildrenMessage
+
+//Message holding one child and its type (TestInstruction or TestInstructionContainer)
+message TestInstructionContainerChildMessage {
+  string TestInstructionContainerChildUuid = 1; // The UUID for the child, can be from a TestInstruction or a TestInstructionContainer
+  TestInstructionContainerChildTypeEnum TestInstructionContainerChildType = 2; // The type of the child, 'TestInstruction' or 'TestInstructionContainer'
+}

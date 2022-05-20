@@ -1,0 +1,106 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package ="./go_grpc_api";
+import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+// All messages in this file is used to control the "tree structure" in GUI where the user can choose from and the put them into a TestCase. They are referred as 'Available-typed'
+
+
+// ****************************************************************************************************
+// AvailableTestInstructionsAndTestContainersMessage - From DB
+
+// Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
+message AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage {
+  repeated AvailableTestInstructionMessage TestInstructionMessages = 1; // List of all TestInstruction
+  repeated AvailablePreCreatedTestInstructionContainerMessage TestInstructionContainerMessages = 2; // List of all pre-defined TestInstructionContainers
+  AckNackResponse ackNackResponse = 3; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+}
+
+// ****************************************************************************************************
+// AvailablePinnedTestInstructionsAndTestContainersMessage - From DB
+
+// Message holding TestInstructions and Pre-defined TestInstructionContainers that the user has pinned in the GUI
+message AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  repeated AvailablePinnedTestInstructionMessage AvailablePinnedTestInstructions = 3; // List of all pinned, by user, TestInstructions
+  repeated AvailablePinnedPreCreatedTestInstructionContainerMessage AvailablePinnedPreCreatedTestInstructionContainers = 4; //  List of all pinned, by user, pre-defined TestInstructionContainers
+}
+
+// ****************************************************************************************************
+// AvailableTestInstructionMessage - From DB
+
+// Message holding one TestInstruction
+message AvailableTestInstructionMessage {
+  string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+  string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+  string TestInstructionUuid = 3; // TestInstruction UUID
+  string TestInstructionName = 4; // TestInstruction Name
+  string TestInstructionTypeUuid = 5; // The Type(Group), Uuid, of TestInstruction
+  string TestInstructionTypeName = 6; // The Type(Group), Name, of TestInstruction
+  string TestInstructionDescription = 7; // The description of the TestInstruction
+  string TestInstructionMouseOverText = 8; // The mouse over text when hovering over TestInstruction
+  bool Deprecated = 9; // Indicates that this TestInstruction shouldn't be used anymore
+  bool Enabled = 10; // TestInstruction can be disabled when the user shouldn't use it anymore
+  uint32 MajorVersionNumber = 11; // Change in Major Version Number means that user must act on change
+  uint32 MinorVersionNumber = 12; // Change in Minor Version Number means that user must NOT act on change
+  google.protobuf.Timestamp UpdatedTimeStamp = 13; // The TimeStamp when the TestInstruction was last updated
+}
+
+// ****************************************************************************************************
+// AvailablePreCreatedTestInstructionContainerMessage - From DB
+
+// Message holding one TestInstructionContainer and reference to its children
+message AvailablePreCreatedTestInstructionContainerMessage {
+  string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+  string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+  string TestInstructionContainerUuid = 3; // TestInstructionContainer UUID
+  string TestInstructionContainerName = 4; // TestInstructionContainer Name
+  string TestInstructionContainerTypeUuid = 5; // The Type(Group), Uuid, of TestInstructionContainer
+  string TestInstructionContainerTypeName = 6; // The Type(Group), Name, of TestInstructionContainer
+  string TestInstructionContainerDescription = 7; // The description of the TestInstructionContainer
+  string TestInstructionContainerMouseOverText = 8; // The mouse over text when hovering over TestInstructionContainer
+  bool Deprecated = 9; // Indicates that this TestInstructionContainer shouldn't be used anymore
+  bool Enabled = 10; // TestInstructionContainer can be disabled when the user shouldn't use it anymore
+  uint32 MajorVersionNumber = 11; // Change in Major Version Number means that user must act on change
+  uint32 MinorVersionNumber = 12; // Change in Minor Version Number means that user must NOT act on change
+  google.protobuf.Timestamp UpdatedTimeStamp = 13; // The TimeStamp when the TestInstructionContainer was last updated
+  TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 14; // Defines if the children of TestInstructionContainer is processed in parallel or in seral
+  repeated TestInstructionContainerChildMessage TestInstructionContainerChildren = 15; // A list of the children[UUID's] in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
+}
+
+
+// ****************************************************************************************************
+// AvailablePinnedTestInstructionMessage - To/From DB
+
+// Message holding one Pinned TestInstruction
+message AvailablePinnedTestInstructionMessage {
+  string TestInstructionUuid = 1; // TestInstruction UUID
+  string TestInstructionName = 2; // TestInstruction Name
+}
+
+// ****************************************************************************************************
+// AvailablePinnedPreCreatedTestInstructionContainerMessage - To/From DB
+
+// Message holding one Pinned TestInstructionContainer
+message AvailablePinnedPreCreatedTestInstructionContainerMessage {
+  string TestInstructionContainerUuid = 1; // TestInstruction UUID
+  string TestInstructionContainerName = 2; // TestInstruction Name
+}
+
+
+// ****************************************************************************************************
+// AvailablePinnedTestInstructionsAndTestContainersMessage - To DB
+
+// Message holding TestInstructions and Pre-defined TestInstructionContainers that the user has pinned in the GUI
+message AvailableSavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  repeated AvailablePinnedTestInstructionMessage AvailablePinnedTestInstructions = 3; // List of all pinned, by user, TestInstructions
+  repeated AvailablePinnedPreCreatedTestInstructionContainerMessage AvailablePinnedPreCreatedTestInstructionContainers = 4; //  List of all pinned, by user, pre-defined TestInstructionContainers
+}
+
+
+
