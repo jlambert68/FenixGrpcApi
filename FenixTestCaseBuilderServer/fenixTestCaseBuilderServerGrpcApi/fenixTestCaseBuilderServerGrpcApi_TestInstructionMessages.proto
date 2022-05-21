@@ -65,63 +65,74 @@ message TestInstructionMessage {
   repeated TestInstructionAttributeListMessage TestInstructionAttributesList = 20; // A list of all attributes, UUID and NAme, that belongs to the TestInstruction
   // A specific Attribute for a Test Instruction
   message TestInstructionAttribute {
-    string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
-    string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
-    string TestInstructionAttributeTypeGuid = 3; // The unique guid for the TestInstructionAttribute-type, set by plugin
-    string TestInstructionAttributeTypeName = 4; // The name for the TestInstructionAttribute-type, set by plugin
-    string TestInstructionAttributeDescription = 5; // The description of the TestInstructionAttribute
-    string TestInstructionAttributeMouseOver = 6; // The mouse over text for the TestInstructionAttribute
-    bool TestInstructionAttributeVisible = 7; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
-    bool TestInstructionAttributeEnable = 8; // Should the TestInstructionAttribute be enabled or not
-    bool TestInstructionAttributeMandatory = 9; // Should the TestInstructionAttribute be mandatory or not
-    bool TestInstructionAttributeVisibleInTestCaseArea = 10; // Should the TestInstructionAttribute be visible in TestInstruction at TestCase Area in GUI or not
-    bool TestInstructionAttributeIsDeprecated = 11; // Indicates that this TestInstruction attribute shouldn't be used anymore
-    TestInstructionAttributeTypeEnum TestInstructionAttributeType = 12; // The choosen Enum value for what type the instruction attribute should be
+    BaseAttributeInformationMessage BaseAttributeInformation = 1; // The information set from Client system about the Attribute
+    message BaseAttributeInformationMessage {
 
-    // The TestInstructionAttribute can one of the folowing type: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
-    enum TestInstructionAttributeTypeEnum {
-      TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
-      COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
-      FILESELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
-      FUNCTIONSLECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+      string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
+      string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
+      string TestInstructionAttributeTypeGuid = 3; // The unique guid for the TestInstructionAttribute-type, set by plugin
+      string TestInstructionAttributeTypeName = 4; // The name for the TestInstructionAttribute-type, set by plugin
+      string TestInstructionAttributeDescription = 5; // The description of the TestInstructionAttribute
+      string TestInstructionAttributeMouseOver = 6; // The mouse over text for the TestInstructionAttribute
+      bool TestInstructionAttributeVisible = 7; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
+      bool TestInstructionAttributeEnable = 8; // Should the TestInstructionAttribute be enabled or not
+      bool TestInstructionAttributeMandatory = 9; // Should the TestInstructionAttribute be mandatory or not
+      bool TestInstructionAttributeVisibleInTestCaseArea = 10; // Should the TestInstructionAttribute be visible in TestInstruction at TestCase Area in GUI or not
+      bool TestInstructionAttributeIsDeprecated = 11; // Indicates that this TestInstruction attribute shouldn't be used anymore
+      TestInstructionAttributeTypeEnum TestInstructionAttributeType = 12; // The chosen Enum value for what type the instruction attribute should be
+
+      // The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
+      enum TestInstructionAttributeTypeEnum {
+        TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
+        COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
+        FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
+        FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+      }
+
+      TestInstructionAttributeInputTextBoxProperty inputTextBoxProperty = 13; // If the attribute is a textbox then all properties can be found in structure
+      // Properties for TextBox attribute
+      message TestInstructionAttributeInputTextBoxProperty {
+        string TestInstructionAttributeInputTextBoxGuid = 1; // The unique guid for the TestInstructionAttributeInputTextBoxProperties, set by plugin
+        string TestInstructionAttributeInputTextBoxName = 2; // The name of the TestInstructionAttributeInputTextBoxProperties
+        bool TextBoxEditable = 3; // Should the the TextBox be editable or not
+        string TextBoxInputMask = 4; // Input mask for the TextBox
+        string TextBoxAttributeTypeGuid = 5; // The unique guid for the Type of the TextBox. Used for data manipulation
+        string TextBoxAttributeTypeName = 6; // The Name for the Type of the TextBox.
+        string TextBoxAttributeValue = 7; // The value for the the TextBox, used for preset values
+      }
+
+      TestInstructionAttributeInputComboBoxProperty InputComboBoxProperty = 14; // If the attribute is a combobox then all properties can be found in structure
+      // Properties for ComboBox attribute
+      message TestInstructionAttributeInputComboBoxProperty {
+        string TestInstructionAttributeComboBoxGuid = 1; // The unique guid for the TestInstructionAttributeComboBoxProperties, set by plugin
+        string TestInstructionAttributeComboBoxName = 2; // The name of the TestInstructionAttributeComboBoxProperties
+        bool ComboBoxEditable = 3; // Should the the ComboBox be editable or not
+        string ComboBoxInputMask = 4; // Input mask for the ComboBox
+        string ComboBoxAttributeTypeGuid = 5; // The unique guid for the Type of the ComboBox Used for data manipulation
+        string ComboBoxAttributeTypeName = 6; // The Name for the Type of the ComboBox
+        string ComboBoxAttributeValueUuid = 7; // The uuid of the value for the the ComboBox, used for preset values
+        string ComboBoxAttributeValue = 8; // The value for the the ComboBox, used for preset values
+      }
+
+      TestInstructionAttributeInputFileSelectorProperty InputFileSelectorProperty = 15; // If the attribute is a combobox then all properties can be found in structure
+      // Properties for FileSelector attribute
+      message TestInstructionAttributeInputFileSelectorProperty {
+        string TestInstructionAttributeFileSelectorGuid = 1; // The unique guid for the TestInstructionAttributeFileSelectorProperties, set by plugin
+        string TestInstructionAttributeFileSelectorName = 2; // The name of the TestInstructionAttributeFileSelectorProperties
+      }
+
+
+      //TODO Create Attribute property for functions
+    }
+    AttributeValueMessage AttributeValue = 16; // The attributes value, set by user, was set by client-system or Set by DropZone.
+    // Message holding one attribute with its pre-set value
+    message AttributeValueMessage {
+      string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
+      string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
+      string AttributeValueAsString = 3; // The String-representation of the value
+      string AttributeValueUuid = 4; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
     }
 
-    TestInstructionAttributeInputTextBoxProperty inputTextBoxProperty = 13; // If the attribute is a textbox then all properties can be found in structure
-    // Properties for TextBox attribute
-    message TestInstructionAttributeInputTextBoxProperty {
-      string TestInstructionAttributeInputTextBoxGuid = 1; // The unique guid for the TestInstructionAttributeInputTextBoxProperties, set by plugin
-      string TestInstructionAttributeInputTextBoxName = 2; // The name of the TestInstructionAttributeInputTextBoxProperties
-      bool TextBoxEditable = 3; // Should the the TextBox be editable or not
-      string TextBoxInputMask = 4; // Input mask for the TextBox
-      string TextBoxAttributeTypeGuid = 5; // The unique guid for the Type of the TextBox. Used for data manipulation
-      string TextBoxAttributeTypeName = 6; // The Name for the Type of the TextBox.
-      string TextBoxAttributeValue = 7; // The value for the the TextBox, used for preset values
-    }
-
-    TestInstructionAttributeInputComboBoxProperty InputComboBoxProperty = 14; // If the attribute is a combobox then all properties can be found in structure
-    // Properties for ComboBox attribute
-    message TestInstructionAttributeInputComboBoxProperty {
-      string TestInstructionAttributeComboBoxGuid = 1; // The unique guid for the TestInstructionAttributeComboBoxProperties, set by plugin
-      string TestInstructionAttributeComboBoxName = 2; // The name of the TestInstructionAttributeComboBoxProperties
-      bool ComboBoxEditable = 3; // Should the the ComboBox be editable or not
-      string ComboBoxInputMask = 4; // Input mask for the ComboBox
-      string ComboBoxAttributeTypeGuid = 5; // The unique guid for the Type of the ComboBox Used for data manipulation
-      string ComboBoxAttributeTypeName = 6; // The Name for the Type of the ComboBox
-      string ComboBoxAttributeValueUuid = 7; // The uuid of the value for the the ComboBox, used for preset values
-      string ComboBoxAttributeValue = 8; // The value for the the ComboBox, used for preset values
-    }
-
-    TestInstructionAttributeInputFileSelectorProperty InputFileSelectorProperty = 15; // If the attribute is a combobox then all properties can be found in structure
-    // Properties for FileSelector attribute
-    message TestInstructionAttributeInputFileSelectorProperty {
-      string TestInstructionAttributeFileSelectorGuid = 1; // The unique guid for the TestInstructionAttributeFileSelectorProperties, set by plugin
-      string TestInstructionAttributeFileSelectorName = 2; // The name of the TestInstructionAttributeFileSelectorProperties
-    }
-
-
-
-
-    //TODO Create Attribute property for functions
   }
 
 
