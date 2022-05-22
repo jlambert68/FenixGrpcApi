@@ -6,12 +6,13 @@ import "google/protobuf/timestamp.proto";
 // All messages in this file is used to define a Bond, which is the object that binds TestInstructions and TestInstructionContainers together
 // A bond can be replaced by a TestInstruction or a TestInstructionContainer
 // Bonds are off different type, e.g. can be replaced or can not be replaced
-// TI = TestInstruction (A normal TI always have the following structure: B1-TI-B1
-// TIC = TestInstructionContainer (A normal TIC always have the following structure: B1-TIC-B1
-// B1 = Bond that can be replaced by TI, TIC or B2
-// B2 = Bond that can not be replaced
-// Example of a TC = TestCase
-// TC = B2-TIC(B1-TI-B1-TI-B1-TIC(B1-TI-TI-B1)-B2
+// TI = TestInstruction (A normal TI always have the following structure: B2-TI-B2
+// TIC = TestInstructionContainer (A normal TIC always have the following structure: B2-TIC-B2
+// B0 = Bond with only one connection, which  is used for New empty TestCase. Can not be replaced
+// B1 = Bond that can not be replaced
+// B2 = Bond that can be replaced by TI, TIC or B1
+// A new empty TC = TestCase : TC =  B0-TIC(B2)-B0
+// TC = B0-TIC(B2-TI-B2-TI-B2-TIC(B2-TI-TI-B2)-B1)-B0
 
 
 // ****************************************************************************************************
