@@ -8,12 +8,50 @@ import "google/protobuf/timestamp.proto";
 // Bonds are off different type, e.g. can be replaced or can not be replaced
 // TI = TestInstruction (A normal TI always have the following structure: B2-TI-B2
 // TIC = TestInstructionContainer (A normal TIC always have the following structure: B2-TIC-B2
-// B0 = Bond with only one connection, which  is used for New empty TestCase. Can not be replaced
-// B1 = Bond that can not be replaced
-// B2 = Bond that can be replaced by TI, TIC or B1
-// A new empty TC = TestCase : TC =  B0-TIC(B2)-B0
-// TC = B0-TIC(B2-TI-B2-TI-B2-TIC(B2-TI-TI-B2)-B1)-B0
+// B0 = Bond with only one connection, which  is used for New empty TestCase. Can not be replaced. Exists only within pre-created TIC
+// B1 = Bond that can not be replaced. Used to ensure that certain pre-created 'stuff' will be executed first or last. User can't change that. Exists only within pre-created TIC
+// B2 = Bond that can be replaced by TI, TIC
+// B3 = Bond with zero connection, can be replaced by TI, TIC or B2
+// A new empty TC = TestCase : TC =  B0-TIC(B3)-B0
+// Deletion of B2-TI-B2 --> B2
+// Deletion of B2-TIC-B2 --> B2
+// Deletion of B1-TI-B2 or B2-TI-B1 --> Not possible
+// Deletion of B1-TIC-B2 or B2-TIC-B1 --> Not possible
+// Deletion of B3 in TIC(B3) --> Not possible
+// TC = B0-TIC(B2-TI-B2-TI-B2-TIC(B2-TI-B2-TI-B2)-B1)-B0
+
+/*
+			Delete
+		B2	TI	B2	-->	B2
+		B2	TIC(B3)	B2		B2
+		B2	TIC(?)	B2		B2
+
+		B0	TIC	BO		x
+		B1	TI	B1		x
+			B3			x
+			B2			x
+			B1			x
+			B0			x
+
+			Replace
+			B0			x
+			B1			x
+			B2			x
+			B3			x
+
+Replace Replace     Replace    Instead of      TI	          TIC(B3)	          TIC(?)
+TI      TIC(B3)     TIC(?)     B0              x	          x                 x
+TI      TIC(B3)     TIC(?)     B1              x	          x                 x
+TI      TIC(B3)     TIC(?)     B2              B2-TI-B2     B2-TIC(B3)-B2     B2-TIC(?)-B2
+TI      TIC(B3)     TIC(?)     B3              B2-TI-B2     B2-TIC(B3)-B2     B2-TIC(?)-B2
+
+			Move = Delete + Add
+
+
+ */
+
+// Create truth table with Replace and set "popular names" that can be used in GUI
 
 
 // ****************************************************************************************************
-// TestInstructionMessage
+// BondMessage
