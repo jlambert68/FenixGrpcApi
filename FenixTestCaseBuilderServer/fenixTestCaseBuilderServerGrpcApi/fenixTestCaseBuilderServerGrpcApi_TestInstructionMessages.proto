@@ -12,7 +12,7 @@ import "google/protobuf/timestamp.proto";
 message TestInstructionMessage {
 
   AvailableTestInstructionMessage BasicTestInstructionInfromation = 1; // Data is used to describe the basic information around the TestInstruction
-  // Message holding one TestInstruction
+  // Message holding Basic information for one TestInstruction
   message AvailableTestInstructionMessage {
     string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
     string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
@@ -36,12 +36,14 @@ message TestInstructionMessage {
     repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will have when placed in TestCase
   }
 
-  inUseValuesCreatedInTestCaseMessage inUseValuesCreatedInTestCase = 3; // Values that are set when added to, or changed in, TestCase
+  inUseValuesCreatedInTestCaseMessage inUseValuesCreatedInTestCase = 3; // Values that are set when added to, or changed in, TestCase or Pre-created TestInstructionContainer
   //  inUse Values Created In TestCase
   message inUseValuesCreatedInTestCaseMessage {
     string ParentTestInstructionContainerUuid = 16;// A UUID-reference to TestInstructionContainer where this TestInstruction exists
     AvailableDropZoneMessage ChosenDropZone = 19; // The chosen drop zone which sets potential attributes in TestInstruction when that is added to the TestCase
   }
+
+
 
   // Message holding one DropZone
   message AvailableDropZoneMessage {
@@ -51,9 +53,9 @@ message TestInstructionMessage {
     string DropZoneMouseOver = 4; // The mouse over text for the DropZone
     string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437
 
-    repeated PreSetAttributeMessage PreSetAttributes = 6; // A list of the attributes and their pre-set values
+    repeated PreSetTestInstructionAttributeMessage PreSetAttributes = 6; // A list of the attributes and their pre-set values
     // Message holding one attribute with its pre-set value
-    message PreSetAttributeMessage {
+    message PreSetTestInstructionAttributeMessage {
       string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
       string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
       string AttributeValueAsString = 3; // The String-representation of the value
@@ -62,8 +64,8 @@ message TestInstructionMessage {
 
   }
 
-  repeated TestInstructionAttributeListMessage TestInstructionAttributesList = 20; // A list of all attributes, UUID and NAme, that belongs to the TestInstruction
-  // A specific Attribute for a Test Instruction
+  repeated TestInstructionAttribute TestInstructionAttributesList = 20; // All attributes that belongs to the TestInstruction
+  // Message holding one Attribute for a Test Instruction
   message TestInstructionAttribute {
     BaseAttributeInformationMessage BaseAttributeInformation = 1; // The information set from Client system about the Attribute
     message BaseAttributeInformationMessage {
@@ -121,28 +123,18 @@ message TestInstructionMessage {
         string TestInstructionAttributeFileSelectorName = 2; // The name of the TestInstructionAttributeFileSelectorProperties
       }
 
-
       //TODO Create Attribute property for functions
     }
-    AttributeValueMessage AttributeValue = 16; // The attributes value, set by user, was set by client-system or Set by DropZone.
+
+    TestInstructionAttributeValueMessage AttributeValue = 16; // The attributes value, set by user, was set by client-system or Set by DropZone.
     // Message holding one attribute with its pre-set value
-    message AttributeValueMessage {
+    message TestInstructionAttributeValueMessage {
       string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
       string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
       string AttributeValueAsString = 3; // The String-representation of the value
       string AttributeValueUuid = 4; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
     }
 
-  }
-
-
-  // ****************************************************************************************************
-  // TestInstructionAttributeListMessage
-
-  // Message holding one item in the Attributes-list in the TestInstruction
-  message TestInstructionAttributeListMessage {
-    string AttributeUuid = 1; // The Attribute, UUID, for the TestCaseInstruction
-    string AttributeName = 2; // The Attribute, Name, for the TestCaseInstruction
   }
 
 }
