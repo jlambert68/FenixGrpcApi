@@ -12,6 +12,16 @@ import "google/protobuf/timestamp.proto";
 // B1 = Bond that can not be replaced. Used to ensure that certain pre-created 'stuff' will be executed first or last. User can't change that. Exists only within pre-created TIC
 // B2 = Bond that can be replaced by TI, TIC
 // B3 = Bond with zero connection, can be replaced by TI, TIC or B2
+//
+// B0 = Bond with zero connection. This is the base for any TestCase: "B0"
+// B1 = Bond with one connection. Use for starting a new TestCase and is only found i pre-created TestInstructionContainers : "B1-TIC(B10)-B1", "B1-TIC(?)-B1"
+//
+// B10 = Bond with zero connections which appear as only object in a new TestInstructionContainer: "TIC(B11-TIC(B10)-B11)" or "-B12-TIC(B10)-B12-"
+// B11 = Bond with one connection which appear as first or last element inside a TestInstructionContainer when there are at least one element, TI or TIC: "TIC(B11-X..X-B11)"
+// B12 = Bond with two connections which connects TestInstructions or TestInstructionContainers: "TI-B12-TI", "TIC-B12-TIC", "TI-B12-TIC", "TIC-B12-TI"
+//
+
+
 // A new empty TC = TestCase : TC =  B0-TIC(B3)-B0
 // Deletion of B2-TI-B2 --> B2
 // Deletion of B2-TIC-B2 --> B2
