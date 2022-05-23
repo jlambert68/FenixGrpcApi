@@ -59,10 +59,15 @@ n=TI, TIC(B10) or TIC(X)	B12    n      X-B12-X                         X-B12-n-B
 
 ******************************
 
+*** Functions/Methods ***
+Remove(ElementToBeRemoved)
+SwapFromNew(ElementTobeSwappedOut, NewElementTobeSwappedIn),
+Copy(Element)
+SwapFromCopyBuffer(ElementTobeSwappedOut, CopyBufferElementTobeSwappedIn),
+
 
  */
 
-// Create truth table with Replace and set "popular names" that can be used in GUI
 
 
 // ****************************************************************************************************
