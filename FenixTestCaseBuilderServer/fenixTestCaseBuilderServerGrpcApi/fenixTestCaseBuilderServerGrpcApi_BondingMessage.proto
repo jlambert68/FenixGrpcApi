@@ -6,56 +6,58 @@ import "google/protobuf/timestamp.proto";
 // All messages in this file is used to define a Bond, which is the object that binds TestInstructions and TestInstructionContainers together
 // A bond can be replaced by a TestInstruction or a TestInstructionContainer
 // Bonds are off different type, e.g. can be replaced or can not be replaced
-// TI = TestInstruction (A normal TI always have the following structure: B2-TI-B2
-// TIC = TestInstructionContainer (A normal TIC always have the following structure: B2-TIC-B2
-// B0 = Bond with only one connection, which  is used for New empty TestCase. Can not be replaced. Exists only within pre-created TIC
-// B1 = Bond that can not be replaced. Used to ensure that certain pre-created 'stuff' will be executed first or last. User can't change that. Exists only within pre-created TIC
-// B2 = Bond that can be replaced by TI, TIC
-// B3 = Bond with zero connection, can be replaced by TI, TIC or B2
+// TI = TestInstruction
+// TIC = TestInstructionContainer
 //
 // B0 = Bond with zero connection. This is the base for any TestCase: "B0"
-// B1 = Bond with one connection. Use for starting a new TestCase and is only found i pre-created TestInstructionContainers : "B1-TIC(B10)-B1", "B1-TIC(?)-B1"
+// B1 = Bond with one connection. Use for starting a new TestCase and is only found in pre-created TestInstructionContainers : "B1-TIC(B10)-B1", "B1-TIC(?)-B1"
 //
-// B10 = Bond with zero connections which appear as only object in a new TestInstructionContainer: "TIC(B11-TIC(B10)-B11)" or "-B12-TIC(B10)-B12-"
+// B10 = Bond with zero connections which appear as an object in a new TestInstructionContainer: "TIC(B11-TIC(B10)-B11)" or "-B12-TIC(B10)-B12-"
 // B11 = Bond with one connection which appear as first or last element inside a TestInstructionContainer when there are at least one element, TI or TIC: "TIC(B11-X..X-B11)"
 // B12 = Bond with two connections which connects TestInstructions or TestInstructionContainers: "TI-B12-TI", "TIC-B12-TIC", "TI-B12-TIC", "TIC-B12-TI"
-//
 
-
-// A new empty TC = TestCase : TC =  B0-TIC(B3)-B0
-// Deletion of B2-TI-B2 --> B2
-// Deletion of B2-TIC-B2 --> B2
-// Deletion of B1-TI-B2 or B2-TI-B1 --> Not possible
-// Deletion of B1-TIC-B2 or B2-TIC-B1 --> Not possible
-// Deletion of B3 in TIC(B3) --> Not possible
-// TC = B0-TIC(B2-TI-B2-TI-B2-TIC(B2-TI-B2-TI-B2)-B1)-B0
 
 /*
-			Delete
-		B2	TI	B2	-->	B2
-		B2	TIC(B3)	B2		B2
-		B2	TIC(?)	B2		B2
+******************************
+Element can be Deleted
+B0       FALSE
+B1       FALSE
+B10      FALSE
+B11      FALSE
+B12      FALSE
+TI       TRUE
+TIC(B10) TRUE
+TIC(X)   TRUE
 
-		B0	TIC	BO		x
-		B1	TI	B1		x
-			B3			x
-			B2			x
-			B1			x
-			B0			x
+******************
 
-			Replace
-			B0			x
-			B1			x
-			B2			x
-			B3			x
+Remove                      In the following structure    Result
+n=TIC(B10) or TIC(X)        B1-n-B1	                      B0
+n=TI, TIC(B10) or TIC(X)    B11-n-B11	                    B10
+n=TI, TIC(B10) or TIC(X)    B11-n-B12-X	                  B11-X
+n=TI, TIC(B10) or TIC(X)    X-B12-n-B11	                  X-B11
+n=TI, TIC(B10) or TIC(X)    X-B12-n-B12-X                 X-B12-X
 
-Replace Replace     Replace    Instead of      TI	          TIC(B3)	          TIC(?)
-TI      TIC(B3)     TIC(?)     B0              x	          x                 x
-TI      TIC(B3)     TIC(?)     B1              x	          x                 x
-TI      TIC(B3)     TIC(?)     B2              B2-TI-B2     B2-TIC(B3)-B2     B2-TIC(?)-B2
-TI      TIC(B3)     TIC(?)     B3              B2-TI-B2     B2-TIC(B3)-B2     B2-TIC(?)-B2
+******************************
+Element can be Swapped into another element structure
+B0          TRUE
+B1          FALSE
+B10         TRUE
+B11         TRUE
+B12         TRUE
+TI          FALSE
+TIC(B10)    FALSE
+TIC(X)      FALSE
 
-			Move = Delete + Add
+******************
+                          Swap   with   In the following structure      Result
+n=TIC(B10) or TIC(X)      B0     n      B0                              B1-n-B1
+n=TI, TIC(B10) or TIC(X)  B10    n      TIC(B10)                        TIC(B11-n-B11)
+n=TI, TIC(B10) or TIC(X)  B11    n      TIC(B11-X)                      TIC(B11-n-T12-X)
+n=TI, TIC(B10) or TIC(X)  B11    n      TIC(X-B11)                      TIC(X-T12-n-B11)
+n=TI, TIC(B10) or TIC(X)	B12    n      X-B12-X                         X-B12-n-B12-X
+
+******************************
 
 
  */
