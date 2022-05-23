@@ -1,0 +1,62 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+import "google/protobuf/timestamp.proto";
+
+// All messages in this file is used to define the TestCase-model, and how it was constructed
+
+// ****************************************************************************************************
+// TestCaseModelMessage
+
+// A message holding the complete model of the TestCase together with the steps to create the model
+message TestCaseModelMessage {
+  string TestCaseUuid = 1; // The TestCase, UUID, set by TestCase-builder
+  string TestCaseName = 2; // The TestCase, Name, set in TestCase-builder
+  string TestCaseModelAsString = 3; // The string representation of the TestCase, e.g. 'TC=B1-TIC(B11-TI-B11)-B1'
+
+  repeated TestCaseModelElementMessage TestCaseModelElements = 4; // All elements in the TestCase
+  // One TestCaseElement that hold type, reference to previous, next and parent elements
+    message TestCaseModelElementMessage {
+      string OriginalElementUuid = 1; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
+      string OriginalElementName = 2; // The original elements Name, e.g. a TestInstruction Name set by client system
+      string InTestCaseElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
+      TestCaseElementTypeEnum TestCaseElementType = 4; // The specific type of this TestCase-element
+      // All TestCase-elements
+      enum TestCaseElementTypeEnum {
+        B0_BOND = 0; // Bond with zero connection. This is the base for any TestCase: "B0"
+        B1_BOND = 1; // Bond with one connection. Use for starting and ending a TestCase and is only found in pre-created TestInstructionContainers
+        B10_BOND = 2; // Bond with zero connections which appear as an element in a new TestInstructionContainer with  out any other elements
+        B11_BOND = 3; // Bond with one connection which appear as first or last element inside a TestInstructionContainer
+        B12_BOND = 4; // Bond with two connections which connects TestInstructions or TestInstructionContainers
+        TI_TESTINSTRUCTION = 5; // TestInstruction
+        TIC_X_TESTINSTRUCTIONCONTAINER = 6; // TestInstructionContainer(X), where X is any valid structure
+        TIC_B10_TESTINSTRUCTIONCONTAINER = 7; // TestInstructionContainer(B10)
+      }
+      string PreviousElementUuid = 5;  // When there are no previous element then this field is populated with current element UUID
+      string NextElementUuid = 6;  // When there are no next element then this field is populated with current element UUID
+      string ParentElementUuid = 7; // When there are no parent element then this field is populated with current element UUID. Will only be populated if this is the first child element
+      string FirstChildElementUuid = 8; // When there are no first child element then this field is populated with current element UUID
+
+    }
+  repeated TestCaseModelCommandMessage TestCaseModelCommands = 5; // All commands that was used to create the TestCase
+  // One command that describe one change to the TestCase
+  message TestCaseModelCommandMessage {
+    TestCaseCommandTypeEnum TestCaseCommandType = 1; // The type of command that was used
+    // All different commands that can be used
+    enum TestCaseCommandTypeEnum {
+      NEW_TESTCASE = 0; //NewTestCase(). Creates a new TestCase
+      REMOVE_ELEMENT = 1; // RemoveElement(ElementUuidToBeRemoved). Remove an element from the TestCase
+      SWAPFROMNEW = 2; // SwapFromNew(ElementUuidTobeSwappedOut, NewElementUuidTobeSwappedIn). Swap in a new element instead of an existing
+      COPY_ELEMENT = 3; // Copy(ElementUuid). Create a copy of an element and place it in the copy-buffer
+      SWAPFROMCOPYBUFFER = 4; // SwapFromCopyBuffer(ElementUuidTobeSwappedOut, CopyBufferElementUuidTobeSwappedIn). Swap in a copy of the element that exist in the copy buffer
+      CUT_ELEMENT = 5; // Copy(ElementUuid). Cut an element and place in the cut buffer
+      SWAPFROMCUTBUFFER = 6; // SwapFromCutBuffer(ElementUuidTobeSwappedOut, CutBufferElementUuidTobeSwappedIn). Swap in the element that exist in the cut buffer
+    }
+    string FirstParameter = 2; // The first parameter, an UUID, in the command
+    string SecondParameter = 3; // The second parameter, an UUID, in the command
+
+  }
+
+}
+
+
