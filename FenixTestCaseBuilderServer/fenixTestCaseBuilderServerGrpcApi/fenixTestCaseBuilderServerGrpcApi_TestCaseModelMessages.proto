@@ -12,7 +12,7 @@ import "google/protobuf/timestamp.proto";
 message TestCaseModelMessage {
   string TestCaseUuid = 1; // The TestCase, UUID, set by TestCase-builder
   string TestCaseName = 2; // The TestCase, Name, set in TestCase-builder
-  string TestCaseModelAsString = 3; // The string representation of the TestCase, e.g. 'TC=B1-TICX(B11-TI-TIX-B11X)-B1'
+  string TestCaseModelAsString = 3; // The string representation of the TestCase, e.g. 'TC=B1-TICX(B11-TI-B12-TIX-B11X)-B1' - The last TIX could be used to clean up the environment
 
   repeated TestCaseModelElementMessage TestCaseModelElements = 4; // All elements in the TestCase
   // One TestCaseElement that hold type, reference to previous, next and parent elements
@@ -35,11 +35,9 @@ message TestCaseModelMessage {
       B12X_BOND_NOT_REMOVABLE = 7; // Bond with two connections which connects TestInstructions or TestInstructionContainers. Can't be removed or swapped out by user.
       TI_TESTINSTRUCTION = 8; // TestInstruction
       TIX_TESTINSTRUCTION_NONE_REMOVABLE = 9; // A standard TestInstruction which can not be removed or swapped out by the user
-      TIC_TESTINSTRUCTIONCONTAINER_SERIAL_EXECUTED = 10; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
-      TIC_TESTINSTRUCTIONCONTAINER_PARALLEL_EXECUTED = 11; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in parallel mode
-      TICX_TESTINSTRUCTIONCONTAINER_SERIAL_EXECUTED_NOT_REMOVABLE = 12; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
-      TICX_TESTINSTRUCTIONCONTAINER_PARALLEL_EXECUTED_NOT_REMOVABLE = 13; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in parallel mode
-    }
+      TIC_TESTINSTRUCTIONCONTAINER = 10; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
+      TICX_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 11; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
+ }
   }
 
   repeated TestCaseModelCommandMessage TestCaseModelCommands = 5; // All commands that was used to create the TestCase
