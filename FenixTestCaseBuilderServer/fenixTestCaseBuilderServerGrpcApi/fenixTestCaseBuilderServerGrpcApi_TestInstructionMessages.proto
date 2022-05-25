@@ -2,99 +2,115 @@ syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 
-// All messages in this file is used to define a TestInstruction, both available and in-use in TestCase
+// All messages in this file is used to define a TestInstruction, both Immature TestInstructions that are available to chose from Mature TestInstructions that exits in the TestCase
 
 // ****************************************************************************************************
-// TestInstructionMessage
+// ImmatureTestInstructionMessage
 
-// Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
-message TestInstructionMessage {
+// Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase
+message ImmatureTestInstructionMessage {
 
-  AvailableTestInstructionMessage BasicTestInstructionInfromation = 1; // Data is used to describe the basic information around the TestInstruction
-  // Message holding Basic information for one TestInstruction
-  message AvailableTestInstructionMessage {
-    string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
-    string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
-    string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
-    string TestInstructionName = 4; // TestInstruction Name, set by Client system
-    string TestInstructionTypeUuid = 5; // The Type(Group), Uuid, of TestInstruction
-    string TestInstructionTypeName = 6; // The Type(Group), Name, of TestInstruction
-    string TestInstructionDescription = 7; // The description of the TestInstruction
-    string TestInstructionMouseOverText = 8; // The mouse over text when hovering over TestInstruction
-    bool Deprecated = 9; // Indicates that this TestInstruction shouldn't be used anymore
-    bool Enabled = 10; // TestInstruction can be disabled when the user shouldn't use it anymore
-    uint32 MajorVersionNumber = 11; // Change in Major Version Number means that user must act on change
-    uint32 MinorVersionNumber = 12; // Change in Minor Version Number means that user must NOT act on change
-    google.protobuf.Timestamp UpdatedTimeStamp = 13; // The TimeStamp when the TestInstruction was last updated
-  }
+  BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information around the TestInstruction
+  ImmatureTestInstructionInformationMessage ImmatureTestInstructionInformation = 2; // More basic information for the TestInstruction
+  // Message holding the information about the Immature TestInstruction
+  message ImmatureTestInstructionInformationMessage {
 
-  ExtendedBasicTestInstructionInfromationMessage ExtendedBasicTestInstructionInformation = 2; // More basic information for the TestInstruction
-  // Message holding the extended basic information about the TestInstruction
-  message ExtendedBasicTestInstructionInfromationMessage {
-    string TestInstructionColor = 17; // The color used for presenting the TestInstruction, e.g. #FAF437
-    repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will have when placed in TestCase
-  }
+    repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this Immature TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will get when placed in TestCase
+    // Message holding one DropZone
+    message AvailableDropZoneMessage {
+      string DropZoneUuid = 1; // A DropZone, UUID, for the TestCaseInstruction
+      string DropZoneName = 2; // A DropZone, Name, for the TestCaseInstruction
+      string DropZoneDescription = 3; // Description of the DropZone
+      string DropZoneMouseOver = 4; // The mouse over text for the DropZone
+      string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437
 
-  inUseValuesCreatedInTestCaseMessage inUseValuesCreatedInTestCase = 3; // Values that are set when added to, or changed in, TestCase or Pre-created TestInstructionContainer
-  //  inUse Values Created In TestCase
-  message inUseValuesCreatedInTestCaseMessage {
-    string ParentTestInstructionContainerUuid = 16;// A UUID-reference to TestInstructionContainer where this TestInstruction exists
-    AvailableDropZoneMessage ChosenDropZone = 19; // The chosen drop zone which sets potential attributes in TestInstruction when that is added to the TestCase
-  }
-
-
-
-  // Message holding one DropZone
-  message AvailableDropZoneMessage {
-    string DropZoneUuid = 1; // A DropZone, UUID, for the TestCaseInstruction
-    string DropZoneName = 2; // A DropZone, Name, for the TestCaseInstruction
-    string DropZoneDescription = 3; // Description of the DropZone
-    string DropZoneMouseOver = 4; // The mouse over text for the DropZone
-    string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437
-
-    repeated PreSetTestInstructionAttributeMessage PreSetAttributes = 6; // A list of the attributes and their pre-set values
-    // Message holding one attribute with its pre-set value
-    message PreSetTestInstructionAttributeMessage {
-      string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
-      string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
-      string AttributeValueAsString = 3; // The String-representation of the value
-      string AttributeValueUuid = 4; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+      repeated DropZonePreSetTestInstructionAttributeMessage DropZonePreSetTestInstructionAttributes = 6; // A list of the attributes and their pre-set values
+      // Message holding one attribute with its pre-set value
+      message DropZonePreSetTestInstructionAttributeMessage {
+        TestInstructionAttributeTypeEnum TestInstructionAttributeType = 1; // Defines witch type attribute; TEXTBOX, COMBOBOX...
+        string TestInstructionAttributeGuid = 2; // The unique guid for the TestInstructionAttribute, set by plugin
+        string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
+        string AttributeValueAsString = 4; // The String-representation of the value
+        string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+      }
     }
 
   }
+}
 
-  repeated TestInstructionAttribute TestInstructionAttributesList = 20; // All attributes that belongs to the TestInstruction
+// ****************************************************************************************************
+// MatureTestInstructionMessage
+
+// Message holding one Mature TestInstruction which has been Dragged n Dropped into the TestCase
+message MatureTestInstructionMessage {
+
+  BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information around the TestInstruction
+  MatureTestInstructionInformationMessage MatureTestInstructionInformation = 2; // Information about the Mature TestInstruction
+
+
+}
+
+// ****************************************************************************************************
+// BasicTestInstructionInformationMessage
+
+// Message holding Basic information for one TestInstruction
+message BasicTestInstructionInformationMessage {
+  string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+  string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+  string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
+  string TestInstructionName = 4; // TestInstruction Name, set by Client system
+  string TestInstructionTypeUuid = 5; // The Type(Group), Uuid, of TestInstruction
+  string TestInstructionTypeName = 6; // The Type(Group), Name, of TestInstruction
+  string TestInstructionDescription = 7; // The description of the TestInstruction
+  string TestInstructionMouseOverText = 8; // The mouse over text when hovering over TestInstruction
+  bool Deprecated = 9; // Indicates that this TestInstruction shouldn't be used anymore
+  bool Enabled = 10; // TestInstruction can be disabled when the user shouldn't use it anymore
+  uint32 MajorVersionNumber = 11; // Change in Major Version Number means that user must act on change
+  uint32 MinorVersionNumber = 12; // Change in Minor Version Number means that user must NOT act on change
+  google.protobuf.Timestamp UpdatedTimeStamp = 13; // The TimeStamp when the TestInstruction was last updated
+  string TestInstructionColor = 14; // The color used for presenting the TestInstruction, e.g. #FAF437
+}
+
+// ****************************************************************************************************
+// MatureTestInstructionInformationMessage
+
+//  Message holding all data that is set for the Mature TestInstruction
+message MatureTestInstructionInformationMessage {
+  string TestInstructionMatureUuid = 1; // The Mature UUID that the TestInstruction gets when it is added to the TestCase
+  string ParentTestInstructionContainerUuid = 2;// A UUID-reference to TestInstructionContainer where this TestInstruction exists
+  string ParentTestInstructionContainerMatureUuid = 3; // A Mature-UUID-reference to TestInstructionContainer where this TestInstruction exists
+  string ChosenDropZoneUuid = 4; // The chosen dropzone, UUID, which set the attributes in TestInstruction when it was added to the TestCase
+  string ChosenDropZoneName = 5; // The chosen dropzone, Name, which set the attributes in TestInstruction when it was added to the TestCase
+  google.protobuf.Timestamp UpdatedTimeStamp = 6; // The TimeStamp when the TestInstruction was first added to the TestCase
+
+  repeated TestInstructionAttributeMessage TestInstructionAttributesList = 7; // All attributes that belongs to the TestInstruction
   // Message holding one Attribute for a Test Instruction
-  message TestInstructionAttribute {
+  message TestInstructionAttributeMessage {
     BaseAttributeInformationMessage BaseAttributeInformation = 1; // The information set from Client system about the Attribute
-    message BaseAttributeInformationMessage {
 
+    message BaseAttributeInformationMessage {
       string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
       string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
-      string TestInstructionAttributeTypeGuid = 3; // The unique guid for the TestInstructionAttribute-type, set by plugin
-      string TestInstructionAttributeTypeName = 4; // The name for the TestInstructionAttribute-type, set by plugin
+      string TestInstructionAttributeTypeGuid = 3; // The unique guid for the TestInstructionAttribute-type
+      string TestInstructionAttributeTypeName = 4; // The name for the TestInstructionAttribute-type, e.g. 'Error text to look for'
       string TestInstructionAttributeDescription = 5; // The description of the TestInstructionAttribute
       string TestInstructionAttributeMouseOver = 6; // The mouse over text for the TestInstructionAttribute
       bool TestInstructionAttributeVisible = 7; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
       bool TestInstructionAttributeEnable = 8; // Should the TestInstructionAttribute be enabled or not
       bool TestInstructionAttributeMandatory = 9; // Should the TestInstructionAttribute be mandatory or not
-      bool TestInstructionAttributeVisibleInTestCaseArea = 10; // Should the TestInstructionAttribute be visible in TestInstruction at TestCase Area in GUI or not
+      bool TestInstructionAttributeVisibleInTestCaseArea = 10; // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
       bool TestInstructionAttributeIsDeprecated = 11; // Indicates that this TestInstruction attribute shouldn't be used anymore
       TestInstructionAttributeTypeEnum TestInstructionAttributeType = 12; // The chosen Enum value for what type the instruction attribute should be
-
-      // The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
-      enum TestInstructionAttributeTypeEnum {
-        TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
-        COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
-        FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
-        FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
-      }
-
-      TestInstructionAttributeInputTextBoxProperty inputTextBoxProperty = 13; // If the attribute is a textbox then all properties can be found in structure
-      // Properties for TextBox attribute
+    }
+    AttributeInformationMessage AttributeInformation = 2; // Have the ability to store all different Attribute type, but only one should be used
+    // Message holding one attribute. It has the ability to hold different types of attribute but only one should be used
+    message AttributeInformationMessage {
+      TestInstructionAttributeInputTextBoxProperty inputTextBoxProperty = 1; // If the attribute is a textbox then all properties can be found in structure
+      // Properties if it is a TextBox attribute
       message TestInstructionAttributeInputTextBoxProperty {
-        string TestInstructionAttributeInputTextBoxGuid = 1; // The unique guid for the TestInstructionAttributeInputTextBoxProperties, set by plugin
+        string TestInstructionAttributeInputTextBoxGuid = 1; // The unique guid for the TestInstructionAttributeInputTextBoxProperties
         string TestInstructionAttributeInputTextBoxName = 2; // The name of the TestInstructionAttributeInputTextBoxProperties
         bool TextBoxEditable = 3; // Should the the TextBox be editable or not
         string TextBoxInputMask = 4; // Input mask for the TextBox
@@ -103,46 +119,30 @@ message TestInstructionMessage {
         string TextBoxAttributeValue = 7; // The value for the the TextBox, used for preset values
       }
 
-      TestInstructionAttributeInputComboBoxProperty InputComboBoxProperty = 14; // If the attribute is a combobox then all properties can be found in structure
-      // Properties for ComboBox attribute
+      TestInstructionAttributeInputComboBoxProperty InputComboBoxProperty = 2; // If the attribute is a combobox then all properties can be found in structure
+      // Properties if it is a ComboBox attribute
       message TestInstructionAttributeInputComboBoxProperty {
-        string TestInstructionAttributeComboBoxGuid = 1; // The unique guid for the TestInstructionAttributeComboBoxProperties, set by plugin
+        string TestInstructionAttributeComboBoxGuid = 1; // The unique guid for the TestInstructionAttributeComboBoxProperties
         string TestInstructionAttributeComboBoxName = 2; // The name of the TestInstructionAttributeComboBoxProperties
         bool ComboBoxEditable = 3; // Should the the ComboBox be editable or not
         string ComboBoxInputMask = 4; // Input mask for the ComboBox
         string ComboBoxAttributeTypeGuid = 5; // The unique guid for the Type of the ComboBox Used for data manipulation
         string ComboBoxAttributeTypeName = 6; // The Name for the Type of the ComboBox
-        string ComboBoxAttributeValueUuid = 7; // The uuid of the value for the the ComboBox, used for preset values
+        string ComboBoxAttributeValueUuid = 7; // The uuid of the value for the the ComboBox, used for showing one value but have a unique value behind the scene
         string ComboBoxAttributeValue = 8; // The value for the the ComboBox, used for preset values
       }
 
-      TestInstructionAttributeInputFileSelectorProperty InputFileSelectorProperty = 15; // If the attribute is a combobox then all properties can be found in structure
-      // Properties for FileSelector attribute
+      TestInstructionAttributeInputFileSelectorProperty InputFileSelectorProperty = 3; // If the attribute is a combobox then all properties can be found in structure
+      // Properties if it is a FileSelector attribute
       message TestInstructionAttributeInputFileSelectorProperty {
-        string TestInstructionAttributeFileSelectorGuid = 1; // The unique guid for the TestInstructionAttributeFileSelectorProperties, set by plugin
+        string TestInstructionAttributeFileSelectorGuid = 1; // The unique Uuid for the TestInstructionAttributeFileSelectorProperties
         string TestInstructionAttributeFileSelectorName = 2; // The name of the TestInstructionAttributeFileSelectorProperties
+        string TestInstructionAttributeFileReferenceUuid = 3; // A reference, UUID, to a chosen file, that has been added to the TestCase
+        string TestInstructionAttributeFileReferenceName = 4; // A reference, Name, to a chosen file, that has been added to the TestCase
       }
 
       //TODO Create Attribute property for functions
     }
 
-    TestInstructionAttributeValueMessage AttributeValue = 16; // The attributes value, set by user, was set by client-system or Set by DropZone.
-    // Message holding one attribute with its pre-set value
-    message TestInstructionAttributeValueMessage {
-      string TestInstructionAttributeGuid = 1; // The unique guid for the TestInstructionAttribute, set by plugin
-      string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
-      string AttributeValueAsString = 3; // The String-representation of the value
-      string AttributeValueUuid = 4; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
-    }
-
   }
-
 }
-
-// ****************************************************************************************************
-// AvailableDropZoneMessage
-
-// Message holding one item in the DropZone-list in the TestInstruction
-
-
-    }

@@ -36,6 +36,43 @@ enum TestInstructionContainerChildTypeEnum {
   TESTINSTRUCTIONCONTAINER = 1; // Child os of type TestInstructionContainer
 }
 
+// All TestCaseModel-elements
+enum TestCaseModelElementTypeEnum {
+  B0_BOND = 0; // Bond with zero connection. This is the base for any TestCase: "B0"
+  B1_BOND_NONE_SWAPPABLE = 1; // Bond with one connection. Use for starting and ending a TestCase and is only found in pre-created TestInstructionContainers
+  B10_BOND = 2; // Bond with zero connections which appear as an element in a new TestInstructionContainer without any other elements
+  B11_BOND = 3; // Bond with one connection which appear as first or last element inside a TestInstructionContainer
+  B12_BOND = 4; // Bond with two connections which connects TestInstructions or TestInstructionContainers
+  B10oxo_BOND = 5; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11x-n-B11x).
+  B10ox_BOND = 6; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11x-n-B11).
+  B10xo_BOND = 7; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11-n-B11x).
+  B11x_BOND_NONE_SWAPPABLE = 8; // Bond with one connection which appear as first or last element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) or/and after(last) a structure.
+  B12x_BOND_NONE_SWAPPABLE = 9; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
+  TI_TESTINSTRUCTION = 10; // TestInstruction
+  TIx_TESTINSTRUCTION_NONE_REMOVABLE = 11; // A standard TestInstruction which can not be removed or swapped out by the user
+  TIC_TESTINSTRUCTIONCONTAINER = 12; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
+  TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 13; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
+}
+
+// All different commands that can be used to change  TestCase-Model
+enum TestCaseCommandTypeEnum {
+  NEW_TESTCASE = 0; //NewTestCase(). Creates a new TestCase
+  REMOVE_ELEMENT = 1; // RemoveElement(ElementUuidToBeRemoved). Remove an element from the TestCase
+  SWAP_OUT_ELEMENT_FOR_NEW_ELEMENT = 2; // SwapOutElementForNewElement(ElementUuidTobeSwappedOut, NewElementUuidTobeSwappedIn). Swap in a new element instead of an existing
+  COPY_ELEMENT = 3; // CopyElement(ElementUuid). Create a copy of an element and place it in the copy-buffer
+  SWAP_OUT_ELEMENT_FOR_COPY_BUFFER_ELEMENT = 4; // SwapOutElementForCopyBufferElement(ElementUuidTobeSwappedOut, CopyBufferElementUuidTobeSwappedIn). Swap in a copy of the element that exist in the copy buffer
+  CUT_ELEMENT = 5; // CopyElement(ElementUuid). Cut out an element and place in the cut buffer
+  SWAP_OUT_ELEMENT_FOR_CUT_BUFFER_ELEMENT = 6; // SwapOutElementForCutBufferElement(ElementUuidTobeSwappedOut, CutBufferElementUuidTobeSwappedIn). Swap in the element that exist in the cut buffer
+}
+
+// The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
+enum TestInstructionAttributeTypeEnum {
+  TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
+  COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
+  FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
+  FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+}
+
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
