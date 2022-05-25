@@ -11,33 +11,8 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 // Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase
 message ImmatureTestInstructionMessage {
-
   BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information around the TestInstruction
   ImmatureTestInstructionInformationMessage ImmatureTestInstructionInformation = 2; // More basic information for the TestInstruction
-  // Message holding the information about the Immature TestInstruction
-  message ImmatureTestInstructionInformationMessage {
-
-    repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this Immature TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will get when placed in TestCase
-    // Message holding one DropZone
-    message AvailableDropZoneMessage {
-      string DropZoneUuid = 1; // A DropZone, UUID, for the TestCaseInstruction
-      string DropZoneName = 2; // A DropZone, Name, for the TestCaseInstruction
-      string DropZoneDescription = 3; // Description of the DropZone
-      string DropZoneMouseOver = 4; // The mouse over text for the DropZone
-      string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437
-
-      repeated DropZonePreSetTestInstructionAttributeMessage DropZonePreSetTestInstructionAttributes = 6; // A list of the attributes and their pre-set values
-      // Message holding one attribute with its pre-set value
-      message DropZonePreSetTestInstructionAttributeMessage {
-        TestInstructionAttributeTypeEnum TestInstructionAttributeType = 1; // Defines witch type attribute; TEXTBOX, COMBOBOX...
-        string TestInstructionAttributeGuid = 2; // The unique guid for the TestInstructionAttribute, set by plugin
-        string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
-        string AttributeValueAsString = 4; // The String-representation of the value
-        string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
-      }
-    }
-
-  }
 }
 
 // ****************************************************************************************************
@@ -45,11 +20,8 @@ message ImmatureTestInstructionMessage {
 
 // Message holding one Mature TestInstruction which has been Dragged n Dropped into the TestCase
 message MatureTestInstructionMessage {
-
   BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information around the TestInstruction
   MatureTestInstructionInformationMessage MatureTestInstructionInformation = 2; // Information about the Mature TestInstruction
-
-
 }
 
 // ****************************************************************************************************
@@ -74,6 +46,33 @@ message BasicTestInstructionInformationMessage {
 }
 
 // ****************************************************************************************************
+// ImmatureTestInstructionInformationMessage
+
+// Message holding the information about the Immature TestInstruction
+message ImmatureTestInstructionInformationMessage {
+
+  repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this Immature TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will get when placed in TestCase
+  // Message holding one DropZone
+  message AvailableDropZoneMessage {
+    string DropZoneUuid = 1; // A DropZone, UUID, for the TestCaseInstruction
+    string DropZoneName = 2; // A DropZone, Name, for the TestCaseInstruction
+    string DropZoneDescription = 3; // Description of the DropZone
+    string DropZoneMouseOver = 4; // The mouse over text for the DropZone
+    string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437
+
+    repeated DropZonePreSetTestInstructionAttributeMessage DropZonePreSetTestInstructionAttributes = 6; // A list of the attributes and their pre-set values
+    // Message holding one attribute with its pre-set value
+    message DropZonePreSetTestInstructionAttributeMessage {
+      TestInstructionAttributeTypeEnum TestInstructionAttributeType = 1; // Defines witch type attribute; TEXTBOX, COMBOBOX...
+      string TestInstructionAttributeGuid = 2; // The unique guid for the TestInstructionAttribute, set by plugin
+      string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
+      string AttributeValueAsString = 4; // The String-representation of the value
+      string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+    }
+  }
+}
+
+// ****************************************************************************************************
 // MatureTestInstructionInformationMessage
 
 //  Message holding all data that is set for the Mature TestInstruction
@@ -83,7 +82,15 @@ message MatureTestInstructionInformationMessage {
   string ParentTestInstructionContainerMatureUuid = 3; // A Mature-UUID-reference to TestInstructionContainer where this TestInstruction exists
   string ChosenDropZoneUuid = 4; // The chosen dropzone, UUID, which set the attributes in TestInstruction when it was added to the TestCase
   string ChosenDropZoneName = 5; // The chosen dropzone, Name, which set the attributes in TestInstruction when it was added to the TestCase
-  google.protobuf.Timestamp UpdatedTimeStamp = 6; // The TimeStamp when the TestInstruction was first added to the TestCase
+
+  CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 6; // Information regarding who did what and when
+  // Message holding information about changes to the TestInstruction, who and when
+  message CreatedAndUpdatedInformationMessage  {
+    google.protobuf.Timestamp AddedToTestCaseTimeStamp = 1; // The TimeStamp when the TestInstruction was first added to the TestCase
+    string AddedToTestCaseByUserId = 2; // Which user added the TestInstruction to the TestCase
+    google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the TestInstruction last was updated in the TestCase
+    string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the TestInstruction in the TestCase
+}
 
   repeated TestInstructionAttributeMessage TestInstructionAttributesList = 7; // All attributes that belongs to the TestInstruction
   // Message holding one Attribute for a Test Instruction
