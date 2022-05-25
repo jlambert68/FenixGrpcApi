@@ -60,11 +60,13 @@ n=TI, TIC(B10) or TIC(X)	B12    n      X-B12-X                         X-B12-n-B
 ******************************
 
 *** Functions/Methods ***
-Remove(ElementToBeRemoved)
-SwapFromNew(ElementTobeSwappedOut, NewElementTobeSwappedIn),
-Copy(Element)
-SwapFromCopyBuffer(ElementTobeSwappedOut, CopyBufferElementTobeSwappedIn),
-
+• NewTestCase() [Creates and empty TestCase having a B0-area]
+• Remove(ElementToBeRemoved) [ElementToBeRemoved is a TI or a TIC]
+• SwapFromNew(ElementTobeSwappedOut, NewElementTobeSwappedIn) [ElementTobeSwappedOut is a Bond-area(B0, B10, B11 or B12) and NewElementTobeSwappedIn is a TI or TIC]
+• Copy(Element) [Element is a TI or a TIC]
+• SwapFromCopyBuffer(ElementTobeSwappedOut, CopyBufferElementTobeSwappedIn) [ElementTobeSwappedOut is a Bond-area(B0, B10, B11 or B12) and CopyBufferElementTobeSwappedIn is a TI or TIC]
+• Cut(Element) [Element is a TI or a TIC]
+• SwapFromCutBuffer(ElementTobeSwappedOut, CutBufferElementTobeSwappedIn) [ElementTobeSwappedOut is a Bond-area(B0, B10, B11 or B12) and CutBufferElementTobeSwappedIn is a TI or TIC]
 
  */
 
@@ -72,3 +74,18 @@ SwapFromCopyBuffer(ElementTobeSwappedOut, CopyBufferElementTobeSwappedIn),
 
 // ****************************************************************************************************
 // BondMessage
+
+// Message holding one Bond
+message BondsMessage {
+  string BondUuid = 1; // The Bond, UUID
+  string BondName = 2; // The Bond, Name
+  string BondDescription = 3; // The description of the TestInstruction
+  string BondMouseOverText = 4; // The mouse over text when hovering over TestInstruction
+  bool Deprecated = 5; // Indicates that this TestInstruction shouldn't be used anymore
+  bool Enabled = 6; // Bond can be disabled when the user shouldn't use it anymore
+  bool  Visible = 7; // Should the Bond be visible in the TestCase or not
+  string BondColor = 8; // The color used for presenting the Bond, e.g. #FAF437
+  bool CanBeDeleted = 9; // Defines of the Bond can be Deleted from the TestCase structure
+  bool CanBeSwappedOut = 10; // Defines if the Bond can be swapped out from the TestCase and be replaced by some other element
+  google.protobuf.Timestamp UpdatedTimeStamp = 11; // The TimeStamp when the Bond was last updated
+}

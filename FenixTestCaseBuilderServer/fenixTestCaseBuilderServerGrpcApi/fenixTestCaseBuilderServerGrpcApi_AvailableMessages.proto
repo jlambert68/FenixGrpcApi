@@ -69,7 +69,6 @@ message AvailablePreCreatedTestInstructionContainerMessage {
   repeated TestInstructionContainerChildMessage TestInstructionContainerChildren = 15; // A list of the children[UUID's] in the this container. Can be TestInstructions or TestInstructionContainers. Order is specified by the order in the array
 }
 
-
 // ****************************************************************************************************
 // AvailablePinnedTestInstructionMessage - To/From DB
 

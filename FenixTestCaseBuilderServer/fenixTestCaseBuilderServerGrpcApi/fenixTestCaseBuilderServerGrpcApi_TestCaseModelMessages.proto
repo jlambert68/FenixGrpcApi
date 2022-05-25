@@ -26,18 +26,20 @@ message TestCaseModelMessage {
     // All TestCase-elements
     enum TestCaseElementTypeEnum {
       B0_BOND = 0; // Bond with zero connection. This is the base for any TestCase: "B0"
-      B1_BOND = 1; // Bond with one connection. Use for starting and ending a TestCase and is only found in pre-created TestInstructionContainers. Can't be swapped out by user
-      B10_BOND = 2; // Bond with zero connections which appear as an element in a new TestInstructionContainer with out any other elements
+      B1_BOND_NONE_SWAPPABLE = 1; // Bond with one connection. Use for starting and ending a TestCase and is only found in pre-created TestInstructionContainers
+      B10_BOND = 2; // Bond with zero connections which appear as an element in a new TestInstructionContainer without any other elements
       B11_BOND = 3; // Bond with one connection which appear as first or last element inside a TestInstructionContainer
       B12_BOND = 4; // Bond with two connections which connects TestInstructions or TestInstructionContainers
-      B10X_BOND_NOT_REMOVABLE = 5; // // Bond with zero connections which appear as an element in a new TestInstructionContainer with out any other elements. Can't be removed or swapped out by user
-      B11X_BOND_NOT_REMOVABLE = 6; // Bond with one connection which appear as first or last element inside a TestInstructionContainer. Can't be removed or swapped out by user
-      B12X_BOND_NOT_REMOVABLE = 7; // Bond with two connections which connects TestInstructions or TestInstructionContainers. Can't be removed or swapped out by user.
-      TI_TESTINSTRUCTION = 8; // TestInstruction
-      TIX_TESTINSTRUCTION_NONE_REMOVABLE = 9; // A standard TestInstruction which can not be removed or swapped out by the user
-      TIC_TESTINSTRUCTIONCONTAINER = 10; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
-      TICX_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 11; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
- }
+      B10oxo_BOND = 5; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11x-n-B11x).
+      B10ox_BOND = 6; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11x-n-B11).
+      B10xo_BOND = 7; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11-n-B11x).
+      B11x_BOND_NONE_SWAPPABLE = 8; // Bond with one connection which appear as first or last element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) or/and after(last) a structure.
+      B12x_BOND_NONE_SWAPPABLE = 9; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
+      TI_TESTINSTRUCTION = 10; // TestInstruction
+      TIx_TESTINSTRUCTION_NONE_REMOVABLE = 11; // A standard TestInstruction which can not be removed or swapped out by the user
+      TIC_TESTINSTRUCTIONCONTAINER = 12; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
+      TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 13; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
+    }
   }
 
   repeated TestCaseModelCommandMessage TestCaseModelCommands = 5; // All commands that was used to create the TestCase
@@ -51,7 +53,7 @@ message TestCaseModelMessage {
       SWAP_OUT_ELEMENT_FOR_NEW_ELEMENT = 2; // SwapOutElementForNewElement(ElementUuidTobeSwappedOut, NewElementUuidTobeSwappedIn). Swap in a new element instead of an existing
       COPY_ELEMENT = 3; // CopyElement(ElementUuid). Create a copy of an element and place it in the copy-buffer
       SWAP_OUT_ELEMENT_FOR_COPY_BUFFER_ELEMENT = 4; // SwapOutElementForCopyBufferElement(ElementUuidTobeSwappedOut, CopyBufferElementUuidTobeSwappedIn). Swap in a copy of the element that exist in the copy buffer
-      CUT_ELEMENT = 5; // CopyElement(ElementUuid). Cut an element and place in the cut buffer
+      CUT_ELEMENT = 5; // CopyElement(ElementUuid). Cut out an element and place in the cut buffer
       SWAP_OUT_ELEMENT_FOR_CUT_BUFFER_ELEMENT = 6; // SwapOutElementForCutBufferElement(ElementUuidTobeSwappedOut, CutBufferElementUuidTobeSwappedIn). Swap in the element that exist in the cut buffer
     }
     string FirstParameter = 2; // The first parameter, an UUID, in the command
