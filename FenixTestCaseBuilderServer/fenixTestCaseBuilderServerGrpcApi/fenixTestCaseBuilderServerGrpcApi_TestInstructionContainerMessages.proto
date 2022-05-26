@@ -1,9 +1,88 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
-option go_package ="./go_grpc_api";
+option go_package = "./go_grpc_api";
 import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 
-// All messages in this file is used to define a TestInstruction, both available and in-use in TestCase
+// All messages in this file is used to define a TestInstructionContainer, both Immature TestInstructionContainers that are available to chose from, and Mature TestInstructionContainers that exits in the TestCase
 
 // ****************************************************************************************************
-// TestInstructionContainerMessage
+// ImmatureTestInstructionContainerMessage
+
+// Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase
+message ImmatureTestInstructionMessage {
+  BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; // Data is used to describe the basic information for the TestInstructionContainer
+}
+
+// ****************************************************************************************************
+// MatureTestInstructionMessage
+
+// Message holding one Mature TestInstruction which exist in a TestCase
+message MatureTestInstructionMessage {
+  BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; //Data is used to describe the basic information for the TestInstructionContainer
+  MatureTestInstructionContainerInformationMessage MatureTestInstructionContainerInformation = 2; // Information about the Mature TestInstructionContainer
+}
+
+// ****************************************************************************************************
+// BasicTestInstructionContainerInformationMessage
+
+// Message holding Basic information for one TestInstructionContainer
+message BasicTestInstructionContainerInformationMessage {
+  NonEditableBasicInformationMessage NonEditableInformation = 1; // All Basic information that can be shown in GUI but can't be changed by the user
+  EditableBasicInformationMessage EditableInformation = 2; // All Basic information that can be shown in GUI and can be changed by the user
+  InvisibleBasicInformationMessage InvisibleBasicInformation = 3; // All Basic information that is not directly shown in GUI and can't be changed by the user
+  TestInstructionContainerAttributesMessage TestInstructionContainerAttributes = 4; // All attributes supported by a TestInstructionContainer, can be changed by the user
+
+  // Message holding All basic information that can be shown in GUI but can't be changed by the user
+  message NonEditableBasicInformationMessage {
+    string DomainUuid = 1; // The Domain, UUID, who created the immature TestInstructionContainer
+    string DomainName = 2; // The Domain, Name, who created the immature TestInstructionContainer
+    string TestInstructionContainerUuid = 3; // TestInstructionContainer UUID, set by Client system
+    string TestInstructionContainerName = 4; // TestInstructionContainer Name, set by Client system
+    string TestInstructionContainerTypeUuid = 5; // The Type(Group), Uuid, of TestInstructionContainer
+    string TestInstructionTypeContainerName = 6; // The Type(Group), Name, of TestInstructionContainer
+    bool Deprecated = 7; // Indicates that this TestInstructionContainer shouldn't be used anymore
+    uint32 MajorVersionNumber = 8; // Change in Major Version Number means that user must act on change
+    uint32 MinorVersionNumber = 9; // Change in Minor Version Number means that user must NOT act on change
+    google.protobuf.Timestamp UpdatedTimeStamp = 10; // The TimeStamp when the TestInstructionContainer was last updated by the client system
+    string TestInstructionContainerColor = 11; // The color used for presenting the TestInstructionContainer, e.g. #FAF437
+  }
+
+  // Message holding all Basic information that can be shown in GUI and can be changed by the user
+  message EditableBasicInformationMessage {
+    string TestInstructionContainerDescription = 7; // The description of the TestInstructionContainer
+    string TestInstructionContainerMouseOverText = 8; // The mouse over text when hovering over TestInstructionContainer
+  }
+
+  // Message holding all Basic information that is not directly shown in GUI and can't be changed by the user
+  message InvisibleBasicInformationMessage{
+    bool Enabled = 10; // TestInstructionContainer can be disabled when the user shouldn't use it anymore
+  }
+
+  // Message holding all attributes supported by a TestInstructionContainer, can be changed by the user
+  message TestInstructionContainerAttributesMessage {
+      TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 1; // Should children in the TestInstructionContainer be Serial or Parallel executed
+  }
+
+}
+
+// ****************************************************************************************************
+// MatureTestInstructionContainerInformationMessage
+
+//  Message holding all data that is set for the Mature TestInstructionContainer
+message MatureTestInstructionContainerInformationMessage {
+  MatureBasicTestInstructionInformationMessage MatureBasicTestInstructionInformation = 1; // The Basic information for the Matures TestInstruction
+  // Message holding the mature basic information about the TestInstruction
+  message MatureBasicTestInstructionInformationMessage {
+    string TestInstructionContainerMatureUuid = 1; // The Mature UUID that the TestInstructionContainer gets when it is added to the TestCase
+  }
+
+  CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
+  // Message holding information about changes to the TestInstructionContainer, who and when
+  message CreatedAndUpdatedInformationMessage  {
+    google.protobuf.Timestamp AddedToTestCaseTimeStamp = 1; // The TimeStamp when the TestInstructionContainer was first added to the TestCase
+    string AddedToTestCaseByUserId = 2; // Which user added the TestInstructionContainer to the TestCase
+    google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the TestInstructionContainer was updated in the TestCase
+    string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the TestInstructionContainer in the TestCase
+  }
+}
