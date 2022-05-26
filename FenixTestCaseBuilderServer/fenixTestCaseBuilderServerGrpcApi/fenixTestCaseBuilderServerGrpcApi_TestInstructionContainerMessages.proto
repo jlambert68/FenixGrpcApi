@@ -3,6 +3,7 @@ package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 import "google/protobuf/timestamp.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseModelMessages.proto";
 
 // All messages in this file is used to define a TestInstructionContainer, both Immature TestInstructionContainers that are available to chose from, and Mature TestInstructionContainers that exits in the TestCase
 
@@ -12,6 +13,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 // Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase
 message ImmatureTestInstructionMessage {
   BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; // Data is used to describe the basic information for the TestInstructionContainer
+  ImmatureElementModelMessage ImmatureSubTestCaseModel = 3; // The immature element model for this TestInstructionContainer
 }
 
 // ****************************************************************************************************

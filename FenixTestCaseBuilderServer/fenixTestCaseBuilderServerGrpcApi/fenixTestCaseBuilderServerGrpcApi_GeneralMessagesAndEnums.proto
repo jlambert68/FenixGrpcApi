@@ -41,17 +41,19 @@ enum TestCaseModelElementTypeEnum {
   B0_BOND = 0; // Bond with zero connection. This is the base for any TestCase: "B0"
   B1_BOND_NONE_SWAPPABLE = 1; // Bond with one connection. Use for starting and ending a TestCase and is only found in pre-created TestInstructionContainers
   B10_BOND = 2; // Bond with zero connections which appear as an element in a new TestInstructionContainer without any other elements
-  B11_BOND = 3; // Bond with one connection which appear as first or last element inside a TestInstructionContainer
-  B12_BOND = 4; // Bond with two connections which connects TestInstructions or TestInstructionContainers
-  B10oxo_BOND = 5; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11x-n-B11x).
-  B10ox_BOND = 6; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11x-n-B11).
-  B10xo_BOND = 7; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11-n-B11x).
-  B11x_BOND_NONE_SWAPPABLE = 8; // Bond with one connection which appear as first or last element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) or/and after(last) a structure.
-  B12x_BOND_NONE_SWAPPABLE = 9; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
-  TI_TESTINSTRUCTION = 10; // TestInstruction
-  TIx_TESTINSTRUCTION_NONE_REMOVABLE = 11; // A standard TestInstruction which can not be removed or swapped out by the user
-  TIC_TESTINSTRUCTIONCONTAINER = 12; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
-  TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 13; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
+  B11f_BOND = 3; // Bond with one connection which appear as first element inside a TestInstructionContainer
+  B11l_BOND = 4; // Bond with one connection which appear as last element inside a TestInstructionContainer
+  B12_BOND = 5; // Bond with two connections which connects TestInstructions or TestInstructionContainers
+  B10oxo_BOND = 6; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11fx-n-B11lx).
+  B10ox_BOND = 7; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11fx-n-B11l).
+  B10xo_BOND = 8; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11f-n-B11lx).
+  B11fx_BOND_NONE_SWAPPABLE = 9; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) structure.
+  B11lx_BOND_NONE_SWAPPABLE = 10; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers after(last) structure.
+  B12x_BOND_NONE_SWAPPABLE = 11; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
+  TI_TESTINSTRUCTION = 12; // TestInstruction
+  TIx_TESTINSTRUCTION_NONE_REMOVABLE = 13; // A standard TestInstruction which can not be removed or swapped out by the user
+  TIC_TESTINSTRUCTIONCONTAINER = 14; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
+  TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 15; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
 }
 
 // All different commands that can be used to change  TestCase-Model

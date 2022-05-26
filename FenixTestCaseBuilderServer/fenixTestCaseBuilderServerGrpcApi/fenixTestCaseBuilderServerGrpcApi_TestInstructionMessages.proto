@@ -3,6 +3,7 @@ package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 import "google/protobuf/timestamp.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseModelMessages.proto";
 
 // All messages in this file is used to define a TestInstruction, both Immature TestInstructions that are available to chose from, and Mature TestInstructions that exits in the TestCase
 
@@ -13,6 +14,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 message ImmatureTestInstructionMessage {
   BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information for the TestInstruction
   ImmatureTestInstructionInformationMessage ImmatureTestInstructionInformation = 2; // The immature information for the TestInstruction
+  ImmatureElementModelMessage ImmatureSubTestCaseModel = 3; // The immature element model for this TestInstruction
 }
 
 // ****************************************************************************************************
