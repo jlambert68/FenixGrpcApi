@@ -18,16 +18,6 @@ message TestCaseModelMessage {
   string TestCaseModelAsString = 3; // The string representation of the TestCase, e.g. 'TC=B1-TICX(B11-TI-B12-TIX-B11X)-B1' - The last TIX could be used to clean up the environment
 
   repeated TestCaseModelElementMessage TestCaseModelElements = 4; // All elements in the TestCase
-  // One TestCaseElement that hold type, reference to previous, next and parent elements
-  message TestCaseModelElementMessage {
-    string OriginalElementUuid = 1; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
-    string OriginalElementName = 2; // The original elements Name, e.g. a TestInstruction Name set by client system
-    string InTestCaseElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
-    string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
-    string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
-    TestCaseModelElementTypeEnum TestCaseModelElementType = 6; // The specific type of this TestCase-element
-
-  }
 
   // The model of The TestCase
   repeated TestCaseModelCommandMessage TestCaseModelCommands = 5; // All commands that was used to create the TestCase
@@ -38,6 +28,27 @@ message TestCaseModelMessage {
     string SecondParameter = 3; // The second parameter, an UUID, in the command
   }
 
+}
+
+// One TestCaseElement, that is not a TestInstructionContainer, that hold type, reference to previous, next and parent elements
+message TestCaseModelNonTicElementMessage {
+  string OriginalElementUuid = 1; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
+  string OriginalElementName = 2; // The original elements Name, e.g. a TestInstruction Name set by client system
+  string ImmatureElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
+  string MatureElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
+  string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
+  string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
+  TestCaseModelElementTypeEnum TestCaseModelElementType = 6; // The specific type of this TestCase-element
+}
+message TestCaseModelNonTicElementMessage {
+  string OriginalElementUuid = 1; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
+  string OriginalElementName = 2; // The original elements Name, e.g. a TestInstruction Name set by client system
+  string ImmatureElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
+  string MatureElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
+  string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
+  string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
+  string FirstChildElementUuid = 6; //
+  TestCaseModelElementTypeEnum TestCaseModelElementType = 6; // The specific type of this TestCase-element
 }
 
 
