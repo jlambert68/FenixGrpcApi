@@ -1,0 +1,137 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+import "google/protobuf/timestamp.proto";import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+// All messages in this file is used to define a Bond, which is the object that binds TestInstructions and TestInstructionContainers together
+// A bond can be replaced by a TestInstruction or a TestInstructionContainer
+// Bonds are off different type, e.g. can be replaced or can not be replaced
+// TI = TestInstruction
+// TIC = TestInstructionContainer
+//
+// B0 = Bond with zero connection. This is the base for any TestCase: "B0"
+// B1 = Bond with one connection. Use for starting a new TestCase and is only found in pre-created TestInstructionContainers : "B1-TIC(B10)-B1", "B1-TIC(?)-B1"
+//
+// B10 = Bond with zero connections which appear as an object in a new TestInstructionContainer: "TIC(B11-TIC(B10)-B11)" or "-B12-TIC(B10)-B12-"
+// B11 = Bond with one connection which appear as first or last element inside a TestInstructionContainer when there are at least one element, TI or TIC: "TIC(B11-X..X-B11)"
+// B12 = Bond with two connections which connects TestInstructions or TestInstructionContainers: "TI-B12-TI", "TIC-B12-TIC", "TI-B12-TIC", "TIC-B12-TI"
+
+
+/*
+******************************
+Element can be Deleted
+B0       FALSE
+B1       FALSE
+B10      FALSE
+B11      FALSE
+B12      FALSE
+TI       TRUE
+TIC(B10) TRUE
+TIC(X)   TRUE
+
+******************
+
+Remove                      In the following structure    Result
+n=TIC(B10) or TIC(X)        B1-n-B1	                      B0
+n=TI, TIC(B10) or TIC(X)    B11-n-B11	                    B10
+n=TI, TIC(B10) or TIC(X)    B11-n-B12-X	                  B11-X
+n=TI, TIC(B10) or TIC(X)    X-B12-n-B11	                  X-B11
+n=TI, TIC(B10) or TIC(X)    X-B12-n-B12-X                 X-B12-X
+
+******************************
+Element can be Swapped into another element structure
+B0          TRUE
+B1          FALSE
+B10         TRUE
+B11         TRUE
+B12         TRUE
+TI          FALSE
+TIC(B10)    FALSE
+TIC(X)      FALSE
+
+******************
+                          Swap   with   In the following structure      Result
+n=TIC(B10) or TIC(X)      B0     n      B0                              B1-n-B1
+n=TI, TIC(B10) or TIC(X)  B10    n      TIC(B10)                        TIC(B11-n-B11)
+n=TI, TIC(B10) or TIC(X)  B11    n      TIC(B11-X)                      TIC(B11-n-T12-X)
+n=TI, TIC(B10) or TIC(X)  B11    n      TIC(X-B11)                      TIC(X-T12-n-B11)
+n=TI, TIC(B10) or TIC(X)	B12    n      X-B12-X                         X-B12-n-B12-X
+
+******************************
+
+*** Functions/Methods ***
+• NewTestCase() [Creates and empty TestCase having a B0-area]
+• Remove(ElementToBeRemoved) [ElementToBeRemoved is a TI or a TIC]
+• SwapFromNew(ElementTobeSwappedOut, NewElementTobeSwappedIn) [ElementTobeSwappedOut is a Bond-area(B0, B10, B11 or B12) and NewElementTobeSwappedIn is a TI or TIC]
+• Copy(Element) [Element is a TI or a TIC]
+• SwapFromCopyBuffer(ElementTobeSwappedOut, CopyBufferElementTobeSwappedIn) [ElementTobeSwappedOut is a Bond-area(B0, B10, B11 or B12) and CopyBufferElementTobeSwappedIn is a TI or TIC]
+• Cut(Element) [Element is a TI or a TIC]
+• SwapFromCutBuffer(ElementTobeSwappedOut, CutBufferElementTobeSwappedIn) [ElementTobeSwappedOut is a Bond-area(B0, B10, B11 or B12) and CutBufferElementTobeSwappedIn is a TI or TIC]
+
+ */
+
+// ****************************************************************************************************
+// ImmatureBondMessage
+
+// Message holding one Immature Bond which exist in a TestCase
+message ImmatureBondMessage {
+  BasicBondInformationMessage BasicBondInformation = 1; // Data is used to describe the basic information for the Bond
+}
+
+// ****************************************************************************************************
+// MatureBondMessage
+
+// Message holding one Mature Bond which is used when used add and Delete TestInstructions and TestInstructionContainers in the TestCase
+message MatureBondMessage {
+  BasicBondInformationMessage BasicBondInformation = 1; // Data is used to describe the basic information for the Bond
+  MatureBondInformationMessage MatureBondInformation = 2; // Information about the Mature Bond
+}
+
+// ****************************************************************************************************
+// BondMessage
+
+// Message holding basic information for one Bond
+message BasicBondInformationMessage {
+  VisibleBondAttributesMessage VisibleBondAttributes = 1; // If 'ShowBondAttributes' then these attributes will be shown to users in attributes area
+
+  // Message holding the attribute that could be shown to user in the attributes area in the GUI
+  message VisibleBondAttributesMessage {
+    string BondUuid = 1; // The Bond, UUID
+    string BondName = 2; // The Bond, Name
+    string BondDescription = 3; // The description of the TestInstruction
+    string BondMouseOverText = 4; // The mouse over text when hovering over TestInstruction
+    bool Deprecated = 5; // Indicates that this TestInstruction shouldn't be used anymore
+    bool Enabled = 6; // Bond can be disabled when the user shouldn't use it anymore
+    bool  Visible = 7; // Should the Bond be visible in the TestCase or not
+    string BondColor = 8; // The color used for presenting the Bond, e.g. #FAF437
+    bool CanBeDeleted = 9; // Defines of the Bond can be Deleted from the TestCase structure
+    bool CanBeSwappedOut = 10; // Defines if the Bond can be swapped out from the TestCase and be replaced by some other element
+    google.protobuf.Timestamp UpdatedTimeStamp = 11; // The TimeStamp when the Bond was last updated
+    TestCaseModelElementTypeEnum TestCaseModelElementType = 12; // The Type of Bond
+    bool ShowBondAttributes = 13; // If this is True then Attributes are shown to the user, mostly for "error-hunting"
+  }
+}
+
+// ****************************************************************************************************
+// MatureBondInformationMessage
+
+//  Message holding all data that is set for the Mature Bond
+message MatureBondInformationMessage {
+  MatureBasicBondInformationMessage MatureBasicTestInstructionInformation = 1; // The Basic information for the Matures Bond
+  // Message holding the mature basic information about the Bond
+  message MatureBasicBondInformationMessage {
+    string BondMatureUuid = 1; // The Mature UUID that the Bond gets when it is added to the TestCase
+  }
+
+  CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
+  // Message holding information about changes to the Bond, who and when
+  message CreatedAndUpdatedInformationMessage  {
+    google.protobuf.Timestamp AddedToTestCaseTimeStamp = 1; // The TimeStamp when the TestInstructionContainer was first added to the TestCase
+    string AddedToTestCaseByUserId = 2; // Which user added the Bond to the TestCase
+    google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the Bond was updated in the TestCase
+    string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the Bond in the TestCase
+    google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the Bond was was deleted from the TestCase
+    string DeletedFromTestCaseByUserId = 6; // Which user deleted the Bond from the TestCase
+  }
+}

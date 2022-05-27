@@ -60,13 +60,6 @@ message BasicTestInstructionInformationMessage {
   message InvisibleBasicInformationMessage{
     bool Enabled = 1; // TestInstruction can be disabled when the user shouldn't use it anymore
   }
-
-
-
-
-
-
-
 }
 
 // ****************************************************************************************************
@@ -118,6 +111,8 @@ message MatureTestInstructionInformationMessage {
     string AddedToTestCaseByUserId = 2; // Which user added the TestInstruction to the TestCase
     google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the TestInstruction was updated in the TestCase
     string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the TestInstruction in the TestCase
+    google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the TestInstruction was deleted from the TestCase
+    string DeletedFromTestCaseByUserId = 6; // Which user deleted the TestInstruction from the TestCase
 }
 
   repeated TestInstructionAttributeMessage TestInstructionAttributesList = 3; // All attributes that belongs to the TestInstruction

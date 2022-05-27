@@ -11,15 +11,13 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 // A message holding the complete model of the TestCase together with the steps to create the model
 message TestCaseModelMessage {
-  string TestCaseUuid = 1; // The TestCase, UUID, set by TestCase-builder
-  string TestCaseName = 2; // The TestCase, Name, set in TestCase-builder
-  string TestCaseModelAsString = 3; // The string representation of the TestCase, e.g. 'TC=B1-TICX(B11-TI-B12-TIX-B11X)-B1' - The last TIX could be used to clean up the environment
+  string TestCaseModelAsString = 1; // The string representation of the TestCase, e.g. 'TC=B1-TICX(B11-TI-B12-TIX-B11X)-B1' - The last TIX could be used to clean up the environment
 
-  string FirstMatureElementUuid = 4; // The UUID of first element in the TestCase-model
-  repeated TestCaseModelElementMessage TestCaseModelElements = 5; // All elements in the TestCase
+  string FirstMatureElementUuid = 2; // The UUID of first element in the TestCase-model
+  repeated TestCaseModelElementMessage TestCaseModelElements = 3; // All elements in the TestCase
 
   // The model of The TestCase
-  repeated TestCaseModelCommandMessage TestCaseModelCommands = 6; // All commands that was used to create the TestCase
+  repeated TestCaseModelCommandMessage TestCaseModelCommands = 4; // All commands that was used to create the TestCase
   // One command that describe one change to the TestCase
   message TestCaseModelCommandMessage {
     TestCaseCommandTypeEnum TestCaseCommandType = 1; // The type of command that was used

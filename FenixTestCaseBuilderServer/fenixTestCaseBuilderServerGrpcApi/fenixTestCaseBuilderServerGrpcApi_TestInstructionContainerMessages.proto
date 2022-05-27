@@ -11,7 +11,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 // ImmatureTestInstructionContainerMessage
 
 // Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase
-message ImmatureTestInstructionMessage {
+message ImmatureTestInstructionContainerMessage {
   BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; // Data is used to describe the basic information for the TestInstructionContainer
   ImmatureElementModelMessage ImmatureSubTestCaseModel = 3; // The immature element model for this TestInstructionContainer
 }
@@ -86,5 +86,8 @@ message MatureTestInstructionContainerInformationMessage {
     string AddedToTestCaseByUserId = 2; // Which user added the TestInstructionContainer to the TestCase
     google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the TestInstructionContainer was updated in the TestCase
     string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the TestInstructionContainer in the TestCase
+    google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the TestInstructionContainer was deleted from the TestCase
+    string DeletedFromTestCaseByUserId = 6; // Which user deleted the TestInstructionContainer from the TestCase
+  }
   }
 }

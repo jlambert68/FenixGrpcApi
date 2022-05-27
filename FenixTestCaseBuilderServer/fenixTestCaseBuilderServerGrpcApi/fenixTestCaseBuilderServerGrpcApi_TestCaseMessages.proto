@@ -1,0 +1,122 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseModelMessages.proto";
+
+
+// All messages in this file is used to define the TestCase
+
+// ****************************************************************************************************
+// Get TestCase Request Message
+
+// Message holding information about who is the user and which TestCase that is requested
+message GetTestCaseMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  string TestCaseUuid = 3; // The TestCase, UUID, that is requested from DB-Server
+}
+
+// ****************************************************************************************************
+// Get MetadataItems-Request Message
+
+// Message holding information about who is the user and from which Domain and System to request the MetaDataItems
+message GetTestCaseMetaDataItemsRequestMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  string DomainUuid = 3; // The Domain, UUID, who has the MetaDataItems
+  string DomainName = 4; // The Domain, Name, who has the MetaDataItems
+}
+
+// ****************************************************************************************************
+// The list of all Meta MetadataItems Message that belongs to a certain Domain
+
+// Message holding all MetaDataItems for a specific Domain
+message GetTestCaseMetaDataItemsResponseMessage {
+  TestCaseMetaDataMessage TestCaseMetaData = 1; // A list of all available MetaData that must be filled in by the user
+}
+
+
+// ****************************************************************************************************
+// TestCaseMessage
+
+// A message holding one TestCase
+message TestCaseMessage {
+
+  BasicTestCaseInformationMessage BasicTestCaseInformation = 1; // All Basic information about the TestCase
+
+  CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
+  // Message holding information about changes to the TestCase, who and when
+  message CreatedAndUpdatedInformationMessage  {
+    google.protobuf.Timestamp AddedToTestCaseTimeStamp = 1; // The TimeStamp when the TestCase was first created
+    string AddedToTestCaseByUserId = 2; // Which user added the TestCase
+    google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the TestCase was updated
+    string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the TestCase
+    google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the TestCase was deleted
+    string DeletedFromTestCaseByUserId = 6; // Which user deleted the the TestCase
+  }
+
+  TestCaseModelMessage TestCaseModel = 3; // Hold the model of how the TestCase is constructed
+  TestCaseMetaDataMessage TestCaseMetaData = 4; // Holds the metadata for the TestCase, set by the user to classify the TestCase
+}
+
+// ****************************************************************************************************
+// BasicTestCaseInformationMessage
+
+// Message holding Basic information for one TestCase
+message BasicTestCaseInformationMessage {
+  NonEditableBasicInformationMessage NonEditableInformation = 1; // All Basic information that can be shown in GUI but can't be changed by the user
+  EditableBasicInformationMessage EditableInformation = 2; // All Basic information that can be shown in GUI and can be changed by the user
+  // Not used right now - InvisibleBasicInformationMessage InvisibleBasicInformation = 3; // All Basic information that is not directly shown in GUI and can't be changed by the user
+
+  // Message holding All basic information that can be shown in GUI but can't be changed by the user
+  message NonEditableBasicInformationMessage {
+    string TestCaseUuid = 1; // The TestCase, UUID, set by TestCase-builder
+    string TestCaseName = 2; // The TestCase, Name, set in TestCase-builder
+    string DomainUuid = 3; // The Domain, UUID, where the TestCase 'has its home'
+    string DomainName = 4; // The Domain, Name, where the TestCase 'has its home'
+    uint32  TestCaseVersion = 6; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  }
+
+  // Message holding all Basic information that can be shown in GUI and can be changed by the user
+  message EditableBasicInformationMessage {
+    string TestCaseDescription = 1; // The description of the TestCase
+    //string TestCaseMouseOverText = 2; // The mouse over text when hovering over TestCase
+  }
+
+  // Message holding all Basic information that is not directly shown in GUI and can't be changed by the user
+  /* Not used right now
+    message InvisibleBasicInformationMessage{
+      bool Enabled = 1; // TestCase can be disabled when the user shouldn't use it anymore
+    }
+
+   */
+}
+
+
+// ****************************************************************************************************
+// TestCaseMetaDataMessage
+
+// Message holding all MetaDataparameters for the TestCase
+message TestCaseMetaDataMessage {
+  repeated MetaDataItemMessage MetaDataItems = 1; // List of all MetaDataItems with their values
+
+  message MetaDataItemMessage {
+    string MetaDataUuid = 1; // UUID for this MetaDataItem
+    string MetaDataName = 2; // Name for this MetaDataItem
+    string MetaDataGroupUuid = 3; // The group, UUID,  for this MetaDataItem, used to group stuff in the GUI
+    string MetaDataGroupName = 4; // The group, Name  for this MetaDataItem, used as Label for the group in the GUI
+    repeated MetaDataItemMessage AvailableMetaDataItems = 5; // A list of the available MetaDataItems that the user can chose from
+    MetaDataItemMessage ChosenMetaDataItem = 6; // The chosen, by user, MetaDataItems
+
+    // Message holding one MetaDataItem
+    message MetaDataItemMessage {
+      string MetaDataItemUuid = 1; // Unique UUID for the MetaDataItem
+      string MetaDataItemValue = 2; // The value presented in the GUI and for the user to pick
+      uint32 MetaDataItemIndex = 3; // A number deciding the presentation order
+    }
+
+  }
+
+}
