@@ -8,6 +8,27 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 // All messages in this file is used to define a TestInstructionContainer, both Immature TestInstructionContainers that are available to chose from, and Mature TestInstructionContainers that exits in the TestCase
 
 // ****************************************************************************************************
+// ListAllTestInstructionContainersForSpecificTestCaseRequestMessage
+
+// Message holding information about who is the user and which TestCase that the TestInstructionContainers belong to
+message ListAllTestInstructionContainersForSpecificTestCaseRequestMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  string TestCaseUuid = 3; // The TestCase, UUID, that is TestInstructionContainers belong to
+}
+
+// ****************************************************************************************************
+// SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage
+
+// Message holding information about user, TestCaseUUID and the TestInstructions
+message SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  string TestCaseUuid = 3; // The TestCase, UUID, that is TestInstructions belong to
+  repeated MatureTestInstructionContainerMessage MatureTestInstructionContainers = 4; // All TestInstructionContainers to be saved
+}
+
+// ****************************************************************************************************
 // ImmatureTestInstructionContainerMessage
 
 // Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase

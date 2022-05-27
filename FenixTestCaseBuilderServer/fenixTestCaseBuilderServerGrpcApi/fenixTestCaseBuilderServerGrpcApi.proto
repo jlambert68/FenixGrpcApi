@@ -59,11 +59,11 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // List all TestInstructions in the TestCase
-  rpc ListAllTestCaseTestInstructions(EmptyParameter) returns (MatureTestInstructionsMessage) {
+  rpc ListAllTestCaseTestInstructions(ListAllTestInstructionsForSpecificTestCaseRequestMessage) returns (MatureTestInstructionsMessage) {
   }
 
   // List all TestInstructionContainers in the TestCase
-  rpc ListAllTestCaseTestInstructionContainers(EmptyParameter) returns (MatureTestInstructionContainerMessage) {
+  rpc ListAllTestCaseTestInstructionContainers(ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) returns (MatureTestInstructionContainerMessage) {
   }
 
 
@@ -74,11 +74,11 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // Save all TestInstructions from the TestCase
-  rpc SaveAllTestCaseTestInstructions(MatureTestInstructionsMessage) returns (AckNackResponse) {
+  rpc SaveAllTestCaseTestInstructions(SaveAllTestInstructionsForSpecificTestCaseRequestMessage) returns (AckNackResponse) {
   }
 
   // Save all TestInstructionContainers from the TestCase
-  rpc SaveAllTestCaseTestInstructionContainers(MatureTestInstructionContainerMessage) returns (AckNackResponse) {
+  rpc SaveAllTestCaseTestInstructionContainers(SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) returns (AckNackResponse) {
   }
 }
 
