@@ -77,6 +77,7 @@ message TestCaseMessage {
 
   TestCaseModelMessage TestCaseModel = 3; // Hold the model of how the TestCase is constructed
   TestCaseMetaDataMessage TestCaseMetaData = 4; // Holds the metadata for the TestCase, set by the user to classify the TestCase
+  TestCaseFilesMessage TestCaseFiles = 5; // All files connected to the TestCase
 }
 
 // ****************************************************************************************************
@@ -137,4 +138,32 @@ message TestCaseMetaDataMessage {
 
   }
 
+}
+
+
+// ****************************************************************************************************
+// TestCaseFilesMessage
+
+// Message holding all that is added to the TestCase, either using 'File picker' or add in some other way
+message TestCaseFilesMessage {
+  repeated TestCaseFileMessage TestCaseFiles = 1; // A list of files that is added to the TestCase, in some way
+  // Message holding one file and information about who did what and when
+  message TestCaseFileMessage {
+    string FileReferenceUuid = 1; // A unique, UUID, for file
+    string FileReferenceName = 2; // A Name, for the file
+    repeated bytes FileAsByteArray = 3; // The file encoded as byte array
+  }
+  
+  CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
+  // Message holding information about changes to the File, who and when
+  message CreatedAndUpdatedInformationMessage  {
+    google.protobuf.Timestamp AddedToTestCaseTimeStamp = 1; // The TimeStamp when the File was first added to the TestCase
+    string AddedToTestCaseByUserId = 2; // Which user added the File to the TestCase
+    google.protobuf.Timestamp LastUpdatedInTestCaseTimeStamp = 3; // The TimeStamp when the File was updated in the TestCase
+    string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the File in the TestCase
+    google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the File was deleted from the TestCase
+    string DeletedFromTestCaseByUserId = 6; // Which user deleted the File from the TestCase
+  }
+  
+  
 }

@@ -102,11 +102,12 @@ message MatureTestInstructionInformationMessage {
   MatureBasicTestInstructionInformationMessage MatureBasicTestInstructionInformation = 1; // The Basic information for the Matures TestInstruction
   // Message holding the mature basic information about the TestInstruction
   message MatureBasicTestInstructionInformationMessage {
-    string TestInstructionMatureUuid = 1; // The Mature UUID that the TestInstruction gets when it is added to the TestCase
-    string ParentTestInstructionContainerUuid = 2;// A UUID-reference to TestInstructionContainer where this TestInstruction exists
-    string ParentTestInstructionContainerMatureUuid = 3; // A Mature-UUID-reference to TestInstructionContainer where this TestInstruction exists
-    string ChosenDropZoneUuid = 4; // The chosen dropzone, UUID, which set the attributes in TestInstruction when it was added to the TestCase
-    string ChosenDropZoneName = 5; // The chosen dropzone, Name, which set the attributes in TestInstruction when it was added to the TestCase
+    string TestCaseUuid = 1; // Reference to the TestCase where this TestInstruction exists
+    string TestInstructionMatureUuid = 2; // The Mature UUID that the TestInstruction gets when it is added to the TestCase
+    string ParentTestInstructionContainerUuid = 3;// A UUID-reference to TestInstructionContainer where this TestInstruction exists
+    string ParentTestInstructionContainerMatureUuid = 4; // A Mature-UUID-reference to TestInstructionContainer where this TestInstruction exists
+    string ChosenDropZoneUuid = 5; // The chosen dropzone, UUID, which set the attributes in TestInstruction when it was added to the TestCase
+    string ChosenDropZoneName = 6; // The chosen dropzone, Name, which set the attributes in TestInstruction when it was added to the TestCase
   }
 
   CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
