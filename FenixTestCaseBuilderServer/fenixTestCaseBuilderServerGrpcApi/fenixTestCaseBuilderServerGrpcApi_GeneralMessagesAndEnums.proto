@@ -1,6 +1,6 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
-option go_package ="./go_grpc_api";
+option go_package = "./go_grpc_api";
 import "google/protobuf/timestamp.proto";
 
 
@@ -54,6 +54,26 @@ enum TestCaseModelElementTypeEnum {
   TIx_TESTINSTRUCTION_NONE_REMOVABLE = 13; // A standard TestInstruction which can not be removed or swapped out by the user
   TIC_TESTINSTRUCTIONCONTAINER = 14; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
   TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 15; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
+}
+
+// Presentation Names for above TestCaseModel-elements. When presenting then name only the part to left of "_" should presented
+enum TestCaseModelElementPresentationNameEnum {
+  B0_ = 0; // Presentation name for 'B0_BOND'. Only Present 'B0'
+  B1_ = 1; // Presentation name for 'B1_BOND_NONE_SWAPPABLE'. Only Present 'B1'
+  B10_ = 2; // Presentation name for 'B10_BOND'. Only Present 'B10'
+  B11_1 = 3; // Presentation name for 'B11f_BOND'. Only Present 'B11'
+  B11_2 = 4; // Presentation name for 'B11l_BOND'. Only Present 'B11'
+  B12_ = 5; // Presentation name for 'B12_BOND'. Only Present 'B12'
+  B10x_1 = 6; //Presentation name for 'B10oxo_BOND'. Only Present 'B10x'
+  B10x_2 = 7; // Presentation name for 'B10ox_BOND'. Only Present 'B10x'
+  B10x_3 = 8; // Presentation name for 'B10xo_BOND'. Only Present 'B10x'
+  B11x_1 = 9; // Presentation name for 'B11fx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
+  B11x_2 = 10; // Presentation name for 'B11lx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
+  B12x_ = 11; // Presentation name for 'B12x_BOND_NONE_SWAPPABLE'. Only Present 'B12x'
+  TI_ = 12; // Presentation name for 'TI_TESTINSTRUCTION'. Only Present 'TI'
+  TIx_ = 13; // Presentation name for 'TIx_TESTINSTRUCTION_NONE_REMOVABLE'. Only Present 'TIx'
+  TIC_ = 14; // Presentation name for 'TIC_TESTINSTRUCTIONCONTAINER'. Only Present 'TIC(...)'
+  TICx_ = 15; // Presentation name for 'TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE'. Only Present 'TICx(...)'
 }
 
 // All different commands that can be used to change  TestCase-Model

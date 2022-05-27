@@ -18,12 +18,17 @@ message ImmatureTestInstructionMessage {
 }
 
 // ****************************************************************************************************
-// MatureTestInstructionMessage
+// MatureTestInstructionsMessage
 
-// Message holding one Mature TestInstruction which exist in a TestCase
-message MatureTestInstructionMessage {
-  BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information for the TestInstruction
-  MatureTestInstructionInformationMessage MatureTestInstructionInformation = 2; // Information about the Mature TestInstruction
+// Message holding a list of TestInstructions, received from DB or to be sent to DB
+message MatureTestInstructionsMessage {
+  repeated MatureTestInstructionMessage MatureTestInstructions = 1; // A list of list of TestInstructions, received from DB or to be sent to DB
+
+  // Message holding one Mature TestInstruction which exist in a TestCase
+  message MatureTestInstructionMessage {
+    BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information for the TestInstruction
+    MatureTestInstructionInformationMessage MatureTestInstructionInformation = 2; // Information about the Mature TestInstruction
+  }
 }
 
 // ****************************************************************************************************
@@ -113,7 +118,7 @@ message MatureTestInstructionInformationMessage {
     string LastUpdatedInTestCaseByUserId = 4; // Which user was the last to update the TestInstruction in the TestCase
     google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the TestInstruction was deleted from the TestCase
     string DeletedFromTestCaseByUserId = 6; // Which user deleted the TestInstruction from the TestCase
-}
+  }
 
   repeated TestInstructionAttributeMessage TestInstructionAttributesList = 3; // All attributes that belongs to the TestInstruction
   // Message holding one Attribute for a Test Instruction

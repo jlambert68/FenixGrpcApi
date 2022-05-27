@@ -1,9 +1,13 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
-option go_package ="./go_grpc_api";
+option go_package = "./go_grpc_api";
 import "google/protobuf/timestamp.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_AvailableMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_BondingMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionContainerMessages.proto";
 
 
 
@@ -12,92 +16,71 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 service FenixTestCaseBuilderServerGrpcServices {
 
-    // Admin
+  // ************************ Admin ************************
 
-    //Anyone can check if Fenix TestCase Builder server is alive with this service
-    rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
-    }
-
-
-    // ************************ Available for user to use in TestCase ************************
-
-    // *** Get data from DB ***
-
-    // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
-    rpc GetAvailableTestInstructionsAndTestContainers (UserIdentificationMessage) returns (AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage) {
-    }
-
-    // The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-    rpc GetAvailablePinnedTestInstructionsAndTestContainers (UserIdentificationMessage) returns (AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage) {
-    }
-
-    // *** Send data to DB ***
-
-    // The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-    rpc SaveAvailablePinnedTestInstructionsAndTestContainers (AvailableSavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) returns (AckNackResponse) {
-    }
-
-    // ************************ InUse in TestCase ************************
-
-    // *** Get data from DB ***
-
-    // The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
-    rpc GetInUseListTestCases(InUseListTestCasesRequestMessage) returns (stream InUseListTestCasesResponseMessage) {
-    }
-
-    // The TestCase Builder asks for one complete TestCase
-    rpc GetInUseDetailedTestCase(InUseGetDetailedTestCaseRequestMessage) returns (InUseDetailedTestCaseResponseMessage) {
-    }
-
-    // The TestCase Builder asks for DropZones. A DropZone is collection of pre-set attribute values
-    rpc GetInUseDropZonesForTestInstruction (InUseDropZoneListMessage) returns (DetailedDropZonesMessages) {
-    }
-
-    // The TestCase Builder asks for Attributes that belongs to a list of 'new' TestInstructions
-    rpc GetAttributesForNewTestInstructionInTestCase (NewTestInstructionsInTestCaseListMessage) returns (AttributesForNewTestInstructionsMessages) {
-    }
-
-    // The TestCase Builder asks for Attributes that belongs to 'existing' TestInstructions in a specific TestCase
-    rpc GetAttributesForExistingTestInstructionInTestCase (ExistingTestInstructionsInTestCaseListMessage) returns (AttributesForExistingTestInstructionsMessages) {
-    }
+  //Anyone can check if Fenix TestCase Builder server is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
 
 
+  // ************************ Data Used to build Available structure, which is what the user can chose from ************************
+
+  // *** Get data from DB ***
+
+  // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
+  rpc GetAvailableTestInstructionsAndTestContainers (UserIdentificationMessage) returns (ImmatureBondsMessage) {
+  }
+
+  // The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
+  rpc GetAvailablePinnedTestInstructionsAndTestContainers (UserIdentificationMessage) returns (AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage) {
+  }
+
+  // The TestCase Builder asks for all Bonds-elements that can be used in the TestCase-model
+  rpc GetAvailableBonds (UserIdentificationMessage) returns (AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage) {
+  }
 
 
+  // *** Send data to DB ***
 
-    // *** Send data to server ***
+  // The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
+  rpc SaveAvailablePinnedTestInstructionsAndTestContainers (SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) returns (AckNackResponse) {
+  }
 
-    // * Available for user to use in TestCase *
+  // ************************************************  TestCase Builder ************************************************
+
+  // *** Get data from DB ***
+
+  // The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
+  rpc ListTestCases(ListTestCasesRequestMessage) returns (stream ListTestCasesResponseMessage) {
+  }
+
+  // The TestCase Builder asks for one complete TestCase
+  rpc GetDetailedTestCase(GetTestCaseRequestMessage) returns (TestCaseMessage) {
+  }
+
+  // List all TestInstructions in the TestCase
+  rpc ListAllTestCaseTestInstructions(EmptyParameter) returns (MatureTestInstructionsMessage) {
+  }
+
+  // List all TestInstructionContainers in the TestCase
+  rpc ListAllTestCaseTestInstructionContainers(EmptyParameter) returns (MatureTestInstructionContainerMessage) {
+  }
 
 
+  // *** Send data to server ***
 
-    // * Used in a TestCase *
+  // Save a TestCase in DB
+  rpc SaveTestCase(TestCaseMessage) returns (AckNackResponse) {
+  }
 
-    // The TestCase Builder send for all TestInstructions and TestInstructionContainer that is in a specific TestCase
-    rpc SaveTestInstructionsAndTestContainersFromTestCase (TestInstructionsAndTestContainersInTestCaseToBeSavedMessage) returns (AckNackResponse) {
-    }
+  // Save all TestInstructions from the TestCase
+  rpc SaveAllTestCaseTestInstructions(MatureTestInstructionsMessage) returns (AckNackResponse) {
+  }
 
-
-
+  // Save all TestInstructionContainers from the TestCase
+  rpc SaveAllTestCaseTestInstructionContainers(MatureTestInstructionContainerMessage) returns (AckNackResponse) {
+  }
 }
-
-
-
-
-
-
-// ****************************************************************************************************
-// TestInstructionAttributeMessages
-
-// Message holding one Pinned TestInstructionContainer
-message AttributesForNewTestInstructionMessages {
-    repeated TestInstructionAttribute TestInstructionAttributes = 1; // A list of all TestInstructionAttributes that belongs to one TestInstruction
-    AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives if everything was OK or not
-}
-
-
-
-
 
 
 

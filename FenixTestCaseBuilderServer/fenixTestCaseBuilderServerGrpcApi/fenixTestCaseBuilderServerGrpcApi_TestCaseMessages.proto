@@ -12,11 +12,29 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 // Get TestCase Request Message
 
 // Message holding information about who is the user and which TestCase that is requested
-message GetTestCaseMessage {
+message GetTestCaseRequestMessage {
   string UserId = 1; // The Users Id, SEB S-id will be used for SEB
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
   string TestCaseUuid = 3; // The TestCase, UUID, that is requested from DB-Server
 }
+// ****************************************************************************************************
+// List all TestCases Request Message
+
+// Message holding information about who is the user and which TestCase that is requested
+message ListTestCasesRequestMessage {
+  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+
+}
+
+// ****************************************************************************************************
+// List all TestCases Response Message
+
+// Message a list of TestCase
+message ListTestCasesResponseMessage {
+  repeated BasicTestCaseInformationMessage BasicTestCaseInformation = 1; // List of TestCases with their Basic information
+}
+
 
 // ****************************************************************************************************
 // Get MetadataItems-Request Message
