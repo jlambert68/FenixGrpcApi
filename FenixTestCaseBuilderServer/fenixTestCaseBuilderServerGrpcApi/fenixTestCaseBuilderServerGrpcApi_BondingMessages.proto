@@ -54,6 +54,8 @@ message BasicBondInformationMessage {
     google.protobuf.Timestamp UpdatedTimeStamp = 11; // The TimeStamp when the Bond was last updated
     TestCaseModelElementTypeEnum TestCaseModelElementType = 12; // The Type of Bond
     bool ShowBondAttributes = 13; // If this is True then Attributes are shown to the user, mostly for "error-hunting"
+    string TCRuleDeletion = 14; // The Deletion Rule for this Bond
+    string TCRuleSwap = 15; // The Swap Rule for this Bond
   }
 }
 
