@@ -1,7 +1,7 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
-import "google/protobuf/timestamp.proto";
+//import "google/protobuf/timestamp.proto";
 
 
 
