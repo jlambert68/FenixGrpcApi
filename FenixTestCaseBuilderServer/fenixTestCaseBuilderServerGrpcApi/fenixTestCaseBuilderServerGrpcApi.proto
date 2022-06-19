@@ -28,7 +28,7 @@ service FenixTestCaseBuilderServerGrpcServices {
   // *** Get data from DB ***
 
   // The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
-  rpc ListAllAvailableTestInstructionsAndTestContainers (UserIdentificationMessage) returns (ImmatureBondsMessage) {
+  rpc ListAllAvailableTestInstructionsAndTestContainers (UserIdentificationMessage) returns (AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage) {
   }
 
   // The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
@@ -36,7 +36,7 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // The TestCase Builder asks for all Bonds-elements that can be used in the TestCase-model
-  rpc ListAllAvailableBonds (UserIdentificationMessage) returns (AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage) {
+  rpc ListAllAvailableBonds (UserIdentificationMessage) returns (ImmatureBondsMessage) {
   }
 
 

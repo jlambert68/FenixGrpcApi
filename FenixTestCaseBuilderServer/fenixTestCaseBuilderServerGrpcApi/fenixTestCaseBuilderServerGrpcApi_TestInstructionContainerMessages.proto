@@ -63,7 +63,7 @@ message BasicTestInstructionContainerInformationMessage {
     string TestInstructionContainerUuid = 3; // TestInstructionContainer UUID, set by Client system
     string TestInstructionContainerName = 4; // TestInstructionContainer Name, set by Client system
     string TestInstructionContainerTypeUuid = 5; // The Type(Group), Uuid, of TestInstructionContainer
-    string TestInstructionTypeContainerName = 6; // The Type(Group), Name, of TestInstructionContainer
+    string TestInstructionContainerTypeName = 6; // The Type(Group), Name, of TestInstructionContainer
     bool Deprecated = 7; // Indicates that this TestInstructionContainer shouldn't be used anymore
     uint32 MajorVersionNumber = 8; // Change in Major Version Number means that user must act on change
     uint32 MinorVersionNumber = 9; // Change in Minor Version Number means that user must NOT act on change

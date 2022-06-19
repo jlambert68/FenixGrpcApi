@@ -105,6 +105,7 @@ message AckNackResponse {
   bool AckNack = 1; // True=Ack, False=Nack
   string Comments = 2; //Comments if needed
   repeated ErrorCodesEnum ErrorCodes = 3; // List of Error codes
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 4; // The latest proto file version number to be used
 }
 
 // ****************************************************************************************************
@@ -118,9 +119,10 @@ message UserIdentificationMessage {
 
 // ****************************************************************************************************
 // TestInstructionContainerChildrenMessage
-
+//TODO *** IS NOT USED AT THE MOMENT ***
+// *** IS NOT USED AT THE MOMENT ***
 //Message holding one child and its type (TestInstruction or TestInstructionContainer)
 message TestInstructionContainerChildMessage {
   string TestInstructionContainerChildUuid = 1; // The UUID for the child, can be from a TestInstruction or a TestInstructionContainer
   TestInstructionContainerChildTypeEnum TestInstructionContainerChildType = 2; // The type of the child, 'TestInstruction' or 'TestInstructionContainer'
-}
+}// *** IS NOT USED AT THE MOMENT ***
