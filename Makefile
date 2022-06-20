@@ -59,9 +59,9 @@ compileTestCaseGUIServerProto:
  # generate the messages
 # protoc --go_out="$GO_GEN_PATH" -I "$dependecies" "$proto"
 #	cd FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi && protoc --go_out=. fenixTestCaseBuilderServerGrpcApi.proto
-	protoc --go_out=FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi.proto
+	protoc --go_out=FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/*.proto
 
 # generate the services
 # protoc --go-grpc_out="$GO_GEN_PATH" -I "$dependecies" "$proto"
 #	cd FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi && protoc --go-grpc_out=. fenixTestCaseBuilderServerGrpcApi.proto
-	protoc --go-grpc_out=FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi.proto
+	protoc --go-grpc_out=FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/*.proto
