@@ -55,7 +55,7 @@ message BasicTestInstructionContainerInformationMessage {
   NonEditableBasicInformationMessage NonEditableInformation = 1; // All Basic information that can be shown in GUI but can't be changed by the user
   EditableBasicInformationMessage EditableInformation = 2; // All Basic information that can be shown in GUI and can be changed by the user
   InvisibleBasicInformationMessage InvisibleBasicInformation = 3; // All Basic information that is not directly shown in GUI and can't be changed by the user
-  TestInstructionContainerAttributesMessage TestInstructionContainerAttributes = 4; // All attributes supported by a TestInstructionContainer, can be changed by the user
+  EditableTestInstructionContainerAttributesMessage EditableTestInstructionContainerAttributes = 4; // All attributes supported by a TestInstructionContainer, can be changed by the user
 
   // Message holding All basic information that can be shown in GUI but can't be changed by the user
   message NonEditableBasicInformationMessage {
@@ -86,7 +86,7 @@ message BasicTestInstructionContainerInformationMessage {
   }
 
   // Message holding all attributes supported by a TestInstructionContainer, can be changed by the user
-  message TestInstructionContainerAttributesMessage {
+  message EditableTestInstructionContainerAttributesMessage {
     TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 1; // Should children in the TestInstructionContainer be Serial or Parallel executed
   }
 
