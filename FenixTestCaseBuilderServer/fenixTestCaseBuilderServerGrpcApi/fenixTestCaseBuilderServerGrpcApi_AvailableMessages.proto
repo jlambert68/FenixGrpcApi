@@ -11,17 +11,17 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 
 // ****************************************************************************************************
-// AvailableTestInstructionsAndTestContainersMessage - From DB
+// AvailableTestInstructionsAndTestInstructionContainersMessage - From DB
 
 // Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
-message AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage {
+message AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage {
   repeated ImmatureTestInstructionMessage ImmatureTestInstructions = 1; // List of all TestInstruction
   repeated ImmatureTestInstructionContainerMessage ImmatureTestInstructionContainers = 2; // List of all pre-defined TestInstructionContainers
   AckNackResponse ackNackResponse = 3; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
 // ****************************************************************************************************
-// AvailablePinnedTestInstructionsAndTestContainersMessage - From DB
+// AvailablePinnedTestInstructionsAndTestInstructionContainersMessage - From DB
 
 // Message holding TestInstructions and Pre-defined TestInstructionContainers that the user has pinned in the GUI
 message AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage {
@@ -31,7 +31,7 @@ message AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersRes
 }
 
 // ****************************************************************************************************
-// AvailablePinnedTestInstructionsAndTestContainersMessage - To DB
+// AvailablePinnedTestInstructionsAndTestInstructionContainersMessage - To DB
 
 // Message holding TestInstructions and Pre-defined TestInstructionContainers that the user has pinned in the GUI
 message SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage {

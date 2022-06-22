@@ -21,13 +21,13 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	//Anyone can check if Fenix TestCase Builder server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
-	ListAllAvailableTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage, error)
+	ListAllAvailableTestInstructionsAndTestInstructionContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
 	// The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-	ListAllAvailablePinnedTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
+	ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
 	// The TestCase Builder asks for all Bonds-elements that can be used in the TestCase-model
 	ListAllAvailableBonds(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ImmatureBondsMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
-	SaveAllPinnedTestInstructionsAndTestContainers(ctx context.Context, in *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	SaveAllPinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
 	ListAllTestCases(ctx context.Context, in *ListTestCasesRequestMessage, opts ...grpc.CallOption) (FenixTestCaseBuilderServerGrpcServices_ListAllTestCasesClient, error)
 	// The TestCase Builder asks for one complete TestCase
@@ -61,18 +61,18 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) AreYouAlive(ctx context.C
 	return out, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailableTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage, error) {
-	out := new(AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailableTestInstructionsAndTestContainers", in, out, opts...)
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailableTestInstructionsAndTestInstructionContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error) {
+	out := new(AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailableTestInstructionsAndTestInstructionContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailablePinnedTestInstructionsAndTestContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error) {
 	out := new(AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailablePinnedTestInstructionsAndTestContainers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,9 +88,9 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailableBonds(ctx
 	return out, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveAllPinnedTestInstructionsAndTestContainers(ctx context.Context, in *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveAllPinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllPinnedTestInstructionsAndTestContainers", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllPinnedTestInstructionsAndTestInstructionContainers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -190,13 +190,13 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	//Anyone can check if Fenix TestCase Builder server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// The TestCase Builder asks for all TestInstructions and Pre-defined TestInstructionContainer that the user can add to a TestCase
-	ListAllAvailableTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage, error)
+	ListAllAvailableTestInstructionsAndTestInstructionContainers(context.Context, *UserIdentificationMessage) (*AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
 	// The TestCase Builder asks for which TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI
-	ListAllAvailablePinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
+	ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(context.Context, *UserIdentificationMessage) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
 	// The TestCase Builder asks for all Bonds-elements that can be used in the TestCase-model
 	ListAllAvailableBonds(context.Context, *UserIdentificationMessage) (*ImmatureBondsMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
-	SaveAllPinnedTestInstructionsAndTestContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error)
+	SaveAllPinnedTestInstructionsAndTestInstructionContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error)
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
 	ListAllTestCases(*ListTestCasesRequestMessage, FenixTestCaseBuilderServerGrpcServices_ListAllTestCasesServer) error
 	// The TestCase Builder asks for one complete TestCase
@@ -221,17 +221,17 @@ type UnimplementedFenixTestCaseBuilderServerGrpcServicesServer struct {
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailableTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*AvailableTestInstructionsAndPreCreatedTestContainersResponseMessage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAllAvailableTestInstructionsAndTestContainers not implemented")
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailableTestInstructionsAndTestInstructionContainers(context.Context, *UserIdentificationMessage) (*AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllAvailableTestInstructionsAndTestInstructionContainers not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailablePinnedTestInstructionsAndTestContainers(context.Context, *UserIdentificationMessage) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAllAvailablePinnedTestInstructionsAndTestContainers not implemented")
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(context.Context, *UserIdentificationMessage) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailableBonds(context.Context, *UserIdentificationMessage) (*ImmatureBondsMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllAvailableBonds not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllPinnedTestInstructionsAndTestContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SaveAllPinnedTestInstructionsAndTestContainers not implemented")
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllPinnedTestInstructionsAndTestInstructionContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveAllPinnedTestInstructionsAndTestInstructionContainers not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCases(*ListTestCasesRequestMessage, FenixTestCaseBuilderServerGrpcServices_ListAllTestCasesServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListAllTestCases not implemented")
@@ -286,38 +286,38 @@ func _FenixTestCaseBuilderServerGrpcServices_AreYouAlive_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableTestInstructionsAndTestInstructionContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserIdentificationMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailableTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailableTestInstructionsAndTestInstructionContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailableTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailableTestInstructionsAndTestInstructionContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailableTestInstructionsAndTestContainers(ctx, req.(*UserIdentificationMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailableTestInstructionsAndTestInstructionContainers(ctx, req.(*UserIdentificationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestCaseBuilderServerGrpcServices_ListAllAvailablePinnedTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UserIdentificationMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailablePinnedTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailablePinnedTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailablePinnedTestInstructionsAndTestContainers(ctx, req.(*UserIdentificationMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(ctx, req.(*UserIdentificationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -340,20 +340,20 @@ func _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableBonds_Handler(srv i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixTestCaseBuilderServerGrpcServices_SaveAllPinnedTestInstructionsAndTestContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixTestCaseBuilderServerGrpcServices_SaveAllPinnedTestInstructionsAndTestInstructionContainers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveAllPinnedTestInstructionsAndTestContainers(ctx, in)
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveAllPinnedTestInstructionsAndTestInstructionContainers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllPinnedTestInstructionsAndTestContainers",
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllPinnedTestInstructionsAndTestInstructionContainers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveAllPinnedTestInstructionsAndTestContainers(ctx, req.(*SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveAllPinnedTestInstructionsAndTestInstructionContainers(ctx, req.(*SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -499,20 +499,20 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_AreYouAlive_Handler,
 		},
 		{
-			MethodName: "ListAllAvailableTestInstructionsAndTestContainers",
-			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableTestInstructionsAndTestContainers_Handler,
+			MethodName: "ListAllAvailableTestInstructionsAndTestInstructionContainers",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableTestInstructionsAndTestInstructionContainers_Handler,
 		},
 		{
-			MethodName: "ListAllAvailablePinnedTestInstructionsAndTestContainers",
-			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllAvailablePinnedTestInstructionsAndTestContainers_Handler,
+			MethodName: "ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers_Handler,
 		},
 		{
 			MethodName: "ListAllAvailableBonds",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableBonds_Handler,
 		},
 		{
-			MethodName: "SaveAllPinnedTestInstructionsAndTestContainers",
-			Handler:    _FenixTestCaseBuilderServerGrpcServices_SaveAllPinnedTestInstructionsAndTestContainers_Handler,
+			MethodName: "SaveAllPinnedTestInstructionsAndTestInstructionContainers",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_SaveAllPinnedTestInstructionsAndTestInstructionContainers_Handler,
 		},
 		{
 			MethodName: "GetDetailedTestCase",
