@@ -99,8 +99,8 @@ message ImmatureTestInstructionInformationMessage {
   repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this Immature TestInstruction. A DropZone is a collection of pre-defined values that the TestInstruction will get when placed in TestCase
   // Message holding one DropZone
   message AvailableDropZoneMessage {
-    string DropZoneUuid = 1; // A DropZone, UUID, for the TestCaseInstruction
-    string DropZoneName = 2; // A DropZone, Name, for the TestCaseInstruction
+    string DropZoneUuid = 1; // A DropZone, UUID, for the TestInstruction
+    string DropZoneName = 2; // A DropZone, Name, for the TestInstruction
     string DropZoneDescription = 3; // Description of the DropZone
     string DropZoneMouseOver = 4; // The mouse over text for the DropZone
     string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437

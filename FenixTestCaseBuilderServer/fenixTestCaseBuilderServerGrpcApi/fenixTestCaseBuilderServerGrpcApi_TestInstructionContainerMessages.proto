@@ -34,6 +34,7 @@ message SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage {
 // Message holding one Immature TestInstruction which is Dragged n Dropped into the TestCase
 message ImmatureTestInstructionContainerMessage {
   BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; // Data is used to describe the basic information for the TestInstructionContainer
+  ImmatureTestInstructionContainerInformationMessage ImmatureTestInstructionContainerInformation = 2; // The immature information for the TestInstructionContainer
   ImmatureElementModelMessage ImmatureSubTestCaseModel = 3; // The immature element model for this TestInstructionContainer
 }
 
@@ -89,6 +90,33 @@ message BasicTestInstructionContainerInformationMessage {
     TestInstructionContainerExecutionTypeEnum TestInstructionContainerExecutionType = 1; // Should children in the TestInstructionContainer be Serial or Parallel executed
   }
 
+}
+
+// ****************************************************************************************************
+// ImmatureTestInstructionContainerInformationMessage
+
+// Message holding the information about the Immature TestInstructionContainer
+message ImmatureTestInstructionContainerInformationMessage {
+
+  repeated AvailableDropZoneMessage AvailableDropZones = 18; // A list of DropZone for this Immature TestInstructionContainer. A DropZone is a collection of pre-defined values that the TestInstructionContainer will get when placed in TestCase
+  // Message holding one DropZone
+  message AvailableDropZoneMessage {
+    string DropZoneUuid = 1; // A DropZone, UUID, for the TestInstructionContainer
+    string DropZoneName = 2; // A DropZone, Name, for the TestInstructionContainer
+    string DropZoneDescription = 3; // Description of the DropZone
+    string DropZoneMouseOver = 4; // The mouse over text for the DropZone
+    string DropZoneColor = 5; // The color used for presenting the DropsZone, e.g. #FAF437
+
+    repeated DropZonePreSetTestInstructionAttributeMessage DropZonePreSetTestInstructionAttributes = 6; // A list of the attributes and their pre-set values
+    // Message holding one attribute with its pre-set value
+    message DropZonePreSetTestInstructionAttributeMessage {
+      TestInstructionAttributeTypeEnum TestInstructionAttributeType = 1; // Defines witch type attribute; TEXTBOX, COMBOBOX...
+      string TestInstructionAttributeUuid = 2; // The unique uuid for the TestInstructionAttribute, set by client system
+      string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
+      string AttributeValueAsString = 4; // The String-representation of the value
+      string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+    }
+  }
 }
 
 // ****************************************************************************************************
