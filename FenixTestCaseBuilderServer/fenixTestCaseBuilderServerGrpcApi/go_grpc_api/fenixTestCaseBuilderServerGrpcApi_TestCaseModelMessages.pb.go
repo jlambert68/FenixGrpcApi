@@ -155,14 +155,15 @@ type TestCaseModelElementMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	OriginalElementUuid      string                       `protobuf:"bytes,1,opt,name=OriginalElementUuid,proto3" json:"OriginalElementUuid,omitempty"`                                                                                // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
-	OriginalElementName      string                       `protobuf:"bytes,2,opt,name=OriginalElementName,proto3" json:"OriginalElementName,omitempty"`                                                                                // The original elements Name, e.g. a TestInstruction Name set by client system
-	MatureElementUuid        string                       `protobuf:"bytes,3,opt,name=MatureElementUuid,proto3" json:"MatureElementUuid,omitempty"`                                                                                    // The UUID that is created in the TestCase to give it a unique id
-	PreviousElementUuid      string                       `protobuf:"bytes,4,opt,name=PreviousElementUuid,proto3" json:"PreviousElementUuid,omitempty"`                                                                                // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
-	NextElementUuid          string                       `protobuf:"bytes,5,opt,name=NextElementUuid,proto3" json:"NextElementUuid,omitempty"`                                                                                        // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
-	FirstChildElementUuid    string                       `protobuf:"bytes,6,opt,name=FirstChildElementUuid,proto3" json:"FirstChildElementUuid,omitempty"`                                                                            // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with current element UUID
-	ParentElementUuid        string                       `protobuf:"bytes,7,opt,name=ParentElementUuid,proto3" json:"ParentElementUuid,omitempty"`                                                                                    // The UUID of the parent, TestInstructionContainer. Only applicable when this is the last element inside a TestInstructionContainer. When there are no parent element then this field is populated with current element UUID
-	TestCaseModelElementType TestCaseModelElementTypeEnum `protobuf:"varint,8,opt,name=TestCaseModelElementType,proto3,enum=fenixTestCaseBuilderServerGrpcApi.TestCaseModelElementTypeEnum" json:"TestCaseModelElementType,omitempty"` // The specific type of this TestCase-element
+	OriginalElementUuid        string                       `protobuf:"bytes,1,opt,name=OriginalElementUuid,proto3" json:"OriginalElementUuid,omitempty"`                                                                                // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
+	OriginalElementName        string                       `protobuf:"bytes,2,opt,name=OriginalElementName,proto3" json:"OriginalElementName,omitempty"`                                                                                // The original elements Name, e.g. a TestInstruction Name set by client system
+	MatureElementUuid          string                       `protobuf:"bytes,3,opt,name=MatureElementUuid,proto3" json:"MatureElementUuid,omitempty"`                                                                                    // The UUID that is created in the TestCase to give it a unique id
+	PreviousElementUuid        string                       `protobuf:"bytes,4,opt,name=PreviousElementUuid,proto3" json:"PreviousElementUuid,omitempty"`                                                                                // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
+	NextElementUuid            string                       `protobuf:"bytes,5,opt,name=NextElementUuid,proto3" json:"NextElementUuid,omitempty"`                                                                                        // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
+	FirstChildElementUuid      string                       `protobuf:"bytes,6,opt,name=FirstChildElementUuid,proto3" json:"FirstChildElementUuid,omitempty"`                                                                            // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with current element UUID
+	ParentElementUuid          string                       `protobuf:"bytes,7,opt,name=ParentElementUuid,proto3" json:"ParentElementUuid,omitempty"`                                                                                    // The UUID of the parent, TestInstructionContainer. Only applicable when this is the last element inside a TestInstructionContainer. When there are no parent element then this field is populated with current element UUID
+	TestCaseModelElementType   TestCaseModelElementTypeEnum `protobuf:"varint,8,opt,name=TestCaseModelElementType,proto3,enum=fenixTestCaseBuilderServerGrpcApi.TestCaseModelElementTypeEnum" json:"TestCaseModelElementType,omitempty"` // The specific type of this TestCase-element
+	CurrentElementModelElement string                       `protobuf:"bytes,9,opt,name=CurrentElementModelElement,proto3" json:"CurrentElementModelElement,omitempty"`                                                                  // The UUID of the element that this data act on, e.g. For TI & TIC the it is the same as 'OriginalElementUuid' but for BONDs then it is the BONDs UUID
 }
 
 func (x *TestCaseModelElementMessage) Reset() {
@@ -251,6 +252,13 @@ func (x *TestCaseModelElementMessage) GetTestCaseModelElementType() TestCaseMode
 		return x.TestCaseModelElementType
 	}
 	return TestCaseModelElementTypeEnum_B0_BOND
+}
+
+func (x *TestCaseModelElementMessage) GetCurrentElementModelElement() string {
+	if x != nil {
+		return x.CurrentElementModelElement
+	}
+	return ""
 }
 
 // One command that describe one change to the TestCase
@@ -389,7 +397,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x6f,
 	0x64, 0x65, 0x6c, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
 	0x65, 0x52, 0x15, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
-	0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x22, 0xec, 0x03, 0x0a, 0x1b, 0x54, 0x65, 0x73,
+	0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x22, 0xac, 0x04, 0x0a, 0x1b, 0x54, 0x65, 0x73,
 	0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e,
 	0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x30, 0x0a, 0x13, 0x4f, 0x72, 0x69, 0x67,
 	0x69, 0x6e, 0x61, 0x6c, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x55, 0x75, 0x69, 0x64, 0x18,
@@ -420,7 +428,11 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x45, 0x6c,
 	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x18, 0x54,
 	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x45, 0x6c, 0x65, 0x6d,
-	0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f,
+	0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x3e, 0x0a, 0x1a, 0x43, 0x75, 0x72, 0x72, 0x65,
+	0x6e, 0x74, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x45, 0x6c,
+	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1a, 0x43, 0x75, 0x72,
+	0x72, 0x65, 0x6e, 0x74, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f,
 	0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
