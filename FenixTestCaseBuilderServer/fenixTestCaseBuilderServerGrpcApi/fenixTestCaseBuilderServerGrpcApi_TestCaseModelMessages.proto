@@ -14,7 +14,7 @@ message TestCaseModelMessage {
   string TestCaseModelAsString = 1; // The string representation of the TestCase, e.g. 'TC=B1-TICX(B11-TI-B12-TIX-B11X)-B1' - The last TIX could be used to clean up the environment
 
   string FirstMatureElementUuid = 2; // The UUID of first element in the TestCase-model
-  repeated TestCaseModelElementMessage TestCaseModelElements = 3; // All elements in the TestCase
+  repeated MatureTestCaseModelElementMessage TestCaseModelElements = 3; // All elements in the TestCase
 
   // The model of The TestCase
   repeated TestCaseModelCommandMessage TestCaseModelCommands = 4; // All commands that was used to create the TestCase
@@ -32,17 +32,30 @@ message TestCaseModelMessage {
 // A message holding the model for Immature elements, e.g. TestInstructions and pre-created TestInstructionContainers
 message ImmatureElementModelMessage {
   string FirstImmatureElementUuid = 1; // The UUID of first element in the Immature element structure
-  repeated TestCaseModelElementMessage TestCaseModelElements = 2; // All elements in the immature element structure
+  repeated ImmatureTestCaseModelElementMessage TestCaseModelElements = 2; // All elements in the immature element structure
 }
 
 // ****************************************************************************************************
 // Objects used in several places
 
-// One TestCaseElement, that is not a TestInstructionContainer, that hold type, reference to previous, next and parent elements
-message TestCaseModelElementMessage {
+// One Mature TestCaseElement which hold type, reference to previous, next and parent elements
+message MatureTestCaseModelElementMessage {
   string OriginalElementUuid = 1; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
   string OriginalElementName = 2; // The original elements Name, e.g. a TestInstruction Name set by client system
   string MatureElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
+  string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
+  string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
+  string FirstChildElementUuid = 6; // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with current element UUID
+  string ParentElementUuid = 7; // The UUID of the parent, TestInstructionContainer. Only applicable when this is the last element inside a TestInstructionContainer. When there are no parent element then this field is populated with current element UUID
+  TestCaseModelElementTypeEnum TestCaseModelElementType = 8; // The specific type of this TestCase-element
+  string CurrentElementModelElement = 9; // The UUID of the element that this data act on, e.g. For TI & TIC the it is the same as 'OriginalElementUuid' but for BONDs then it is the BONDs UUID
+}
+
+// One Immature TestCaseElement which hold type, reference to previous, next and parent elements
+message ImmatureTestCaseModelElementMessage {
+  string OriginalElementUuid = 1; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
+  string OriginalElementName = 2; // The original elements Name, e.g. a TestInstruction Name set by client system
+  string ImmatureMatureElementUuid = 3; // The UUID that is created in the TestCase to give it a unique id
   string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with current element UUID
   string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
   string FirstChildElementUuid = 6; // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with current element UUID
