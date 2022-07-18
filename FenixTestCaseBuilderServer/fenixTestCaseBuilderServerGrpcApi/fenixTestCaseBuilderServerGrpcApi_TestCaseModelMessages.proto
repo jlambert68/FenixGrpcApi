@@ -46,7 +46,7 @@ message MatureTestCaseModelElementMessage {
   string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with 'MatureElementUuid'
   string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with current element UUID
   string FirstChildElementUuid = 6; // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with 'MatureElementUuid'
-  string ParentElementUuid = 7; // The UUID of the parent, TestInstructionContainer. Only applicable when this is the last element inside a TestInstructionContainer. When there are no parent element then this field is populated with 'MatureElementUuid'
+  string ParentElementUuid = 7; // The UUID of the parent, TestInstructionContainer. When there are no parent element then this field is populated with 'MatureElementUuid'
   TestCaseModelElementTypeEnum TestCaseModelElementType = 8; // The specific type of this TestCase-element
 }
 
@@ -58,7 +58,7 @@ message ImmatureTestCaseModelElementMessage {
   string PreviousElementUuid = 4;  // The UUID of the previous element. When there are no previous element then this field is populated with 'ImmatureElementUuid'
   string NextElementUuid = 5;  // The UUID of the previous element. When there are no next element then this field is populated with 'ImmatureElementUuid'
   string FirstChildElementUuid = 6; // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with 'ImmatureElementUuid'
-  string ParentElementUuid = 7; // The UUID of the parent, TestInstructionContainer. Only applicable when this is the last element inside a TestInstructionContainer. When there are no parent element then this field is populated with 'ImmatureElementUuid'
+  string ParentElementUuid = 7; // The UUID of the parent, TestInstructionContainer. When there are no parent element then this field is populated with 'ImmatureElementUuid'
   TestCaseModelElementTypeEnum TestCaseModelElementType = 8; // The specific type of this TestCase-element
 }
 
