@@ -1,7 +1,7 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
-//import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 
 // All messages in this file is used to define the TestCase-model, and how it was constructed
@@ -21,8 +21,11 @@ message TestCaseModelMessage {
   // One command that describe one change to the TestCase
   message TestCaseModelCommandMessage {
     TestCaseCommandTypeEnum TestCaseCommandType = 1; // The type of command that was used
-    string FirstParameter = 2; // The first parameter, an UUID, in the command
-    string SecondParameter = 3; // The second parameter, an UUID, in the command
+    string TestCaseCommandName = 2; // The name of command
+    string FirstParameter = 3; // The first parameter, an UUID, in the command
+    string SecondParameter = 4; // The second parameter, an UUID, in the command
+    string UserId = 5; // User Id for the person executing the command
+    google.protobuf.Timestamp CommandExecutedTimeStamp = 6; // The TimeStamp when the Command was executed
   }
 }
 
