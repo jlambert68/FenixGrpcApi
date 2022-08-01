@@ -21,7 +21,9 @@ message ImmatureBondsMessage {
   message ImmatureBondMessage {
     BasicBondInformationMessage BasicBondInformation = 1; // Data is used to describe the basic information for the Bond
   }
+  AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
+
 
 // ****************************************************************************************************
 // MatureBondMessage
