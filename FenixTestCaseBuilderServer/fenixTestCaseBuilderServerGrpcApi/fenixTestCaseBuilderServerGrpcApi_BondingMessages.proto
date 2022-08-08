@@ -1,7 +1,10 @@
 syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
-import "google/protobuf/timestamp.proto";import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+option csharp_namespace = "SubCustodyServer";
+
+import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 
 
 // All messages in this file is used to define a Bond, which is the object that binds TestInstructions and TestInstructionContainers together
