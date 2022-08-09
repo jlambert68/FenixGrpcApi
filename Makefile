@@ -53,6 +53,8 @@ compileClientEchoProto:
 # protoc --go-grpc_out="$GO_GEN_PATH" -I "$dependecies" "$proto"
 	cd Client/fenixClientTestDataSyncServerGrpcApi/echo && protoc --go-grpc_out=. echo.proto
 
+compileTestCaseGUIServerProto_all: compileTestCaseGUIServerProto_go compileTestCaseGUIServerProto_csharp
+
 compileTestCaseGUIServerProto_go:
 	@echo "Compile TestCaseGUIServer proto file..."
 
