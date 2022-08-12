@@ -94,15 +94,15 @@ message BasicTestCaseInformationMessage {
   // Message holding All basic information that can be shown in GUI but can't be changed by the user
   message NonEditableBasicInformationMessage {
     string TestCaseUuid = 1; // The TestCase, UUID, set by TestCase-builder
-    string TestCaseName = 2; // The TestCase, Name, set in TestCase-builder
-    string DomainUuid = 3; // The Domain, UUID, where the TestCase 'has its home'
-    string DomainName = 4; // The Domain, Name, where the TestCase 'has its home'
-    uint32  TestCaseVersion = 6; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+    string DomainUuid = 2; // The Domain, UUID, where the TestCase 'has its home'
+    string DomainName = 3; // The Domain, Name, where the TestCase 'has its home'
+    uint32  TestCaseVersion = 4; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
   }
 
   // Message holding all Basic information that can be shown in GUI and can be changed by the user
   message EditableBasicInformationMessage {
-    string TestCaseDescription = 1; // The description of the TestCase
+    string TestCaseName = 1; // The TestCase, Name, set in TestCase-builder
+    string TestCaseDescription = 2; // The description of the TestCase
     //string TestCaseMouseOverText = 2; // The mouse over text when hovering over TestCase
   }
 
