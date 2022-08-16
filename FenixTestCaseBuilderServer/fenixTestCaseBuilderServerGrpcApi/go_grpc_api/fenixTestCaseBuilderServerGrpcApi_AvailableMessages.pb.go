@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0-devel
 // 	protoc        v3.14.0
-// source: FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_AvailableMessages.proto
+// source: FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixExecutionServerGuiGrpcApi_AvailableMessages.proto
 
 package go_grpc_api
 

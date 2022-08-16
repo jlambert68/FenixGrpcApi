@@ -1,0 +1,42 @@
+syntax = "proto3";
+package fenixExecutionServerGuiGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "ExecutionServerGuiGrpc";
+
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto"
+
+
+// ****************************************************************************************************
+// Fenix Execution Server service definition. (Will support Test Suite building in feature, and will then be renamed)
+
+service FenixExecutionServerGuiGrpcServices {
+
+  // ************************ Admin ************************
+
+  //Anyone can check if Fenix Execution server is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+
+  // ************************ Single TestCase Execution ************************
+
+  // *** Get data from Server ***
+
+  // List all Single TestCase Executions for specific Domains and DateTimes-span
+  rpc ListAllSingleTestCaseExecutions (ListAllSingleTestCaseExecutionsRequest) returns (ListAllSingleTestCaseExecutionsResponse) {
+  }
+
+  // Get a single TestCase Execution
+  rpc GetSingleTestCaseExecution (GetSingleTestCaseExecutionRequest) returns (GetSingleTestCaseExecutionResponse)
+
+  // *** Send data to Server ***
+
+  // Initiate a single TestCase Execution with one specific TestDataSet
+  rpc InitiateTestCaseExecution (InitiateSingleTestCaseExecutionRequestMessage) returns (InitiateSingleTestCaseExecutionResponseMessage) {
+  }
+
+}
+
+
+
