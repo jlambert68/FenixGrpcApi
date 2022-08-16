@@ -22,11 +22,24 @@ enum ErrorCodesEnum {
   ERROR_DATABASE_PROBLEM = 4;
 }
 
-// Execution Enum for Single Execution
-enum SingleTestCaseExecutionStatusEnum {
-  INITIATED = 0; // All set up for execution, but has not been triggered to start execution
-  EXECUTING = 1; // TestCase is execution
-  INTERRUPTED = 2; //
+// Execution Enum for a TestCase Execution
+enum TestCaseExecutionStatusEnum {
+  TCE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
+  TCE_EXECUTING = 1; // TestCase is execution
+  TCE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
+  TCE_FINISHED_OK = 3; // Finnish as expected to TestCase definition
+  TCE_FINISHED_NOT_OK = 4; // Finnish with errors in validations
+  TCE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
+}
+
+// Execution Enum for a TestInstruction Execution
+enum TestInstructionExecutionStatusEnum {
+  TIE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
+  TIE_EXECUTING = 1; // TestCase is execution
+  TIE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
+  TIE_FINISHED_OK = 3; // Finnish as expected to TestCase definition
+  TIE_FINISHED_NOT_OK = 4; // Finnish with errors in validations
+  TIE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
 }
 
 // How a TestInstructionContainer is processed

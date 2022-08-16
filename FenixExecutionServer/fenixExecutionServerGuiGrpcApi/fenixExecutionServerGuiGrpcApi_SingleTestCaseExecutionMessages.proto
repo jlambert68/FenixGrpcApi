@@ -33,31 +33,47 @@ message ListAllSingleTestCaseExecutionsRequest {
 // Message holding the response all Single TestCase Executions for specific Domains and DateTime-span
 message ListAllSingleTestCaseExecutionsResponse{
 
-    repeated SingleTestCaseExecutionSummeryMessage SingleTestCaseaExecutionSummery = 1; // A list of Single TestCase Execution summaries
 
-    // One single TestCase Execution Summery
-    message SingleTestCaseExecutionSummeryMessage {
-        string DomainUuid = 1; // The Domain, UUID, where the TestCase 'has its home'
-        string DomainName = 2; // The Domain, Name, where the TestCase 'has its home'
-        string TestCaseUuid = 3; // The TestCase, UUID, set by TestCase-builder
-        string TestCaseName = 4; // The TestCase, Name, set in TestCase-builder
-        uint32  TestCaseVersion = 5; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
-        google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 6; // Execution From TimeStamp in Request
-        google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 7; // Execution To TimeStamp in Request
-        SingleTestCaseExecutionStatusEnum SingleTestCaseExecutionStatus = 8; // The executions status for the testcase
-        string TestDataSetUuid = 9; // The UUID for the specific TestDataSet that was used for the Execution
+}
+// One single TestCase Execution Summery
+message SingleTestCaseExecutionSummeryMessage {
+    string TestCaseExecutionUuid = 1; // The Unique UUID for the TestCase Execution
+    string DomainUuid = 2; // The Domain, UUID, where the TestCase 'has its home'
+    string DomainName = 3; // The Domain, Name, where the TestCase 'has its home'
+    string TestCaseUuid = 4; // The TestCase, UUID, set by TestCase-builder
+    string TestCaseName = 5; // The TestCase, Name, set in TestCase-builder
+    uint32  TestCaseVersion = 6; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+    google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
+    google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
+    TestCaseExecutionStatusEnum SingleTestCaseExecutionStatus = 9; // The executions status for the testcase
+    string TestDataSetUuid = 10; // The UUID for the specific TestDataSet that was used for the Execution
 
-    }
 }
 
 // Message holding a request to get a Single TestCase Execution
 message GetSingleTestCaseExecutionRequest {
-
+    UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+    string TestCaseExecutionUuid = 2; // The Unique UUID for the TestCase Execution wanted
 }
 
 // Message holding a response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
+    SingleTestCaseExecutionSummeryMessage SingleTestCaseaExecutionSummery = 1; // A list of Single TestCase Execution summaries
+    repeated TestInstructionExecutionSummeryMessage TestInstructionExecutionsSummaries = 2; // A list of all TestInstruction Executions with their information
 
+    message TestInstructionExecutionSummeryMessage {
+        string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+        string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+        string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
+        string TestInstructionName = 4; // TestInstruction Name, set by Client system
+        uint32 MajorVersionNumber = 5; // Major Version Number
+        uint32 MinorVersionNumber = 6; // Minor Version Number
+        google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
+        google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
+        TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
+        string ExecutionErrorMessage = 10; // Any Error message for the TestInstruction execution
+    }
 }
+
 
 
