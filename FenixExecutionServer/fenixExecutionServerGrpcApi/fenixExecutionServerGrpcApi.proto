@@ -1,0 +1,50 @@
+syntax = "proto3";
+package fenixExecutionServerGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "ExecutionServerGrpc";
+
+import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+
+// ****************************************************************************************************
+//
+
+service FenixExecutionServerGrpcServices {
+
+  // ************************ Admin ************************
+
+  //Anyone can check if Fenix Execution server is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+
+  // ************************ xxx ************************
+
+  // *** Report to Execution Server ***
+
+  // When a TestInstruction has been fully executed the Client use this to inform the results of the execution to the Server
+  rpc ReportCompleteTestInstructionExecutionResult (CompleteTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+  // During the execution the Client can send log information that can be shown to the user
+  rpc SendLogPostForExecution(LogPostMessage) returns (AckNackResponse) {
+  }
+
+
+    // *** Client inform Server of Clients status ***
+
+  // Client can inform Server of Client capability to execute requests in parallell
+    rpc ReportProcessingCapability (ProcessingCapabilityMessage) returns (AckNackResponse) {
+    }
+
+
+  // xxxxx
+  rpc xxxx (xxxx) returns (x) {
+  }
+
+
+}
+
+
+

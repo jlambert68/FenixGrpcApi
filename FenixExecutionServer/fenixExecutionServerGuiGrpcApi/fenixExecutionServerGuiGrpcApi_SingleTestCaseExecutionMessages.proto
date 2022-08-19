@@ -33,10 +33,12 @@ message ListAllSingleTestCaseExecutionsRequest {
 // Message holding the response all Single TestCase Executions for specific Domains and DateTime-span
 message ListAllSingleTestCaseExecutionsResponse{
 
+    repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // The Basic information regarding the TestCase-Execution
+
 
 }
-// One single TestCase Execution Summery
-message SingleTestCaseExecutionSummeryMessage {
+// One single TestCase Execution Summary
+message SingleTestCaseExecutionSummaryMessage {
     string TestCaseExecutionUuid = 1; // The Unique UUID for the TestCase Execution
     string DomainUuid = 2; // The Domain, UUID, where the TestCase 'has its home'
     string DomainName = 3; // The Domain, Name, where the TestCase 'has its home'
@@ -58,10 +60,16 @@ message GetSingleTestCaseExecutionRequest {
 
 // Message holding a response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
-    SingleTestCaseExecutionSummeryMessage SingleTestCaseaExecutionSummery = 1; // A list of Single TestCase Execution summaries
-    repeated TestInstructionExecutionSummeryMessage TestInstructionExecutionsSummaries = 2; // A list of all TestInstruction Executions with their information
+    SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // A list of Single TestCase Execution summaries
+    repeated TestInstructionExecutionMessage TestInstructionsExecution = 2; // A list of all TestInstructions and their Execution result
 
-    message TestInstructionExecutionSummeryMessage {
+    message TestInstructionExecutionMessage{
+        TestInstructionExecutionSummaryMessage TestInstructionExecutionSummary = 1; // Basic information regarding the TestInstruction-Execution
+        TestInstructionExecutionDetailsMessage TestInstructionExecutionDetails = 2; // Basic information regarding the TestInstruction-Execution
+
+    }
+
+    message TestInstructionExecutionSummaryMessage {
         string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
         string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
         string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
@@ -72,6 +80,11 @@ message GetSingleTestCaseExecutionResponse {
         google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
         TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
         string ExecutionErrorMessage = 10; // Any Error message for the TestInstruction execution
+    }
+
+    message TestInstructionExecutionDetailsMessage {
+
+        repeated string ExecutionLogPosts = 1; //
     }
 }
 

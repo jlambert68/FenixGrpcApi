@@ -1,0 +1,42 @@
+syntax = "proto3";
+package fenixExecutionServerGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "ExecutionServerGrpc";
+
+import "google/protobuf/timestamp.proto";
+import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+
+
+
+message CompleteTestInstructionExecutionResultMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+
+}
+
+
+message LogPostsMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+
+
+  message LogPostMessage {
+    google.protobuf.Timestamp LogPostTimeStamp = 1; // The TimeStamp for the specific log post
+    LogPostStatusEnum LogPostStatus = 2; // the status for the log post
+    repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 3; // A list with found versus expected values, in string representations
+
+    message FoundVersusExpectedValueMessage {
+      string FoundValue = 1; // The value that was found
+      string ExpectedValue = 2; // The value that was expected
+    }
+  }
+
+}
+
+message ProcessingCapabilityMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  ProcessingCapabilityForClientSystemEnum TestInstructionProcessingCapability = 2; // Can TestInstructions be processed in parallell or only in serial, for a TestCase
+  ProcessingCapabilityForClientSystemEnum TestCaseProcessingCapability = 3; // Can TestCases be processed in parallell or only in serial
+  ProcessingCapabilityForClientSystemEnum TestSuiteProcessingCapability = 4; // Can TestSuites be processed in parallell or only in serial
+
+}
