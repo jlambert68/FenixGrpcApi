@@ -1,0 +1,55 @@
+syntax = "proto3";
+package fenixExecutionServerClientGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "ExecutionServerClientGrpc";
+
+import "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_Messages.proto";
+
+
+// ****************************************************************************************************
+//
+
+service FenixExecutionServerClientGrpcServices {
+
+  // ************************ Admin ************************
+
+  //Anyone can check if Fenix Execution Server Client is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+
+  // *** Ask Client to inform Execution Server of Clients status and capability ***
+
+  // Ask Client to inform Execution Server of Clients capability to execute requests in parallell, serial or no processing at all
+  rpc ReportProcessingCapability (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  // ************************ Execution Task ************************
+
+  // Fenix Execution Server send a request to Execution Client to initiate a execution of a TestInstruction
+  rpc ProcessTestInstructionExecution(ProcessTestInstructionExecutionRequest) returns (ProcessTestInstructionExecutionResponse) {
+
+  }
+
+
+  // ************************ Execution Status ************************
+
+  // When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
+  rpc ReportCompleteTestInstructionExecutionResult (TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
+  }
+
+  // During a TestInstruction execution the Client use this to inform the current of the execution result to the Server
+  rpc ReportCurrentTestInstructionExecutionResult (TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
+  }
+
+  // During the execution the Client can send log information that can be shown to the user
+  rpc SendAllLogPostForExecution(TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
+  }
+
+
+
+}
+
+
+

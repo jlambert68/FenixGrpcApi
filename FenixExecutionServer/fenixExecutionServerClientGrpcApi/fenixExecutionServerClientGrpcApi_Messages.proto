@@ -1,0 +1,51 @@
+syntax = "proto3";
+package fenixExecutionServerClientGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "ExecutionServerClientGrpc";
+
+import "google/protobuf/timestamp.proto";
+import "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+// Request used by Execution Server to initiate an TestInstruction Execution by Execution Client
+message ProcessTestInstructionExecutionRequest {
+  string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  string TestInstructionUuid = 2; // TestInstruction UUID, set by Client system
+  string TestInstructionName = 3; // TestInstruction Name, set by Client system
+  uint32 MajorVersionNumber = 4; // Major Version Number
+  uint32 MinorVersionNumber = 5; // Minor Version Number
+  repeated TestInstructionAttributeMessage TestInstructionAttributes = 6; // A list of all attributes for the TestInstruction
+
+  message TestInstructionAttributeMessage {
+    TestInstructionAttributeTypeEnum TestInstructionAttributeType = 1; // Defines witch type attribute; TEXTBOX, COMBOBOX...
+    string TestInstructionAttributeUuid = 2; // The unique uuid for the TestInstructionAttribute, set by client system
+    string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
+    string AttributeValueAsString = 4; // The String-representation of the value
+    string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+  }
+
+}
+
+// Response from execution client to execution server that client can execute TestInstruction
+message ProcessTestInstructionExecutionResponse {
+  AckNackResponse AckNackResponse = 1;
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  google.protobuf.Timestamp ExpectedExecutionDuration = 3;
+
+}
+
+// This message is sent from Fenix Execution Server, to Client System, to request something for a specific TestInstruction-execution
+message TestInstructionExecutionRequestMessage {
+  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+
+}
+// This message is sent from Fenix Execution Server, stream LogPostsMessageto Client System, to request current execution result/status for a TestInstruction
+message CurrentTestInstructionExecutionResultRequestMessage {
+  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+}
+
+
+
+

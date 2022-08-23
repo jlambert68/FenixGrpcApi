@@ -1,7 +1,7 @@
 syntax = "proto3";
-package fenixExecutionServerGrpcApi;
+package fenixExecutionServerClientGrpcApi;
 option go_package = "./go_grpc_api";
-option csharp_namespace = "ExecutionServerGrpc";
+option csharp_namespace = "ExecutionServerClientGrpc";
 
 
 // ****************************************************************************************************
@@ -39,12 +39,6 @@ enum    ProcessingCapabilityForClientSystemEnum {
   STOP_SEND_NEW_EXECUTION_TASKS = 2; // Stopp sending new tasks for execution
 }
 
-enum LogPostStatusEnum {
-  INFO = 0; // The Log-post row is of Information Type
-  WARNING = 1; // The Log-post row is of Warning Type, to inform user that something is not like it should
-  VALIDATION_OK = 2; // The Log-post row is of Validation OK Type and should be used when the validation of the TestExecution matched expected result
-  VALIDATION_ERROR = 3; // The Log-post row is of Validation Error Type and should be used when the validation of the TestExecution didn't matched expected result
-}
 
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
@@ -69,3 +63,10 @@ message ClientSystemIdentificationMessage {
   CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
 }
 
+// The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
+enum TestInstructionAttributeTypeEnum {
+  TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
+  COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
+  FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
+  FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+}
