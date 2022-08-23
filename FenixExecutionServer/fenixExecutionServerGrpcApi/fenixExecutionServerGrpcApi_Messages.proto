@@ -22,7 +22,6 @@ message CurrentTestInstructionExecutionResultMessage {
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 2; // The current status for the TestInstruction-execution
 }
 
-
 // This message is a log post message that can be sent any time from Client System to Fenix Execution Server
 message LogPostsMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used

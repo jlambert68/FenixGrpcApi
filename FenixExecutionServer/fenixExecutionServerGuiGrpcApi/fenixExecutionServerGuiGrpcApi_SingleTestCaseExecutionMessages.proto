@@ -35,7 +35,6 @@ message ListAllSingleTestCaseExecutionsResponse{
 
     repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // The Basic information regarding the TestCase-Execution
 
-
 }
 // One single TestCase Execution Summary
 message SingleTestCaseExecutionSummaryMessage {
