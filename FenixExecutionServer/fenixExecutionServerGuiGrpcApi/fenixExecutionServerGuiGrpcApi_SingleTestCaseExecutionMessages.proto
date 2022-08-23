@@ -9,83 +9,99 @@ import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServer
 
 // Message used for initiating a single TestCase Execution, with a specific TestData-identification
 message InitiateSingleTestCaseExecutionRequestMessage {
-    UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
-    string TestCaseUuid = 2; // The UUID for the TestCase to be Executed
-    string TestDataSetUuid = 3; // The UUID for the specific TestDataSet to be used for the Execution
+  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  string TestCaseUuid = 2; // The UUID for the TestCase to be Executed
+  string TestDataSetUuid = 3; // The UUID for the specific TestDataSet to be used for the Execution
 }
 
 // Message response from initiating a single TestCase Execution
 message InitiateSingleTestCaseExecutionResponseMessage {
-    string TestCaseExecutionUuid = 1; // The UUID for the TestCase Execution
-    AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  string TestCaseExecutionUuid = 1; // The UUID for the TestCase Execution
+  AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
 
 // Message to be used for requesting all Single TestCase Executions for specific Domains and DateTime-span
 message ListAllSingleTestCaseExecutionsRequest {
-    UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
-    repeated string DomainUuids = 2; // All Domains in request
-    google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
-    google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
+  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  repeated string DomainUuids = 2; // All Domains in request
+  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
+  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
 
 }
 
 // Message holding the response all Single TestCase Executions for specific Domains and DateTime-span
 message ListAllSingleTestCaseExecutionsResponse{
 
-    repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // The Basic information regarding the TestCase-Execution
+  repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // The Basic information regarding the TestCase-Execution
 
 }
 // One single TestCase Execution Summary
 message SingleTestCaseExecutionSummaryMessage {
-    string TestCaseExecutionUuid = 1; // The Unique UUID for the TestCase Execution
-    string DomainUuid = 2; // The Domain, UUID, where the TestCase 'has its home'
-    string DomainName = 3; // The Domain, Name, where the TestCase 'has its home'
-    string TestCaseUuid = 4; // The TestCase, UUID, set by TestCase-builder
-    string TestCaseName = 5; // The TestCase, Name, set in TestCase-builder
-    uint32  TestCaseVersion = 6; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
-    google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
-    google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
-    TestCaseExecutionStatusEnum SingleTestCaseExecutionStatus = 9; // The executions status for the testcase
-    string TestDataSetUuid = 10; // The UUID for the specific TestDataSet that was used for the Execution
+  string TestCaseExecutionUuid = 1; // The Unique UUID for the TestCase Execution
+  string DomainUuid = 2; // The Domain, UUID, where the TestCase 'has its home'
+  string DomainName = 3; // The Domain, Name, where the TestCase 'has its home'
+  string TestCaseUuid = 4; // The TestCase, UUID, set by TestCase-builder
+  string TestCaseName = 5; // The TestCase, Name, set in TestCase-builder
+  uint32  TestCaseVersion = 6; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
+  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
+  TestCaseExecutionStatusEnum SingleTestCaseExecutionStatus = 9; // The executions status for the testcase
+  string TestDataSetUuid = 10; // The UUID for the specific TestDataSet that was used for the Execution
 
 }
 
 // Message holding a request to get a Single TestCase Execution
 message GetSingleTestCaseExecutionRequest {
-    UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
-    string TestCaseExecutionUuid = 2; // The Unique UUID for the TestCase Execution wanted
+  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  string TestCaseExecutionUuid = 2; // The Unique UUID for the TestCase Execution wanted
 }
 
 // Message holding a response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
-    SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // A list of Single TestCase Execution summaries
-    repeated TestInstructionExecutionMessage TestInstructionsExecution = 2; // A list of all TestInstructions and their Execution result
+  SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // A list of Single TestCase Execution summaries
+  repeated TestInstructionExecutionMessage TestInstructionsExecution = 2; // A list of all TestInstructions and their Execution result
 
-    message TestInstructionExecutionMessage{
-        TestInstructionExecutionSummaryMessage TestInstructionExecutionSummary = 1; // Basic information regarding the TestInstruction-Execution
-        TestInstructionExecutionDetailsMessage TestInstructionExecutionDetails = 2; // Basic information regarding the TestInstruction-Execution
+  message TestInstructionExecutionMessage{
+    TestInstructionExecutionSummaryMessage TestInstructionExecutionSummary = 1; // Basic information regarding the TestInstruction-Execution
+    TestInstructionExecutionDetailsMessage TestInstructionExecutionDetails = 2; // Basic information regarding the TestInstruction-Execution
 
+  }
+
+  // The Summary information for TestExecution for one TestInstruction-execution
+  message TestInstructionExecutionSummaryMessage {
+    string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+    string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+    string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
+    string TestInstructionName = 4; // TestInstruction Name, set by Client system
+    uint32 MajorVersionNumber = 5; // Major Version Number
+    uint32 MinorVersionNumber = 6; // Minor Version Number
+    google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
+    google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
+    TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
+    string ExecutionErrorMessage = 10; // Any Error message for the TestInstruction execution
+  }
+
+
+  // All log post for the TestInstruction-execution
+  message TestInstructionExecutionDetailsMessage {
+    repeated LogPostMessage ExecutionLogPosts = 1; // All log post rows for the TestInstruction-execution
+  }
+
+  // This message holds one log post row from Client System
+  message LogPostMessage {
+    google.protobuf.Timestamp LogPostTimeStamp = 1; // The TimeStamp for the specific log post
+    LogPostStatusEnum LogPostStatus = 2; // the status for the log post
+    repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 3; // A list with found versus expected values, in string representations
+
+    message FoundVersusExpectedValueMessage {
+      string FoundValue = 1; // The value that was found
+      string ExpectedValue = 2; // The value that was expected
     }
+  }
 
-    message TestInstructionExecutionSummaryMessage {
-        string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
-        string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
-        string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
-        string TestInstructionName = 4; // TestInstruction Name, set by Client system
-        uint32 MajorVersionNumber = 5; // Major Version Number
-        uint32 MinorVersionNumber = 6; // Minor Version Number
-        google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
-        google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
-        TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
-        string ExecutionErrorMessage = 10; // Any Error message for the TestInstruction execution
-    }
-
-    message TestInstructionExecutionDetailsMessage {
-
-        repeated string ExecutionLogPosts = 1; //
-    }
 }
+
 
 
 

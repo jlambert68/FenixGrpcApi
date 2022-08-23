@@ -39,6 +39,7 @@ enum    ProcessingCapabilityForClientSystemEnum {
   STOP_SEND_NEW_EXECUTION_TASKS = 2; // Stopp sending new tasks for execution
 }
 
+// Each log post row is classified with the following
 enum LogPostStatusEnum {
   INFO = 0; // The Log-post row is of Information Type
   WARNING = 1; // The Log-post row is of Warning Type, to inform user that something is not like it should
