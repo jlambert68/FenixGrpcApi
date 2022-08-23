@@ -8,17 +8,25 @@ import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrp
 
 
 
-
-
-message CompleteTestInstructionExecutionResultMessage {
+// This message is sent from Client System, to Fenix Execution Server, when a TestExecution has stopped executed, and the result is final (OK or not OK result)
+message FinalTestInstructionExecutionResultMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; // The final status for the TestInstruction-execution
 
 }
 
+// This message is sent from Client System, to Fenix Execution Server, during a TestExecution before it has stopped executed, and the result is not finished (OK or not OK result)
+message CurrentTestInstructionExecutionResultMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 2; // The current status for the TestInstruction-execution
+}
 
+
+// This message is a log post message that can be sent any time from Client System to Fenix Execution Server
 message LogPostsMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
-
+  repeated LogPostMessage LogPosts = 2; // The container containing the actual log information
 
   message LogPostMessage {
     google.protobuf.Timestamp LogPostTimeStamp = 1; // The TimeStamp for the specific log post

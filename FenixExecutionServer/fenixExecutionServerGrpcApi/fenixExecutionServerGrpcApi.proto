@@ -4,7 +4,7 @@ option go_package = "./go_grpc_api";
 option csharp_namespace = "ExecutionServerGrpc";
 
 import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_GeneralMessagesAndEnums.proto";
-
+import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_Messages.proto";
 
 
 // ****************************************************************************************************
@@ -19,29 +19,27 @@ service FenixExecutionServerGrpcServices {
   }
 
 
-  // ************************ xxx ************************
+  // *** Client inform Server of Clients status and capability ***
 
-  // *** Report to Execution Server ***
+  // Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
+  rpc ReportProcessingCapability (ProcessingCapabilityMessage) returns (AckNackResponse) {
+  }
 
-  // When a TestInstruction has been fully executed the Client use this to inform the results of the execution to the Server
-  rpc ReportCompleteTestInstructionExecutionResult (CompleteTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+
+  // ************************ Execution Status ************************
+
+  // When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
+  rpc ReportCompleteTestInstructionExecutionResult (FinalTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+  // During a TestInstruction execution the Client use this to inform the current of the execution result to the Server
+  rpc ReportCurrentTestInstructionExecutionResult (stream CurrentTestInstructionExecutionResultMessage) returns (AckNackResponse) {
   }
 
   // During the execution the Client can send log information that can be shown to the user
-  rpc SendLogPostForExecution(LogPostMessage) returns (AckNackResponse) {
+  rpc SendLogPostForExecution(stream LogPostsMessage) returns (AckNackResponse) {
   }
 
-
-    // *** Client inform Server of Clients status ***
-
-  // Client can inform Server of Client capability to execute requests in parallell
-    rpc ReportProcessingCapability (ProcessingCapabilityMessage) returns (AckNackResponse) {
-    }
-
-
-  // xxxxx
-  rpc xxxx (xxxx) returns (x) {
-  }
 
 
 }

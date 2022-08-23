@@ -22,16 +22,6 @@ enum ErrorCodesEnum {
   ERROR_DATABASE_PROBLEM = 4;
 }
 
-// Execution Enum for a TestCase Execution
-enum TestCaseExecutionStatusEnum {
-  TCE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
-  TCE_EXECUTING = 1; // TestCase is execution
-  TCE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
-  TCE_FINISHED_OK = 3; // Finnish as expected to TestCase definition
-  TCE_FINISHED_NOT_OK = 4; // Finnish with errors in validations
-  TCE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
-}
-
 // Execution Enum for a TestInstruction Execution
 enum TestInstructionExecutionStatusEnum {
   TIE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
@@ -42,84 +32,13 @@ enum TestInstructionExecutionStatusEnum {
   TIE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
 }
 
-// How a Client is able to process requests in serial or parallell
+// How a Client is able to process requests in serial or parallell, regarding TestInstructions, TestCases and/or TestSuites
 enum    ProcessingCapabilityForClientSystemEnum {
   CAN_PROCESS_IN_PARALLELL = 0; // Can be processed in parallell, by the Client system
   CAN_ONLY_PROCESS_IN_SERIAL = 1; // Can only be processed in serial, by the Client system
+  STOP_SEND_NEW_EXECUTION_TASKS = 2; // Stopp sending new tasks for execution
 }
 
-// How a TestInstructionContainer is processed
-enum TestInstructionContainerExecutionTypeEnum {
-  PARALLELLED_PROCESSED = 0; // Children in container is parallelled processed
-  SERIAL_PROCESSED = 1; // Children in container is serial processed
-}
-
-// TestInstructionContainer Child Type
-enum TestInstructionContainerChildTypeEnum {
-  TESTINSTRUCTION = 0; // Child os of type TestInstruction
-  TESTINSTRUCTIONCONTAINER = 1; // Child os of type TestInstructionContainer
-}
-
-// All TestCaseModel-elements
-enum TestCaseModelElementTypeEnum {
-  B0_BOND = 0; // Bond with zero connection. This is the base for any TestCase: "B0"
-  B1f_BOND_NONE_SWAPPABLE = 1; // Bond with one connection. Use for starting a TestCase and is only found in pre-created TestInstructionContainers
-  B1l_BOND_NONE_SWAPPABLE = 2; // Bond with one connection. Use for ending a TestCase and is only found in pre-created TestInstructionContainers
-  B10_BOND = 3; // Bond with zero connections which appear as an element in a new TestInstructionContainer without any other elements
-  B11f_BOND = 4; // Bond with one connection which appear as first element inside a TestInstructionContainer
-  B11l_BOND = 5; // Bond with one connection which appear as last element inside a TestInstructionContainer
-  B12_BOND = 6; // Bond with two connections which connects TestInstructions or TestInstructionContainers
-  B10oxo_BOND = 7; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11fx-n-B11lx).
-  B10ox_BOND = 8; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11fx-n-B11l).
-  B10xo_BOND = 9; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11f-n-B11lx).
-  B11fx_BOND_NONE_SWAPPABLE = 10; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) structure.
-  B11lx_BOND_NONE_SWAPPABLE = 11; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers after(last) structure.
-  B12x_BOND_NONE_SWAPPABLE = 12; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
-  TI_TESTINSTRUCTION = 13; // TestInstruction
-  TIx_TESTINSTRUCTION_NONE_REMOVABLE = 14; // A standard TestInstruction which can not be removed or swapped out by the user
-  TIC_TESTINSTRUCTIONCONTAINER = 15; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
-  TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 16; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
-}
-
-// Presentation Names for above TestCaseModel-elements. When presenting then name only the part to left of "_" should presented
-enum TestCaseModelElementPresentationNameEnum {
-  B0_ = 0; // Presentation name for 'B0_BOND'. Only Present 'B0'
-  B1_01 = 1; // Presentation name for 'B1f_BOND_NONE_SWAPPABLE'. Only Present 'B1'
-  B1_02 = 2; // Presentation name for 'B1l_BOND_NONE_SWAPPABLE'. Only Present 'B1'
-  B10_ = 3; // Presentation name for 'B10_BOND'. Only Present 'B10'
-  B11_1 = 4; // Presentation name for 'B11f_BOND'. Only Present 'B11'
-  B11_2 = 5; // Presentation name for 'B11l_BOND'. Only Present 'B11'
-  B12_ = 6; // Presentation name for 'B12_BOND'. Only Present 'B12'
-  B10x_1 = 7; //Presentation name for 'B10oxo_BOND'. Only Present 'B10x'
-  B10x_2 = 8; // Presentation name for 'B10ox_BOND'. Only Present 'B10x'
-  B10x_3 = 9; // Presentation name for 'B10xo_BOND'. Only Present 'B10x'
-  B11x_1 = 10; // Presentation name for 'B11fx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
-  B11x_2 = 11; // Presentation name for 'B11lx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
-  B12x_ = 12; // Presentation name for 'B12x_BOND_NONE_SWAPPABLE'. Only Present 'B12x'
-  TI_ = 13; // Presentation name for 'TI_TESTINSTRUCTION'. Only Present 'TI'
-  TIx_ = 14; // Presentation name for 'TIx_TESTINSTRUCTION_NONE_REMOVABLE'. Only Present 'TIx'
-  TIC_ = 15; // Presentation name for 'TIC_TESTINSTRUCTIONCONTAINER'. Only Present 'TIC(...)'
-  TICx_ = 16; // Presentation name for 'TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE'. Only Present 'TICx(...)'
-}
-
-// All different commands that can be used to change  TestCase-Model
-enum TestCaseCommandTypeEnum {
-  NEW_TESTCASE = 0; //NewTestCase(). Creates a new TestCase
-  REMOVE_ELEMENT = 1; // RemoveElement(ElementUuidToBeRemoved). Remove an element from the TestCase
-  SWAP_OUT_ELEMENT_FOR_NEW_ELEMENT = 2; // SwapOutElementForNewElement(ElementUuidTobeSwappedOut, NewElementUuidTobeSwappedIn). Swap in a new element instead of an existing
-  COPY_ELEMENT = 3; // CopyElement(ElementUuid). Create a copy of an element and place it in the copy-buffer
-  SWAP_OUT_ELEMENT_FOR_COPY_BUFFER_ELEMENT = 4; // SwapOutElementForCopyBufferElement(ElementUuidTobeSwappedOut, CopyBufferElementUuidTobeSwappedIn). Swap in a copy of the element that exist in the copy buffer
-  CUT_ELEMENT = 5; // CopyElement(ElementUuid). Cut out an element and place in the cut buffer
-  SWAP_OUT_ELEMENT_FOR_CUT_BUFFER_ELEMENT = 6; // SwapOutElementForCutBufferElement(ElementUuidTobeSwappedOut, CutBufferElementUuidTobeSwappedIn). Swap in the element that exist in the cut buffer
-}
-
-// The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
-enum TestInstructionAttributeTypeEnum {
-  TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
-  COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
-  FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
-  FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
-}
 
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
@@ -144,21 +63,3 @@ message ClientSystemIdentificationMessage {
   CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
 }
 
-// ****************************************************************************************************
-// Client Identification Message
-
-// Message Holding information about who is the calling client
-message UserIdentificationMessage {
-  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
-}
-
-// ****************************************************************************************************
-// TestInstructionContainerChildrenMessage
-//TODO *** IS NOT USED AT THE MOMENT ***
-// *** IS NOT USED AT THE MOMENT ***
-//Message holding one child and its type (TestInstruction or TestInstructionContainer)
-message TestInstructionContainerChildMessage {
-  string TestInstructionContainerChildUuid = 1; // The UUID for the child, can be from a TestInstruction or a TestInstructionContainer
-  TestInstructionContainerChildTypeEnum TestInstructionContainerChildType = 2; // The type of the child, 'TestInstruction' or 'TestInstructionContainer'
-}// *** IS NOT USED AT THE MOMENT ***
