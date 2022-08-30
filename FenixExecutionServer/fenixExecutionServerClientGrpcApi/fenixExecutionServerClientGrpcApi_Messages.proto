@@ -30,7 +30,7 @@ message ProcessTestInstructionExecutionRequest {
 message ProcessTestInstructionExecutionResponse {
   AckNackResponse AckNackResponse = 1;
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-  google.protobuf.Timestamp ExpectedExecutionDuration = 3;
+  google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
 
 }
 

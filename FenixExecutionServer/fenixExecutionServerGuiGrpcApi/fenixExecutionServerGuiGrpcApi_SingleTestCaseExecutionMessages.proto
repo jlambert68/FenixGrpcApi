@@ -32,9 +32,7 @@ message ListAllSingleTestCaseExecutionsRequest {
 
 // Message holding the response all Single TestCase Executions for specific Domains and DateTime-span
 message ListAllSingleTestCaseExecutionsResponse{
-
   repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // The Basic information regarding the TestCase-Execution
-
 }
 // One single TestCase Execution Summary
 message SingleTestCaseExecutionSummaryMessage {
@@ -82,7 +80,6 @@ message GetSingleTestCaseExecutionResponse {
     string ExecutionErrorMessage = 10; // Any Error message for the TestInstruction execution
   }
 
-
   // All log post for the TestInstruction-execution
   message TestInstructionExecutionDetailsMessage {
     repeated LogPostMessage ExecutionLogPosts = 1; // All log post rows for the TestInstruction-execution
@@ -99,7 +96,6 @@ message GetSingleTestCaseExecutionResponse {
       string ExpectedValue = 2; // The value that was expected
     }
   }
-
 }
 
 
