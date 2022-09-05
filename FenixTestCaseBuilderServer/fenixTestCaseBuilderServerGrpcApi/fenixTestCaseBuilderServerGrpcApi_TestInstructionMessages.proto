@@ -216,19 +216,23 @@ message ImmatureTestInstructionAttributesMessage {
 
   // Message holding one Attribute for one TestInstruction
   message TestInstructionAttributeMessage {
-      string TestInstructionAttributeUuid = 1; // The unique uuid for the TestInstructionAttribute, set by plugin
-      string TestInstructionAttributeName = 2; // The name of the TestInstructionAttribute
-      string TestInstructionAttributeTypeUuid = 3; // The unique uuid for the TestInstructionAttribute-type
-      string TestInstructionAttributeTypeName = 4; // The name for the TestInstructionAttribute-type, used to group attributes in GUI
-      string TestInstructionAttributeDescription = 5; // The description of the TestInstructionAttribute
-      string TestInstructionAttributeMouseOver = 6; // The mouse over text for the TestInstructionAttribute
-      bool TestInstructionAttributeVisible = 7; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
-      bool TestInstructionAttributeEnable = 8; // Should the TestInstructionAttribute be enabled or not
-      bool TestInstructionAttributeMandatory = 9; // Should the TestInstructionAttribute be mandatory or not
-      bool TestInstructionAttributeVisibleInTestCaseArea = 10; // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
-      bool TestInstructionAttributeIsDeprecated = 11; // Indicates that this TestInstruction attribute shouldn't be used anymore
-      string TestInstructionAttributeValueAsString = 12; // The string representation of the value for the attribute
-      string TestInstructionAttributeValueUuid = 13; // The UUID for the value, when Combobox is used
+    string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
+    string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
+    string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
+    string TestInstructionName = 4; // TestInstruction Name, set by Client system
+      string TestInstructionAttributeUuid = 5; // The unique uuid for the TestInstructionAttribute, set by plugin
+      string TestInstructionAttributeName = 6; // The name of the TestInstructionAttribute
+      string TestInstructionAttributeTypeUuid = 7; // The unique uuid for the TestInstructionAttribute-type
+      string TestInstructionAttributeTypeName = 8; // The name for the TestInstructionAttribute-type, used to group attributes in GUI
+      string TestInstructionAttributeDescription = 9; // The description of the TestInstructionAttribute
+      string TestInstructionAttributeMouseOver = 10; // The mouse over text for the TestInstructionAttribute
+      bool TestInstructionAttributeVisible = 11; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
+      bool TestInstructionAttributeEnable = 12; // Should the TestInstructionAttribute be enabled or not
+      bool TestInstructionAttributeMandatory = 13; // Should the TestInstructionAttribute be mandatory or not
+      bool TestInstructionAttributeVisibleInTestCaseArea = 14; // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
+      bool TestInstructionAttributeIsDeprecated = 15; // Indicates that this TestInstruction attribute shouldn't be used anymore
+      string TestInstructionAttributeValueAsString = 16; // The string representation of the value for the attribute
+      string TestInstructionAttributeValueUuid = 17; // The UUID for the value, when Combobox is used
     }
 
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
