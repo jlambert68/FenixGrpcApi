@@ -233,6 +233,7 @@ message ImmatureTestInstructionAttributesMessage {
       bool TestInstructionAttributeIsDeprecated = 15; // Indicates that this TestInstruction attribute shouldn't be used anymore
       string TestInstructionAttributeValueAsString = 16; // The string representation of the value for the attribute
       string TestInstructionAttributeValueUuid = 17; // The UUID for the value, when Combobox is used
+      string TestInstructionAttributeUIType = 18; // The type that should be presented in GUI, TEXTBOX, COMBOBOX....
     }
 
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
