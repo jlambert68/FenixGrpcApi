@@ -228,7 +228,7 @@ message ImmatureTestInstructionAttributesMessage {
       bool TestInstructionAttributeVisibleInTestCaseArea = 10; // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
       bool TestInstructionAttributeIsDeprecated = 11; // Indicates that this TestInstruction attribute shouldn't be used anymore
       string TestInstructionAttributeValueAsString = 12; // The string representation of the value for the attribute
-      string TestInstructionValueUuid = 13; // The UUID for the value, when Combobox is used
+      string TestInstructionAttributeValueUuid = 13; // The UUID for the value, when Combobox is used
     }
 
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
