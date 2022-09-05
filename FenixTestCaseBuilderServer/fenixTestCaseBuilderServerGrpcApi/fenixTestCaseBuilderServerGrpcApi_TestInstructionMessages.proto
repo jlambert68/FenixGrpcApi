@@ -231,4 +231,6 @@ message ImmatureTestInstructionAttributesMessage {
       string TestInstructionValueUuid = 13; // The UUID for the value, when Combobox is used
     }
 
+  AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+
 }
