@@ -26,6 +26,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
 	// The TestCase Builder asks for all Bonds-elements that can be used in the TestCase-model
 	ListAllAvailableBonds(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ImmatureBondsMessage, error)
+	// The TestCase Builder asks for all TestInstructionAttributes for all  attributes
+	ListAllImmatureTestInstructionAttributes(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ImmatureTestInstructionAttributesMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
 	SaveAllPinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
@@ -82,6 +84,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailablePinnedTes
 func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllAvailableBonds(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ImmatureBondsMessage, error) {
 	out := new(ImmatureBondsMessage)
 	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailableBonds", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllImmatureTestInstructionAttributes(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ImmatureTestInstructionAttributesMessage, error) {
+	out := new(ImmatureTestInstructionAttributesMessage)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllImmatureTestInstructionAttributes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -195,6 +206,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers(context.Context, *UserIdentificationMessage) (*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage, error)
 	// The TestCase Builder asks for all Bonds-elements that can be used in the TestCase-model
 	ListAllAvailableBonds(context.Context, *UserIdentificationMessage) (*ImmatureBondsMessage, error)
+	// The TestCase Builder asks for all TestInstructionAttributes for all  attributes
+	ListAllImmatureTestInstructionAttributes(context.Context, *UserIdentificationMessage) (*ImmatureTestInstructionAttributesMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
 	SaveAllPinnedTestInstructionsAndTestInstructionContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error)
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
@@ -229,6 +242,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailabl
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllAvailableBonds(context.Context, *UserIdentificationMessage) (*ImmatureBondsMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllAvailableBonds not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllImmatureTestInstructionAttributes(context.Context, *UserIdentificationMessage) (*ImmatureTestInstructionAttributesMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllImmatureTestInstructionAttributes not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllPinnedTestInstructionsAndTestInstructionContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveAllPinnedTestInstructionsAndTestInstructionContainers not implemented")
@@ -336,6 +352,24 @@ func _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableBonds_Handler(srv i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllAvailableBonds(ctx, req.(*UserIdentificationMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixTestCaseBuilderServerGrpcServices_ListAllImmatureTestInstructionAttributes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserIdentificationMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllImmatureTestInstructionAttributes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllImmatureTestInstructionAttributes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllImmatureTestInstructionAttributes(ctx, req.(*UserIdentificationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -509,6 +543,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAllAvailableBonds",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllAvailableBonds_Handler,
+		},
+		{
+			MethodName: "ListAllImmatureTestInstructionAttributes",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllImmatureTestInstructionAttributes_Handler,
 		},
 		{
 			MethodName: "SaveAllPinnedTestInstructionsAndTestInstructionContainers",

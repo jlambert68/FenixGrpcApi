@@ -445,6 +445,54 @@ func (x *MatureTestInstructionInformationMessage) GetTestInstructionAttributesLi
 	return nil
 }
 
+//  Message holding all attribute data for all Immature TestInstructions
+type ImmatureTestInstructionAttributesMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestInstructionAttributesList []*ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage `protobuf:"bytes,1,rep,name=TestInstructionAttributesList,proto3" json:"TestInstructionAttributesList,omitempty"` // All attributes that belongs to all TestInstructions
+}
+
+func (x *ImmatureTestInstructionAttributesMessage) Reset() {
+	*x = ImmatureTestInstructionAttributesMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ImmatureTestInstructionAttributesMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImmatureTestInstructionAttributesMessage) ProtoMessage() {}
+
+func (x *ImmatureTestInstructionAttributesMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImmatureTestInstructionAttributesMessage.ProtoReflect.Descriptor instead.
+func (*ImmatureTestInstructionAttributesMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ImmatureTestInstructionAttributesMessage) GetTestInstructionAttributesList() []*ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage {
+	if x != nil {
+		return x.TestInstructionAttributesList
+	}
+	return nil
+}
+
 // Message holding one Mature TestInstruction which exist in a TestCase
 type MatureTestInstructionsMessage_MatureTestInstructionMessage struct {
 	state         protoimpl.MessageState
@@ -458,7 +506,7 @@ type MatureTestInstructionsMessage_MatureTestInstructionMessage struct {
 func (x *MatureTestInstructionsMessage_MatureTestInstructionMessage) Reset() {
 	*x = MatureTestInstructionsMessage_MatureTestInstructionMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[7]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -471,7 +519,7 @@ func (x *MatureTestInstructionsMessage_MatureTestInstructionMessage) String() st
 func (*MatureTestInstructionsMessage_MatureTestInstructionMessage) ProtoMessage() {}
 
 func (x *MatureTestInstructionsMessage_MatureTestInstructionMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[7]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -525,7 +573,7 @@ type BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage s
 func (x *BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage) Reset() {
 	*x = BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[8]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -538,7 +586,7 @@ func (x *BasicTestInstructionInformationMessage_NonEditableBasicInformationMessa
 func (*BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage) ProtoMessage() {}
 
 func (x *BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[8]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -658,7 +706,7 @@ type BasicTestInstructionInformationMessage_EditableBasicInformationMessage stru
 func (x *BasicTestInstructionInformationMessage_EditableBasicInformationMessage) Reset() {
 	*x = BasicTestInstructionInformationMessage_EditableBasicInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[9]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -671,7 +719,7 @@ func (x *BasicTestInstructionInformationMessage_EditableBasicInformationMessage)
 func (*BasicTestInstructionInformationMessage_EditableBasicInformationMessage) ProtoMessage() {}
 
 func (x *BasicTestInstructionInformationMessage_EditableBasicInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[9]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -713,7 +761,7 @@ type BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage str
 func (x *BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage) Reset() {
 	*x = BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[10]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -726,7 +774,7 @@ func (x *BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage
 func (*BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage) ProtoMessage() {}
 
 func (x *BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[10]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -766,7 +814,7 @@ type ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage struct {
 func (x *ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage) Reset() {
 	*x = ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[11]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -779,7 +827,7 @@ func (x *ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage) Str
 func (*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage) ProtoMessage() {}
 
 func (x *ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[11]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -853,7 +901,7 @@ type ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZone
 func (x *ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage) Reset() {
 	*x = ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[12]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -867,7 +915,7 @@ func (*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZo
 }
 
 func (x *ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[12]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -935,7 +983,7 @@ type MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformati
 func (x *MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage) Reset() {
 	*x = MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[13]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -949,7 +997,7 @@ func (*MatureTestInstructionInformationMessage_MatureBasicTestInstructionInforma
 }
 
 func (x *MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[13]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1024,7 +1072,7 @@ type MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage
 func (x *MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage) Reset() {
 	*x = MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[14]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1037,7 +1085,7 @@ func (x *MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMes
 func (*MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage) ProtoMessage() {}
 
 func (x *MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[14]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1108,7 +1156,7 @@ type MatureTestInstructionInformationMessage_TestInstructionAttributeMessage str
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage) Reset() {
 	*x = MatureTestInstructionInformationMessage_TestInstructionAttributeMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[15]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1121,7 +1169,7 @@ func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage
 func (*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage) ProtoMessage() {}
 
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[15]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1173,7 +1221,7 @@ type MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_Bas
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage) Reset() {
 	*x = MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[16]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1187,7 +1235,7 @@ func (*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_B
 }
 
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[16]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1301,7 +1349,7 @@ type MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_Att
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage) Reset() {
 	*x = MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[17]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1315,7 +1363,7 @@ func (*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_A
 }
 
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[17]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1370,7 +1418,7 @@ type MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_Att
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty) Reset() {
 	*x = MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[18]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1384,7 +1432,7 @@ func (*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_A
 }
 
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[18]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1468,7 +1516,7 @@ type MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_Att
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty) Reset() {
 	*x = MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[19]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1482,7 +1530,7 @@ func (*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_A
 }
 
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[19]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1569,7 +1617,7 @@ type MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_Att
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty) Reset() {
 	*x = MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[20]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1583,7 +1631,7 @@ func (*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_A
 }
 
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[20]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1623,6 +1671,150 @@ func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage
 func (x *MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty) GetTestInstructionAttributeFileReferenceName() string {
 	if x != nil {
 		return x.TestInstructionAttributeFileReferenceName
+	}
+	return ""
+}
+
+// Message holding one Attribute for one TestInstruction
+type ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestInstructionAttributeUuid                  string `protobuf:"bytes,1,opt,name=TestInstructionAttributeUuid,proto3" json:"TestInstructionAttributeUuid,omitempty"`                                     // The unique uuid for the TestInstructionAttribute, set by plugin
+	TestInstructionAttributeName                  string `protobuf:"bytes,2,opt,name=TestInstructionAttributeName,proto3" json:"TestInstructionAttributeName,omitempty"`                                     // The name of the TestInstructionAttribute
+	TestInstructionAttributeTypeUuid              string `protobuf:"bytes,3,opt,name=TestInstructionAttributeTypeUuid,proto3" json:"TestInstructionAttributeTypeUuid,omitempty"`                             // The unique uuid for the TestInstructionAttribute-type
+	TestInstructionAttributeTypeName              string `protobuf:"bytes,4,opt,name=TestInstructionAttributeTypeName,proto3" json:"TestInstructionAttributeTypeName,omitempty"`                             // The name for the TestInstructionAttribute-type, used to group attributes in GUI
+	TestInstructionAttributeDescription           string `protobuf:"bytes,5,opt,name=TestInstructionAttributeDescription,proto3" json:"TestInstructionAttributeDescription,omitempty"`                       // The description of the TestInstructionAttribute
+	TestInstructionAttributeMouseOver             string `protobuf:"bytes,6,opt,name=TestInstructionAttributeMouseOver,proto3" json:"TestInstructionAttributeMouseOver,omitempty"`                           // The mouse over text for the TestInstructionAttribute
+	TestInstructionAttributeVisible               bool   `protobuf:"varint,7,opt,name=TestInstructionAttributeVisible,proto3" json:"TestInstructionAttributeVisible,omitempty"`                              // Should the TestInstructionAttribute be visible in attributes list in GUI or not
+	TestInstructionAttributeEnable                bool   `protobuf:"varint,8,opt,name=TestInstructionAttributeEnable,proto3" json:"TestInstructionAttributeEnable,omitempty"`                                // Should the TestInstructionAttribute be enabled or not
+	TestInstructionAttributeMandatory             bool   `protobuf:"varint,9,opt,name=TestInstructionAttributeMandatory,proto3" json:"TestInstructionAttributeMandatory,omitempty"`                          // Should the TestInstructionAttribute be mandatory or not
+	TestInstructionAttributeVisibleInTestCaseArea bool   `protobuf:"varint,10,opt,name=TestInstructionAttributeVisibleInTestCaseArea,proto3" json:"TestInstructionAttributeVisibleInTestCaseArea,omitempty"` // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
+	TestInstructionAttributeIsDeprecated          bool   `protobuf:"varint,11,opt,name=TestInstructionAttributeIsDeprecated,proto3" json:"TestInstructionAttributeIsDeprecated,omitempty"`                   // Indicates that this TestInstruction attribute shouldn't be used anymore
+	TestInstructionAttributeValueAsString         string `protobuf:"bytes,12,opt,name=TestInstructionAttributeValueAsString,proto3" json:"TestInstructionAttributeValueAsString,omitempty"`                  // The string representation of the value for the attribute
+	TestInstructionValueUuid                      string `protobuf:"bytes,13,opt,name=TestInstructionValueUuid,proto3" json:"TestInstructionValueUuid,omitempty"`                                            // The UUID for the value, when Combobox is used
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) Reset() {
+	*x = ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) ProtoMessage() {}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage.ProtoReflect.Descriptor instead.
+func (*ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_rawDescGZIP(), []int{7, 0}
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeUuid() string {
+	if x != nil {
+		return x.TestInstructionAttributeUuid
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeName() string {
+	if x != nil {
+		return x.TestInstructionAttributeName
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeTypeUuid() string {
+	if x != nil {
+		return x.TestInstructionAttributeTypeUuid
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeTypeName() string {
+	if x != nil {
+		return x.TestInstructionAttributeTypeName
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeDescription() string {
+	if x != nil {
+		return x.TestInstructionAttributeDescription
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeMouseOver() string {
+	if x != nil {
+		return x.TestInstructionAttributeMouseOver
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeVisible() bool {
+	if x != nil {
+		return x.TestInstructionAttributeVisible
+	}
+	return false
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeEnable() bool {
+	if x != nil {
+		return x.TestInstructionAttributeEnable
+	}
+	return false
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeMandatory() bool {
+	if x != nil {
+		return x.TestInstructionAttributeMandatory
+	}
+	return false
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeVisibleInTestCaseArea() bool {
+	if x != nil {
+		return x.TestInstructionAttributeVisibleInTestCaseArea
+	}
+	return false
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeIsDeprecated() bool {
+	if x != nil {
+		return x.TestInstructionAttributeIsDeprecated
+	}
+	return false
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionAttributeValueAsString() string {
+	if x != nil {
+		return x.TestInstructionAttributeValueAsString
+	}
+	return ""
+}
+
+func (x *ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage) GetTestInstructionValueUuid() string {
+	if x != nil {
+		return x.TestInstructionValueUuid
 	}
 	return ""
 }
@@ -2245,8 +2437,88 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x29, 0x54, 0x65,
 	0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74,
 	0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x66, 0x65, 0x72, 0x65,
-	0x6e, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f,
-	0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0xee, 0x09, 0x0a, 0x28, 0x49, 0x6d, 0x6d, 0x61,
+	0x74, 0x75, 0x72, 0x65, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x12, 0xb1, 0x01, 0x0a, 0x1d, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73,
+	0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
+	0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x6b, 0x2e, 0x66,
+	0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c,
+	0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69,
+	0x2e, 0x49, 0x6d, 0x6d, 0x61, 0x74, 0x75, 0x72, 0x65, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73,
+	0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
+	0x65, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x1d, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62,
+	0x75, 0x74, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x1a, 0x8d, 0x08, 0x0a, 0x1f, 0x54, 0x65, 0x73,
+	0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x42, 0x0a, 0x1c,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x55, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x55, 0x75, 0x69, 0x64,
+	0x12, 0x42, 0x0a, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x4e, 0x61, 0x6d, 0x65,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74,
+	0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x4a, 0x0a, 0x20, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74,
+	0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65,
+	0x54, 0x79, 0x70, 0x65, 0x55, 0x75, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x20,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x54, 0x79, 0x70, 0x65, 0x55, 0x75, 0x69, 0x64,
+	0x12, 0x4a, 0x0a, 0x20, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x20, 0x54, 0x65, 0x73, 0x74,
+	0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69,
+	0x62, 0x75, 0x74, 0x65, 0x54, 0x79, 0x70, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x50, 0x0a, 0x23,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x23, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62,
+	0x75, 0x74, 0x65, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x4c,
+	0x0a, 0x21, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x4f,
+	0x76, 0x65, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x21, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62,
+	0x75, 0x74, 0x65, 0x4d, 0x6f, 0x75, 0x73, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x12, 0x48, 0x0a, 0x1f,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x56, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72,
+	0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x56,
+	0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x12, 0x46, 0x0a, 0x1e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x65, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x08, 0x52, 0x1e,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x4c,
+	0x0a, 0x21, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x64, 0x61, 0x74,
+	0x6f, 0x72, 0x79, 0x18, 0x09, 0x20, 0x01, 0x28, 0x08, 0x52, 0x21, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62,
+	0x75, 0x74, 0x65, 0x4d, 0x61, 0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x12, 0x64, 0x0a, 0x2d,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x56, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x49,
+	0x6e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x41, 0x72, 0x65, 0x61, 0x18, 0x0a, 0x20,
+	0x01, 0x28, 0x08, 0x52, 0x2d, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x56, 0x69, 0x73,
+	0x69, 0x62, 0x6c, 0x65, 0x49, 0x6e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x41, 0x72,
+	0x65, 0x61, 0x12, 0x52, 0x0a, 0x24, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x49, 0x73,
+	0x44, 0x65, 0x70, 0x72, 0x65, 0x63, 0x61, 0x74, 0x65, 0x64, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x24, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x49, 0x73, 0x44, 0x65, 0x70, 0x72,
+	0x65, 0x63, 0x61, 0x74, 0x65, 0x64, 0x12, 0x54, 0x0a, 0x25, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x65, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x41, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x18,
+	0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x25, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72,
+	0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x56,
+	0x61, 0x6c, 0x75, 0x65, 0x41, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x12, 0x3a, 0x0a, 0x18,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x56,
+	0x61, 0x6c, 0x75, 0x65, 0x55, 0x75, 0x69, 0x64, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x18,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x56,
+	0x61, 0x6c, 0x75, 0x65, 0x55, 0x75, 0x69, 0x64, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f,
+	0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -2261,7 +2533,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_rawDescData
 }
 
-var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_goTypes = []interface{}{
 	(*ListAllTestInstructionsForSpecificTestCaseRequestMessage)(nil),                                                                                              // 0: fenixTestCaseBuilderServerGrpcApi.ListAllTestInstructionsForSpecificTestCaseRequestMessage
 	(*SaveAllTestInstructionsForSpecificTestCaseRequestMessage)(nil),                                                                                              // 1: fenixTestCaseBuilderServerGrpcApi.SaveAllTestInstructionsForSpecificTestCaseRequestMessage
@@ -2270,59 +2542,62 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	(*BasicTestInstructionInformationMessage)(nil),                                                                                                                // 4: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage
 	(*ImmatureTestInstructionInformationMessage)(nil),                                                                                                             // 5: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage
 	(*MatureTestInstructionInformationMessage)(nil),                                                                                                               // 6: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage
-	(*MatureTestInstructionsMessage_MatureTestInstructionMessage)(nil),                                                                                            // 7: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage
-	(*BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage)(nil),                                                                             // 8: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableBasicInformationMessage
-	(*BasicTestInstructionInformationMessage_EditableBasicInformationMessage)(nil),                                                                                // 9: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.EditableBasicInformationMessage
-	(*BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage)(nil),                                                                               // 10: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.InvisibleBasicInformationMessage
-	(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage)(nil),                                                                                    // 11: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage
-	(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage)(nil),                                      // 12: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributeMessage
-	(*MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage)(nil),                                                                  // 13: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.MatureBasicTestInstructionInformationMessage
-	(*MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage)(nil),                                                                           // 14: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage
-	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage)(nil),                                                                               // 15: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage
-	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage)(nil),                                               // 16: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformationMessage
-	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage)(nil),                                                   // 17: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage
-	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty)(nil),      // 18: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputTextBoxProperty
-	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty)(nil),     // 19: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputComboBoxProperty
-	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty)(nil), // 20: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputFileSelectorProperty
-	(CurrentFenixTestCaseBuilderProtoFileVersionEnum)(0),                                                                                                          // 21: fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
-	(*ImmatureElementModelMessage)(nil),                                                                                                                           // 22: fenixTestCaseBuilderServerGrpcApi.ImmatureElementModelMessage
-	(*timestamppb.Timestamp)(nil),                                                                                                                                 // 23: google.protobuf.Timestamp
-	(TestInstructionAttributeTypeEnum)(0),                                                                                                                         // 24: fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
+	(*ImmatureTestInstructionAttributesMessage)(nil),                                                                                                              // 7: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionAttributesMessage
+	(*MatureTestInstructionsMessage_MatureTestInstructionMessage)(nil),                                                                                            // 8: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage
+	(*BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage)(nil),                                                                             // 9: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableBasicInformationMessage
+	(*BasicTestInstructionInformationMessage_EditableBasicInformationMessage)(nil),                                                                                // 10: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.EditableBasicInformationMessage
+	(*BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage)(nil),                                                                               // 11: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.InvisibleBasicInformationMessage
+	(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage)(nil),                                                                                    // 12: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage
+	(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage)(nil),                                      // 13: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributeMessage
+	(*MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage)(nil),                                                                  // 14: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.MatureBasicTestInstructionInformationMessage
+	(*MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage)(nil),                                                                           // 15: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage
+	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage)(nil),                                                                               // 16: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage
+	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage)(nil),                                               // 17: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformationMessage
+	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage)(nil),                                                   // 18: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage
+	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty)(nil),      // 19: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputTextBoxProperty
+	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty)(nil),     // 20: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputComboBoxProperty
+	(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty)(nil), // 21: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputFileSelectorProperty
+	(*ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage)(nil),                                                                              // 22: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionAttributesMessage.TestInstructionAttributeMessage
+	(CurrentFenixTestCaseBuilderProtoFileVersionEnum)(0),                                                                                                          // 23: fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	(*ImmatureElementModelMessage)(nil),                                                                                                                           // 24: fenixTestCaseBuilderServerGrpcApi.ImmatureElementModelMessage
+	(*timestamppb.Timestamp)(nil),                                                                                                                                 // 25: google.protobuf.Timestamp
+	(TestInstructionAttributeTypeEnum)(0),                                                                                                                         // 26: fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_depIdxs = []int32{
-	21, // 0: fenixTestCaseBuilderServerGrpcApi.ListAllTestInstructionsForSpecificTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
-	21, // 1: fenixTestCaseBuilderServerGrpcApi.SaveAllTestInstructionsForSpecificTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	23, // 0: fenixTestCaseBuilderServerGrpcApi.ListAllTestInstructionsForSpecificTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	23, // 1: fenixTestCaseBuilderServerGrpcApi.SaveAllTestInstructionsForSpecificTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
 	3,  // 2: fenixTestCaseBuilderServerGrpcApi.SaveAllTestInstructionsForSpecificTestCaseRequestMessage.MatureTestInstructions:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
 	4,  // 3: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionMessage.BasicTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage
 	5,  // 4: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionMessage.ImmatureTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage
-	22, // 5: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionMessage.ImmatureSubTestCaseModel:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureElementModelMessage
-	7,  // 6: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructions:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage
-	8,  // 7: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableBasicInformationMessage
-	9,  // 8: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.EditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.EditableBasicInformationMessage
-	10, // 9: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.InvisibleBasicInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.InvisibleBasicInformationMessage
-	11, // 10: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZones:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage
-	13, // 11: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.MatureBasicTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.MatureBasicTestInstructionInformationMessage
-	14, // 12: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage
-	15, // 13: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributesList:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage
-	4,  // 14: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage.BasicTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage
-	6,  // 15: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage.MatureTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage
-	23, // 16: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableBasicInformationMessage.UpdatedTimeStamp:type_name -> google.protobuf.Timestamp
-	12, // 17: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributes:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributeMessage
-	24, // 18: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
-	23, // 19: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	23, // 20: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	23, // 21: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	16, // 22: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformationMessage
-	17, // 23: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage
-	24, // 24: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformationMessage.TestInstructionAttributeType:type_name -> fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
-	18, // 25: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.inputTextBoxProperty:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputTextBoxProperty
-	19, // 26: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.InputComboBoxProperty:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputComboBoxProperty
-	20, // 27: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.InputFileSelectorProperty:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputFileSelectorProperty
-	28, // [28:28] is the sub-list for method output_type
-	28, // [28:28] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	24, // 5: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionMessage.ImmatureSubTestCaseModel:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureElementModelMessage
+	8,  // 6: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructions:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage
+	9,  // 7: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableBasicInformationMessage
+	10, // 8: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.EditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.EditableBasicInformationMessage
+	11, // 9: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.InvisibleBasicInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.InvisibleBasicInformationMessage
+	12, // 10: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZones:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage
+	14, // 11: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.MatureBasicTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.MatureBasicTestInstructionInformationMessage
+	15, // 12: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage
+	16, // 13: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributesList:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage
+	22, // 14: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionAttributesMessage.TestInstructionAttributesList:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionAttributesMessage.TestInstructionAttributeMessage
+	4,  // 15: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage.BasicTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage
+	6,  // 16: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage.MatureTestInstructionMessage.MatureTestInstructionInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage
+	25, // 17: fenixTestCaseBuilderServerGrpcApi.BasicTestInstructionInformationMessage.NonEditableBasicInformationMessage.UpdatedTimeStamp:type_name -> google.protobuf.Timestamp
+	13, // 18: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributes:type_name -> fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributeMessage
+	26, // 19: fenixTestCaseBuilderServerGrpcApi.ImmatureTestInstructionInformationMessage.AvailableDropZoneMessage.DropZonePreSetTestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
+	25, // 20: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	25, // 21: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	25, // 22: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	17, // 23: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformationMessage
+	18, // 24: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage
+	26, // 25: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.BaseAttributeInformationMessage.TestInstructionAttributeType:type_name -> fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
+	19, // 26: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.inputTextBoxProperty:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputTextBoxProperty
+	20, // 27: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.InputComboBoxProperty:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputComboBoxProperty
+	21, // 28: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.InputFileSelectorProperty:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionInformationMessage.TestInstructionAttributeMessage.AttributeInformationMessage.TestInstructionAttributeInputFileSelectorProperty
+	29, // [29:29] is the sub-list for method output_type
+	29, // [29:29] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() {
@@ -2420,7 +2695,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionsMessage_MatureTestInstructionMessage); i {
+			switch v := v.(*ImmatureTestInstructionAttributesMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2432,7 +2707,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage); i {
+			switch v := v.(*MatureTestInstructionsMessage_MatureTestInstructionMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2444,7 +2719,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BasicTestInstructionInformationMessage_EditableBasicInformationMessage); i {
+			switch v := v.(*BasicTestInstructionInformationMessage_NonEditableBasicInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2456,7 +2731,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage); i {
+			switch v := v.(*BasicTestInstructionInformationMessage_EditableBasicInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2468,7 +2743,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage); i {
+			switch v := v.(*BasicTestInstructionInformationMessage_InvisibleBasicInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2480,7 +2755,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage); i {
+			switch v := v.(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2492,7 +2767,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage); i {
+			switch v := v.(*ImmatureTestInstructionInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2504,7 +2779,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage); i {
+			switch v := v.(*MatureTestInstructionInformationMessage_MatureBasicTestInstructionInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2516,7 +2791,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage); i {
+			switch v := v.(*MatureTestInstructionInformationMessage_CreatedAndUpdatedInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2528,7 +2803,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage); i {
+			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2540,7 +2815,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage); i {
+			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_BaseAttributeInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2552,7 +2827,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty); i {
+			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2564,7 +2839,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty); i {
+			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputTextBoxProperty); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2576,7 +2851,31 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputComboBoxProperty); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MatureTestInstructionInformationMessage_TestInstructionAttributeMessage_AttributeInformationMessage_TestInstructionAttributeInputFileSelectorProperty); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ImmatureTestInstructionAttributesMessage_TestInstructionAttributeMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2594,7 +2893,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -39,6 +39,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc ListAllAvailableBonds (UserIdentificationMessage) returns (ImmatureBondsMessage) {
   }
 
+  // The TestCase Builder asks for all TestInstructionAttributes for all  attributes
+  rpc ListAllImmatureTestInstructionAttributes (UserIdentificationMessage) returns (ImmatureTestInstructionAttributesMessage) {
+  }
+
 
   // *** Send data to DB ***
 
