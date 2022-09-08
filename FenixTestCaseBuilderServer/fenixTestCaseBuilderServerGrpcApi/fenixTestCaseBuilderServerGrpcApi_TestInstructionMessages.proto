@@ -65,8 +65,8 @@ message BasicTestInstructionInformationMessage {
   message NonEditableBasicInformationMessage {
     string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
     string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
-    string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
-    string TestInstructionName = 4; // TestInstruction Name, set by Client system
+    string TestInstructionOrignalUuid = 3; // TestInstruction UUID, set by Client system
+    string TestInstructionOriginalName = 4; // TestInstruction Name, set by Client system
     string TestInstructionTypeUuid = 5; // The Type(Group), Uuid, of TestInstruction
     string TestInstructionTypeName = 6; // The Type(Group), Name, of TestInstruction
     bool Deprecated = 7; // Indicates that this TestInstruction shouldn't be used anymore
@@ -113,6 +113,13 @@ message ImmatureTestInstructionInformationMessage {
       string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
       string AttributeValueAsString = 4; // The String-representation of the value
       string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+      AttributeActionCommandEnum AttributeActionCommand = 6; // Decides what to do with Attribute
+
+
+      enum AttributeActionCommandEnum {
+        USE_DROPZONE_VALUE_FOR_ATTRIBUTE = 0; // The Attributes value will be used when adding the TestInstruction to the TestCase-model
+        REMOVE_ATTRIBUTE_FROM_TESTINSTRUCTION = 1; // Removes the attributes from the TestInstruction
+      }
     }
   }
 }
@@ -131,6 +138,7 @@ message MatureTestInstructionInformationMessage {
     string ParentTestInstructionContainerMatureUuid = 4; // A Mature-UUID-reference to TestInstructionContainer where this TestInstruction exists
     string ChosenDropZoneUuid = 5; // The chosen dropzone, UUID, which set the attributes in TestInstruction when it was added to the TestCase
     string ChosenDropZoneName = 6; // The chosen dropzone, Name, which set the attributes in TestInstruction when it was added to the TestCase
+    TestCaseModelElementTypeEnum TestInstructionType = 7; // Is the TestInstruction of TI-type or TIx-type
   }
 
   CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
@@ -220,21 +228,21 @@ message ImmatureTestInstructionAttributesMessage {
     string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
     string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
     string TestInstructionName = 4; // TestInstruction Name, set by Client system
-      string TestInstructionAttributeUuid = 5; // The unique uuid for the TestInstructionAttribute, set by plugin
-      string TestInstructionAttributeName = 6; // The name of the TestInstructionAttribute
-      string TestInstructionAttributeTypeUuid = 7; // The unique uuid for the TestInstructionAttribute-type
-      string TestInstructionAttributeTypeName = 8; // The name for the TestInstructionAttribute-type, used to group attributes in GUI
-      string TestInstructionAttributeDescription = 9; // The description of the TestInstructionAttribute
-      string TestInstructionAttributeMouseOver = 10; // The mouse over text for the TestInstructionAttribute
-      bool TestInstructionAttributeVisible = 11; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
-      bool TestInstructionAttributeEnable = 12; // Should the TestInstructionAttribute be enabled or not
-      bool TestInstructionAttributeMandatory = 13; // Should the TestInstructionAttribute be mandatory or not
-      bool TestInstructionAttributeVisibleInTestCaseArea = 14; // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
-      bool TestInstructionAttributeIsDeprecated = 15; // Indicates that this TestInstruction attribute shouldn't be used anymore
-      string TestInstructionAttributeValueAsString = 16; // The string representation of the value for the attribute
-      string TestInstructionAttributeValueUuid = 17; // The UUID for the value, when Combobox is used
-      string TestInstructionAttributeUIType = 18; // The type that should be presented in GUI, TEXTBOX, COMBOBOX....
-    }
+    string TestInstructionAttributeUuid = 5; // The unique uuid for the TestInstructionAttribute, set by plugin
+    string TestInstructionAttributeName = 6; // The name of the TestInstructionAttribute
+    string TestInstructionAttributeTypeUuid = 7; // The unique uuid for the TestInstructionAttribute-type
+    string TestInstructionAttributeTypeName = 8; // The name for the TestInstructionAttribute-type, used to group attributes in GUI
+    string TestInstructionAttributeDescription = 9; // The description of the TestInstructionAttribute
+    string TestInstructionAttributeMouseOver = 10; // The mouse over text for the TestInstructionAttribute
+    bool TestInstructionAttributeVisible = 11; // Should the TestInstructionAttribute be visible in attributes list in GUI or not
+    bool TestInstructionAttributeEnable = 12; // Should the TestInstructionAttribute be enabled or not
+    bool TestInstructionAttributeMandatory = 13; // Should the TestInstructionAttribute be mandatory or not
+    bool TestInstructionAttributeVisibleInTestCaseArea = 14; // Should the TestInstructionAttribute be visible in TestInstruction at TestCaseModel- Area in GUI or not
+    bool TestInstructionAttributeIsDeprecated = 15; // Indicates that this TestInstruction attribute shouldn't be used anymore
+    string TestInstructionAttributeValueAsString = 16; // The string representation of the value for the attribute
+    string TestInstructionAttributeValueUuid = 17; // The UUID for the value, when Combobox is used
+    string TestInstructionAttributeUIType = 18; // The type that should be presented in GUI, TEXTBOX, COMBOBOX....
+  }
 
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 
