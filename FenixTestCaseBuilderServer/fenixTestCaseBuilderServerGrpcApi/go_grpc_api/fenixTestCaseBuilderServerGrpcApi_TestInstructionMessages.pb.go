@@ -140,7 +140,7 @@ type SaveAllTestInstructionsForSpecificTestCaseRequestMessage struct {
 	UserId                       string                                          `protobuf:"bytes,1,opt,name=UserId,proto3" json:"UserId,omitempty"`                                                                                                                                     // The Users Id, SEB S-id will be used for SEB
 	ProtoFileVersionUsedByClient CurrentFenixTestCaseBuilderProtoFileVersionEnum `protobuf:"varint,2,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 	TestCaseUuid                 string                                          `protobuf:"bytes,3,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                                                                         // The TestCase, UUID, that is TestInstructions belong to
-	MatureTestInstructions       []*MatureTestInstructionsMessage                `protobuf:"bytes,4,rep,name=MatureTestInstructions,proto3" json:"MatureTestInstructions,omitempty"`                                                                                                     // All TestInstructions to be saved
+	MatureTestInstructions       *MatureTestInstructionsMessage                  `protobuf:"bytes,4,opt,name=MatureTestInstructions,proto3" json:"MatureTestInstructions,omitempty"`                                                                                                     // All TestInstructions to be saved
 }
 
 func (x *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) Reset() {
@@ -196,7 +196,7 @@ func (x *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) GetTestCaseUu
 	return ""
 }
 
-func (x *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) GetMatureTestInstructions() []*MatureTestInstructionsMessage {
+func (x *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) GetMatureTestInstructions() *MatureTestInstructionsMessage {
 	if x != nil {
 		return x.MatureTestInstructions
 	}
@@ -1995,7 +1995,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x55, 0x75, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x55, 0x75, 0x69, 0x64,
 	0x12, 0x78, 0x0a, 0x16, 0x4d, 0x61, 0x74, 0x75, 0x72, 0x65, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
-	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x40, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65,
 	0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70,
 	0x63, 0x41, 0x70, 0x69, 0x2e, 0x4d, 0x61, 0x74, 0x75, 0x72, 0x65, 0x54, 0x65, 0x73, 0x74, 0x49,
