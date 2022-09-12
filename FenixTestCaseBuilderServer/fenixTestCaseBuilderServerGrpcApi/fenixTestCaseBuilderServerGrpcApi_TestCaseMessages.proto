@@ -80,6 +80,8 @@ message TestCaseMessage {
   TestCaseModelMessage TestCaseModel = 3; // Hold the model of how the TestCase is constructed
   TestCaseMetaDataMessage TestCaseMetaData = 4; // Holds the metadata for the TestCase, set by the user to classify the TestCase
   TestCaseFilesMessage TestCaseFiles = 5; // All files connected to the TestCase
+
+  UserIdentificationMessage UserIdentification = 6; // Identifies the current user and which proto-file version that is used by client
 }
 
 // ****************************************************************************************************
