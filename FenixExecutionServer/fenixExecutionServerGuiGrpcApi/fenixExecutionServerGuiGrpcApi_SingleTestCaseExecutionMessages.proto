@@ -32,7 +32,7 @@ message ListAllSingleTestCaseExecutionsRequest {
 
 // Message holding the response all Single TestCase Executions for specific Domains and DateTime-span
 message ListAllSingleTestCaseExecutionsResponse{
-  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not.
   repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 2; // The Basic information regarding the TestCase-Execution
 }
 // One single TestCase Execution Summary
