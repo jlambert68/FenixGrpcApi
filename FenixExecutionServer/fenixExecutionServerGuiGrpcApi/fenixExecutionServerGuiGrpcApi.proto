@@ -4,7 +4,7 @@ option go_package = "./go_grpc_api";
 option csharp_namespace = "ExecutionServerGuiGrpc";
 
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
-import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto"
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto";
 
 
 // ****************************************************************************************************
@@ -28,7 +28,8 @@ service FenixExecutionServerGuiGrpcServices {
   }
 
   // Get a single TestCase Execution
-  rpc GetSingleTestCaseExecution (GetSingleTestCaseExecutionRequest) returns (GetSingleTestCaseExecutionResponse)
+  rpc GetSingleTestCaseExecution (GetSingleTestCaseExecutionRequest) returns (GetSingleTestCaseExecutionResponse) {
+  }
 
   // *** Send data to Server ***
 

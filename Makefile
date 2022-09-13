@@ -71,3 +71,37 @@ compileTestCaseGUIServerProto_go:
 compileTestCaseGUIServerProto_csharp:
 	protoc --csharp_out=FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/csharp_grpc_api FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/*.proto
 
+################################################################
+
+compileExecutionGUIServerProto_all: compileExecutionGUIServerProto_go compileExecutionServerProto_go compileExecutionServerClientProto_go
+
+compileExecutionGUIServerProto_go:
+	@echo "Compile ExecutionGUIServer proto file..."
+
+ # generate the messages
+	protoc --go_out=FenixExecutionServer/fenixExecutionServerClientGrpcApi FenixExecutionServer/fenixExecutionServerClientGrpcApi/*.proto
+
+# generate the services
+	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionServerClientGrpcApi FenixExecutionServer/fenixExecutionServerClientGrpcApi/*.proto
+
+
+compileExecutionServerProto_go:
+	@echo "Compile ExecutionServer proto file..."
+
+ # generate the messages
+	protoc --go_out=FenixExecutionServer/fenixExecutionServerGrpcApi FenixExecutionServer/fenixExecutionServerGrpcApi/*.proto
+
+# generate the services
+	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionServerGrpcApi FenixExecutionServer/fenixExecutionServerGrpcApi/*.proto
+
+compileExecutionServerClientProto_go:
+	@echo "Compile ExecutionServerClient proto file..."
+
+ # generate the messages
+	protoc --go_out=FenixExecutionServer/fenixExecutionServerGuiGrpcApi FenixExecutionServer/fenixExecutionServerGuiGrpcApi/*.proto
+
+# generate the services
+	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionServerGuiGrpcApi FenixExecutionServer/fenixExecutionServerGuiGrpcApi/*.proto
+
+
+
