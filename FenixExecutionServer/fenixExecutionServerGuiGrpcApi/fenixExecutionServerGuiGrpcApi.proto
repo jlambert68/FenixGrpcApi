@@ -28,7 +28,7 @@ service FenixExecutionServerGuiGrpcServices {
   }
 
   // List TestCases that is under execution , for specific Domains and DateTimes-span
-  rpc ListTestCasesUnderExecution (ListTestCasesUnderExecutionResponse) returns (ListTestCasesUnderExecutionResponse) {
+  rpc ListTestCasesUnderExecution (ListTestCasesUnderExecutionRequest) returns (ListTestCasesUnderExecutionResponse) {
   }
 
 

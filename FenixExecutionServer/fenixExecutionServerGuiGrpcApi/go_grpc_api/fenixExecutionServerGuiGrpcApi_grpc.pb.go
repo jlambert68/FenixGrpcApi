@@ -23,7 +23,7 @@ type FenixExecutionServerGuiGrpcServicesClient interface {
 	// List TestCases that exists on Execution Queue, for specific Domains and DateTimes-span
 	ListTestCasesOnExecutionQueue(ctx context.Context, in *ListTestCasesInExecutionQueueRequest, opts ...grpc.CallOption) (*ListTestCasesInExecutionQueueResponse, error)
 	// List TestCases that is under execution , for specific Domains and DateTimes-span
-	ListTestCasesUnderExecution(ctx context.Context, in *ListTestCasesUnderExecutionResponse, opts ...grpc.CallOption) (*ListTestCasesUnderExecutionResponse, error)
+	ListTestCasesUnderExecution(ctx context.Context, in *ListTestCasesUnderExecutionRequest, opts ...grpc.CallOption) (*ListTestCasesUnderExecutionResponse, error)
 	// List TestCases that ire finished execution , for specific Domains and DateTimes-span
 	ListTestCasesWithFinishedExecutions(ctx context.Context, in *ListTestCasesWithFinishedExecutionsRequest, opts ...grpc.CallOption) (*ListTestCasesWithFinishedExecutionsResponse, error)
 	// Get a single TestCase Execution
@@ -58,7 +58,7 @@ func (c *fenixExecutionServerGuiGrpcServicesClient) ListTestCasesOnExecutionQueu
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) ListTestCasesUnderExecution(ctx context.Context, in *ListTestCasesUnderExecutionResponse, opts ...grpc.CallOption) (*ListTestCasesUnderExecutionResponse, error) {
+func (c *fenixExecutionServerGuiGrpcServicesClient) ListTestCasesUnderExecution(ctx context.Context, in *ListTestCasesUnderExecutionRequest, opts ...grpc.CallOption) (*ListTestCasesUnderExecutionResponse, error) {
 	out := new(ListTestCasesUnderExecutionResponse)
 	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesUnderExecution", in, out, opts...)
 	if err != nil {
@@ -103,7 +103,7 @@ type FenixExecutionServerGuiGrpcServicesServer interface {
 	// List TestCases that exists on Execution Queue, for specific Domains and DateTimes-span
 	ListTestCasesOnExecutionQueue(context.Context, *ListTestCasesInExecutionQueueRequest) (*ListTestCasesInExecutionQueueResponse, error)
 	// List TestCases that is under execution , for specific Domains and DateTimes-span
-	ListTestCasesUnderExecution(context.Context, *ListTestCasesUnderExecutionResponse) (*ListTestCasesUnderExecutionResponse, error)
+	ListTestCasesUnderExecution(context.Context, *ListTestCasesUnderExecutionRequest) (*ListTestCasesUnderExecutionResponse, error)
 	// List TestCases that ire finished execution , for specific Domains and DateTimes-span
 	ListTestCasesWithFinishedExecutions(context.Context, *ListTestCasesWithFinishedExecutionsRequest) (*ListTestCasesWithFinishedExecutionsResponse, error)
 	// Get a single TestCase Execution
@@ -123,7 +123,7 @@ func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) AreYouAlive(contex
 func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesOnExecutionQueue(context.Context, *ListTestCasesInExecutionQueueRequest) (*ListTestCasesInExecutionQueueResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestCasesOnExecutionQueue not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesUnderExecution(context.Context, *ListTestCasesUnderExecutionResponse) (*ListTestCasesUnderExecutionResponse, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesUnderExecution(context.Context, *ListTestCasesUnderExecutionRequest) (*ListTestCasesUnderExecutionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestCasesUnderExecution not implemented")
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesWithFinishedExecutions(context.Context, *ListTestCasesWithFinishedExecutionsRequest) (*ListTestCasesWithFinishedExecutionsResponse, error) {
@@ -186,7 +186,7 @@ func _FenixExecutionServerGuiGrpcServices_ListTestCasesOnExecutionQueue_Handler(
 }
 
 func _FenixExecutionServerGuiGrpcServices_ListTestCasesUnderExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListTestCasesUnderExecutionResponse)
+	in := new(ListTestCasesUnderExecutionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -198,7 +198,7 @@ func _FenixExecutionServerGuiGrpcServices_ListTestCasesUnderExecution_Handler(sr
 		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesUnderExecution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesUnderExecution(ctx, req.(*ListTestCasesUnderExecutionResponse))
+		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesUnderExecution(ctx, req.(*ListTestCasesUnderExecutionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
