@@ -89,7 +89,7 @@ message TestCaseExecutionBasicInformationMessage {
   string TestCaseName = 9; // The TestCase, Name, set in TestCase-builder
   uint32 TestCaseVersion = 10; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
   string TestCaseExecutionUuid = 11; // The Unique UUID for the TestCase Execution
-  string TestCaseExecutionVersion = 12; // The Unique UUID for the TestCase Execution
+  uint32 TestCaseExecutionVersion = 12; // The Unique UUID for the TestCase Execution
   google.protobuf.Timestamp PlacedOnTestExecutionQueueTimeStamp = 13; // The timestamp when the TestCase was placed on queue for execution
   string TestDataSetUuid = 14; // The UUID for the specific TestDataSet that was used for the Execution
   ExecutionPriorityEnum ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not

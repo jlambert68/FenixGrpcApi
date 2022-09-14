@@ -654,7 +654,7 @@ type TestCaseExecutionBasicInformationMessage struct {
 	TestCaseName                        string                 `protobuf:"bytes,9,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                                                       // The TestCase, Name, set in TestCase-builder
 	TestCaseVersion                     uint32                 `protobuf:"varint,10,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                               // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
 	TestCaseExecutionUuid               string                 `protobuf:"bytes,11,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`                                                    // The Unique UUID for the TestCase Execution
-	TestCaseExecutionVersion            string                 `protobuf:"bytes,12,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                                              // The Unique UUID for the TestCase Execution
+	TestCaseExecutionVersion            uint32                 `protobuf:"varint,12,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                                             // The Unique UUID for the TestCase Execution
 	PlacedOnTestExecutionQueueTimeStamp *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=PlacedOnTestExecutionQueueTimeStamp,proto3" json:"PlacedOnTestExecutionQueueTimeStamp,omitempty"`                        // The timestamp when the TestCase was placed on queue for execution
 	TestDataSetUuid                     string                 `protobuf:"bytes,14,opt,name=TestDataSetUuid,proto3" json:"TestDataSetUuid,omitempty"`                                                                // The UUID for the specific TestDataSet that was used for the Execution
 	ExecutionPriority                   ExecutionPriorityEnum  `protobuf:"varint,15,opt,name=ExecutionPriority,proto3,enum=fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum" json:"ExecutionPriority,omitempty"` // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
@@ -769,11 +769,11 @@ func (x *TestCaseExecutionBasicInformationMessage) GetTestCaseExecutionUuid() st
 	return ""
 }
 
-func (x *TestCaseExecutionBasicInformationMessage) GetTestCaseExecutionVersion() string {
+func (x *TestCaseExecutionBasicInformationMessage) GetTestCaseExecutionVersion() uint32 {
 	if x != nil {
 		return x.TestCaseExecutionVersion
 	}
-	return ""
+	return 0
 }
 
 func (x *TestCaseExecutionBasicInformationMessage) GetPlacedOnTestExecutionQueueTimeStamp() *timestamppb.Timestamp {
@@ -1559,7 +1559,7 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x01, 0x28, 0x09, 0x52, 0x15, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65,
 	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x3a, 0x0a, 0x18, 0x54, 0x65,
 	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56,
-	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x18, 0x54, 0x65,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x18, 0x54, 0x65,
 	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56,
 	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x6c, 0x0a, 0x23, 0x50, 0x6c, 0x61, 0x63, 0x65, 0x64,
 	0x4f, 0x6e, 0x54, 0x65, 0x73, 0x74, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x51,
