@@ -23,9 +23,19 @@ service FenixExecutionServerGuiGrpcServices {
 
   // *** Get data from Server ***
 
-  // List all Single TestCase Executions for specific Domains and DateTimes-span
-  rpc ListAllSingleTestCaseExecutions (ListAllSingleTestCaseExecutionsRequest) returns (ListAllSingleTestCaseExecutionsResponse) {
+  // List TestCases that exists on Execution Queue, for specific Domains and DateTimes-span
+  rpc ListTestCasesOnExecutionQueue (ListTestCasesInExecutionQueueRequest) returns (ListTestCasesInExecutionQueueResponse) {
   }
+
+  // List TestCases that is under execution , for specific Domains and DateTimes-span
+  rpc ListTestCasesUnderExecution (ListTestCasesUnderExecutionResponse) returns (ListTestCasesUnderExecutionResponse) {
+  }
+
+
+  // List TestCases that ire finished execution , for specific Domains and DateTimes-span
+  rpc ListTestCasesWithFinishedExecutions (ListTestCasesWithFinishedExecutionsRequest) returns (ListTestCasesWithFinishedExecutionsResponse) {
+  }
+
 
   // Get a single TestCase Execution
   rpc GetSingleTestCaseExecution (GetSingleTestCaseExecutionRequest) returns (GetSingleTestCaseExecutionResponse) {

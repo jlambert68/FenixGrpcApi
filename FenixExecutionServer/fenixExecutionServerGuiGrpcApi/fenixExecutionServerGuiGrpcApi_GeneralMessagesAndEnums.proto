@@ -52,6 +52,18 @@ enum TestInstructionExecutionStatusEnum {
   TIE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
 }
 
+// Execution priority for TestInstructions, TestCases and TestSuites
+enum ExecutionPriorityEnum {
+  HIGHEST_PROBES = 0; // Only triggered by system that need to trigger probes ');
+  HIGH_SINGLE_TESTCASE = 1; // Used for execution of single TestCases triggered by the user');
+  HIGH_SINGLE_TESTSUITE = 2; // Used for execution of single TestSuite triggered by the user');
+  MEDIUM_MULTIPLE_TESTCASES = 3; // Used for execution of multiple TestCases triggered by the user');
+  MEDIUM_MULTIPLE_TESTSUITES = 4; // Used for execution of Multiple TestSuites triggered by the user');
+  LOW_SCHEDULED_TESTSUITES = 5; //Scheduled Suites use this priority');
+
+}
+
+
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used

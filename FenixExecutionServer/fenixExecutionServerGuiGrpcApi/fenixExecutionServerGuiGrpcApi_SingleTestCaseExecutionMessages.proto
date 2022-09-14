@@ -21,8 +21,8 @@ message InitiateSingleTestCaseExecutionResponseMessage {
 }
 
 
-// Message to be used for requesting all Single TestCase Executions for specific Domains and DateTime-span
-message ListAllSingleTestCaseExecutionsRequest {
+// Message to be used for requesting TestCases waiting to be executed, for specific Domains and DateTime-span
+message ListTestCasesInExecutionQueueRequest {
   UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
   repeated string DomainUuids = 2; // All Domains in request
   google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
@@ -30,25 +30,80 @@ message ListAllSingleTestCaseExecutionsRequest {
 
 }
 
-// Message holding the response all Single TestCase Executions for specific Domains and DateTime-span
-message ListAllSingleTestCaseExecutionsResponse{
+// Message holding the response for TestCases waiting to be executed, for specific Domains and DateTime-span
+message ListTestCasesInExecutionQueueResponse{
   AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
-  repeated SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 2; // The Basic information regarding the TestCase-Execution
+  repeated TestCaseExecutionBasicInformationMessage TestCasesInExecutionQueue = 2; // The Basic information regarding the TestCase-Execution
 }
-// One single TestCase Execution Summary
-message SingleTestCaseExecutionSummaryMessage {
-  string TestCaseExecutionUuid = 1; // The Unique UUID for the TestCase Execution
-  string DomainUuid = 2; // The Domain, UUID, where the TestCase 'has its home'
-  string DomainName = 3; // The Domain, Name, where the TestCase 'has its home'
-  string TestCaseUuid = 4; // The TestCase, UUID, set by TestCase-builder
-  string TestCaseName = 5; // The TestCase, Name, set in TestCase-builder
-  uint32  TestCaseVersion = 6; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
-  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request
-  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request
-  TestCaseExecutionStatusEnum SingleTestCaseExecutionStatus = 9; // The executions status for the testcase
-  string TestDataSetUuid = 10; // The UUID for the specific TestDataSet that was used for the Execution
+
+  // Message to be used for requesting TestCases under execution, for specific Domains and DateTime-span
+message ListTestCasesUnderExecutionRequest {
+  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  repeated string DomainUuids = 2; // All Domains in request
+  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
+  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
 
 }
+
+// Message holding the response for TestCases under execution, for specific Domains and DateTime-span
+message ListTestCasesUnderExecutionResponse{
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestCaseUnderExecutionMessage TestCasesUnderExecution = 2; // The Basic information regarding the TestCase-Execution
+}
+// One single TestCase under Execution Summary
+message TestCaseUnderExecutionMessage {
+  TestCaseExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestCase-Execution
+    TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // Detailed information about the Execution
+}
+
+// Message to be used for requesting TestCase Executions that has been finished , for specific Domains and DateTime-span
+message ListTestCasesWithFinishedExecutionsRequest {
+  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  repeated string DomainUuids = 2; // All Domains in request
+  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
+  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
+
+}
+
+// Message holding the response for TestCases under execution, for specific Domains and DateTime-span
+message ListTestCasesWithFinishedExecutionsResponse{
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestCaseWithFinishedExecutionMessage TestCaseWithFinishedExecution = 2; // The Basic information regarding the TestCase-Execution
+}
+// One single TestCase with finished Execution Summary
+message TestCaseWithFinishedExecutionMessage {
+  TestCaseExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestCase-Execution
+  TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // Detailed information about the Execution
+}
+
+// One single TestCase Execution Summary
+message TestCaseExecutionBasicInformationMessage {
+  string DomainUuid = 1; // The Domain, UUID, where the TestCase 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestCase 'has its home'
+  string TestSuiteUuid = 3; // The TestSuite, UUID, that the TestCase was executed from
+  string TestSuiteName = 4; // The TestSuite, Name, that the TestCase was executed from
+  uint32 TestSuiteVersion = 5; // The TestSuites version number
+  string TestSuiteExecutionUuid = 6; // The Unique UUID for the TestSuite Execution
+  uint32 TestSuiteExecutionVersion = 7; // The TestSuites execution version
+  string TestCaseUuid = 8; // The TestCase, UUID, set by TestCase-builder
+  string TestCaseName = 9; // The TestCase, Name, set in TestCase-builder
+  uint32 TestCaseVersion = 10; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  string TestCaseExecutionUuid = 11; // The Unique UUID for the TestCase Execution
+  string TestCaseExecutionVersion = 12; // The Unique UUID for the TestCase Execution
+  google.protobuf.Timestamp PlacedOnTestExecutionQueueTimeStamp = 13; // The timestamp when the TestCase was placed on queue for execution
+  string TestDataSetUuid = 14; // The UUID for the specific TestDataSet that was used for the Execution
+  uint32 ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
+
+}
+
+message TestCaseExecutionDetailsMessage {
+  google.protobuf.Timestamp ExecutionStartTimeStamp = 16; // The timestamp when the execution was put for execution, not on queue for execution
+  google.protobuf.Timestamp ExecutionStopTimeStamp = 17; // The timestamp when the execution was ended, in anyway
+  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 18; // The status of the ongoing  TestCase execution
+  bool ExecutionHasFinished = 19; // A simple status telling if the execution has ended or not
+}
+
+
 
 // Message holding a request to get a Single TestCase Execution
 message GetSingleTestCaseExecutionRequest {
@@ -58,7 +113,7 @@ message GetSingleTestCaseExecutionRequest {
 
 // Message holding a response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
-  SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // A list of Single TestCase Execution summaries
+  //SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // A list of Single TestCase Execution summaries
   repeated TestInstructionExecutionMessage TestInstructionsExecution = 2; // A list of all TestInstructions and their Execution result
 
   message TestInstructionExecutionMessage{

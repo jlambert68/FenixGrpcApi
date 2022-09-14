@@ -286,6 +286,65 @@ func (LogPostStatusEnum) EnumDescriptor() ([]byte, []int) {
 	return file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_rawDescGZIP(), []int{4}
 }
 
+// Execution priority for TestInstructions, TestCases and TestSuites
+type ExecutionPriorityEnum int32
+
+const (
+	ExecutionPriorityEnum_HIGHEST_PROBES             ExecutionPriorityEnum = 0 // Only triggered by system that need to trigger probes ');
+	ExecutionPriorityEnum_HIGH_SINGLE_TESTCASE       ExecutionPriorityEnum = 1 // Used for execution of single TestCases triggered by the user');
+	ExecutionPriorityEnum_HIGH_SINGLE_TESTSUITE      ExecutionPriorityEnum = 2 // Used for execution of single TestSuite triggered by the user');
+	ExecutionPriorityEnum_MEDIUM_MULTIPLE_TESTCASES  ExecutionPriorityEnum = 3 // Used for execution of multiple TestCases triggered by the user');
+	ExecutionPriorityEnum_MEDIUM_MULTIPLE_TESTSUITES ExecutionPriorityEnum = 4 // Used for execution of Multiple TestSuites triggered by the user');
+	ExecutionPriorityEnum_LOW_SCHEDULED_TESTSUITES   ExecutionPriorityEnum = 5 //Scheduled Suites use this priority');
+)
+
+// Enum value maps for ExecutionPriorityEnum.
+var (
+	ExecutionPriorityEnum_name = map[int32]string{
+		0: "HIGHEST_PROBES",
+		1: "HIGH_SINGLE_TESTCASE",
+		2: "HIGH_SINGLE_TESTSUITE",
+		3: "MEDIUM_MULTIPLE_TESTCASES",
+		4: "MEDIUM_MULTIPLE_TESTSUITES",
+		5: "LOW_SCHEDULED_TESTSUITES",
+	}
+	ExecutionPriorityEnum_value = map[string]int32{
+		"HIGHEST_PROBES":             0,
+		"HIGH_SINGLE_TESTCASE":       1,
+		"HIGH_SINGLE_TESTSUITE":      2,
+		"MEDIUM_MULTIPLE_TESTCASES":  3,
+		"MEDIUM_MULTIPLE_TESTSUITES": 4,
+		"LOW_SCHEDULED_TESTSUITES":   5,
+	}
+)
+
+func (x ExecutionPriorityEnum) Enum() *ExecutionPriorityEnum {
+	p := new(ExecutionPriorityEnum)
+	*p = x
+	return p
+}
+
+func (x ExecutionPriorityEnum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ExecutionPriorityEnum) Descriptor() protoreflect.EnumDescriptor {
+	return file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes[5].Descriptor()
+}
+
+func (ExecutionPriorityEnum) Type() protoreflect.EnumType {
+	return &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes[5]
+}
+
+func (x ExecutionPriorityEnum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ExecutionPriorityEnum.Descriptor instead.
+func (ExecutionPriorityEnum) EnumDescriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_rawDescGZIP(), []int{5}
+}
+
 // Parameter used for Empty inputs, only containing current proto-file version
 type EmptyParameter struct {
 	state         protoimpl.MessageState
@@ -556,7 +615,19 @@ var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGr
 	0x12, 0x0b, 0x0a, 0x07, 0x57, 0x41, 0x52, 0x4e, 0x49, 0x4e, 0x47, 0x10, 0x01, 0x12, 0x11, 0x0a,
 	0x0d, 0x56, 0x41, 0x4c, 0x49, 0x44, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x4f, 0x4b, 0x10, 0x02,
 	0x12, 0x14, 0x0a, 0x10, 0x56, 0x41, 0x4c, 0x49, 0x44, 0x41, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x45,
-	0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x42, 0x25, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67,
+	0x52, 0x52, 0x4f, 0x52, 0x10, 0x03, 0x2a, 0xbd, 0x01, 0x0a, 0x15, 0x45, 0x78, 0x65, 0x63, 0x75,
+	0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x45, 0x6e, 0x75, 0x6d,
+	0x12, 0x12, 0x0a, 0x0e, 0x48, 0x49, 0x47, 0x48, 0x45, 0x53, 0x54, 0x5f, 0x50, 0x52, 0x4f, 0x42,
+	0x45, 0x53, 0x10, 0x00, 0x12, 0x18, 0x0a, 0x14, 0x48, 0x49, 0x47, 0x48, 0x5f, 0x53, 0x49, 0x4e,
+	0x47, 0x4c, 0x45, 0x5f, 0x54, 0x45, 0x53, 0x54, 0x43, 0x41, 0x53, 0x45, 0x10, 0x01, 0x12, 0x19,
+	0x0a, 0x15, 0x48, 0x49, 0x47, 0x48, 0x5f, 0x53, 0x49, 0x4e, 0x47, 0x4c, 0x45, 0x5f, 0x54, 0x45,
+	0x53, 0x54, 0x53, 0x55, 0x49, 0x54, 0x45, 0x10, 0x02, 0x12, 0x1d, 0x0a, 0x19, 0x4d, 0x45, 0x44,
+	0x49, 0x55, 0x4d, 0x5f, 0x4d, 0x55, 0x4c, 0x54, 0x49, 0x50, 0x4c, 0x45, 0x5f, 0x54, 0x45, 0x53,
+	0x54, 0x43, 0x41, 0x53, 0x45, 0x53, 0x10, 0x03, 0x12, 0x1e, 0x0a, 0x1a, 0x4d, 0x45, 0x44, 0x49,
+	0x55, 0x4d, 0x5f, 0x4d, 0x55, 0x4c, 0x54, 0x49, 0x50, 0x4c, 0x45, 0x5f, 0x54, 0x45, 0x53, 0x54,
+	0x53, 0x55, 0x49, 0x54, 0x45, 0x53, 0x10, 0x04, 0x12, 0x1c, 0x0a, 0x18, 0x4c, 0x4f, 0x57, 0x5f,
+	0x53, 0x43, 0x48, 0x45, 0x44, 0x55, 0x4c, 0x45, 0x44, 0x5f, 0x54, 0x45, 0x53, 0x54, 0x53, 0x55,
+	0x49, 0x54, 0x45, 0x53, 0x10, 0x05, 0x42, 0x25, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67,
 	0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0xaa, 0x02, 0x13, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
 	0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x33,
@@ -574,7 +645,7 @@ func file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerG
 	return file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_rawDescData
 }
 
-var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_goTypes = []interface{}{
 	(CurrentFenixExecutionServerProtoFileVersionEnum)(0), // 0: fenixExecutionServerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
@@ -582,9 +653,10 @@ var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGr
 	(TestInstructionExecutionStatusEnum)(0),      // 2: fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
 	(ProcessingCapabilityForClientSystemEnum)(0), // 3: fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
 	(LogPostStatusEnum)(0),                       // 4: fenixExecutionServerGrpcApi.LogPostStatusEnum
-	(*EmptyParameter)(nil),                       // 5: fenixExecutionServerGrpcApi.EmptyParameter
-	(*AckNackResponse)(nil),                      // 6: fenixExecutionServerGrpcApi.AckNackResponse
-	(*ClientSystemIdentificationMessage)(nil),    // 7: fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
+	(ExecutionPriorityEnum)(0),                   // 5: fenixExecutionServerGrpcApi.ExecutionPriorityEnum
+	(*EmptyParameter)(nil),                       // 6: fenixExecutionServerGrpcApi.EmptyParameter
+	(*AckNackResponse)(nil),                      // 7: fenixExecutionServerGrpcApi.AckNackResponse
+	(*ClientSystemIdentificationMessage)(nil),    // 8: fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
 }
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_depIdxs = []int32{
 	0, // 0: fenixExecutionServerGrpcApi.EmptyParameter.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
@@ -648,7 +720,7 @@ func file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerG
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_GeneralMessagesAndEnums_proto_rawDesc,
-			NumEnums:      5,
+			NumEnums:      6,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
