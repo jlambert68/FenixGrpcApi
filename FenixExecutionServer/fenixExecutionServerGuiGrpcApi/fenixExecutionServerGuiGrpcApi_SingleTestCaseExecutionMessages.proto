@@ -92,7 +92,7 @@ message TestCaseExecutionBasicInformationMessage {
   string TestCaseExecutionVersion = 12; // The Unique UUID for the TestCase Execution
   google.protobuf.Timestamp PlacedOnTestExecutionQueueTimeStamp = 13; // The timestamp when the TestCase was placed on queue for execution
   string TestDataSetUuid = 14; // The UUID for the specific TestDataSet that was used for the Execution
-  uint32 ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
+  ExecutionPriorityEnum ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
 
 }
 
