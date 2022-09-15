@@ -6,7 +6,8 @@ option csharp_namespace = "SubCustodyServer";
 import "google/protobuf/timestamp.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseModelMessages.proto";
-
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionContainerMessages.proto";
 
 // All messages in this file is used to define the TestCase
 
@@ -62,7 +63,7 @@ message GetTestCaseMetaDataItemsResponseMessage {
 // TestCaseMessage
 
 // A message holding one TestCase
-message TestCaseMessage {
+message TestCaseBasicInformationMessage {
 
   BasicTestCaseInformationMessage BasicTestCaseInformation = 1; // All Basic information about the TestCase
 
@@ -157,7 +158,7 @@ message TestCaseFilesMessage {
     string FileReferenceName = 2; // A Name, for the file
     repeated bytes FileAsByteArray = 3; // The file encoded as byte array
   }
-  
+
   CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
   // Message holding information about changes to the File, who and when
   message CreatedAndUpdatedInformationMessage  {
@@ -168,6 +169,18 @@ message TestCaseFilesMessage {
     google.protobuf.Timestamp DeletedFromTestCaseTimeStamp = 5; // The TimeStamp when the File was deleted from the TestCase
     string DeletedFromTestCaseByUserId = 6; // Which user deleted the File from the TestCase
   }
-  
-  
+
+
+}
+
+
+// ****************************************************************************************************
+//  FullTestCaseMessage
+
+// Message containing the full TestCase with all of its information
+
+message FullTestCaseMessage {
+  TestCaseBasicInformationMessage TestCaseBasicInformation = 1; // The basic information regarding the TestCase
+  MatureTestInstructionsMessage MatureTestInstructions = 2; // All TestInstructions to be saved
+  repeated MatureTestInstructionContainerMessage MatureTestInstructionContainers = 3; // All TestInstructionContainers to be saved
 }

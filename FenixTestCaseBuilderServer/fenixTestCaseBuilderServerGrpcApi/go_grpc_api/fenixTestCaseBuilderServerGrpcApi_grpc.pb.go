@@ -33,13 +33,15 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
 	ListAllTestCases(ctx context.Context, in *ListTestCasesRequestMessage, opts ...grpc.CallOption) (FenixTestCaseBuilderServerGrpcServices_ListAllTestCasesClient, error)
 	// The TestCase Builder asks for one complete TestCase
-	GetDetailedTestCase(ctx context.Context, in *GetTestCaseRequestMessage, opts ...grpc.CallOption) (*TestCaseMessage, error)
+	GetDetailedTestCase(ctx context.Context, in *GetTestCaseRequestMessage, opts ...grpc.CallOption) (*TestCaseBasicInformationMessage, error)
 	// List all TestInstructions in the TestCase
 	ListAllTestCaseTestInstructions(ctx context.Context, in *ListAllTestInstructionsForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*MatureTestInstructionsMessage, error)
 	// List all TestInstructionContainers in the TestCase
 	ListAllTestCaseTestInstructionContainers(ctx context.Context, in *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*MatureTestInstructionContainerMessage, error)
-	// Save a TestCase in DB
-	SaveTestCase(ctx context.Context, in *TestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Save full TestCase in DB
+	SaveFullTestCase(ctx context.Context, in *FullTestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Save a Basic TestCase info in DB
+	SaveTestCase(ctx context.Context, in *TestCaseBasicInformationMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Save all TestInstructions from the TestCase
 	SaveAllTestCaseTestInstructions(ctx context.Context, in *SaveAllTestInstructionsForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Save all TestInstructionContainers from the TestCase
@@ -140,8 +142,8 @@ func (x *fenixTestCaseBuilderServerGrpcServicesListAllTestCasesClient) Recv() (*
 	return m, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetDetailedTestCase(ctx context.Context, in *GetTestCaseRequestMessage, opts ...grpc.CallOption) (*TestCaseMessage, error) {
-	out := new(TestCaseMessage)
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetDetailedTestCase(ctx context.Context, in *GetTestCaseRequestMessage, opts ...grpc.CallOption) (*TestCaseBasicInformationMessage, error) {
+	out := new(TestCaseBasicInformationMessage)
 	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetDetailedTestCase", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -167,7 +169,16 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllTestCaseTestInstru
 	return out, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveTestCase(ctx context.Context, in *TestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveFullTestCase(ctx context.Context, in *FullTestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveFullTestCase", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveTestCase(ctx context.Context, in *TestCaseBasicInformationMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveTestCase", in, out, opts...)
 	if err != nil {
@@ -213,13 +224,15 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
 	ListAllTestCases(*ListTestCasesRequestMessage, FenixTestCaseBuilderServerGrpcServices_ListAllTestCasesServer) error
 	// The TestCase Builder asks for one complete TestCase
-	GetDetailedTestCase(context.Context, *GetTestCaseRequestMessage) (*TestCaseMessage, error)
+	GetDetailedTestCase(context.Context, *GetTestCaseRequestMessage) (*TestCaseBasicInformationMessage, error)
 	// List all TestInstructions in the TestCase
 	ListAllTestCaseTestInstructions(context.Context, *ListAllTestInstructionsForSpecificTestCaseRequestMessage) (*MatureTestInstructionsMessage, error)
 	// List all TestInstructionContainers in the TestCase
 	ListAllTestCaseTestInstructionContainers(context.Context, *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*MatureTestInstructionContainerMessage, error)
-	// Save a TestCase in DB
-	SaveTestCase(context.Context, *TestCaseMessage) (*AckNackResponse, error)
+	// Save full TestCase in DB
+	SaveFullTestCase(context.Context, *FullTestCaseMessage) (*AckNackResponse, error)
+	// Save a Basic TestCase info in DB
+	SaveTestCase(context.Context, *TestCaseBasicInformationMessage) (*AckNackResponse, error)
 	// Save all TestInstructions from the TestCase
 	SaveAllTestCaseTestInstructions(context.Context, *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) (*AckNackResponse, error)
 	// Save all TestInstructionContainers from the TestCase
@@ -252,7 +265,7 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllPinnedTe
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCases(*ListTestCasesRequestMessage, FenixTestCaseBuilderServerGrpcServices_ListAllTestCasesServer) error {
 	return status.Errorf(codes.Unimplemented, "method ListAllTestCases not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetDetailedTestCase(context.Context, *GetTestCaseRequestMessage) (*TestCaseMessage, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetDetailedTestCase(context.Context, *GetTestCaseRequestMessage) (*TestCaseBasicInformationMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDetailedTestCase not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCaseTestInstructions(context.Context, *ListAllTestInstructionsForSpecificTestCaseRequestMessage) (*MatureTestInstructionsMessage, error) {
@@ -261,7 +274,10 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCase
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCaseTestInstructionContainers(context.Context, *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*MatureTestInstructionContainerMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllTestCaseTestInstructionContainers not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveTestCase(context.Context, *TestCaseMessage) (*AckNackResponse, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveFullTestCase(context.Context, *FullTestCaseMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveFullTestCase not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveTestCase(context.Context, *TestCaseBasicInformationMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveTestCase not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllTestCaseTestInstructions(context.Context, *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) (*AckNackResponse, error) {
@@ -467,8 +483,26 @@ func _FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructionConta
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FullTestCaseMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveFullTestCase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveFullTestCase",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveFullTestCase(ctx, req.(*FullTestCaseMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixTestCaseBuilderServerGrpcServices_SaveTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestCaseMessage)
+	in := new(TestCaseBasicInformationMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -480,7 +514,7 @@ func _FenixTestCaseBuilderServerGrpcServices_SaveTestCase_Handler(srv interface{
 		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveTestCase",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveTestCase(ctx, req.(*TestCaseMessage))
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveTestCase(ctx, req.(*TestCaseBasicInformationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -563,6 +597,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAllTestCaseTestInstructionContainers",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructionContainers_Handler,
+		},
+		{
+			MethodName: "SaveFullTestCase",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_Handler,
 		},
 		{
 			MethodName: "SaveTestCase",
