@@ -183,4 +183,5 @@ message FullTestCaseMessage {
   TestCaseBasicInformationMessage TestCaseBasicInformation = 1; // The basic information regarding the TestCase
   MatureTestInstructionsMessage MatureTestInstructions = 2; // All TestInstructions to be saved
   repeated MatureTestInstructionContainerMessage MatureTestInstructionContainers = 3; // All TestInstructionContainers to be saved
+  string MessageHash = 4; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
 }
