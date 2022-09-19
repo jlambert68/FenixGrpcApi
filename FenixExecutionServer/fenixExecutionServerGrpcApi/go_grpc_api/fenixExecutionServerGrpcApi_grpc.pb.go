@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 type FenixExecutionServerGrpcServicesClient interface {
 	//Anyone can check if Fenix Execution server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
+	InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(ctx context.Context, in *ProcessingCapabilityMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
@@ -41,6 +43,15 @@ func NewFenixExecutionServerGrpcServicesClient(cc grpc.ClientConnInterface) Feni
 func (c *fenixExecutionServerGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/AreYouAlive", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/InformThatThereAreNewTestCasesOnExecutionQueue", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -139,6 +150,8 @@ func (x *fenixExecutionServerGrpcServicesSendLogPostForExecutionClient) CloseAnd
 type FenixExecutionServerGrpcServicesServer interface {
 	//Anyone can check if Fenix Execution server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
+	// ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
+	InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(context.Context, *ProcessingCapabilityMessage) (*AckNackResponse, error)
 	// When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
@@ -156,6 +169,9 @@ type UnimplementedFenixExecutionServerGrpcServicesServer struct {
 
 func (UnimplementedFenixExecutionServerGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
+}
+func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InformThatThereAreNewTestCasesOnExecutionQueue not implemented")
 }
 func (UnimplementedFenixExecutionServerGrpcServicesServer) ReportProcessingCapability(context.Context, *ProcessingCapabilityMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportProcessingCapability not implemented")
@@ -197,6 +213,24 @@ func _FenixExecutionServerGrpcServices_AreYouAlive_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerGrpcServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixExecutionServerGrpcServices_InformThatThereAreNewTestCasesOnExecutionQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGrpcServicesServer).InformThatThereAreNewTestCasesOnExecutionQueue(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/InformThatThereAreNewTestCasesOnExecutionQueue",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGrpcServicesServer).InformThatThereAreNewTestCasesOnExecutionQueue(ctx, req.(*EmptyParameter))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -299,6 +333,10 @@ var FenixExecutionServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AreYouAlive",
 			Handler:    _FenixExecutionServerGrpcServices_AreYouAlive_Handler,
+		},
+		{
+			MethodName: "InformThatThereAreNewTestCasesOnExecutionQueue",
+			Handler:    _FenixExecutionServerGrpcServices_InformThatThereAreNewTestCasesOnExecutionQueue_Handler,
 		},
 		{
 			MethodName: "ReportProcessingCapability",

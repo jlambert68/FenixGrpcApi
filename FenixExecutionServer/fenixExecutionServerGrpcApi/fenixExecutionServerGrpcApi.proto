@@ -18,6 +18,9 @@ service FenixExecutionServerGrpcServices {
   rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
   }
 
+  // ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
+  rpc InformThatThereAreNewTestCasesOnExecutionQueue (EmptyParameter) returns (AckNackResponse) {
+  }
 
   // *** Client inform Server of Clients status and capability ***
 
