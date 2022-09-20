@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0-devel
 // 	protoc        v3.14.0
-// source: FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_Messages.proto
+// source: FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto
 
 package go_grpc_api
 
@@ -187,8 +187,8 @@ type TestInstructionExecutionRequestMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
-	TestInstructionExecutionUuid string                                          `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                                         // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	TestInstructionExecutionUuid string                                          `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                                   // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
 }
 
 func (x *TestInstructionExecutionRequestMessage) Reset() {
@@ -243,8 +243,8 @@ type CurrentTestInstructionExecutionResultRequestMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
-	TestInstructionExecutionUuid string                                          `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                                         // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	TestInstructionExecutionUuid string                                          `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                                   // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
 }
 
 func (x *CurrentTestInstructionExecutionResultRequestMessage) Reset() {
@@ -298,11 +298,11 @@ type ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage stru
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	TestInstructionAttributeType TestInstructionAttributeTypeEnum `protobuf:"varint,1,opt,name=TestInstructionAttributeType,proto3,enum=fenixExecutionServerClientGrpcApi.TestInstructionAttributeTypeEnum" json:"TestInstructionAttributeType,omitempty"` // Defines witch type attribute; TEXTBOX, COMBOBOX...
-	TestInstructionAttributeUuid string                           `protobuf:"bytes,2,opt,name=TestInstructionAttributeUuid,proto3" json:"TestInstructionAttributeUuid,omitempty"`                                                                          // The unique uuid for the TestInstructionAttribute, set by client system
-	TestInstructionAttributeName string                           `protobuf:"bytes,3,opt,name=TestInstructionAttributeName,proto3" json:"TestInstructionAttributeName,omitempty"`                                                                          // The name of the TestInstructionAttribute
-	AttributeValueAsString       string                           `protobuf:"bytes,4,opt,name=AttributeValueAsString,proto3" json:"AttributeValueAsString,omitempty"`                                                                                      // The String-representation of the value
-	AttributeValueUuid           string                           `protobuf:"bytes,5,opt,name=AttributeValueUuid,proto3" json:"AttributeValueUuid,omitempty"`                                                                                              // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+	TestInstructionAttributeType TestInstructionAttributeTypeEnum `protobuf:"varint,1,opt,name=TestInstructionAttributeType,proto3,enum=fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum" json:"TestInstructionAttributeType,omitempty"` // Defines witch type attribute; TEXTBOX, COMBOBOX...
+	TestInstructionAttributeUuid string                           `protobuf:"bytes,2,opt,name=TestInstructionAttributeUuid,proto3" json:"TestInstructionAttributeUuid,omitempty"`                                                                    // The unique uuid for the TestInstructionAttribute, set by client system
+	TestInstructionAttributeName string                           `protobuf:"bytes,3,opt,name=TestInstructionAttributeName,proto3" json:"TestInstructionAttributeName,omitempty"`                                                                    // The name of the TestInstructionAttribute
+	AttributeValueAsString       string                           `protobuf:"bytes,4,opt,name=AttributeValueAsString,proto3" json:"AttributeValueAsString,omitempty"`                                                                                // The String-representation of the value
+	AttributeValueUuid           string                           `protobuf:"bytes,5,opt,name=AttributeValueUuid,proto3" json:"AttributeValueUuid,omitempty"`                                                                                        // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
 }
 
 func (x *ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage) Reset() {
@@ -677,27 +677,27 @@ func file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionS
 
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_Messages_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_Messages_proto_goTypes = []interface{}{
-	(*ProcessTestInstructionExecutionRequest)(nil),                                                  // 0: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest
-	(*ProcessTestInstructionExecutionResponse)(nil),                                                 // 1: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionResponse
-	(*TestInstructionExecutionRequestMessage)(nil),                                                  // 2: fenixExecutionServerClientGrpcApi.TestInstructionExecutionRequestMessage
-	(*CurrentTestInstructionExecutionResultRequestMessage)(nil),                                     // 3: fenixExecutionServerClientGrpcApi.CurrentTestInstructionExecutionResultRequestMessage
-	(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage)(nil),                  // 4: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
-	(*ProcessTestInstructionExecutionRequest_TestDataMessage)(nil),                                  // 5: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
-	(*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage)(nil), // 6: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
-	(*AckNackResponse)(nil),                              // 7: fenixExecutionServerClientGrpcApi.AckNackResponse
+	(*ProcessTestInstructionExecutionRequest)(nil),                                                  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest
+	(*ProcessTestInstructionExecutionResponse)(nil),                                                 // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse
+	(*TestInstructionExecutionRequestMessage)(nil),                                                  // 2: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage
+	(*CurrentTestInstructionExecutionResultRequestMessage)(nil),                                     // 3: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage
+	(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage)(nil),                  // 4: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
+	(*ProcessTestInstructionExecutionRequest_TestDataMessage)(nil),                                  // 5: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
+	(*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage)(nil), // 6: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
+	(*AckNackResponse)(nil),                              // 7: fenixExecutionWorkerGrpcApi.AckNackResponse
 	(*timestamppb.Timestamp)(nil),                        // 8: google.protobuf.Timestamp
-	(CurrentFenixExecutionServerProtoFileVersionEnum)(0), // 9: fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	(TestInstructionAttributeTypeEnum)(0),                // 10: fenixExecutionServerClientGrpcApi.TestInstructionAttributeTypeEnum
+	(CurrentFenixExecutionServerProtoFileVersionEnum)(0), // 9: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	(TestInstructionAttributeTypeEnum)(0),                // 10: fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
 }
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_Messages_proto_depIdxs = []int32{
-	4,  // 0: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributes:type_name -> fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
-	5,  // 1: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestData:type_name -> fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
-	7,  // 2: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionResponse.AckNackResponse:type_name -> fenixExecutionServerClientGrpcApi.AckNackResponse
-	8,  // 3: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
-	9,  // 4: fenixExecutionServerClientGrpcApi.TestInstructionExecutionRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	9,  // 5: fenixExecutionServerClientGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	10, // 6: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionServerClientGrpcApi.TestInstructionAttributeTypeEnum
-	6,  // 7: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
+	4,  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
+	5,  // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
+	7,  // 2: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.AckNackResponse:type_name -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	8,  // 3: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
+	9,  // 4: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	9,  // 5: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	10, // 6: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
+	6,  // 7: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
 	8,  // [8:8] is the sub-list for method output_type
 	8,  // [8:8] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name

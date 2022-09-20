@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0-devel
 // 	protoc        v3.14.0
-// source: FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums.proto
+// source: FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto
 
 package go_grpc_api
 
@@ -351,7 +351,7 @@ type EmptyParameter struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 }
 
 func (x *EmptyParameter) Reset() {
@@ -399,10 +399,10 @@ type AckNackResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	AckNack                      bool                                            `protobuf:"varint,1,opt,name=AckNack,proto3" json:"AckNack,omitempty"`                                                                                                                                  // True=Ack, False=Nack
-	Comments                     string                                          `protobuf:"bytes,2,opt,name=Comments,proto3" json:"Comments,omitempty"`                                                                                                                                 //Comments if needed
-	ErrorCodes                   []ErrorCodesEnum                                `protobuf:"varint,3,rep,packed,name=ErrorCodes,proto3,enum=fenixExecutionServerClientGrpcApi.ErrorCodesEnum" json:"ErrorCodes,omitempty"`                                                               // List of Error codes
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,4,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	AckNack                      bool                                            `protobuf:"varint,1,opt,name=AckNack,proto3" json:"AckNack,omitempty"`                                                                                                                            // True=Ack, False=Nack
+	Comments                     string                                          `protobuf:"bytes,2,opt,name=Comments,proto3" json:"Comments,omitempty"`                                                                                                                           //Comments if needed
+	ErrorCodes                   []ErrorCodesEnum                                `protobuf:"varint,3,rep,packed,name=ErrorCodes,proto3,enum=fenixExecutionWorkerGrpcApi.ErrorCodesEnum" json:"ErrorCodes,omitempty"`                                                               // List of Error codes
+	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,4,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 }
 
 func (x *AckNackResponse) Reset() {
@@ -471,8 +471,8 @@ type ClientSystemIdentificationMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DomainUuid                   string                                          `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                                                                             // The Users Id, SEB S-id will be used for SEB
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,2,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	DomainUuid                   string                                          `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                                                                       // The Users Id, SEB S-id will be used for SEB
+	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,2,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 }
 
 func (x *ClientSystemIdentificationMessage) Reset() {
@@ -652,21 +652,21 @@ func file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionS
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums_proto_goTypes = []interface{}{
-	(CurrentFenixExecutionServerProtoFileVersionEnum)(0), // 0: fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	(ErrorCodesEnum)(0),                          // 1: fenixExecutionServerClientGrpcApi.ErrorCodesEnum
-	(TestInstructionExecutionStatusEnum)(0),      // 2: fenixExecutionServerClientGrpcApi.TestInstructionExecutionStatusEnum
-	(ProcessingCapabilityForClientSystemEnum)(0), // 3: fenixExecutionServerClientGrpcApi.ProcessingCapabilityForClientSystemEnum
-	(ExecutionPriorityEnum)(0),                   // 4: fenixExecutionServerClientGrpcApi.ExecutionPriorityEnum
-	(TestInstructionAttributeTypeEnum)(0),        // 5: fenixExecutionServerClientGrpcApi.TestInstructionAttributeTypeEnum
-	(*EmptyParameter)(nil),                       // 6: fenixExecutionServerClientGrpcApi.EmptyParameter
-	(*AckNackResponse)(nil),                      // 7: fenixExecutionServerClientGrpcApi.AckNackResponse
-	(*ClientSystemIdentificationMessage)(nil),    // 8: fenixExecutionServerClientGrpcApi.ClientSystemIdentificationMessage
+	(CurrentFenixExecutionServerProtoFileVersionEnum)(0), // 0: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	(ErrorCodesEnum)(0),                          // 1: fenixExecutionWorkerGrpcApi.ErrorCodesEnum
+	(TestInstructionExecutionStatusEnum)(0),      // 2: fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum
+	(ProcessingCapabilityForClientSystemEnum)(0), // 3: fenixExecutionWorkerGrpcApi.ProcessingCapabilityForClientSystemEnum
+	(ExecutionPriorityEnum)(0),                   // 4: fenixExecutionWorkerGrpcApi.ExecutionPriorityEnum
+	(TestInstructionAttributeTypeEnum)(0),        // 5: fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
+	(*EmptyParameter)(nil),                       // 6: fenixExecutionWorkerGrpcApi.EmptyParameter
+	(*AckNackResponse)(nil),                      // 7: fenixExecutionWorkerGrpcApi.AckNackResponse
+	(*ClientSystemIdentificationMessage)(nil),    // 8: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
 }
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums_proto_depIdxs = []int32{
-	0, // 0: fenixExecutionServerClientGrpcApi.EmptyParameter.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	1, // 1: fenixExecutionServerClientGrpcApi.AckNackResponse.ErrorCodes:type_name -> fenixExecutionServerClientGrpcApi.ErrorCodesEnum
-	0, // 2: fenixExecutionServerClientGrpcApi.AckNackResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	0, // 3: fenixExecutionServerClientGrpcApi.ClientSystemIdentificationMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerClientGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	0, // 0: fenixExecutionWorkerGrpcApi.EmptyParameter.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	1, // 1: fenixExecutionWorkerGrpcApi.AckNackResponse.ErrorCodes:type_name -> fenixExecutionWorkerGrpcApi.ErrorCodesEnum
+	0, // 2: fenixExecutionWorkerGrpcApi.AckNackResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	0, // 3: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

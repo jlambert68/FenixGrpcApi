@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0-devel
 // 	protoc        v3.14.0
-// source: FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi.proto
+// source: FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionServerGrpcApi.proto
 
 package go_grpc_api
 
@@ -114,25 +114,25 @@ var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionSe
 }
 
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_proto_goTypes = []interface{}{
-	(*EmptyParameter)(nil),                          // 0: fenixExecutionServerClientGrpcApi.EmptyParameter
-	(*ProcessTestInstructionExecutionRequest)(nil),  // 1: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest
-	(*TestInstructionExecutionRequestMessage)(nil),  // 2: fenixExecutionServerClientGrpcApi.TestInstructionExecutionRequestMessage
-	(*AckNackResponse)(nil),                         // 3: fenixExecutionServerClientGrpcApi.AckNackResponse
-	(*ProcessTestInstructionExecutionResponse)(nil), // 4: fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionResponse
+	(*EmptyParameter)(nil),                          // 0: fenixExecutionWorkerGrpcApi.EmptyParameter
+	(*ProcessTestInstructionExecutionRequest)(nil),  // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest
+	(*TestInstructionExecutionRequestMessage)(nil),  // 2: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage
+	(*AckNackResponse)(nil),                         // 3: fenixExecutionWorkerGrpcApi.AckNackResponse
+	(*ProcessTestInstructionExecutionResponse)(nil), // 4: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse
 }
 var file_FenixExecutionServer_fenixExecutionServerClientGrpcApi_fenixExecutionServerClientGrpcApi_proto_depIdxs = []int32{
-	0, // 0: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.AreYouAlive:input_type -> fenixExecutionServerClientGrpcApi.EmptyParameter
-	0, // 1: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ReportProcessingCapability:input_type -> fenixExecutionServerClientGrpcApi.EmptyParameter
-	1, // 2: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ProcessTestInstructionExecution:input_type -> fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionRequest
-	2, // 3: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ReportCompleteTestInstructionExecutionResult:input_type -> fenixExecutionServerClientGrpcApi.TestInstructionExecutionRequestMessage
-	2, // 4: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ReportCurrentTestInstructionExecutionResult:input_type -> fenixExecutionServerClientGrpcApi.TestInstructionExecutionRequestMessage
-	2, // 5: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.SendAllLogPostForExecution:input_type -> fenixExecutionServerClientGrpcApi.TestInstructionExecutionRequestMessage
-	3, // 6: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.AreYouAlive:output_type -> fenixExecutionServerClientGrpcApi.AckNackResponse
-	3, // 7: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ReportProcessingCapability:output_type -> fenixExecutionServerClientGrpcApi.AckNackResponse
-	4, // 8: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ProcessTestInstructionExecution:output_type -> fenixExecutionServerClientGrpcApi.ProcessTestInstructionExecutionResponse
-	3, // 9: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ReportCompleteTestInstructionExecutionResult:output_type -> fenixExecutionServerClientGrpcApi.AckNackResponse
-	3, // 10: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.ReportCurrentTestInstructionExecutionResult:output_type -> fenixExecutionServerClientGrpcApi.AckNackResponse
-	3, // 11: fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices.SendAllLogPostForExecution:output_type -> fenixExecutionServerClientGrpcApi.AckNackResponse
+	0, // 0: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.AreYouAlive:input_type -> fenixExecutionWorkerGrpcApi.EmptyParameter
+	0, // 1: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ReportProcessingCapability:input_type -> fenixExecutionWorkerGrpcApi.EmptyParameter
+	1, // 2: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ProcessTestInstructionExecution:input_type -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest
+	2, // 3: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ReportCompleteTestInstructionExecutionResult:input_type -> fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage
+	2, // 4: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ReportCurrentTestInstructionExecutionResult:input_type -> fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage
+	2, // 5: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.SendAllLogPostForExecution:input_type -> fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage
+	3, // 6: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.AreYouAlive:output_type -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	3, // 7: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ReportProcessingCapability:output_type -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	4, // 8: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ProcessTestInstructionExecution:output_type -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse
+	3, // 9: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ReportCompleteTestInstructionExecutionResult:output_type -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	3, // 10: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.ReportCurrentTestInstructionExecutionResult:output_type -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	3, // 11: fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices.SendAllLogPostForExecution:output_type -> fenixExecutionWorkerGrpcApi.AckNackResponse
 	6, // [6:12] is the sub-list for method output_type
 	0, // [0:6] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

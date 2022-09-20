@@ -3,23 +3,20 @@ package fenixExecutionServerClientGrpcApi;
 option go_package = "./go_grpc_api";
 option csharp_namespace = "ExecutionServerClientGrpc";
 
-import "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums.proto";
-import "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_Messages.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto";
 
 
 // ****************************************************************************************************
 //
 
-service FenixExecutionServerClientGrpcServices {
+service FenixExecutionWorkerGrpcServices {
 
   // ************************ Admin ************************
 
-  //Anyone can check if Fenix Execution Server Client is alive with this service
+  //Anyone can check if Fenix Execution Worker is alive with this service
   rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
   }
-
-
-  // *** Ask Client to inform Execution Server of Clients status and capability ***
 
   // Ask Client to inform Execution Server of Clients capability to execute requests in parallell, serial or no processing at all
   rpc ReportProcessingCapability (EmptyParameter) returns (AckNackResponse) {
@@ -27,27 +24,25 @@ service FenixExecutionServerClientGrpcServices {
 
   // ************************ Execution Task ************************
 
-  // Fenix Execution Server send a request to Execution Client to initiate a execution of a TestInstruction
+  // Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
   rpc ProcessTestInstructionExecution(ProcessTestInstructionExecutionRequest) returns (ProcessTestInstructionExecutionResponse) {
 
   }
 
 
-  // ************************ Execution Status ************************
+  // ************************ Ask for Execution Status ************************
 
-  // When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
+  // Execution Server ask Worker (client) to report the final results of the execution result to the Server
   rpc ReportCompleteTestInstructionExecutionResult (TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
 
-  // During a TestInstruction execution the Client use this to inform the current of the execution result to the Server
+  // Execution Server ask Worker (client) to report the ongoing results of the execution result to the Server
   rpc ReportCurrentTestInstructionExecutionResult (TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
 
-  // During the execution the Client can send log information that can be shown to the user
+  // Execution Server ask Worker (client) to report all log posts of the execution result to the Server
   rpc SendAllLogPostForExecution(TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
-
-
 
 }
 

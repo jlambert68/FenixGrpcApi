@@ -42,7 +42,7 @@ func NewFenixExecutionServerClientGrpcServicesClient(cc grpc.ClientConnInterface
 
 func (c *fenixExecutionServerClientGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/AreYouAlive", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/AreYouAlive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *fenixExecutionServerClientGrpcServicesClient) AreYouAlive(ctx context.C
 
 func (c *fenixExecutionServerClientGrpcServicesClient) ReportProcessingCapability(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ReportProcessingCapability", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ReportProcessingCapability", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,7 @@ func (c *fenixExecutionServerClientGrpcServicesClient) ReportProcessingCapabilit
 
 func (c *fenixExecutionServerClientGrpcServicesClient) ProcessTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionRequest, opts ...grpc.CallOption) (*ProcessTestInstructionExecutionResponse, error) {
 	out := new(ProcessTestInstructionExecutionResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ProcessTestInstructionExecution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ProcessTestInstructionExecution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,7 +69,7 @@ func (c *fenixExecutionServerClientGrpcServicesClient) ProcessTestInstructionExe
 
 func (c *fenixExecutionServerClientGrpcServicesClient) ReportCompleteTestInstructionExecutionResult(ctx context.Context, in *TestInstructionExecutionRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ReportCompleteTestInstructionExecutionResult", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ReportCompleteTestInstructionExecutionResult", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (c *fenixExecutionServerClientGrpcServicesClient) ReportCompleteTestInstruc
 
 func (c *fenixExecutionServerClientGrpcServicesClient) ReportCurrentTestInstructionExecutionResult(ctx context.Context, in *TestInstructionExecutionRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ReportCurrentTestInstructionExecutionResult", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ReportCurrentTestInstructionExecutionResult", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *fenixExecutionServerClientGrpcServicesClient) ReportCurrentTestInstruct
 
 func (c *fenixExecutionServerClientGrpcServicesClient) SendAllLogPostForExecution(ctx context.Context, in *TestInstructionExecutionRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/SendAllLogPostForExecution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/SendAllLogPostForExecution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func _FenixExecutionServerClientGrpcServices_AreYouAlive_Handler(srv interface{}
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/AreYouAlive",
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/AreYouAlive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerClientGrpcServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
@@ -177,7 +177,7 @@ func _FenixExecutionServerClientGrpcServices_ReportProcessingCapability_Handler(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ReportProcessingCapability",
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ReportProcessingCapability",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerClientGrpcServicesServer).ReportProcessingCapability(ctx, req.(*EmptyParameter))
@@ -195,7 +195,7 @@ func _FenixExecutionServerClientGrpcServices_ProcessTestInstructionExecution_Han
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ProcessTestInstructionExecution",
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ProcessTestInstructionExecution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerClientGrpcServicesServer).ProcessTestInstructionExecution(ctx, req.(*ProcessTestInstructionExecutionRequest))
@@ -213,7 +213,7 @@ func _FenixExecutionServerClientGrpcServices_ReportCompleteTestInstructionExecut
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ReportCompleteTestInstructionExecutionResult",
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ReportCompleteTestInstructionExecutionResult",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerClientGrpcServicesServer).ReportCompleteTestInstructionExecutionResult(ctx, req.(*TestInstructionExecutionRequestMessage))
@@ -231,7 +231,7 @@ func _FenixExecutionServerClientGrpcServices_ReportCurrentTestInstructionExecuti
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/ReportCurrentTestInstructionExecutionResult",
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/ReportCurrentTestInstructionExecutionResult",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerClientGrpcServicesServer).ReportCurrentTestInstructionExecutionResult(ctx, req.(*TestInstructionExecutionRequestMessage))
@@ -249,7 +249,7 @@ func _FenixExecutionServerClientGrpcServices_SendAllLogPostForExecution_Handler(
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices/SendAllLogPostForExecution",
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices/SendAllLogPostForExecution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerClientGrpcServicesServer).SendAllLogPostForExecution(ctx, req.(*TestInstructionExecutionRequestMessage))
@@ -261,7 +261,7 @@ func _FenixExecutionServerClientGrpcServices_SendAllLogPostForExecution_Handler(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var FenixExecutionServerClientGrpcServices_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fenixExecutionServerClientGrpcApi.FenixExecutionServerClientGrpcServices",
+	ServiceName: "fenixExecutionWorkerGrpcApi.FenixExecutionServerClientGrpcServices",
 	HandlerType: (*FenixExecutionServerClientGrpcServicesServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -290,5 +290,5 @@ var FenixExecutionServerClientGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi.proto",
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionServerGrpcApi.proto",
 }

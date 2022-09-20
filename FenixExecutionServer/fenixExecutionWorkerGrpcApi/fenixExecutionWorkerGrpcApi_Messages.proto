@@ -4,7 +4,7 @@ option go_package = "./go_grpc_api";
 option csharp_namespace = "ExecutionServerClientGrpc";
 
 import "google/protobuf/timestamp.proto";
-import "FenixExecutionServer/fenixExecutionServerClientGrpcApi/fenixExecutionServerClientGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
 
 
 // Request used by Execution Server to initiate an TestInstruction Execution by Execution Client
@@ -44,7 +44,7 @@ message ProcessTestInstructionExecutionResponse {
   AckNackResponse AckNackResponse = 1;
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
   google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
-
+  bool TestInstructionCanBeReExecuted = 4; // Indicates if the TestInstruction can be resent to be re-executed. Good example is validations that can be don't as many times as needed
 }
 
 // This message is sent from Fenix Execution Server, to Client System, to request something for a specific TestInstruction-execution
