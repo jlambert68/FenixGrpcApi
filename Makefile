@@ -94,14 +94,14 @@ compileExecutionServerProto_go:
 # generate the services
 	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionServerGrpcApi FenixExecutionServer/fenixExecutionServerGrpcApi/*.proto
 
-compileExecutionServerClientProto_go:
-	@echo "Compile ExecutionServerClient proto file..."
+compileExecutionWorkerProto_go:
+	@echo "Compile ExecutionWorker proto file..."
 
  # generate the messages
-	protoc --go_out=FenixExecutionServer/fenixExecutionServerGuiGrpcApi FenixExecutionServer/fenixExecutionServerGuiGrpcApi/*.proto
+	protoc --go_out=FenixExecutionServer/fenixExecutionWorkerGrpcApi FenixExecutionServer/fenixExecutionWorkerGrpcApi/*.proto
 
 # generate the services
-	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionServerGuiGrpcApi FenixExecutionServer/fenixExecutionServerGuiGrpcApi/*.proto
+	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionWorkerGrpcApi FenixExecutionServer/fenixExecutionWorkerGrpcApi/*.proto
 
 
 
