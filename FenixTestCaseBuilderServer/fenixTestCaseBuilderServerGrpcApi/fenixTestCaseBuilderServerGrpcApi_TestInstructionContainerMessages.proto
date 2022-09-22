@@ -132,9 +132,10 @@ message ImmatureTestInstructionContainerInformationMessage {
 
 //  Message holding all data that is set for the Mature TestInstructionContainer
 message MatureTestInstructionContainerInformationMessage {
-  MatureBasicTestInstructionInformationMessage MatureBasicTestInstructionInformation = 1; // The Basic information for the Matures TestInstruction
+  MatureTestInstructionContainerInformationMessage MatureTestInstructionContainerInformation = 1; // The Basic information for the Matures TestInstruction
+
   // Message holding the mature basic information about the TestInstruction
-  message MatureBasicTestInstructionInformationMessage {
+  message MatureTestInstructionContainerInformationMessage {
     string TestCaseUuid = 1; // Reference to the TestCase where this TestInstructionContainer exists
     string TestInstructionContainerMatureUuid = 2; // The Mature UUID that the TestInstructionContainer gets when it is added to the TestCase
   }
