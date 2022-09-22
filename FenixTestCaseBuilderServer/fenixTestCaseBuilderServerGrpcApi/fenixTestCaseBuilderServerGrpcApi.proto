@@ -67,7 +67,7 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // List all TestInstructionContainers in the TestCase
-  rpc ListAllTestCaseTestInstructionContainers(ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) returns (MatureTestInstructionContainerMessage) {
+  rpc ListAllTestCaseTestInstructionContainers(ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) returns (MatureTestInstructionContainersMessage) {
   }
 
 

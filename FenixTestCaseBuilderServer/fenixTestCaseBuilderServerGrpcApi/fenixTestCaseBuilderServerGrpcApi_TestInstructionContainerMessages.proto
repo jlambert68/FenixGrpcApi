@@ -27,7 +27,7 @@ message SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage {
   string UserId = 1; // The Users Id, SEB S-id will be used for SEB
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
   string TestCaseUuid = 3; // The TestCase, UUID, that is TestInstructions belong to
-  repeated MatureTestInstructionContainerMessage MatureTestInstructionContainers = 4; // All TestInstructionContainers to be saved
+  MatureTestInstructionContainersMessage MatureTestInstructionContainers = 4; // All TestInstructionContainers to be saved
 }
 
 // ****************************************************************************************************
@@ -43,11 +43,17 @@ message ImmatureTestInstructionContainerMessage {
 // ****************************************************************************************************
 // MatureTestInstructionMessage
 
-// Message holding one Mature TestInstruction which exist in a TestCase
-message MatureTestInstructionContainerMessage {
-  BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; //Data is used to describe the basic information for the TestInstructionContainer
-  MatureTestInstructionContainerInformationMessage MatureTestInstructionContainerInformation = 2; // Information about the Mature TestInstructionContainer
-}
+// Message holding one Mature TestInstructionContainer which exist in a TestCase
+message MatureTestInstructionContainersMessage {
+    repeated MatureTestInstructionContainerMessage MatureTestInstructionContainers = 1; // A list of list of TestInstructionContainers, received from DB or to be sent to DB
+
+    // Message holding one Mature TestInstructionContainer which exist in a TestCase
+    message MatureTestInstructionContainerMessage {
+      BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 1; //Data is used to describe the basic information for the TestInstructionContainer
+      MatureTestInstructionContainerInformationMessage MatureTestInstructionContainerInformation = 2; // Information about the Mature TestInstructionContainer
+    }
+  }
+
 
 // ****************************************************************************************************
 // BasicTestInstructionContainerInformationMessage
