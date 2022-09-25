@@ -22,6 +22,10 @@ service FenixExecutionServerGrpcServices {
   rpc InformThatThereAreNewTestCasesOnExecutionQueue (EmptyParameter) returns (AckNackResponse) {
   }
 
+  // ExecutionServer-server is informed to check TestInstructionExecutionQueue for new TestInstructions to execute
+  rpc InformThatThereAreNewTestInstructionsOnExecutionQueue (EmptyParameter) returns (AckNackResponse) {
+  }
+
   // *** Client inform Server of Clients status and capability ***
 
   // Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
