@@ -1,7 +1,7 @@
 syntax = "proto3";
-package fenixExecutionServerClientGrpcApi;
+package fenixExecutionWorkerGrpcApi;
 option go_package = "./go_grpc_api";
-option csharp_namespace = "ExecutionServerClientGrpc";
+option csharp_namespace = "FenixExecutionWorkerGrpcApi";
 
 import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
