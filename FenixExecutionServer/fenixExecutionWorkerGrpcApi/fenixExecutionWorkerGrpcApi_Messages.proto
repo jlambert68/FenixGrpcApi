@@ -9,12 +9,17 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 
 // Request used by Execution Server to initiate an TestInstruction Execution by Execution Client
 message ProcessTestInstructionExecutionRequest {
-  string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-  string TestInstructionUuid = 2; // TestInstruction UUID, set by Client system
-  string TestInstructionName = 3; // TestInstruction Name, set by Client system
-  uint32 MajorVersionNumber = 4; // Major Version Number
-  uint32 MinorVersionNumber = 5; // Minor Version Number
-  repeated TestInstructionAttributeMessage TestInstructionAttributes = 6; // A list of all attributes for the TestInstruction
+  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  TestInstructionExecutionMessage TestInstruction = 2; // The TestInstruction itself an its attributes
+
+  message TestInstructionExecutionMessage {
+    string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+    string TestInstructionUuid = 2; // TestInstruction UUID, set by Client system
+    string TestInstructionName = 3; // TestInstruction Name, set by Client system
+    uint32 MajorVersionNumber = 4; // Major Version Number
+    uint32 MinorVersionNumber = 5; // Minor Version Number
+    repeated TestInstructionAttributeMessage TestInstructionAttributes = 6; // A list of all attributes for the TestInstruction
+  }
 
   message TestInstructionAttributeMessage {
     TestInstructionAttributeTypeEnum TestInstructionAttributeType = 1; // Defines witch type attribute; TEXTBOX, COMBOBOX...
@@ -33,7 +38,7 @@ message ProcessTestInstructionExecutionRequest {
     message ManualOverrideForTestDataMessage {
       string TestDataSetAttributeUuid = 1; // A unique reference for the specified TestDataSetAttribute
       string TestDataSetAttributeName = 2; // The name of the TestDataSetAttribute
-      string TestDataSetAttributeValue = 3; // The value for the TestDataSetAttribute to be used whithin the test
+      string TestDataSetAttributeValue = 3; // The value for the TestDataSetAttribute to be used within the test
     }
   }
 
