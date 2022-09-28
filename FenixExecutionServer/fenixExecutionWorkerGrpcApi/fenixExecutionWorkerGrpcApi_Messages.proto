@@ -65,5 +65,13 @@ message CurrentTestInstructionExecutionResultRequestMessage {
 }
 
 
+// This message is sent from Client System, to Fenix Execution Server via a Execution Worker, when a TestExecution has stopped executed, and the result is final (OK or not OK result)
+message FinalTestInstructionExecutionResultMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; // The final status for the TestInstruction-execution
+
+}
+
 
 

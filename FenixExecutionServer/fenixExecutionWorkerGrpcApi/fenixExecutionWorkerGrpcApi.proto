@@ -29,7 +29,6 @@ service FenixExecutionWorkerGrpcServices {
 
   }
 
-
   // ************************ Ask for Execution Status ************************
 
   // Execution Server ask Worker (client) to report the final results of the execution result to the Server
@@ -43,6 +42,29 @@ service FenixExecutionWorkerGrpcServices {
   // Execution Server ask Worker (client) to report all log posts of the execution result to the Server
   rpc SendAllLogPostForExecution(TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
+
+}
+
+
+//
+service FenixExecutionWorkerConnectorGrpcServices {
+  //Anyone can check if Fenix Execution Worker is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+
+  // When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
+  rpc ReportCompleteTestInstructionExecutionResult (FinalTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+
+  // This gPRC-methods is used when a Execution Connector needs to have its TestInstruction assignments using reverse streaming
+  // Execution Connector opens the gPRC-channel and assignments are then streamed back to Connector from Worker
+  rpc ConnectorRequestForProcessTestInstructionExecution(EmptyParameter) returns (stream ProcessTestInstructionExecutionRequest) {
+
+  }
+
+
 
 }
 

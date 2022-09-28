@@ -292,3 +292,198 @@ var FenixExecutionWorkerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
 }
+
+// FenixExecutionWorkerConnectorGrpcServicesClient is the client API for FenixExecutionWorkerConnectorGrpcServices service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FenixExecutionWorkerConnectorGrpcServicesClient interface {
+	//Anyone can check if Fenix Execution Worker is alive with this service
+	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
+	ReportCompleteTestInstructionExecutionResult(ctx context.Context, in *FinalTestInstructionExecutionResultMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// This gPRC-methods is used when a Execution Connector needs to have its TestInstruction assignments using reverse streaming
+	// Execution Connector opens the gPRC-channel and assignments are then streamed back to Connector from Worker
+	ConnectorRequestForProcessTestInstructionExecution(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionClient, error)
+}
+
+type fenixExecutionWorkerConnectorGrpcServicesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFenixExecutionWorkerConnectorGrpcServicesClient(cc grpc.ClientConnInterface) FenixExecutionWorkerConnectorGrpcServicesClient {
+	return &fenixExecutionWorkerConnectorGrpcServicesClient{cc}
+}
+
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/AreYouAlive", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ReportCompleteTestInstructionExecutionResult(ctx context.Context, in *FinalTestInstructionExecutionResultMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ReportCompleteTestInstructionExecutionResult", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorRequestForProcessTestInstructionExecution(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionClient, error) {
+	stream, err := c.cc.NewStream(ctx, &FenixExecutionWorkerConnectorGrpcServices_ServiceDesc.Streams[0], "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorRequestForProcessTestInstructionExecution", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTestInstructionExecutionClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionClient interface {
+	Recv() (*ProcessTestInstructionExecutionRequest, error)
+	grpc.ClientStream
+}
+
+type fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTestInstructionExecutionClient struct {
+	grpc.ClientStream
+}
+
+func (x *fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTestInstructionExecutionClient) Recv() (*ProcessTestInstructionExecutionRequest, error) {
+	m := new(ProcessTestInstructionExecutionRequest)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// FenixExecutionWorkerConnectorGrpcServicesServer is the server API for FenixExecutionWorkerConnectorGrpcServices service.
+// All implementations must embed UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer
+// for forward compatibility
+type FenixExecutionWorkerConnectorGrpcServicesServer interface {
+	//Anyone can check if Fenix Execution Worker is alive with this service
+	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
+	// When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
+	ReportCompleteTestInstructionExecutionResult(context.Context, *FinalTestInstructionExecutionResultMessage) (*AckNackResponse, error)
+	// This gPRC-methods is used when a Execution Connector needs to have its TestInstruction assignments using reverse streaming
+	// Execution Connector opens the gPRC-channel and assignments are then streamed back to Connector from Worker
+	ConnectorRequestForProcessTestInstructionExecution(*EmptyParameter, FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionServer) error
+	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
+}
+
+// UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer must be embedded to have forward compatible implementations.
+type UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer struct {
+}
+
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ReportCompleteTestInstructionExecutionResult(context.Context, *FinalTestInstructionExecutionResultMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReportCompleteTestInstructionExecutionResult not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorRequestForProcessTestInstructionExecution(*EmptyParameter, FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionServer) error {
+	return status.Errorf(codes.Unimplemented, "method ConnectorRequestForProcessTestInstructionExecution not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {
+}
+
+// UnsafeFenixExecutionWorkerConnectorGrpcServicesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FenixExecutionWorkerConnectorGrpcServicesServer will
+// result in compilation errors.
+type UnsafeFenixExecutionWorkerConnectorGrpcServicesServer interface {
+	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
+}
+
+func RegisterFenixExecutionWorkerConnectorGrpcServicesServer(s grpc.ServiceRegistrar, srv FenixExecutionWorkerConnectorGrpcServicesServer) {
+	s.RegisterService(&FenixExecutionWorkerConnectorGrpcServices_ServiceDesc, srv)
+}
+
+func _FenixExecutionWorkerConnectorGrpcServices_AreYouAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).AreYouAlive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/AreYouAlive",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixExecutionWorkerConnectorGrpcServices_ReportCompleteTestInstructionExecutionResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinalTestInstructionExecutionResultMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ReportCompleteTestInstructionExecutionResult(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ReportCompleteTestInstructionExecutionResult",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ReportCompleteTestInstructionExecutionResult(ctx, req.(*FinalTestInstructionExecutionResultMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecution_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(EmptyParameter)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorRequestForProcessTestInstructionExecution(m, &fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTestInstructionExecutionServer{stream})
+}
+
+type FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionServer interface {
+	Send(*ProcessTestInstructionExecutionRequest) error
+	grpc.ServerStream
+}
+
+type fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTestInstructionExecutionServer struct {
+	grpc.ServerStream
+}
+
+func (x *fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTestInstructionExecutionServer) Send(m *ProcessTestInstructionExecutionRequest) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+// FenixExecutionWorkerConnectorGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionWorkerConnectorGrpcServices service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices",
+	HandlerType: (*FenixExecutionWorkerConnectorGrpcServicesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AreYouAlive",
+			Handler:    _FenixExecutionWorkerConnectorGrpcServices_AreYouAlive_Handler,
+		},
+		{
+			MethodName: "ReportCompleteTestInstructionExecutionResult",
+			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ReportCompleteTestInstructionExecutionResult_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ConnectorRequestForProcessTestInstructionExecution",
+			Handler:       _FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecution_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
+}

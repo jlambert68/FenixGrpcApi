@@ -269,6 +269,70 @@ func (x *CurrentTestInstructionExecutionResultRequestMessage) GetTestInstruction
 	return ""
 }
 
+// This message is sent from Client System, to Fenix Execution Server via a Execution Worker, when a TestExecution has stopped executed, and the result is final (OK or not OK result)
+type FinalTestInstructionExecutionResultMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ClientSystemIdentification     *ClientSystemIdentificationMessage `protobuf:"bytes,1,opt,name=ClientSystemIdentification,proto3" json:"ClientSystemIdentification,omitempty"`                                                                              // Identifies Client System and Proto-file version used
+	TestInstructionExecutionUuid   string                             `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                          // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+	TestInstructionExecutionStatus TestInstructionExecutionStatusEnum `protobuf:"varint,3,opt,name=TestInstructionExecutionStatus,proto3,enum=fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum" json:"TestInstructionExecutionStatus,omitempty"` // The final status for the TestInstruction-execution
+}
+
+func (x *FinalTestInstructionExecutionResultMessage) Reset() {
+	*x = FinalTestInstructionExecutionResultMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FinalTestInstructionExecutionResultMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FinalTestInstructionExecutionResultMessage) ProtoMessage() {}
+
+func (x *FinalTestInstructionExecutionResultMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FinalTestInstructionExecutionResultMessage.ProtoReflect.Descriptor instead.
+func (*FinalTestInstructionExecutionResultMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FinalTestInstructionExecutionResultMessage) GetClientSystemIdentification() *ClientSystemIdentificationMessage {
+	if x != nil {
+		return x.ClientSystemIdentification
+	}
+	return nil
+}
+
+func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionUuid() string {
+	if x != nil {
+		return x.TestInstructionExecutionUuid
+	}
+	return ""
+}
+
+func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionStatus() TestInstructionExecutionStatusEnum {
+	if x != nil {
+		return x.TestInstructionExecutionStatus
+	}
+	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+}
+
 type ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -285,7 +349,7 @@ type ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage stru
 func (x *ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage) Reset() {
 	*x = ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[4]
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -298,7 +362,7 @@ func (x *ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage)
 func (*ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage) ProtoMessage() {}
 
 func (x *ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[4]
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -371,7 +435,7 @@ type ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage stru
 func (x *ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage) Reset() {
 	*x = ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[5]
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -384,7 +448,7 @@ func (x *ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage)
 func (*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage) ProtoMessage() {}
 
 func (x *ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[5]
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -447,7 +511,7 @@ type ProcessTestInstructionExecutionRequest_TestDataMessage struct {
 func (x *ProcessTestInstructionExecutionRequest_TestDataMessage) Reset() {
 	*x = ProcessTestInstructionExecutionRequest_TestDataMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[6]
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -460,7 +524,7 @@ func (x *ProcessTestInstructionExecutionRequest_TestDataMessage) String() string
 func (*ProcessTestInstructionExecutionRequest_TestDataMessage) ProtoMessage() {}
 
 func (x *ProcessTestInstructionExecutionRequest_TestDataMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[6]
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -503,7 +567,7 @@ type ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTes
 func (x *ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage) Reset() {
 	*x = ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[7]
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -517,7 +581,7 @@ func (*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForT
 }
 
 func (x *ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[7]
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -740,10 +804,34 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55,
 	0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49,
 	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
-	0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x42, 0x2d, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f,
-	0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0xaa, 0x02, 0x1b, 0x46, 0x65, 0x6e, 0x69, 0x78,
-	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47,
-	0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x22, 0xfa, 0x02, 0x0a, 0x2a, 0x46, 0x69, 0x6e, 0x61,
+	0x6c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x4d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x7e, 0x0a, 0x1a, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74,
+	0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x3e, 0x2e, 0x66, 0x65, 0x6e,
+	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65,
+	0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x53,
+	0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x1a, 0x43, 0x6c, 0x69, 0x65,
+	0x6e, 0x74, 0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x42, 0x0a, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1c, 0x54, 0x65,
+	0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65,
+	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x87, 0x01, 0x0a, 0x1e, 0x54,
+	0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x3f, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75,
+	0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x42, 0x2d, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70,
+	0x63, 0x5f, 0x61, 0x70, 0x69, 0xaa, 0x02, 0x1b, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65,
+	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -758,37 +846,42 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_rawDescData
 }
 
-var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_goTypes = []interface{}{
 	(*ProcessTestInstructionExecutionRequest)(nil),                                                  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest
 	(*ProcessTestInstructionExecutionResponse)(nil),                                                 // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse
 	(*TestInstructionExecutionRequestMessage)(nil),                                                  // 2: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage
 	(*CurrentTestInstructionExecutionResultRequestMessage)(nil),                                     // 3: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage
-	(*ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage)(nil),                  // 4: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage
-	(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage)(nil),                  // 5: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
-	(*ProcessTestInstructionExecutionRequest_TestDataMessage)(nil),                                  // 6: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
-	(*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage)(nil), // 7: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
-	(CurrentFenixExecutionWorkerProtoFileVersionEnum)(0),                                            // 8: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
-	(*AckNackResponse)(nil),               // 9: fenixExecutionWorkerGrpcApi.AckNackResponse
-	(*timestamppb.Timestamp)(nil),         // 10: google.protobuf.Timestamp
-	(TestInstructionAttributeTypeEnum)(0), // 11: fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
+	(*FinalTestInstructionExecutionResultMessage)(nil),                                              // 4: fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage
+	(*ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage)(nil),                  // 5: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage
+	(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage)(nil),                  // 6: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
+	(*ProcessTestInstructionExecutionRequest_TestDataMessage)(nil),                                  // 7: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
+	(*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage)(nil), // 8: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
+	(CurrentFenixExecutionWorkerProtoFileVersionEnum)(0),                                            // 9: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
+	(*AckNackResponse)(nil),                   // 10: fenixExecutionWorkerGrpcApi.AckNackResponse
+	(*timestamppb.Timestamp)(nil),             // 11: google.protobuf.Timestamp
+	(*ClientSystemIdentificationMessage)(nil), // 12: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
+	(TestInstructionExecutionStatusEnum)(0),   // 13: fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum
+	(TestInstructionAttributeTypeEnum)(0),     // 14: fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
 }
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_depIdxs = []int32{
-	8,  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
-	4,  // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstruction:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage
-	6,  // 2: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
-	9,  // 3: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.AckNackResponse:type_name -> fenixExecutionWorkerGrpcApi.AckNackResponse
-	10, // 4: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
-	8,  // 5: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
-	8,  // 6: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
-	5,  // 7: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
-	11, // 8: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
-	7,  // 9: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	9,  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
+	5,  // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstruction:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage
+	7,  // 2: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
+	10, // 3: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.AckNackResponse:type_name -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	11, // 4: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
+	9,  // 5: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
+	9,  // 6: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
+	12, // 7: fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage.ClientSystemIdentification:type_name -> fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
+	13, // 8: fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum
+	6,  // 9: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
+	14, // 10: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
+	8,  // 11: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() {
@@ -849,7 +942,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage); i {
+			switch v := v.(*FinalTestInstructionExecutionResultMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -861,7 +954,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage); i {
+			switch v := v.(*ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -873,7 +966,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ProcessTestInstructionExecutionRequest_TestDataMessage); i {
+			switch v := v.(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -885,6 +978,18 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ProcessTestInstructionExecutionRequest_TestDataMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage); i {
 			case 0:
 				return &v.state
@@ -903,7 +1008,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
