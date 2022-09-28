@@ -8,7 +8,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 
 
 // Request used by Execution Server to initiate an TestInstruction Execution by Execution Client
-message ProcessTestInstructionExecutionRequest {
+message ProcessTestInstructionExecutionReveredRequest {
   CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   TestInstructionExecutionMessage TestInstruction = 2; // The TestInstruction itself an its attributes
 
