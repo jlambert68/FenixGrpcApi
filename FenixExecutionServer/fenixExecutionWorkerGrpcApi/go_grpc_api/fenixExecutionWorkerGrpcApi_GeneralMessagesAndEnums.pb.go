@@ -21,50 +21,50 @@ const (
 )
 
 // Used to have client and server in sync with using the same proto file version
-type CurrentFenixExecutionServerProtoFileVersionEnum int32
+type CurrentFenixExecutionWorkerProtoFileVersionEnum int32
 
 const (
 	// Deprecated: Do not use.
-	CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0 CurrentFenixExecutionServerProtoFileVersionEnum = 0
-	CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_1 CurrentFenixExecutionServerProtoFileVersionEnum = 1 // Current version
+	CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0 CurrentFenixExecutionWorkerProtoFileVersionEnum = 0
+	CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_1 CurrentFenixExecutionWorkerProtoFileVersionEnum = 1 // Current version
 )
 
-// Enum value maps for CurrentFenixExecutionServerProtoFileVersionEnum.
+// Enum value maps for CurrentFenixExecutionWorkerProtoFileVersionEnum.
 var (
-	CurrentFenixExecutionServerProtoFileVersionEnum_name = map[int32]string{
+	CurrentFenixExecutionWorkerProtoFileVersionEnum_name = map[int32]string{
 		0: "VERSION_0_0",
 		1: "VERSION_0_1",
 	}
-	CurrentFenixExecutionServerProtoFileVersionEnum_value = map[string]int32{
+	CurrentFenixExecutionWorkerProtoFileVersionEnum_value = map[string]int32{
 		"VERSION_0_0": 0,
 		"VERSION_0_1": 1,
 	}
 )
 
-func (x CurrentFenixExecutionServerProtoFileVersionEnum) Enum() *CurrentFenixExecutionServerProtoFileVersionEnum {
-	p := new(CurrentFenixExecutionServerProtoFileVersionEnum)
+func (x CurrentFenixExecutionWorkerProtoFileVersionEnum) Enum() *CurrentFenixExecutionWorkerProtoFileVersionEnum {
+	p := new(CurrentFenixExecutionWorkerProtoFileVersionEnum)
 	*p = x
 	return p
 }
 
-func (x CurrentFenixExecutionServerProtoFileVersionEnum) String() string {
+func (x CurrentFenixExecutionWorkerProtoFileVersionEnum) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (CurrentFenixExecutionServerProtoFileVersionEnum) Descriptor() protoreflect.EnumDescriptor {
+func (CurrentFenixExecutionWorkerProtoFileVersionEnum) Descriptor() protoreflect.EnumDescriptor {
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes[0].Descriptor()
 }
 
-func (CurrentFenixExecutionServerProtoFileVersionEnum) Type() protoreflect.EnumType {
+func (CurrentFenixExecutionWorkerProtoFileVersionEnum) Type() protoreflect.EnumType {
 	return &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes[0]
 }
 
-func (x CurrentFenixExecutionServerProtoFileVersionEnum) Number() protoreflect.EnumNumber {
+func (x CurrentFenixExecutionWorkerProtoFileVersionEnum) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use CurrentFenixExecutionServerProtoFileVersionEnum.Descriptor instead.
-func (CurrentFenixExecutionServerProtoFileVersionEnum) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use CurrentFenixExecutionWorkerProtoFileVersionEnum.Descriptor instead.
+func (CurrentFenixExecutionWorkerProtoFileVersionEnum) EnumDescriptor() ([]byte, []int) {
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_rawDescGZIP(), []int{0}
 }
 
@@ -351,7 +351,7 @@ type EmptyParameter struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionWorkerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 }
 
 func (x *EmptyParameter) Reset() {
@@ -386,11 +386,11 @@ func (*EmptyParameter) Descriptor() ([]byte, []int) {
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *EmptyParameter) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+func (x *EmptyParameter) GetProtoFileVersionUsedByClient() CurrentFenixExecutionWorkerProtoFileVersionEnum {
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
 }
 
 // Ack/Nack- Response message with comment
@@ -402,7 +402,7 @@ type AckNackResponse struct {
 	AckNack                      bool                                            `protobuf:"varint,1,opt,name=AckNack,proto3" json:"AckNack,omitempty"`                                                                                                                            // True=Ack, False=Nack
 	Comments                     string                                          `protobuf:"bytes,2,opt,name=Comments,proto3" json:"Comments,omitempty"`                                                                                                                           //Comments if needed
 	ErrorCodes                   []ErrorCodesEnum                                `protobuf:"varint,3,rep,packed,name=ErrorCodes,proto3,enum=fenixExecutionWorkerGrpcApi.ErrorCodesEnum" json:"ErrorCodes,omitempty"`                                                               // List of Error codes
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,4,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionWorkerProtoFileVersionEnum `protobuf:"varint,4,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 }
 
 func (x *AckNackResponse) Reset() {
@@ -458,11 +458,11 @@ func (x *AckNackResponse) GetErrorCodes() []ErrorCodesEnum {
 	return nil
 }
 
-func (x *AckNackResponse) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+func (x *AckNackResponse) GetProtoFileVersionUsedByClient() CurrentFenixExecutionWorkerProtoFileVersionEnum {
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
 }
 
 // Message Holding information about who is the calling client system
@@ -472,7 +472,7 @@ type ClientSystemIdentificationMessage struct {
 	unknownFields protoimpl.UnknownFields
 
 	DomainUuid                   string                                          `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                                                                       // The Users Id, SEB S-id will be used for SEB
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,2,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionWorkerProtoFileVersionEnum `protobuf:"varint,2,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 }
 
 func (x *ClientSystemIdentificationMessage) Reset() {
@@ -514,11 +514,11 @@ func (x *ClientSystemIdentificationMessage) GetDomainUuid() string {
 	return ""
 }
 
-func (x *ClientSystemIdentificationMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+func (x *ClientSystemIdentificationMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionWorkerProtoFileVersionEnum {
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
 }
 
 var File_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto protoreflect.FileDescriptor
@@ -539,7 +539,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75,
 	0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
 	0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78,
-	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x72, 0x6f,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x50, 0x72, 0x6f,
 	0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x75,
 	0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73,
 	0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x22,
@@ -558,7 +558,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f,
 	0x72, 0x6b, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72,
 	0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
-	0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65,
+	0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65,
 	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f,
 	0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65,
 	0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x22, 0xd6, 0x01, 0x0a, 0x21, 0x43, 0x6c,
@@ -571,12 +571,12 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78,
 	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47, 0x72, 0x70,
 	0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69,
-	0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72,
 	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
 	0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56,
 	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65,
 	0x6e, 0x74, 0x2a, 0x57, 0x0a, 0x2f, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e,
-	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65,
 	0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
 	0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x12, 0x13, 0x0a, 0x0b, 0x56, 0x45, 0x52, 0x53, 0x49, 0x4f, 0x4e,
 	0x5f, 0x30, 0x5f, 0x30, 0x10, 0x00, 0x1a, 0x02, 0x08, 0x01, 0x12, 0x0f, 0x0a, 0x0b, 0x56, 0x45,
@@ -650,7 +650,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_goTypes = []interface{}{
-	(CurrentFenixExecutionServerProtoFileVersionEnum)(0), // 0: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	(CurrentFenixExecutionWorkerProtoFileVersionEnum)(0), // 0: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	(ErrorCodesEnum)(0),                          // 1: fenixExecutionWorkerGrpcApi.ErrorCodesEnum
 	(TestInstructionExecutionStatusEnum)(0),      // 2: fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum
 	(ProcessingCapabilityForClientSystemEnum)(0), // 3: fenixExecutionWorkerGrpcApi.ProcessingCapabilityForClientSystemEnum
@@ -661,10 +661,10 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	(*ClientSystemIdentificationMessage)(nil),    // 8: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
 }
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums_proto_depIdxs = []int32{
-	0, // 0: fenixExecutionWorkerGrpcApi.EmptyParameter.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	0, // 0: fenixExecutionWorkerGrpcApi.EmptyParameter.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	1, // 1: fenixExecutionWorkerGrpcApi.AckNackResponse.ErrorCodes:type_name -> fenixExecutionWorkerGrpcApi.ErrorCodesEnum
-	0, // 2: fenixExecutionWorkerGrpcApi.AckNackResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	0, // 3: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	0, // 2: fenixExecutionWorkerGrpcApi.AckNackResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
+	0, // 3: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name

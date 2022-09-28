@@ -9,7 +9,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 
 // Request used by Execution Server to initiate an TestInstruction Execution by Execution Client
 message ProcessTestInstructionExecutionRequest {
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   TestInstructionExecutionMessage TestInstruction = 2; // The TestInstruction itself an its attributes
 
   message TestInstructionExecutionMessage {
@@ -54,13 +54,13 @@ message ProcessTestInstructionExecutionResponse {
 
 // This message is sent from Fenix Execution Server, to Client System, to request something for a specific TestInstruction-execution
 message TestInstructionExecutionRequestMessage {
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
 
 }
 // This message is sent from Fenix Execution Server, stream LogPostsMessageto Client System, to request current execution result/status for a TestInstruction
 message CurrentTestInstructionExecutionResultRequestMessage {
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
 }
 

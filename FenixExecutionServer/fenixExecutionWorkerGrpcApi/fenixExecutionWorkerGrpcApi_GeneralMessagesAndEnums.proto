@@ -8,7 +8,7 @@ option csharp_namespace = "FenixExecutionWorkerGrpcApi";
 // General messages and Enumerations
 
 // Used to have client and server in sync with using the same proto file version
-enum CurrentFenixExecutionServerProtoFileVersionEnum {
+enum CurrentFenixExecutionWorkerProtoFileVersionEnum {
   VERSION_0_0 = 0 [deprecated = true];
   VERSION_0_1 = 1; // Current version
 }
@@ -52,7 +52,7 @@ enum ExecutionPriorityEnum {
 
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
 }
 
 // Ack/Nack- Response message with comment
@@ -60,7 +60,7 @@ message AckNackResponse {
   bool AckNack = 1; // True=Ack, False=Nack
   string Comments = 2; //Comments if needed
   repeated ErrorCodesEnum ErrorCodes = 3; // List of Error codes
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 4; // The latest proto file version number to be used
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 4; // The latest proto file version number to be used
 }
 
 
@@ -70,7 +70,7 @@ message AckNackResponse {
 // Message Holding information about who is the calling client system
 message ClientSystemIdentificationMessage {
   string DomainUuid = 1; // The Users Id, SEB S-id will be used for SEB
-  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
 }
 
 // The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"

@@ -27,7 +27,7 @@ type ProcessTestInstructionExecutionRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum                         `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionWorkerProtoFileVersionEnum                         `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 	TestInstruction              *ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage `protobuf:"bytes,2,opt,name=TestInstruction,proto3" json:"TestInstruction,omitempty"`                                                                                                             // The TestInstruction itself an its attributes
 	TestData                     *ProcessTestInstructionExecutionRequest_TestDataMessage                 `protobuf:"bytes,7,opt,name=TestData,proto3" json:"TestData,omitempty"`                                                                                                                           // TestData used in TestExecution
 }
@@ -64,11 +64,11 @@ func (*ProcessTestInstructionExecutionRequest) Descriptor() ([]byte, []int) {
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ProcessTestInstructionExecutionRequest) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+func (x *ProcessTestInstructionExecutionRequest) GetProtoFileVersionUsedByClient() CurrentFenixExecutionWorkerProtoFileVersionEnum {
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
 }
 
 func (x *ProcessTestInstructionExecutionRequest) GetTestInstruction() *ProcessTestInstructionExecutionRequest_TestInstructionExecutionMessage {
@@ -163,7 +163,7 @@ type TestInstructionExecutionRequestMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionWorkerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 	TestInstructionExecutionUuid string                                          `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                                   // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
 }
 
@@ -199,11 +199,11 @@ func (*TestInstructionExecutionRequestMessage) Descriptor() ([]byte, []int) {
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *TestInstructionExecutionRequestMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+func (x *TestInstructionExecutionRequestMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionWorkerProtoFileVersionEnum {
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
 }
 
 func (x *TestInstructionExecutionRequestMessage) GetTestInstructionExecutionUuid() string {
@@ -219,7 +219,7 @@ type CurrentTestInstructionExecutionResultRequestMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ProtoFileVersionUsedByClient CurrentFenixExecutionWorkerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
 	TestInstructionExecutionUuid string                                          `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                                   // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
 }
 
@@ -255,11 +255,11 @@ func (*CurrentTestInstructionExecutionResultRequestMessage) Descriptor() ([]byte
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *CurrentTestInstructionExecutionResultRequestMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+func (x *CurrentTestInstructionExecutionResultRequestMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionWorkerProtoFileVersionEnum {
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
 }
 
 func (x *CurrentTestInstructionExecutionResultRequestMessage) GetTestInstructionExecutionUuid() string {
@@ -581,8 +581,8 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69,
 	0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72,
 	0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46,
-	0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73,
+	0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72,
+	0x6b, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73,
 	0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69,
 	0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43,
 	0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x8d, 0x01, 0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
@@ -715,7 +715,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78,
 	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47,
 	0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65,
-	0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76,
+	0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b,
 	0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69,
 	0x6f, 0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c,
 	0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c,
@@ -732,7 +732,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45,
 	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47, 0x72,
 	0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e,
-	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65,
 	0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
 	0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65,
 	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69,
@@ -768,19 +768,19 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	(*ProcessTestInstructionExecutionRequest_TestInstructionAttributeMessage)(nil),                  // 5: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
 	(*ProcessTestInstructionExecutionRequest_TestDataMessage)(nil),                                  // 6: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
 	(*ProcessTestInstructionExecutionRequest_TestDataMessage_ManualOverrideForTestDataMessage)(nil), // 7: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
-	(CurrentFenixExecutionServerProtoFileVersionEnum)(0),                                            // 8: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	(CurrentFenixExecutionWorkerProtoFileVersionEnum)(0),                                            // 8: fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	(*AckNackResponse)(nil),               // 9: fenixExecutionWorkerGrpcApi.AckNackResponse
 	(*timestamppb.Timestamp)(nil),         // 10: google.protobuf.Timestamp
 	(TestInstructionAttributeTypeEnum)(0), // 11: fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
 }
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_Messages_proto_depIdxs = []int32{
-	8,  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	8,  // 0: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	4,  // 1: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstruction:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage
 	6,  // 2: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage
 	9,  // 3: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.AckNackResponse:type_name -> fenixExecutionWorkerGrpcApi.AckNackResponse
 	10, // 4: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
-	8,  // 5: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
-	8,  // 6: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	8,  // 5: fenixExecutionWorkerGrpcApi.TestInstructionExecutionRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
+	8,  // 6: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	5,  // 7: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionExecutionMessage.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage
 	11, // 8: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
 	7,  // 9: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionRequest.TestDataMessage.ManualOverrideForTestDataMessage
