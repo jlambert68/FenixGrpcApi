@@ -54,7 +54,7 @@ message ProcessingCapabilityMessage {
 }
 
 //
-message AreWorkerAliveRequest {
+message IsWorkerAliveRequest {
   CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   string WorkersDomainUuid = 3; // The Execution Worker's Domain belonging
 

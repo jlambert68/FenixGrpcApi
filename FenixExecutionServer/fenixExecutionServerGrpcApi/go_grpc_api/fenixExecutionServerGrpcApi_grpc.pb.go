@@ -21,7 +21,7 @@ type FenixExecutionServerGrpcServicesClient interface {
 	//Anyone can check if Fenix Execution server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Ask Fenix Execution server to call a Execution Worker to see if is alive
-	AreWorkerAlive(ctx context.Context, in *AreWorkerAliveRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
+	IsWorkerAlive(ctx context.Context, in *IsWorkerAliveRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
 	InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// ExecutionServer-server is informed to check TestInstructionExecutionQueue for new TestInstructions to execute
@@ -53,9 +53,9 @@ func (c *fenixExecutionServerGrpcServicesClient) AreYouAlive(ctx context.Context
 	return out, nil
 }
 
-func (c *fenixExecutionServerGrpcServicesClient) AreWorkerAlive(ctx context.Context, in *AreWorkerAliveRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionServerGrpcServicesClient) IsWorkerAlive(ctx context.Context, in *IsWorkerAliveRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/AreWorkerAlive", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/IsWorkerAlive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -173,7 +173,7 @@ type FenixExecutionServerGrpcServicesServer interface {
 	//Anyone can check if Fenix Execution server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Ask Fenix Execution server to call a Execution Worker to see if is alive
-	AreWorkerAlive(context.Context, *AreWorkerAliveRequest) (*AckNackResponse, error)
+	IsWorkerAlive(context.Context, *IsWorkerAliveRequest) (*AckNackResponse, error)
 	// ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
 	InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// ExecutionServer-server is informed to check TestInstructionExecutionQueue for new TestInstructions to execute
@@ -196,8 +196,8 @@ type UnimplementedFenixExecutionServerGrpcServicesServer struct {
 func (UnimplementedFenixExecutionServerGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
 }
-func (UnimplementedFenixExecutionServerGrpcServicesServer) AreWorkerAlive(context.Context, *AreWorkerAliveRequest) (*AckNackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AreWorkerAlive not implemented")
+func (UnimplementedFenixExecutionServerGrpcServicesServer) IsWorkerAlive(context.Context, *IsWorkerAliveRequest) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsWorkerAlive not implemented")
 }
 func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InformThatThereAreNewTestCasesOnExecutionQueue not implemented")
@@ -249,20 +249,20 @@ func _FenixExecutionServerGrpcServices_AreYouAlive_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGrpcServices_AreWorkerAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AreWorkerAliveRequest)
+func _FenixExecutionServerGrpcServices_IsWorkerAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsWorkerAliveRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGrpcServicesServer).AreWorkerAlive(ctx, in)
+		return srv.(FenixExecutionServerGrpcServicesServer).IsWorkerAlive(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/AreWorkerAlive",
+		FullMethod: "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/IsWorkerAlive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGrpcServicesServer).AreWorkerAlive(ctx, req.(*AreWorkerAliveRequest))
+		return srv.(FenixExecutionServerGrpcServicesServer).IsWorkerAlive(ctx, req.(*IsWorkerAliveRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -403,8 +403,8 @@ var FenixExecutionServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FenixExecutionServerGrpcServices_AreYouAlive_Handler,
 		},
 		{
-			MethodName: "AreWorkerAlive",
-			Handler:    _FenixExecutionServerGrpcServices_AreWorkerAlive_Handler,
+			MethodName: "IsWorkerAlive",
+			Handler:    _FenixExecutionServerGrpcServices_IsWorkerAlive_Handler,
 		},
 		{
 			MethodName: "InformThatThereAreNewTestCasesOnExecutionQueue",

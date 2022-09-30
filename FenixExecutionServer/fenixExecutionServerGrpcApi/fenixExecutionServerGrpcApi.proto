@@ -19,7 +19,7 @@ service FenixExecutionServerGrpcServices {
   }
 
   // Ask Fenix Execution server to call a Execution Worker to see if is alive
-  rpc AreWorkerAlive (AreWorkerAliveRequest) returns (AckNackResponse) {
+  rpc IsWorkerAlive (IsWorkerAliveRequest) returns (AckNackResponse) {
   }
 
   // ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
