@@ -20,6 +20,7 @@ enum ErrorCodesEnum {
   ERROR_WRONG_PROTO_FILE_VERSION = 2;
   ERROR_UNSPECIFIED = 3;
   ERROR_DATABASE_PROBLEM = 4;
+  ERROR_EXECUTION_CONNECTOR_PROBLEM = 5;
 }
 
 // Execution Enum for a TestInstruction Execution

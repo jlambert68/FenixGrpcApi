@@ -43,6 +43,8 @@ message LogPostsMessage {
 
 }
 
+
+// A Worker reports what processing capabilities its underlying test automation has
 message ProcessingCapabilityMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   ProcessingCapabilityForClientSystemEnum TestInstructionProcessingCapability = 2; // Can TestInstructions be processed in parallell or only in serial, for a TestCase
@@ -50,3 +52,11 @@ message ProcessingCapabilityMessage {
   ProcessingCapabilityForClientSystemEnum TestSuiteProcessingCapability = 4; // Can TestSuites be processed in parallell or only in serial
 
 }
+
+//
+message AreWorkerAliveRequest {
+  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  string WorkersDomainUuid = 3; // The Execution Worker's Domain belonging
+
+}
+

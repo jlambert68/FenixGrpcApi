@@ -213,6 +213,7 @@ func (x *LogPostsMessage) GetLogPosts() []*LogPostsMessage_LogPostMessage {
 	return nil
 }
 
+// A Worker reports what processing capabilities its underlying test automation has
 type ProcessingCapabilityMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -284,6 +285,62 @@ func (x *ProcessingCapabilityMessage) GetTestSuiteProcessingCapability() Process
 	return ProcessingCapabilityForClientSystemEnum_CAN_PROCESS_IN_PARALLELL
 }
 
+//
+type AreWorkerAliveRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProtoFileVersionUsedByClient CurrentFenixExecutionServerProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	WorkersDomainUuid            string                                          `protobuf:"bytes,3,opt,name=WorkersDomainUuid,proto3" json:"WorkersDomainUuid,omitempty"`                                                                                                         // The Execution Worker's Domain belonging
+}
+
+func (x *AreWorkerAliveRequest) Reset() {
+	*x = AreWorkerAliveRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AreWorkerAliveRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AreWorkerAliveRequest) ProtoMessage() {}
+
+func (x *AreWorkerAliveRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AreWorkerAliveRequest.ProtoReflect.Descriptor instead.
+func (*AreWorkerAliveRequest) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *AreWorkerAliveRequest) GetProtoFileVersionUsedByClient() CurrentFenixExecutionServerProtoFileVersionEnum {
+	if x != nil {
+		return x.ProtoFileVersionUsedByClient
+	}
+	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+}
+
+func (x *AreWorkerAliveRequest) GetWorkersDomainUuid() string {
+	if x != nil {
+		return x.WorkersDomainUuid
+	}
+	return ""
+}
+
 type LogPostsMessage_LogPostMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -298,7 +355,7 @@ type LogPostsMessage_LogPostMessage struct {
 func (x *LogPostsMessage_LogPostMessage) Reset() {
 	*x = LogPostsMessage_LogPostMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[4]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -311,7 +368,7 @@ func (x *LogPostsMessage_LogPostMessage) String() string {
 func (*LogPostsMessage_LogPostMessage) ProtoMessage() {}
 
 func (x *LogPostsMessage_LogPostMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[4]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -367,7 +424,7 @@ type LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage struct {
 func (x *LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage) Reset() {
 	*x = LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[5]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -380,7 +437,7 @@ func (x *LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage) String(
 func (*LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage) ProtoMessage() {}
 
 func (x *LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[5]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -560,10 +617,24 @@ var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGr
 	0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x46, 0x6f, 0x72, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74,
 	0x53, 0x79, 0x73, 0x74, 0x65, 0x6d, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1d, 0x54, 0x65, 0x73, 0x74,
 	0x53, 0x75, 0x69, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x69, 0x6e, 0x67, 0x43,
-	0x61, 0x70, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x42, 0x25, 0x5a, 0x0d, 0x2e, 0x2f, 0x67,
-	0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0xaa, 0x02, 0x13, 0x45, 0x78, 0x65,
-	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
-	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x70, 0x61, 0x62, 0x69, 0x6c, 0x69, 0x74, 0x79, 0x22, 0xd8, 0x01, 0x0a, 0x15, 0x41, 0x72,
+	0x65, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x41, 0x6c, 0x69, 0x76, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x90, 0x01, 0x0a, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c,
+	0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c,
+	0x69, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e,
+	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74,
+	0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72,
+	0x73, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46,
+	0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79,
+	0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x2c, 0x0a, 0x11, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72,
+	0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x11, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x55, 0x75, 0x69, 0x64, 0x42, 0x25, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70,
+	0x63, 0x5f, 0x61, 0x70, 0x69, 0xaa, 0x02, 0x13, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -578,39 +649,42 @@ func file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerG
 	return file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_rawDescData
 }
 
-var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_goTypes = []interface{}{
 	(*FinalTestInstructionExecutionResultMessage)(nil),                     // 0: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage
 	(*CurrentTestInstructionExecutionResultMessage)(nil),                   // 1: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage
 	(*LogPostsMessage)(nil),                                                // 2: fenixExecutionServerGrpcApi.LogPostsMessage
 	(*ProcessingCapabilityMessage)(nil),                                    // 3: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage
-	(*LogPostsMessage_LogPostMessage)(nil),                                 // 4: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage
-	(*LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage)(nil), // 5: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.FoundVersusExpectedValueMessage
-	(*ClientSystemIdentificationMessage)(nil),                              // 6: fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
-	(TestInstructionExecutionStatusEnum)(0),                                // 7: fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
-	(ProcessingCapabilityForClientSystemEnum)(0),                           // 8: fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
-	(*timestamppb.Timestamp)(nil),                                          // 9: google.protobuf.Timestamp
-	(LogPostStatusEnum)(0),                                                 // 10: fenixExecutionServerGrpcApi.LogPostStatusEnum
+	(*AreWorkerAliveRequest)(nil),                                          // 4: fenixExecutionServerGrpcApi.AreWorkerAliveRequest
+	(*LogPostsMessage_LogPostMessage)(nil),                                 // 5: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage
+	(*LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage)(nil), // 6: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.FoundVersusExpectedValueMessage
+	(*ClientSystemIdentificationMessage)(nil),                              // 7: fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
+	(TestInstructionExecutionStatusEnum)(0),                                // 8: fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
+	(ProcessingCapabilityForClientSystemEnum)(0),                           // 9: fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
+	(CurrentFenixExecutionServerProtoFileVersionEnum)(0),                   // 10: fenixExecutionServerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	(*timestamppb.Timestamp)(nil),                                          // 11: google.protobuf.Timestamp
+	(LogPostStatusEnum)(0),                                                 // 12: fenixExecutionServerGrpcApi.LogPostStatusEnum
 }
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_depIdxs = []int32{
-	6,  // 0: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
-	7,  // 1: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
-	6,  // 2: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
-	7,  // 3: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
-	6,  // 4: fenixExecutionServerGrpcApi.LogPostsMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
-	4,  // 5: fenixExecutionServerGrpcApi.LogPostsMessage.LogPosts:type_name -> fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage
-	6,  // 6: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
-	8,  // 7: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.TestInstructionProcessingCapability:type_name -> fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
-	8,  // 8: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.TestCaseProcessingCapability:type_name -> fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
-	8,  // 9: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.TestSuiteProcessingCapability:type_name -> fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
-	9,  // 10: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
-	10, // 11: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.LogPostStatus:type_name -> fenixExecutionServerGrpcApi.LogPostStatusEnum
-	5,  // 12: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.FoundVersusExpectedValueMessage
-	13, // [13:13] is the sub-list for method output_type
-	13, // [13:13] is the sub-list for method input_type
-	13, // [13:13] is the sub-list for extension type_name
-	13, // [13:13] is the sub-list for extension extendee
-	0,  // [0:13] is the sub-list for field type_name
+	7,  // 0: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
+	8,  // 1: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
+	7,  // 2: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
+	8,  // 3: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGrpcApi.TestInstructionExecutionStatusEnum
+	7,  // 4: fenixExecutionServerGrpcApi.LogPostsMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
+	5,  // 5: fenixExecutionServerGrpcApi.LogPostsMessage.LogPosts:type_name -> fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage
+	7,  // 6: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.ClientSystemIdentification:type_name -> fenixExecutionServerGrpcApi.ClientSystemIdentificationMessage
+	9,  // 7: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.TestInstructionProcessingCapability:type_name -> fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
+	9,  // 8: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.TestCaseProcessingCapability:type_name -> fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
+	9,  // 9: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage.TestSuiteProcessingCapability:type_name -> fenixExecutionServerGrpcApi.ProcessingCapabilityForClientSystemEnum
+	10, // 10: fenixExecutionServerGrpcApi.AreWorkerAliveRequest.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGrpcApi.CurrentFenixExecutionServerProtoFileVersionEnum
+	11, // 11: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
+	12, // 12: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.LogPostStatus:type_name -> fenixExecutionServerGrpcApi.LogPostStatusEnum
+	6,  // 13: fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGrpcApi.LogPostsMessage.LogPostMessage.FoundVersusExpectedValueMessage
+	14, // [14:14] is the sub-list for method output_type
+	14, // [14:14] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() {
@@ -671,7 +745,7 @@ func file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*LogPostsMessage_LogPostMessage); i {
+			switch v := v.(*AreWorkerAliveRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -683,6 +757,18 @@ func file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LogPostsMessage_LogPostMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*LogPostsMessage_LogPostMessage_FoundVersusExpectedValueMessage); i {
 			case 0:
 				return &v.state
@@ -701,7 +787,7 @@ func file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerG
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_Messages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
