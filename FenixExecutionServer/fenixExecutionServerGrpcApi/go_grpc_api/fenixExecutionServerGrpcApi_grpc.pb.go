@@ -28,6 +28,8 @@ type FenixExecutionServerGrpcServicesClient interface {
 	InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(ctx context.Context, in *ProcessingCapabilityMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// This can be used to trigger/re-trigger sending new TestInstructionExecutions to workers
+	TriggerSendNewTestInstructionsThatIsWaitingToBeSent(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
 	ReportCompleteTestInstructionExecutionResult(ctx context.Context, in *FinalTestInstructionExecutionResultMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// During a TestInstruction execution the Client use this to inform the current of the execution result to the Server
@@ -83,6 +85,15 @@ func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestInstru
 func (c *fenixExecutionServerGrpcServicesClient) ReportProcessingCapability(ctx context.Context, in *ProcessingCapabilityMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/ReportProcessingCapability", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionServerGrpcServicesClient) TriggerSendNewTestInstructionsThatIsWaitingToBeSent(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/TriggerSendNewTestInstructionsThatIsWaitingToBeSent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -180,6 +191,8 @@ type FenixExecutionServerGrpcServicesServer interface {
 	InformThatThereAreNewTestInstructionsOnExecutionQueue(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(context.Context, *ProcessingCapabilityMessage) (*AckNackResponse, error)
+	// This can be used to trigger/re-trigger sending new TestInstructionExecutions to workers
+	TriggerSendNewTestInstructionsThatIsWaitingToBeSent(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// When a TestInstruction has been fully executed the Client use this to inform the results of the execution result to the Server
 	ReportCompleteTestInstructionExecutionResult(context.Context, *FinalTestInstructionExecutionResultMessage) (*AckNackResponse, error)
 	// During a TestInstruction execution the Client use this to inform the current of the execution result to the Server
@@ -207,6 +220,9 @@ func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNew
 }
 func (UnimplementedFenixExecutionServerGrpcServicesServer) ReportProcessingCapability(context.Context, *ProcessingCapabilityMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportProcessingCapability not implemented")
+}
+func (UnimplementedFenixExecutionServerGrpcServicesServer) TriggerSendNewTestInstructionsThatIsWaitingToBeSent(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerSendNewTestInstructionsThatIsWaitingToBeSent not implemented")
 }
 func (UnimplementedFenixExecutionServerGrpcServicesServer) ReportCompleteTestInstructionExecutionResult(context.Context, *FinalTestInstructionExecutionResultMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportCompleteTestInstructionExecutionResult not implemented")
@@ -321,6 +337,24 @@ func _FenixExecutionServerGrpcServices_ReportProcessingCapability_Handler(srv in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixExecutionServerGrpcServices_TriggerSendNewTestInstructionsThatIsWaitingToBeSent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGrpcServicesServer).TriggerSendNewTestInstructionsThatIsWaitingToBeSent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/TriggerSendNewTestInstructionsThatIsWaitingToBeSent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGrpcServicesServer).TriggerSendNewTestInstructionsThatIsWaitingToBeSent(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixExecutionServerGrpcServices_ReportCompleteTestInstructionExecutionResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FinalTestInstructionExecutionResultMessage)
 	if err := dec(in); err != nil {
@@ -417,6 +451,10 @@ var FenixExecutionServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReportProcessingCapability",
 			Handler:    _FenixExecutionServerGrpcServices_ReportProcessingCapability_Handler,
+		},
+		{
+			MethodName: "TriggerSendNewTestInstructionsThatIsWaitingToBeSent",
+			Handler:    _FenixExecutionServerGrpcServices_TriggerSendNewTestInstructionsThatIsWaitingToBeSent_Handler,
 		},
 		{
 			MethodName: "ReportCompleteTestInstructionExecutionResult",
