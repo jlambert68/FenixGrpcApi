@@ -8,8 +8,9 @@ import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnec
 
 // Message used for Triggering messages from Connector to Worker
 message TriggerTestInstructionExecutionResultMessage {
-  string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 2; // The final status for the TestInstruction-execution
+  CurrentFenixExecutionConnectorProtoFileVersionEnum ProtoFileVersionUsedByCaller = 1; // The latest proto file version number to be used
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; // The final status for the TestInstruction-execution
 
 }
 
