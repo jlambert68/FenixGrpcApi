@@ -1,0 +1,49 @@
+syntax = "proto3";
+package fenixExecutionConnectorGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "FenixExecutionConnectorGrpcApi";
+
+import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_Messages.proto";
+
+
+// ****************************************************************************************************
+//
+
+service FenixExecutionConnectorGrpcServices {
+
+  // ************************ Admin ************************
+
+  //Check if Fenix Execution Connector is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  //Ask Connector to check if Fenix Execution Worker is alive with this service
+  rpc WorkerAreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  // Trigger Connector to inform Execution Worker of Clients capability to execute requests in parallell, serial or no processing at all(right now)
+  rpc TriggerReportProcessingCapability (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  // Trigger Connector to inform Worker of the final execution results for an execution
+  rpc TriggerReportCompleteTestInstructionExecutionResult (TriggerTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+  // Trigger Connector to inform Worker of the current execution results for an execution
+  rpc TriggerReportCurrentTestInstructionExecutionResult (TriggerTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+  // Trigger Connector to inform Worker of all log posts that have been produced for an execution
+  rpc TriggerSendAllLogPostForExecution(TriggerTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+  // Trigger Execution Connector to set up gPRC-connection for sending TestInstructionsExecutions to Connector using streaming responses
+  rpc TriggerRequestForTestInstructionExecutionToProcess(TriggerTestInstructionExecutionResultMessage) returns (AckNackResponse) {
+  }
+
+}
+
+
+
+

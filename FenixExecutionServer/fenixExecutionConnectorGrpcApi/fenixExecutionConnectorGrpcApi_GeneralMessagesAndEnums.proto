@@ -1,0 +1,75 @@
+syntax = "proto3";
+package fenixExecutionConnectorGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "FenixExecutionConnectorGrpcApi";
+
+
+// ****************************************************************************************************
+// General messages and Enumerations
+
+// Used to have client and server in sync with using the same proto file version
+enum CurrentFenixExecutionConnectorProtoFileVersionEnum {
+  VERSION_0_0 = 0 [deprecated = true];
+  VERSION_0_1 = 1; // Current version
+}
+
+// Error codes - for now a test
+enum ErrorCodesEnum {
+  OK = 0;
+  ERROR_UNKNOWN_CALLER = 1;
+  ERROR_WRONG_PROTO_FILE_VERSION = 2;
+  ERROR_UNSPECIFIED = 3;
+  ERROR_DATABASE_PROBLEM = 4;
+  ERROR_EXECUTION_CONNECTOR_PROBLEM = 5;
+}
+
+// Execution Enum for a TestInstruction Execution
+enum TestInstructionExecutionStatusEnum {
+  TIE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
+  TIE_EXECUTING = 1; // TestCase is execution
+  TIE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
+  TIE_FINISHED_OK = 3; // Finnish as expected to TestCase definition
+  TIE_FINISHED_NOT_OK = 4; // Finnish with errors in validations
+  TIE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
+}
+
+// How a Client is able to process requests in serial or parallell, regarding TestInstructions, TestCases and/or TestSuites
+enum    ProcessingCapabilityForClientSystemEnum {
+  CAN_PROCESS_IN_PARALLELL = 0; // Can be processed in parallell, by the Client system
+  CAN_ONLY_PROCESS_IN_SERIAL = 1; // Can only be processed in serial, by the Client system
+  STOP_SEND_NEW_EXECUTION_TASKS = 2; // Stopp sending new tasks for execution
+}
+
+// Execution priority for TestInstructions, TestCases and TestSuites
+enum ExecutionPriorityEnum {
+  HIGHEST_PROBES = 0; // Only triggered by system that need to trigger probes ');
+  HIGH_SINGLE_TESTCASE = 1; // Used for execution of single TestCases triggered by the user');
+  HIGH_SINGLE_TESTSUITE = 2; // Used for execution of single TestSuite triggered by the user');
+  MEDIUM_MULTIPLE_TESTCASES = 3; // Used for execution of multiple TestCases triggered by the user');
+  MEDIUM_MULTIPLE_TESTSUITES = 4; // Used for execution of Multiple TestSuites triggered by the user');
+  LOW_SCHEDULED_TESTSUITES = 5; //Scheduled Suites use this priority');
+
+}
+
+// Parameter used for Empty inputs, only containing current proto-file version
+message EmptyParameter {
+  CurrentFenixExecutionConnectorProtoFileVersionEnum ProtoFileVersionUsedByCaller = 1; // The latest proto file version number to be used
+}
+
+// Ack/Nack- Response message with comment
+message AckNackResponse {
+  bool AckNack = 1; // True=Ack, False=Nack
+  string Comments = 2; //Comments if needed
+  repeated ErrorCodesEnum ErrorCodes = 3; // List of Error codes
+  CurrentFenixExecutionConnectorProtoFileVersionEnum ProtoFileVersionUsedByConnector = 4; // The latest proto file version number to be used
+}
+
+
+// ****************************************************************************************************
+// Client System Identification Message
+
+// Message Holding information about who is the calling client system
+message ClientSystemIdentificationMessage {
+  string DomainUuid = 1; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixExecutionConnectorProtoFileVersionEnum ProtoFileVersionUsedByCaller = 2; // The latest proto file version number to be used
+}

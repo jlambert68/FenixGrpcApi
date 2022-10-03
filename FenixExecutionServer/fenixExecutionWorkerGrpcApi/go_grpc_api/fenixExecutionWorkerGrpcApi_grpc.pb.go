@@ -290,7 +290,7 @@ var FenixExecutionWorkerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionConnectorGrpcApi.proto",
 }
 
 // FenixExecutionWorkerConnectorGrpcServicesClient is the client API for FenixExecutionWorkerConnectorGrpcServices service.
@@ -485,5 +485,5 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionConnectorGrpcApi.proto",
 }

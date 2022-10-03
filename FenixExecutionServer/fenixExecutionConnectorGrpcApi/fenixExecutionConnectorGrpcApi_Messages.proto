@@ -1,0 +1,17 @@
+syntax = "proto3";
+package fenixExecutionConnectorGrpcApi;
+option go_package = "./go_grpc_api";
+option csharp_namespace = "FenixExecutionConnectorGrpcApi";
+
+import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+// Message used for Triggering messages from Connector to Worker
+message TriggerTestInstructionExecutionResultMessage {
+  string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 2; // The final status for the TestInstruction-execution
+
+}
+
+
+
