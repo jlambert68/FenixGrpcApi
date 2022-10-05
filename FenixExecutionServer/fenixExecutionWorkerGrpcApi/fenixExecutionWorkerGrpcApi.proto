@@ -64,7 +64,9 @@ service FenixExecutionWorkerConnectorGrpcServices {
 
   }
 
-
+  // Response from execution client to execution Worker using direct gRPC call instead of doing response
+  rpc ConnectorProcessTestInstructionExecutionReversedResponse(ProcessTestInstructionExecutionReversedResponse) returns (AckNackResponse){
+  }
 
 }
 

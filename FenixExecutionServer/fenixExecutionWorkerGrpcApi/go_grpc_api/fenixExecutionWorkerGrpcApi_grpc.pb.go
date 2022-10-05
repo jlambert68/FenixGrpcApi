@@ -290,7 +290,7 @@ var FenixExecutionWorkerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionConnectorGrpcApi.proto",
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
 }
 
 // FenixExecutionWorkerConnectorGrpcServicesClient is the client API for FenixExecutionWorkerConnectorGrpcServices service.
@@ -304,6 +304,8 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	// This gPRC-methods is used when a Execution Connector needs to have its TestInstruction assignments using reverse streaming
 	// Execution Connector opens the gPRC-channel and assignments are then streamed back to Connector from Worker
 	ConnectorRequestForProcessTestInstructionExecution(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionClient, error)
+	// Response from execution client to execution Worker using direct gRPC call instead of doing response
+	ConnectorProcessTestInstructionExecutionReversedResponse(ctx context.Context, in *ProcessTestInstructionExecutionReversedResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionWorkerConnectorGrpcServicesClient struct {
@@ -364,6 +366,15 @@ func (x *fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTest
 	return m, nil
 }
 
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorProcessTestInstructionExecutionReversedResponse(ctx context.Context, in *ProcessTestInstructionExecutionReversedResponse, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorProcessTestInstructionExecutionReversedResponse", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixExecutionWorkerConnectorGrpcServicesServer is the server API for FenixExecutionWorkerConnectorGrpcServices service.
 // All implementations must embed UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer
 // for forward compatibility
@@ -375,6 +386,8 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	// This gPRC-methods is used when a Execution Connector needs to have its TestInstruction assignments using reverse streaming
 	// Execution Connector opens the gPRC-channel and assignments are then streamed back to Connector from Worker
 	ConnectorRequestForProcessTestInstructionExecution(*EmptyParameter, FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionServer) error
+	// Response from execution client to execution Worker using direct gRPC call instead of doing response
+	ConnectorProcessTestInstructionExecutionReversedResponse(context.Context, *ProcessTestInstructionExecutionReversedResponse) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }
 
@@ -390,6 +403,9 @@ func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorRep
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorRequestForProcessTestInstructionExecution(*EmptyParameter, FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionServer) error {
 	return status.Errorf(codes.Unimplemented, "method ConnectorRequestForProcessTestInstructionExecution not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorProcessTestInstructionExecutionReversedResponse(context.Context, *ProcessTestInstructionExecutionReversedResponse) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorProcessTestInstructionExecutionReversedResponse not implemented")
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {
 }
@@ -462,6 +478,24 @@ func (x *fenixExecutionWorkerConnectorGrpcServicesConnectorRequestForProcessTest
 	return x.ServerStream.SendMsg(m)
 }
 
+func _FenixExecutionWorkerConnectorGrpcServices_ConnectorProcessTestInstructionExecutionReversedResponse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProcessTestInstructionExecutionReversedResponse)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorProcessTestInstructionExecutionReversedResponse(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorProcessTestInstructionExecutionReversedResponse",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorProcessTestInstructionExecutionReversedResponse(ctx, req.(*ProcessTestInstructionExecutionReversedResponse))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixExecutionWorkerConnectorGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionWorkerConnectorGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -477,6 +511,10 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ConnectorReportCompleteTestInstructionExecutionResult",
 			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorReportCompleteTestInstructionExecutionResult_Handler,
 		},
+		{
+			MethodName: "ConnectorProcessTestInstructionExecutionReversedResponse",
+			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorProcessTestInstructionExecutionReversedResponse_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -485,5 +523,5 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionConnectorGrpcApi.proto",
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
 }
