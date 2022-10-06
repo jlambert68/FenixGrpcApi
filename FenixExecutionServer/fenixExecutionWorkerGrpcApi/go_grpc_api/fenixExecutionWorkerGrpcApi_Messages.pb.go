@@ -275,9 +275,10 @@ type FinalTestInstructionExecutionResultMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ClientSystemIdentification     *ClientSystemIdentificationMessage `protobuf:"bytes,1,opt,name=ClientSystemIdentification,proto3" json:"ClientSystemIdentification,omitempty"`                                                                              // Identifies Client System and Proto-file version used
-	TestInstructionExecutionUuid   string                             `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                          // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-	TestInstructionExecutionStatus TestInstructionExecutionStatusEnum `protobuf:"varint,3,opt,name=TestInstructionExecutionStatus,proto3,enum=fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum" json:"TestInstructionExecutionStatus,omitempty"` // The final status for the TestInstruction-execution
+	ClientSystemIdentification           *ClientSystemIdentificationMessage `protobuf:"bytes,1,opt,name=ClientSystemIdentification,proto3" json:"ClientSystemIdentification,omitempty"`                                                                              // Identifies Client System and Proto-file version used
+	TestInstructionExecutionUuid         string                             `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                          // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+	TestInstructionExecutionStatus       TestInstructionExecutionStatusEnum `protobuf:"varint,3,opt,name=TestInstructionExecutionStatus,proto3,enum=fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum" json:"TestInstructionExecutionStatus,omitempty"` // The final status for the TestInstruction-execution
+	TestInstructionExecutionEndTimeStamp *timestamppb.Timestamp             `protobuf:"bytes,4,opt,name=TestInstructionExecutionEndTimeStamp,proto3" json:"TestInstructionExecutionEndTimeStamp,omitempty"`                                                          // The TimeStamp for when the TestInstructionExecution ended
 }
 
 func (x *FinalTestInstructionExecutionResultMessage) Reset() {
@@ -331,6 +332,13 @@ func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecution
 		return x.TestInstructionExecutionStatus
 	}
 	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+}
+
+func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionEndTimeStamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.TestInstructionExecutionEndTimeStamp
+	}
+	return nil
 }
 
 // Response from execution client to execution worker using direct gRPC call instead of doing response on call, due to it is not possible to call Worker from Connector
@@ -880,7 +888,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
 	0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1c, 0x54, 0x65,
 	0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65,
-	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x22, 0xfa, 0x02, 0x0a, 0x2a, 0x46,
+	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x22, 0xea, 0x03, 0x0a, 0x2a, 0x46,
 	0x69, 0x6e, 0x61, 0x6c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
 	0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x75,
 	0x6c, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x7e, 0x0a, 0x1a, 0x43, 0x6c, 0x69,
@@ -904,7 +912,14 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61,
 	0x74, 0x75, 0x73, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73,
 	0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
-	0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xef, 0x02, 0x0a, 0x2f, 0x50, 0x72, 0x6f, 0x63,
+	0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x6e, 0x0a, 0x24, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
+	0x70, 0x52, 0x24, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x64, 0x54, 0x69,
+	0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x22, 0xef, 0x02, 0x0a, 0x2f, 0x50, 0x72, 0x6f, 0x63,
 	0x65, 0x73, 0x73, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69,
 	0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x76, 0x65, 0x72,
 	0x73, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x56, 0x0a, 0x0f, 0x41,
@@ -974,16 +989,17 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	10, // 6: fenixExecutionWorkerGrpcApi.CurrentTestInstructionExecutionResultRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionWorkerGrpcApi.CurrentFenixExecutionWorkerProtoFileVersionEnum
 	13, // 7: fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage.ClientSystemIdentification:type_name -> fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
 	14, // 8: fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum
-	11, // 9: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReversedResponse.AckNackResponse:type_name -> fenixExecutionWorkerGrpcApi.AckNackResponse
-	12, // 10: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReversedResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
-	7,  // 11: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestInstructionExecutionMessage.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestInstructionAttributeMessage
-	15, // 12: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
-	9,  // 13: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestDataMessage.ManualOverrideForTestDataMessage
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	12, // 9: fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage.TestInstructionExecutionEndTimeStamp:type_name -> google.protobuf.Timestamp
+	11, // 10: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReversedResponse.AckNackResponse:type_name -> fenixExecutionWorkerGrpcApi.AckNackResponse
+	12, // 11: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReversedResponse.ExpectedExecutionDuration:type_name -> google.protobuf.Timestamp
+	7,  // 12: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestInstructionExecutionMessage.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestInstructionAttributeMessage
+	15, // 13: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestInstructionAttributeMessage.TestInstructionAttributeType:type_name -> fenixExecutionWorkerGrpcApi.TestInstructionAttributeTypeEnum
+	9,  // 14: fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestDataMessage.ManualOverrideForTestData:type_name -> fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest.TestDataMessage.ManualOverrideForTestDataMessage
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() {
