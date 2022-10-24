@@ -112,7 +112,14 @@ compileExecutionConnectorProto_go:
 # generate the services
 	protoc --go-grpc_out=FenixExecutionServer/fenixExecutionConnectorGrpcApi FenixExecutionServer/fenixExecutionConnectorGrpcApi/*.proto
 
+compileExecutionWorkerAsRestApi:
+	@echo "Compile ExecutionConnector proto file as RestAPI..."
 
+ # generate the messages
+	protoc --grpc-gateway_opt =FenixExecutionServer/fenixExecutionWorkerGrpcApi FenixExecutionServer/fenixExecutionWorkerGrpcApi/*.proto
+
+# generate the services
+	protoc --grpc-gateway_opt =FenixExecutionServer/fenixExecutionWorkerGrpcApi FenixExecutionServer/fenixExecutionWorkerGrpcApi/*.proto
 
 
 

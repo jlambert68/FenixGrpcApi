@@ -27,6 +27,8 @@ message ProcessTestInstructionExecutionReveredRequest {
     string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
     string AttributeValueAsString = 4; // The String-representation of the value
     string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+    string TestInstructionAttributeTypeUuid = 7; // The unique uuid for the TestInstructionAttribute-type, used to extract certain attributes types in Connector (CA)
+    string TestInstructionAttributeTypeName = 8; // The name for the TestInstructionAttribute-type, used to group attributes in GUI
   }
 
   TestDataMessage TestData = 7; // TestData used in TestExecution
