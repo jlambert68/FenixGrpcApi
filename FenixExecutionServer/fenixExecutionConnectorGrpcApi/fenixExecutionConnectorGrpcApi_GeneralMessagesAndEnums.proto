@@ -51,6 +51,14 @@ enum ExecutionPriorityEnum {
 
 }
 
+// The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
+enum TestInstructionAttributeTypeEnum {
+  TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
+  COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
+  FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
+  FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+}
+
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
   CurrentFenixExecutionConnectorProtoFileVersionEnum ProtoFileVersionUsedByCaller = 1; // The latest proto file version number to be used

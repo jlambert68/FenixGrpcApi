@@ -42,6 +42,10 @@ service FenixExecutionConnectorGrpcServices {
   rpc TriggerRequestForTestInstructionExecutionToProcess(TriggerTestInstructionExecutionResultMessage) returns (AckNackResponse) {
   }
 
+  // Trigger Execution Connector send TestInstruction to ExecutionEngine, which can be local Test WebServer, Local Test-FangEngine or 'real' FangEngine
+  rpc TriggerPostRestCallForTestInstructionExecution(ProcessTestInstructionExecutionReveredRequest) returns (FinalTestInstructionExecutionResultMessage) {
+  }
+
 }
 
 
