@@ -44,7 +44,7 @@ service FenixExecutionConnectorGrpcServices {
   }
 
   // Trigger Execution Connector send TestInstruction to ExecutionEngine, which can be local Test WebServer, Local Test-FangEngine or 'real' FangEngine
-  rpc TriggerPostRestCallForTestInstructionExecution(fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest) returns (fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage) {
+  rpc TriggerPostRestCallForTestInstructionExecution(fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest) returns (TriggerPostRestCallForTestInstructionExecutionResponse) {
   }
 
 }
