@@ -5,6 +5,7 @@ option csharp_namespace = "FenixExecutionConnectorGrpcApi";
 
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_Messages.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto";
 
 
 // ****************************************************************************************************
@@ -43,7 +44,7 @@ service FenixExecutionConnectorGrpcServices {
   }
 
   // Trigger Execution Connector send TestInstruction to ExecutionEngine, which can be local Test WebServer, Local Test-FangEngine or 'real' FangEngine
-  rpc TriggerPostRestCallForTestInstructionExecution(ProcessTestInstructionExecutionReveredRequest) returns (FinalTestInstructionExecutionResultMessage) {
+  rpc TriggerPostRestCallForTestInstructionExecution(fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReveredRequest) returns (fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage) {
   }
 
 }
