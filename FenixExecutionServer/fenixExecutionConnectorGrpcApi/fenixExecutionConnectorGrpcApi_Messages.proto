@@ -6,6 +6,7 @@ option csharp_namespace = "FenixExecutionConnectorGrpcApi";
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto";
+import "google/protobuf/timestamp.proto";
 
 
 // Message used for Triggering messages from Connector to Worker
@@ -22,4 +23,20 @@ message TriggerPostRestCallForTestInstructionExecutionResponse {
   fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionReversedResponse processTestInstructionExecutionReversedResponse = 2; // Response from execution client to execution worker using direct gRPC call instead of doing response on call, due to it is not possible to call Worker from Connector
   fenixExecutionWorkerGrpcApi.FinalTestInstructionExecutionResultMessage finalTestInstructionExecutionResultMessage = 3; // This message is sent from Client System, to Fenix Execution Server via a Execution Worker, when a TestExecution has stopped executed, and the result is final (OK or not OK result)
 
+}
+
+// This message is sent from Client System, to Fenix Execution Server via a Execution Worker, when a TestExecution has stopped executed, and the result is final (OK or not OK result)
+message FinalTestInstructionExecutionResultMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; // The final status for the TestInstruction-execution
+  google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 4; // The TimeStamp for when the TestInstructionExecution ended
+}
+
+// Response from execution client to execution worker using direct gRPC call instead of doing response on call, due to it is not possible to call Worker from Connector
+message ProcessTestInstructionExecutionReversedResponse {
+  AckNackResponse AckNackResponse = 1;
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
+  bool TestInstructionCanBeReExecuted = 4; // Indicates if the TestInstruction can be resent to be re-executed. Good example is validations that can be don't as many times as needed
 }
