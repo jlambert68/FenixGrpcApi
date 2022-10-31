@@ -10,7 +10,8 @@ option csharp_namespace = "FenixExecutionConnectorGrpcApi";
 // Used to have client and server in sync with using the same proto file version
 enum CurrentFenixExecutionConnectorProtoFileVersionEnum {
   VERSION_0_0 = 0 [deprecated = true];
-  VERSION_0_1 = 1; // Current version
+  VERSION_0_1 = 1 [deprecated = true];
+  VERSION_0_2 = 2; // Current version
 }
 
 // Error codes - for now a test
@@ -26,11 +27,16 @@ enum ErrorCodesEnum {
 // Execution Enum for a TestInstruction Execution
 enum TestInstructionExecutionStatusEnum {
   TIE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
-  TIE_EXECUTING = 1; // TestCase is execution
+  TIE_EXECUTING = 1; // TestInstruction is execution
   TIE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
-  TIE_FINISHED_OK = 3; // Finnish as expected to TestCase definition
-  TIE_FINISHED_NOT_OK = 4; // Finnish with errors in validations
-  TIE_UNEXPECTED_INTERRUPTION = 5; // The TestCase stopped executed in an unexpected way
+  TIE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 3; // Interrupted by in a controlled way, but can be rerun
+  TIE_FINISHED_OK = 4; // Finish as expected to TestInstruction definition
+  TIE_FINISHED_OK_CAN_BE_RERUN = 5; // Finish as expected to TestInstruction definition, but can be rerun
+  TIE_FINISHED_NOT_OK = 6; // Finish with errors in validations
+  TIE_FINISHED_NOT_OK_CAN_BE_RERUN = 7; // Finish with errors in validations, but can be rerun
+  TIE_UNEXPECTED_INTERRUPTION = 8; // The TestInstruction stopped executed in an unexpected way
+  TIE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 9; // The TestInstruction stopped executed in an unexpected way, but can be rerun
+
 }
 
 // How a Client is able to process requests in serial or parallell, regarding TestInstructions, TestCases and/or TestSuites
