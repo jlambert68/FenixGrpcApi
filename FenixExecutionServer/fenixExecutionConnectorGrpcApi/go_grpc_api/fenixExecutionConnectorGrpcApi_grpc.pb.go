@@ -366,5 +366,5 @@ var FenixExecutionConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi.proto",
+	Metadata: "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixUserGuiGrpcApi.proto",
 }

@@ -1,0 +1,31 @@
+syntax = "proto3";
+package fenixUserGuiGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixUserGui/fenixUserGuiGrpcApi/fenixUserGuiGrpcApi_GeneralMessagesAndEnums.proto";
+
+// ****************************************************************************************************
+//
+
+service FenixUserGuiGrpcServices {
+
+  // ************************ Admin ************************
+
+  //Check if 'FenixUserGui' is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  //Ask 'FenixUserGui' if 'GuiExecutionServer' is alive with this service
+  rpc GuiExecutionServerAreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  //Ask 'FenixUserGui' if 'GuiTestCaseBuilderServer' is alive with this service
+  rpc GuiTestCaseBuilderServerAreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+
+}
+
+
+
+

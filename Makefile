@@ -122,4 +122,15 @@ compileExecutionWorkerAsRestApi:
 	protoc --grpc-gateway_opt =FenixExecutionServer/fenixExecutionWorkerGrpcApi FenixExecutionServer/fenixExecutionWorkerGrpcApi/*.proto
 
 
+compileFenixUserGui_go:
+	@echo "Compile 'FenixUserGui' proto file..."
+
+ # generate the messages
+	protoc --go_out=FenixUserGui/fenixUserGuiGrpcApi FenixUserGui/fenixUserGuiGrpcApi/*.proto
+
+# generate the services
+	protoc --go-grpc_out=FenixUserGui/fenixUserGuiGrpcApi FenixUserGui/fenixUserGuiGrpcApi/*.proto
+
+
+
 
