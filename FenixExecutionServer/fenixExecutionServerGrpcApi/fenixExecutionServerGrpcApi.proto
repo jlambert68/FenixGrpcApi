@@ -37,7 +37,7 @@ service FenixExecutionServerGrpcServices {
   }
 
   // This can be used to trigger/re-trigger sending new TestInstructionExecutions to workers
-  rpc TriggerSendNewTestInstructionsThatIsWaitingToBeSent(EmptyParameter) returns (AckNackResponse) {
+  rpc TriggerSendNewTestInstructionsThatIsWaitingToBeSent(TestCaseExecutionsToProcessMessage) returns (AckNackResponse) {
   }
 
   // ************************ Execution Status ************************
