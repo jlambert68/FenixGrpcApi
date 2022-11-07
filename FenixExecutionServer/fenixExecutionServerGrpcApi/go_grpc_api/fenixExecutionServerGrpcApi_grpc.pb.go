@@ -23,9 +23,9 @@ type FenixExecutionServerGrpcServicesClient interface {
 	// Ask Fenix Execution server to call a Execution Worker to see if is alive
 	IsWorkerAlive(ctx context.Context, in *IsWorkerAliveRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
-	InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcess, opts ...grpc.CallOption) (*AckNackResponse, error)
+	InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcessMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// ExecutionServer-server is informed to check TestInstructionExecutionQueue for new TestInstructions to execute
-	InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcess, opts ...grpc.CallOption) (*AckNackResponse, error)
+	InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcessMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(ctx context.Context, in *ProcessingCapabilityMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// This can be used to trigger/re-trigger sending new TestInstructionExecutions to workers
@@ -64,7 +64,7 @@ func (c *fenixExecutionServerGrpcServicesClient) IsWorkerAlive(ctx context.Conte
 	return out, nil
 }
 
-func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcess, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestCasesOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcessMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/InformThatThereAreNewTestCasesOnExecutionQueue", in, out, opts...)
 	if err != nil {
@@ -73,7 +73,7 @@ func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestCasesO
 	return out, nil
 }
 
-func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcess, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionServerGrpcServicesClient) InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx context.Context, in *TestCaseExecutionsToProcessMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/InformThatThereAreNewTestInstructionsOnExecutionQueue", in, out, opts...)
 	if err != nil {
@@ -186,9 +186,9 @@ type FenixExecutionServerGrpcServicesServer interface {
 	// Ask Fenix Execution server to call a Execution Worker to see if is alive
 	IsWorkerAlive(context.Context, *IsWorkerAliveRequest) (*AckNackResponse, error)
 	// ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
-	InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *TestCaseExecutionsToProcess) (*AckNackResponse, error)
+	InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *TestCaseExecutionsToProcessMessage) (*AckNackResponse, error)
 	// ExecutionServer-server is informed to check TestInstructionExecutionQueue for new TestInstructions to execute
-	InformThatThereAreNewTestInstructionsOnExecutionQueue(context.Context, *TestCaseExecutionsToProcess) (*AckNackResponse, error)
+	InformThatThereAreNewTestInstructionsOnExecutionQueue(context.Context, *TestCaseExecutionsToProcessMessage) (*AckNackResponse, error)
 	// Client can inform Server of Client capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(context.Context, *ProcessingCapabilityMessage) (*AckNackResponse, error)
 	// This can be used to trigger/re-trigger sending new TestInstructionExecutions to workers
@@ -212,10 +212,10 @@ func (UnimplementedFenixExecutionServerGrpcServicesServer) AreYouAlive(context.C
 func (UnimplementedFenixExecutionServerGrpcServicesServer) IsWorkerAlive(context.Context, *IsWorkerAliveRequest) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsWorkerAlive not implemented")
 }
-func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *TestCaseExecutionsToProcess) (*AckNackResponse, error) {
+func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNewTestCasesOnExecutionQueue(context.Context, *TestCaseExecutionsToProcessMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InformThatThereAreNewTestCasesOnExecutionQueue not implemented")
 }
-func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNewTestInstructionsOnExecutionQueue(context.Context, *TestCaseExecutionsToProcess) (*AckNackResponse, error) {
+func (UnimplementedFenixExecutionServerGrpcServicesServer) InformThatThereAreNewTestInstructionsOnExecutionQueue(context.Context, *TestCaseExecutionsToProcessMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InformThatThereAreNewTestInstructionsOnExecutionQueue not implemented")
 }
 func (UnimplementedFenixExecutionServerGrpcServicesServer) ReportProcessingCapability(context.Context, *ProcessingCapabilityMessage) (*AckNackResponse, error) {
@@ -284,7 +284,7 @@ func _FenixExecutionServerGrpcServices_IsWorkerAlive_Handler(srv interface{}, ct
 }
 
 func _FenixExecutionServerGrpcServices_InformThatThereAreNewTestCasesOnExecutionQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestCaseExecutionsToProcess)
+	in := new(TestCaseExecutionsToProcessMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -296,13 +296,13 @@ func _FenixExecutionServerGrpcServices_InformThatThereAreNewTestCasesOnExecution
 		FullMethod: "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/InformThatThereAreNewTestCasesOnExecutionQueue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGrpcServicesServer).InformThatThereAreNewTestCasesOnExecutionQueue(ctx, req.(*TestCaseExecutionsToProcess))
+		return srv.(FenixExecutionServerGrpcServicesServer).InformThatThereAreNewTestCasesOnExecutionQueue(ctx, req.(*TestCaseExecutionsToProcessMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _FenixExecutionServerGrpcServices_InformThatThereAreNewTestInstructionsOnExecutionQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TestCaseExecutionsToProcess)
+	in := new(TestCaseExecutionsToProcessMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,7 +314,7 @@ func _FenixExecutionServerGrpcServices_InformThatThereAreNewTestInstructionsOnEx
 		FullMethod: "/fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices/InformThatThereAreNewTestInstructionsOnExecutionQueue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGrpcServicesServer).InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx, req.(*TestCaseExecutionsToProcess))
+		return srv.(FenixExecutionServerGrpcServicesServer).InformThatThereAreNewTestInstructionsOnExecutionQueue(ctx, req.(*TestCaseExecutionsToProcessMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }

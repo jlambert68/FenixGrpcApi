@@ -61,7 +61,7 @@ message IsWorkerAliveRequest {
 }
 
 // Message holding the TestCaseExecutions that should be processed
-message TestCaseExecutionsToProcess {
+message TestCaseExecutionsToProcessMessage {
   CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   repeated TestCaseExecutionToProcess TestCaseExecutionsToProcess = 2; // An array with all TestCasesExecutions (UUID and VersionNumber) that should be processed
 }
