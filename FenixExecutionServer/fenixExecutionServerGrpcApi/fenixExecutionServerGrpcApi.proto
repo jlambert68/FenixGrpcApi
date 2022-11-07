@@ -23,11 +23,11 @@ service FenixExecutionServerGrpcServices {
   }
 
   // ExecutionServerGui-server inform ExecutionServer that there is a new TestCase that is ready on the Execution-queue
-  rpc InformThatThereAreNewTestCasesOnExecutionQueue (EmptyParameter) returns (AckNackResponse) {
+  rpc InformThatThereAreNewTestCasesOnExecutionQueue (TestCaseExecutionsToProcess) returns (AckNackResponse) {
   }
 
   // ExecutionServer-server is informed to check TestInstructionExecutionQueue for new TestInstructions to execute
-  rpc InformThatThereAreNewTestInstructionsOnExecutionQueue (EmptyParameter) returns (AckNackResponse) {
+  rpc InformThatThereAreNewTestInstructionsOnExecutionQueue (TestCaseExecutionsToProcess) returns (AckNackResponse) {
   }
 
   // *** Client inform Server of Clients status and capability ***

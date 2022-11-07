@@ -53,10 +53,22 @@ message ProcessingCapabilityMessage {
 
 }
 
-//
+// Message used to check if a specific worker is up and running
 message IsWorkerAliveRequest {
   CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   string WorkersDomainUuid = 3; // The Execution Worker's Domain belonging
 
+}
+
+// Message holding the TestCaseExecutions that should be processed
+message TestCaseExecutionsToProcess {
+  CurrentFenixExecutionServerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  repeated TestCaseExecutionToProcess TestCaseExecutionsToProcess = 2; // An array with all TestCasesExecutions (UUID and VersionNumber) that should be processed
+}
+
+// Message holding one specific TestCaseExecution that should be processed
+message TestCaseExecutionToProcess {
+    string TestCaseExecutionsUuid = 1; // The TestCaseExecution to process
+    int32 TestCaseExecutionVersion = 2; // The version of the TestCaseExecution to process
 }
 
