@@ -973,6 +973,382 @@ func (x *GetSingleTestCaseExecutionResponse) GetTestInstructionsExecution() []*G
 	return nil
 }
 
+// The request message from 'TesterGui' to receive 'stream' of messages from GuiExecutionServer
+type SubscribeToMessagesRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserIdentification                    *UserIdentificationMessage                    `protobuf:"bytes,1,opt,name=UserIdentification,proto3" json:"UserIdentification,omitempty"`                                       // Identifies User and Proto-file version used
+	TestCaseExecutionsStatusSubscriptions []*TestCaseExecutionStatusSubscriptionMessage `protobuf:"bytes,2,rep,name=TestCaseExecutionsStatusSubscriptions,proto3" json:"TestCaseExecutionsStatusSubscriptions,omitempty"` // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
+}
+
+func (x *SubscribeToMessagesRequest) Reset() {
+	*x = SubscribeToMessagesRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SubscribeToMessagesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubscribeToMessagesRequest) ProtoMessage() {}
+
+func (x *SubscribeToMessagesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubscribeToMessagesRequest.ProtoReflect.Descriptor instead.
+func (*SubscribeToMessagesRequest) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *SubscribeToMessagesRequest) GetUserIdentification() *UserIdentificationMessage {
+	if x != nil {
+		return x.UserIdentification
+	}
+	return nil
+}
+
+func (x *SubscribeToMessagesRequest) GetTestCaseExecutionsStatusSubscriptions() []*TestCaseExecutionStatusSubscriptionMessage {
+	if x != nil {
+		return x.TestCaseExecutionsStatusSubscriptions
+	}
+	return nil
+}
+
+// Holds one TestCaseExecution that the TesterGui want to subribe to
+type TestCaseExecutionStatusSubscriptionMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCaseExecutionUuid    string `protobuf:"bytes,2,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`        // The UUID for the TestCaseExecution that is requested
+	TestCaseExecutionVersion int32  `protobuf:"varint,3,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"` // The VersionNumber for the TestCaseExecution that is request
+}
+
+func (x *TestCaseExecutionStatusSubscriptionMessage) Reset() {
+	*x = TestCaseExecutionStatusSubscriptionMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseExecutionStatusSubscriptionMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseExecutionStatusSubscriptionMessage) ProtoMessage() {}
+
+func (x *TestCaseExecutionStatusSubscriptionMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseExecutionStatusSubscriptionMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseExecutionStatusSubscriptionMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *TestCaseExecutionStatusSubscriptionMessage) GetTestCaseExecutionUuid() string {
+	if x != nil {
+		return x.TestCaseExecutionUuid
+	}
+	return ""
+}
+
+func (x *TestCaseExecutionStatusSubscriptionMessage) GetTestCaseExecutionVersion() int32 {
+	if x != nil {
+		return x.TestCaseExecutionVersion
+	}
+	return 0
+}
+
+// The response message from 'GuiExecutionServer' to sent by stream of status-messages to 'TesterGui'
+type SubscribeToMessagesStreamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProtoFileVersionUsedByClient CurrentFenixExecutionGuiProtoFileVersionEnum                       `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	ExecutionsStatus             *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage `protobuf:"bytes,2,opt,name=ExecutionsStatus,proto3" json:"ExecutionsStatus,omitempty"`                                                                                                           // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
+}
+
+func (x *SubscribeToMessagesStreamResponse) Reset() {
+	*x = SubscribeToMessagesStreamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SubscribeToMessagesStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SubscribeToMessagesStreamResponse) ProtoMessage() {}
+
+func (x *SubscribeToMessagesStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SubscribeToMessagesStreamResponse.ProtoReflect.Descriptor instead.
+func (*SubscribeToMessagesStreamResponse) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *SubscribeToMessagesStreamResponse) GetProtoFileVersionUsedByClient() CurrentFenixExecutionGuiProtoFileVersionEnum {
+	if x != nil {
+		return x.ProtoFileVersionUsedByClient
+	}
+	return CurrentFenixExecutionGuiProtoFileVersionEnum_VERSION_0_0
+}
+
+func (x *SubscribeToMessagesStreamResponse) GetExecutionsStatus() *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage {
+	if x != nil {
+		return x.ExecutionsStatus
+	}
+	return nil
+}
+
+// Message holding status for TestCaseExecutions and TestInstructionExecutions
+type TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ProtoFileVersionUsedByClient    CurrentFenixExecutionGuiProtoFileVersionEnum `protobuf:"varint,1,opt,name=ProtoFileVersionUsedByClient,proto3,enum=fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum" json:"ProtoFileVersionUsedByClient,omitempty"` // The latest proto file version number to be used
+	TestCaseExecutionsStatus        []*TestCaseExecutionStatusMessage            `protobuf:"bytes,2,rep,name=TestCaseExecutionsStatus,proto3" json:"TestCaseExecutionsStatus,omitempty"`                                                                                           // An array of TestCaseExecutions and their statuses
+	TestInstructionExecutionsStatus []*TestInstructionExecutionStatusMessage     `protobuf:"bytes,3,rep,name=TestInstructionExecutionsStatus,proto3" json:"TestInstructionExecutionsStatus,omitempty"`                                                                             // An array of TestInstructionExecutions and their statuses
+}
+
+func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) Reset() {
+	*x = TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) ProtoMessage() {}
+
+func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) GetProtoFileVersionUsedByClient() CurrentFenixExecutionGuiProtoFileVersionEnum {
+	if x != nil {
+		return x.ProtoFileVersionUsedByClient
+	}
+	return CurrentFenixExecutionGuiProtoFileVersionEnum_VERSION_0_0
+}
+
+func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) GetTestCaseExecutionsStatus() []*TestCaseExecutionStatusMessage {
+	if x != nil {
+		return x.TestCaseExecutionsStatus
+	}
+	return nil
+}
+
+func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) GetTestInstructionExecutionsStatus() []*TestInstructionExecutionStatusMessage {
+	if x != nil {
+		return x.TestInstructionExecutionsStatus
+	}
+	return nil
+}
+
+// Message holding status for one TestCaseExecution
+type TestCaseExecutionStatusMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCaseExecutionUuid    string                      `protobuf:"bytes,1,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`                                                                      // The UUID for the TestCaseExecution
+	TestCaseExecutionVersion int32                       `protobuf:"varint,2,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                                                               // The Version Number for the TestCaseExecution
+	TestCaseExecutionStatus  TestCaseExecutionStatusEnum `protobuf:"varint,3,opt,name=TestCaseExecutionStatus,proto3,enum=fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum" json:"TestCaseExecutionStatus,omitempty"` // The TestCaseExecution-status for this TestCaseExecution
+}
+
+func (x *TestCaseExecutionStatusMessage) Reset() {
+	*x = TestCaseExecutionStatusMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseExecutionStatusMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseExecutionStatusMessage) ProtoMessage() {}
+
+func (x *TestCaseExecutionStatusMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseExecutionStatusMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseExecutionStatusMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *TestCaseExecutionStatusMessage) GetTestCaseExecutionUuid() string {
+	if x != nil {
+		return x.TestCaseExecutionUuid
+	}
+	return ""
+}
+
+func (x *TestCaseExecutionStatusMessage) GetTestCaseExecutionVersion() int32 {
+	if x != nil {
+		return x.TestCaseExecutionVersion
+	}
+	return 0
+}
+
+func (x *TestCaseExecutionStatusMessage) GetTestCaseExecutionStatus() TestCaseExecutionStatusEnum {
+	if x != nil {
+		return x.TestCaseExecutionStatus
+	}
+	return TestCaseExecutionStatusEnum_TCE_INITIATED
+}
+
+// Message holding status for one TestInstructionExecution
+type TestInstructionExecutionStatusMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCaseExecutionUuid           string                             `protobuf:"bytes,1,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`                                                                                           // The UUID for the TestCaseExecution to which this TestInstructionExecution belongs
+	TestCaseExecutionVersion        int32                              `protobuf:"varint,2,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                                                                                    // The Version Number for the TestCaseExecution to which this TestInstructionExecution belongs
+	TestInstructionExecutionUuid    string                             `protobuf:"bytes,3,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                             // The UUID for the TestInstructionExecution
+	TestInstructionExecutionVersion int32                              `protobuf:"varint,4,opt,name=TestInstructionExecutionVersion,proto3" json:"TestInstructionExecutionVersion,omitempty"`                                                                      // The Version Number for the TestInstructionExecution
+	TestInstructionExecutionStatus  TestInstructionExecutionStatusEnum `protobuf:"varint,5,opt,name=TestInstructionExecutionStatus,proto3,enum=fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum" json:"TestInstructionExecutionStatus,omitempty"` // The TestInstructionExecution-status for this TestInstructionExecution
+}
+
+func (x *TestInstructionExecutionStatusMessage) Reset() {
+	*x = TestInstructionExecutionStatusMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestInstructionExecutionStatusMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestInstructionExecutionStatusMessage) ProtoMessage() {}
+
+func (x *TestInstructionExecutionStatusMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestInstructionExecutionStatusMessage.ProtoReflect.Descriptor instead.
+func (*TestInstructionExecutionStatusMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *TestInstructionExecutionStatusMessage) GetTestCaseExecutionUuid() string {
+	if x != nil {
+		return x.TestCaseExecutionUuid
+	}
+	return ""
+}
+
+func (x *TestInstructionExecutionStatusMessage) GetTestCaseExecutionVersion() int32 {
+	if x != nil {
+		return x.TestCaseExecutionVersion
+	}
+	return 0
+}
+
+func (x *TestInstructionExecutionStatusMessage) GetTestInstructionExecutionUuid() string {
+	if x != nil {
+		return x.TestInstructionExecutionUuid
+	}
+	return ""
+}
+
+func (x *TestInstructionExecutionStatusMessage) GetTestInstructionExecutionVersion() int32 {
+	if x != nil {
+		return x.TestInstructionExecutionVersion
+	}
+	return 0
+}
+
+func (x *TestInstructionExecutionStatusMessage) GetTestInstructionExecutionStatus() TestInstructionExecutionStatusEnum {
+	if x != nil {
+		return x.TestInstructionExecutionStatus
+	}
+	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+}
+
 type GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -985,7 +1361,7 @@ type GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage struct {
 func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage) Reset() {
 	*x = GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[14]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -998,7 +1374,7 @@ func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage) Str
 func (*GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage) ProtoMessage() {}
 
 func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[14]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1049,7 +1425,7 @@ type GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage s
 func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage) Reset() {
 	*x = GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[15]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1062,7 +1438,7 @@ func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessa
 func (*GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage) ProtoMessage() {}
 
 func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[15]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1160,7 +1536,7 @@ type GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage s
 func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage) Reset() {
 	*x = GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[16]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1173,7 +1549,7 @@ func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessa
 func (*GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage) ProtoMessage() {}
 
 func (x *GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[16]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1210,7 +1586,7 @@ type GetSingleTestCaseExecutionResponse_LogPostMessage struct {
 func (x *GetSingleTestCaseExecutionResponse_LogPostMessage) Reset() {
 	*x = GetSingleTestCaseExecutionResponse_LogPostMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[17]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1223,7 +1599,7 @@ func (x *GetSingleTestCaseExecutionResponse_LogPostMessage) String() string {
 func (*GetSingleTestCaseExecutionResponse_LogPostMessage) ProtoMessage() {}
 
 func (x *GetSingleTestCaseExecutionResponse_LogPostMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[17]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1272,7 +1648,7 @@ type GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueM
 func (x *GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueMessage) Reset() {
 	*x = GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[18]
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1286,7 +1662,7 @@ func (*GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValu
 }
 
 func (x *GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[18]
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1733,9 +2109,133 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x46, 0x6f, 0x75, 0x6e,
 	0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x45, 0x78, 0x70, 0x65, 0x63, 0x74,
 	0x65, 0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x45,
-	0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x42, 0x0f, 0x5a, 0x0d,
-	0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xaa, 0x02, 0x0a,
+	0x1a, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x69, 0x0a, 0x12, 0x55,
+	0x73, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x39, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45,
+	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75,
+	0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x65,
+	0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x52, 0x12, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0xa0, 0x01, 0x0a, 0x25, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x4a, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69,
+	0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65,
+	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x53,
+	0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x52, 0x25, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x53, 0x75, 0x62, 0x73,
+	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0x9e, 0x01, 0x0a, 0x2a, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x34, 0x0a, 0x15, 0x54, 0x65, 0x73, 0x74,
+	0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x15, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
+	0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x3a,
+	0x0a, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05,
+	0x52, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0xc6, 0x02, 0x0a, 0x21, 0x53,
+	0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x73, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x90, 0x01, 0x0a, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65, 0x6e,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45,
+	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75,
+	0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74,
+	0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x75,
+	0x69, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69,
+	0x65, 0x6e, 0x74, 0x12, 0x8d, 0x01, 0x0a, 0x10, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x61,
+	0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x41, 0x6e, 0x64, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x52, 0x10, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x22, 0xe4, 0x03, 0x0a, 0x41, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65,
+	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x41, 0x6e, 0x64, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69,
+	0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x90, 0x01, 0x0a, 0x1c, 0x50, 0x72,
+	0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x55, 0x73,
+	0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x4c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x47, 0x75, 0x69, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46,
+	0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1c,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x46, 0x69, 0x6c, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x55, 0x73, 0x65, 0x64, 0x42, 0x79, 0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x7a, 0x0a, 0x18,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3e,
+	0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x18,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x8f, 0x01, 0x0a, 0x1f, 0x54, 0x65, 0x73,
+	0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x45, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x89, 0x02, 0x0a, 0x1e, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x34, 0x0a,
+	0x15, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x15, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55,
+	0x75, 0x69, 0x64, 0x12, 0x3a, 0x0a, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45,
+	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45,
+	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12,
+	0x75, 0x0a, 0x17, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75,
+	0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x3b, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x17, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xb4, 0x03, 0x0a, 0x25, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x12, 0x34, 0x0a, 0x15, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x15, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x3a, 0x0a, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69,
+	0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69,
+	0x6f, 0x6e, 0x12, 0x42, 0x0a, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75,
+	0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x48, 0x0a, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x1f, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
+	0x12, 0x8a, 0x01, 0x0a, 0x1e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x42, 0x2e, 0x66, 0x65, 0x6e, 0x69,
+	0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x49,
+	0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1e, 0x54,
+	0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x0f, 0x5a,
+	0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1750,7 +2250,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescData
 }
 
-var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_goTypes = []interface{}{
 	(*InitiateSingleTestCaseExecutionRequestMessage)(nil),                                     // 0: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionRequestMessage
 	(*InitiateSingleTestCaseExecutionResponseMessage)(nil),                                    // 1: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage
@@ -1766,62 +2266,78 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	(*TestCaseExecutionDetailsMessage)(nil),                                                   // 11: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
 	(*GetSingleTestCaseExecutionRequest)(nil),                                                 // 12: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest
 	(*GetSingleTestCaseExecutionResponse)(nil),                                                // 13: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse
-	(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage)(nil),                // 14: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage
-	(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage)(nil),         // 15: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage
-	(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage)(nil),         // 16: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage
-	(*GetSingleTestCaseExecutionResponse_LogPostMessage)(nil),                                 // 17: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage
-	(*GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueMessage)(nil), // 18: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValueMessage
-	(*UserIdentificationMessage)(nil),                                                         // 19: fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
-	(*AckNackResponse)(nil),                                                                   // 20: fenixExecutionServerGuiGrpcApi.AckNackResponse
-	(*timestamppb.Timestamp)(nil),                                                             // 21: google.protobuf.Timestamp
-	(ExecutionPriorityEnum)(0),                                                                // 22: fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
-	(TestCaseExecutionStatusEnum)(0),                                                          // 23: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
-	(TestInstructionExecutionStatusEnum)(0),                                                   // 24: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
-	(LogPostStatusEnum)(0),                                                                    // 25: fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
+	(*SubscribeToMessagesRequest)(nil),                                                        // 14: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest
+	(*TestCaseExecutionStatusSubscriptionMessage)(nil),                                        // 15: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusSubscriptionMessage
+	(*SubscribeToMessagesStreamResponse)(nil),                                                 // 16: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse
+	(*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage)(nil),                 // 17: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
+	(*TestCaseExecutionStatusMessage)(nil),                                                    // 18: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage
+	(*TestInstructionExecutionStatusMessage)(nil),                                             // 19: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage
+	(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage)(nil),                // 20: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage
+	(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage)(nil),         // 21: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage
+	(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage)(nil),         // 22: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage
+	(*GetSingleTestCaseExecutionResponse_LogPostMessage)(nil),                                 // 23: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage
+	(*GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueMessage)(nil), // 24: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValueMessage
+	(*UserIdentificationMessage)(nil),                                                         // 25: fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	(*AckNackResponse)(nil),                                                                   // 26: fenixExecutionServerGuiGrpcApi.AckNackResponse
+	(*timestamppb.Timestamp)(nil),                                                             // 27: google.protobuf.Timestamp
+	(ExecutionPriorityEnum)(0),                                                                // 28: fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
+	(TestCaseExecutionStatusEnum)(0),                                                          // 29: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
+	(CurrentFenixExecutionGuiProtoFileVersionEnum)(0),                                         // 30: fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	(TestInstructionExecutionStatusEnum)(0),                                                   // 31: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	(LogPostStatusEnum)(0),                                                                    // 32: fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
 }
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_depIdxs = []int32{
-	19, // 0: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionRequestMessage.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
-	20, // 1: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	19, // 2: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
-	21, // 3: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueRequest.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
-	21, // 4: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueRequest.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
-	20, // 5: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	25, // 0: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionRequestMessage.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	26, // 1: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	25, // 2: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	27, // 3: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueRequest.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
+	27, // 4: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueRequest.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
+	26, // 5: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
 	10, // 6: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse.TestCasesInExecutionQueue:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
-	19, // 7: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
-	21, // 8: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionRequest.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
-	21, // 9: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionRequest.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
-	20, // 10: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	25, // 7: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	27, // 8: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionRequest.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
+	27, // 9: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionRequest.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
+	26, // 10: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
 	6,  // 11: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse.TestCasesUnderExecution:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseUnderExecutionMessage
 	10, // 12: fenixExecutionServerGuiGrpcApi.TestCaseUnderExecutionMessage.TestCaseExecutionBasicInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
 	11, // 13: fenixExecutionServerGuiGrpcApi.TestCaseUnderExecutionMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
-	19, // 14: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
-	21, // 15: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
-	21, // 16: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
-	20, // 17: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	25, // 14: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	27, // 15: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
+	27, // 16: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
+	26, // 17: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
 	9,  // 18: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse.TestCaseWithFinishedExecution:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseWithFinishedExecutionMessage
 	10, // 19: fenixExecutionServerGuiGrpcApi.TestCaseWithFinishedExecutionMessage.TestCaseExecutionBasicInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
 	11, // 20: fenixExecutionServerGuiGrpcApi.TestCaseWithFinishedExecutionMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
-	21, // 21: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.PlacedOnTestExecutionQueueTimeStamp:type_name -> google.protobuf.Timestamp
-	22, // 22: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.ExecutionPriority:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
-	21, // 23: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStartTimeStamp:type_name -> google.protobuf.Timestamp
-	21, // 24: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStopTimeStamp:type_name -> google.protobuf.Timestamp
-	23, // 25: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
-	19, // 26: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
-	14, // 27: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionsExecution:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage
-	15, // 28: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage.TestInstructionExecutionSummary:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage
-	16, // 29: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage.TestInstructionExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage
-	21, // 30: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
-	21, // 31: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
-	24, // 32: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
-	17, // 33: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage.ExecutionLogPosts:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage
-	21, // 34: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
-	25, // 35: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostStatus:type_name -> fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
-	18, // 36: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValueMessage
-	37, // [37:37] is the sub-list for method output_type
-	37, // [37:37] is the sub-list for method input_type
-	37, // [37:37] is the sub-list for extension type_name
-	37, // [37:37] is the sub-list for extension extendee
-	0,  // [0:37] is the sub-list for field type_name
+	27, // 21: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.PlacedOnTestExecutionQueueTimeStamp:type_name -> google.protobuf.Timestamp
+	28, // 22: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.ExecutionPriority:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
+	27, // 23: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStartTimeStamp:type_name -> google.protobuf.Timestamp
+	27, // 24: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStopTimeStamp:type_name -> google.protobuf.Timestamp
+	29, // 25: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
+	25, // 26: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	20, // 27: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionsExecution:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage
+	25, // 28: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	15, // 29: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.TestCaseExecutionsStatusSubscriptions:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusSubscriptionMessage
+	30, // 30: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	17, // 31: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
+	30, // 32: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	18, // 33: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestCaseExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage
+	19, // 34: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestInstructionExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage
+	29, // 35: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
+	31, // 36: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	21, // 37: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage.TestInstructionExecutionSummary:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage
+	22, // 38: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage.TestInstructionExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage
+	27, // 39: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
+	27, // 40: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
+	31, // 41: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	23, // 42: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage.ExecutionLogPosts:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage
+	27, // 43: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 44: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostStatus:type_name -> fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
+	24, // 45: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValueMessage
+	46, // [46:46] is the sub-list for method output_type
+	46, // [46:46] is the sub-list for method input_type
+	46, // [46:46] is the sub-list for extension type_name
+	46, // [46:46] is the sub-list for extension extendee
+	0,  // [0:46] is the sub-list for field type_name
 }
 
 func init() {
@@ -2002,7 +2518,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage); i {
+			switch v := v.(*SubscribeToMessagesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2014,7 +2530,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage); i {
+			switch v := v.(*TestCaseExecutionStatusSubscriptionMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2026,7 +2542,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage); i {
+			switch v := v.(*SubscribeToMessagesStreamResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2038,7 +2554,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSingleTestCaseExecutionResponse_LogPostMessage); i {
+			switch v := v.(*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2050,6 +2566,78 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCaseExecutionStatusMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestInstructionExecutionStatusMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionSummaryMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSingleTestCaseExecutionResponse_TestInstructionExecutionDetailsMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSingleTestCaseExecutionResponse_LogPostMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetSingleTestCaseExecutionResponse_LogPostMessage_FoundVersusExpectedValueMessage); i {
 			case 0:
 				return &v.state
@@ -2068,7 +2656,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

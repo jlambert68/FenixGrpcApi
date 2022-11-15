@@ -1,11 +1,9 @@
 syntax = "proto3";
 package fenixExecutionServerGuiGrpcApi;
 option go_package = "./go_grpc_api";
-//option csharp_namespace = "SubCustodyServer";
 
 import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
-
 
 // Message used for initiating a single TestCase Execution, with a specific TestData-identification
 message InitiateSingleTestCaseExecutionRequestMessage {
@@ -36,7 +34,7 @@ message ListTestCasesInExecutionQueueResponse{
   repeated TestCaseExecutionBasicInformationMessage TestCasesInExecutionQueue = 2; // The Basic information regarding the TestCase-Execution
 }
 
-  // Message to be used for requesting TestCases under execution, for specific Domains and DateTime-span
+// Message to be used for requesting TestCases under execution, for specific Domains and DateTime-span
 message ListTestCasesUnderExecutionRequest {
   UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
   repeated string DomainUuids = 2; // All Domains in request
@@ -53,7 +51,7 @@ message ListTestCasesUnderExecutionResponse{
 // One single TestCase under Execution Summary
 message TestCaseUnderExecutionMessage {
   TestCaseExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestCase-Execution
-    TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // Detailed information about the Execution
+  TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // Detailed information about the Execution
 }
 
 // Message to be used for requesting TestCase Executions that has been finished , for specific Domains and DateTime-span
@@ -154,7 +152,45 @@ message GetSingleTestCaseExecutionResponse {
   }
 }
 
+// The request message from 'TesterGui' to receive 'stream' of messages from GuiExecutionServer
+message SubscribeToMessagesRequest {
+  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+   repeated TestCaseExecutionStatusSubscriptionMessage TestCaseExecutionsStatusSubscriptions = 2; // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
+}
+
+// Holds one TestCaseExecution that the TesterGui want to subribe to
+message TestCaseExecutionStatusSubscriptionMessage {
+  string TestCaseExecutionUuid = 2; // The UUID for the TestCaseExecution that is requested
+  int32 TestCaseExecutionVersion = 3; // The VersionNumber for the TestCaseExecution that is request
+}
+
+// The response message from 'GuiExecutionServer' to sent by stream of status-messages to 'TesterGui'
+message SubscribeToMessagesStreamResponse {
+  CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 2; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
+  // More messages will be added to be stream to 'TestGui'
+}
 
 
+// Message holding status for TestCaseExecutions and TestInstructionExecutions
+message TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage {
+  CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  repeated TestCaseExecutionStatusMessage TestCaseExecutionsStatus = 2; // An array of TestCaseExecutions and their statuses
+  repeated TestInstructionExecutionStatusMessage TestInstructionExecutionsStatus = 3; // An array of TestInstructionExecutions and their statuses
+}
 
+// Message holding status for one TestCaseExecution
+message TestCaseExecutionStatusMessage {
+  string TestCaseExecutionUuid = 1; // The UUID for the TestCaseExecution
+  int32 TestCaseExecutionVersion = 2; // The Version Number for the TestCaseExecution
+  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 3; // The TestCaseExecution-status for this TestCaseExecution
+}
 
+// Message holding status for one TestInstructionExecution
+message TestInstructionExecutionStatusMessage {
+  string TestCaseExecutionUuid = 1; // The UUID for the TestCaseExecution to which this TestInstructionExecution belongs
+  int32 TestCaseExecutionVersion = 2; // The Version Number for the TestCaseExecution to which this TestInstructionExecution belongs
+  string TestInstructionExecutionUuid = 3; // The UUID for the TestInstructionExecution
+  int32 TestInstructionExecutionVersion = 4; // The Version Number for the TestInstructionExecution
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 5; // The TestInstructionExecution-status for this TestInstructionExecution
+}

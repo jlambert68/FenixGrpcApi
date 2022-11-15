@@ -14,10 +14,10 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// FenixExecutionServerGuiGrpcServicesClient is the client API for FenixExecutionServerGuiGrpcServices service.
+// FenixExecutionServerGuiGrpcServicesForGuiClientClient is the client API for FenixExecutionServerGuiGrpcServicesForGuiClient service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type FenixExecutionServerGuiGrpcServicesClient interface {
+type FenixExecutionServerGuiGrpcServicesForGuiClientClient interface {
 	//Anyone can check if Fenix Execution server is alive with this service
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// List TestCases that exists on Execution Queue, for specific Domains and DateTimes-span
@@ -30,74 +30,109 @@ type FenixExecutionServerGuiGrpcServicesClient interface {
 	GetSingleTestCaseExecution(ctx context.Context, in *GetSingleTestCaseExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestCaseExecutionResponse, error)
 	// Initiate a single TestCase Execution with one specific TestDataSet
 	InitiateTestCaseExecution(ctx context.Context, in *InitiateSingleTestCaseExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestCaseExecutionResponseMessage, error)
+	// Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
+	// Messages can be everything from execution status, information messages or Environment status
+	SubscribeToMessages(ctx context.Context, in *SubscribeToMessagesRequest, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesClient, error)
 }
 
-type fenixExecutionServerGuiGrpcServicesClient struct {
+type fenixExecutionServerGuiGrpcServicesForGuiClientClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewFenixExecutionServerGuiGrpcServicesClient(cc grpc.ClientConnInterface) FenixExecutionServerGuiGrpcServicesClient {
-	return &fenixExecutionServerGuiGrpcServicesClient{cc}
+func NewFenixExecutionServerGuiGrpcServicesForGuiClientClient(cc grpc.ClientConnInterface) FenixExecutionServerGuiGrpcServicesForGuiClientClient {
+	return &fenixExecutionServerGuiGrpcServicesForGuiClientClient{cc}
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/AreYouAlive", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/AreYouAlive", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) ListTestCasesOnExecutionQueue(ctx context.Context, in *ListTestCasesInExecutionQueueRequest, opts ...grpc.CallOption) (*ListTestCasesInExecutionQueueResponse, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) ListTestCasesOnExecutionQueue(ctx context.Context, in *ListTestCasesInExecutionQueueRequest, opts ...grpc.CallOption) (*ListTestCasesInExecutionQueueResponse, error) {
 	out := new(ListTestCasesInExecutionQueueResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesOnExecutionQueue", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesOnExecutionQueue", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) ListTestCasesUnderExecution(ctx context.Context, in *ListTestCasesUnderExecutionRequest, opts ...grpc.CallOption) (*ListTestCasesUnderExecutionResponse, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) ListTestCasesUnderExecution(ctx context.Context, in *ListTestCasesUnderExecutionRequest, opts ...grpc.CallOption) (*ListTestCasesUnderExecutionResponse, error) {
 	out := new(ListTestCasesUnderExecutionResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesUnderExecution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesUnderExecution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) ListTestCasesWithFinishedExecutions(ctx context.Context, in *ListTestCasesWithFinishedExecutionsRequest, opts ...grpc.CallOption) (*ListTestCasesWithFinishedExecutionsResponse, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) ListTestCasesWithFinishedExecutions(ctx context.Context, in *ListTestCasesWithFinishedExecutionsRequest, opts ...grpc.CallOption) (*ListTestCasesWithFinishedExecutionsResponse, error) {
 	out := new(ListTestCasesWithFinishedExecutionsResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesWithFinishedExecutions", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesWithFinishedExecutions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) GetSingleTestCaseExecution(ctx context.Context, in *GetSingleTestCaseExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestCaseExecutionResponse, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) GetSingleTestCaseExecution(ctx context.Context, in *GetSingleTestCaseExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestCaseExecutionResponse, error) {
 	out := new(GetSingleTestCaseExecutionResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/GetSingleTestCaseExecution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/GetSingleTestCaseExecution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesClient) InitiateTestCaseExecution(ctx context.Context, in *InitiateSingleTestCaseExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) InitiateTestCaseExecution(ctx context.Context, in *InitiateSingleTestCaseExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
 	out := new(InitiateSingleTestCaseExecutionResponseMessage)
-	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/InitiateTestCaseExecution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestCaseExecution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FenixExecutionServerGuiGrpcServicesServer is the server API for FenixExecutionServerGuiGrpcServices service.
-// All implementations must embed UnimplementedFenixExecutionServerGuiGrpcServicesServer
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) SubscribeToMessages(ctx context.Context, in *SubscribeToMessagesRequest, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesClient, error) {
+	stream, err := c.cc.NewStream(ctx, &FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc.Streams[0], "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesClient interface {
+	Recv() (*SubscribeToMessagesStreamResponse, error)
+	grpc.ClientStream
+}
+
+type fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesClient struct {
+	grpc.ClientStream
+}
+
+func (x *fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesClient) Recv() (*SubscribeToMessagesStreamResponse, error) {
+	m := new(SubscribeToMessagesStreamResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// FenixExecutionServerGuiGrpcServicesForGuiClientServer is the server API for FenixExecutionServerGuiGrpcServicesForGuiClient service.
+// All implementations must embed UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer
 // for forward compatibility
-type FenixExecutionServerGuiGrpcServicesServer interface {
+type FenixExecutionServerGuiGrpcServicesForGuiClientServer interface {
 	//Anyone can check if Fenix Execution server is alive with this service
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// List TestCases that exists on Execution Queue, for specific Domains and DateTimes-span
@@ -110,183 +145,305 @@ type FenixExecutionServerGuiGrpcServicesServer interface {
 	GetSingleTestCaseExecution(context.Context, *GetSingleTestCaseExecutionRequest) (*GetSingleTestCaseExecutionResponse, error)
 	// Initiate a single TestCase Execution with one specific TestDataSet
 	InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error)
-	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesServer()
+	// Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
+	// Messages can be everything from execution status, information messages or Environment status
+	SubscribeToMessages(*SubscribeToMessagesRequest, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesServer) error
+	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer()
 }
 
-// UnimplementedFenixExecutionServerGuiGrpcServicesServer must be embedded to have forward compatible implementations.
-type UnimplementedFenixExecutionServerGuiGrpcServicesServer struct {
+// UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer must be embedded to have forward compatible implementations.
+type UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer struct {
 }
 
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AreYouAlive not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesOnExecutionQueue(context.Context, *ListTestCasesInExecutionQueueRequest) (*ListTestCasesInExecutionQueueResponse, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) ListTestCasesOnExecutionQueue(context.Context, *ListTestCasesInExecutionQueueRequest) (*ListTestCasesInExecutionQueueResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestCasesOnExecutionQueue not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesUnderExecution(context.Context, *ListTestCasesUnderExecutionRequest) (*ListTestCasesUnderExecutionResponse, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) ListTestCasesUnderExecution(context.Context, *ListTestCasesUnderExecutionRequest) (*ListTestCasesUnderExecutionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestCasesUnderExecution not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) ListTestCasesWithFinishedExecutions(context.Context, *ListTestCasesWithFinishedExecutionsRequest) (*ListTestCasesWithFinishedExecutionsResponse, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) ListTestCasesWithFinishedExecutions(context.Context, *ListTestCasesWithFinishedExecutionsRequest) (*ListTestCasesWithFinishedExecutionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTestCasesWithFinishedExecutions not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) GetSingleTestCaseExecution(context.Context, *GetSingleTestCaseExecutionRequest) (*GetSingleTestCaseExecutionResponse, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) GetSingleTestCaseExecution(context.Context, *GetSingleTestCaseExecutionRequest) (*GetSingleTestCaseExecutionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSingleTestCaseExecution not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestCaseExecution not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesServer) mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesServer() {
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) SubscribeToMessages(*SubscribeToMessagesRequest, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeToMessages not implemented")
+}
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer() {
 }
 
-// UnsafeFenixExecutionServerGuiGrpcServicesServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to FenixExecutionServerGuiGrpcServicesServer will
+// UnsafeFenixExecutionServerGuiGrpcServicesForGuiClientServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FenixExecutionServerGuiGrpcServicesForGuiClientServer will
 // result in compilation errors.
-type UnsafeFenixExecutionServerGuiGrpcServicesServer interface {
-	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesServer()
+type UnsafeFenixExecutionServerGuiGrpcServicesForGuiClientServer interface {
+	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer()
 }
 
-func RegisterFenixExecutionServerGuiGrpcServicesServer(s grpc.ServiceRegistrar, srv FenixExecutionServerGuiGrpcServicesServer) {
-	s.RegisterService(&FenixExecutionServerGuiGrpcServices_ServiceDesc, srv)
+func RegisterFenixExecutionServerGuiGrpcServicesForGuiClientServer(s grpc.ServiceRegistrar, srv FenixExecutionServerGuiGrpcServicesForGuiClientServer) {
+	s.RegisterService(&FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc, srv)
 }
 
-func _FenixExecutionServerGuiGrpcServices_AreYouAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_AreYouAlive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyParameter)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).AreYouAlive(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).AreYouAlive(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/AreYouAlive",
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/AreYouAlive",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).AreYouAlive(ctx, req.(*EmptyParameter))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).AreYouAlive(ctx, req.(*EmptyParameter))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServices_ListTestCasesOnExecutionQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesOnExecutionQueue_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTestCasesInExecutionQueueRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesOnExecutionQueue(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).ListTestCasesOnExecutionQueue(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesOnExecutionQueue",
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesOnExecutionQueue",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesOnExecutionQueue(ctx, req.(*ListTestCasesInExecutionQueueRequest))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).ListTestCasesOnExecutionQueue(ctx, req.(*ListTestCasesInExecutionQueueRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServices_ListTestCasesUnderExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesUnderExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTestCasesUnderExecutionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesUnderExecution(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).ListTestCasesUnderExecution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesUnderExecution",
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesUnderExecution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesUnderExecution(ctx, req.(*ListTestCasesUnderExecutionRequest))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).ListTestCasesUnderExecution(ctx, req.(*ListTestCasesUnderExecutionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServices_ListTestCasesWithFinishedExecutions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesWithFinishedExecutions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTestCasesWithFinishedExecutionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesWithFinishedExecutions(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).ListTestCasesWithFinishedExecutions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/ListTestCasesWithFinishedExecutions",
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesWithFinishedExecutions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).ListTestCasesWithFinishedExecutions(ctx, req.(*ListTestCasesWithFinishedExecutionsRequest))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).ListTestCasesWithFinishedExecutions(ctx, req.(*ListTestCasesWithFinishedExecutionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServices_GetSingleTestCaseExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSingleTestCaseExecutionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).GetSingleTestCaseExecution(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).GetSingleTestCaseExecution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/GetSingleTestCaseExecution",
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/GetSingleTestCaseExecution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).GetSingleTestCaseExecution(ctx, req.(*GetSingleTestCaseExecutionRequest))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).GetSingleTestCaseExecution(ctx, req.(*GetSingleTestCaseExecutionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServices_InitiateTestCaseExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InitiateSingleTestCaseExecutionRequestMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).InitiateTestCaseExecution(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestCaseExecution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices/InitiateTestCaseExecution",
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestCaseExecution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesServer).InitiateTestCaseExecution(ctx, req.(*InitiateSingleTestCaseExecutionRequestMessage))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestCaseExecution(ctx, req.(*InitiateSingleTestCaseExecutionRequestMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// FenixExecutionServerGuiGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionServerGuiGrpcServices service.
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(SubscribeToMessagesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).SubscribeToMessages(m, &fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesServer{stream})
+}
+
+type FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesServer interface {
+	Send(*SubscribeToMessagesStreamResponse) error
+	grpc.ServerStream
+}
+
+type fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesServer struct {
+	grpc.ServerStream
+}
+
+func (x *fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesServer) Send(m *SubscribeToMessagesStreamResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+// FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc is the grpc.ServiceDesc for FenixExecutionServerGuiGrpcServicesForGuiClient service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var FenixExecutionServerGuiGrpcServices_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServices",
-	HandlerType: (*FenixExecutionServerGuiGrpcServicesServer)(nil),
+var FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient",
+	HandlerType: (*FenixExecutionServerGuiGrpcServicesForGuiClientServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "AreYouAlive",
-			Handler:    _FenixExecutionServerGuiGrpcServices_AreYouAlive_Handler,
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_AreYouAlive_Handler,
 		},
 		{
 			MethodName: "ListTestCasesOnExecutionQueue",
-			Handler:    _FenixExecutionServerGuiGrpcServices_ListTestCasesOnExecutionQueue_Handler,
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesOnExecutionQueue_Handler,
 		},
 		{
 			MethodName: "ListTestCasesUnderExecution",
-			Handler:    _FenixExecutionServerGuiGrpcServices_ListTestCasesUnderExecution_Handler,
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesUnderExecution_Handler,
 		},
 		{
 			MethodName: "ListTestCasesWithFinishedExecutions",
-			Handler:    _FenixExecutionServerGuiGrpcServices_ListTestCasesWithFinishedExecutions_Handler,
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesWithFinishedExecutions_Handler,
 		},
 		{
 			MethodName: "GetSingleTestCaseExecution",
-			Handler:    _FenixExecutionServerGuiGrpcServices_GetSingleTestCaseExecution_Handler,
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_Handler,
 		},
 		{
 			MethodName: "InitiateTestCaseExecution",
-			Handler:    _FenixExecutionServerGuiGrpcServices_InitiateTestCaseExecution_Handler,
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "SubscribeToMessages",
+			Handler:       _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi.proto",
+}
+
+// FenixExecutionServerGuiGrpcServicesForExecutionServerClient is the client API for FenixExecutionServerGuiGrpcServicesForExecutionServer service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FenixExecutionServerGuiGrpcServicesForExecutionServerClient interface {
+	// ExecutionServer send over status for TestCaseExecutions and TestInstructionExecutions
+	SendExecutionStatusTowardsGuiClient(ctx context.Context, in *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+}
+
+type fenixExecutionServerGuiGrpcServicesForExecutionServerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFenixExecutionServerGuiGrpcServicesForExecutionServerClient(cc grpc.ClientConnInterface) FenixExecutionServerGuiGrpcServicesForExecutionServerClient {
+	return &fenixExecutionServerGuiGrpcServicesForExecutionServerClient{cc}
+}
+
+func (c *fenixExecutionServerGuiGrpcServicesForExecutionServerClient) SendExecutionStatusTowardsGuiClient(ctx context.Context, in *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer/SendExecutionStatusTowardsGuiClient", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FenixExecutionServerGuiGrpcServicesForExecutionServerServer is the server API for FenixExecutionServerGuiGrpcServicesForExecutionServer service.
+// All implementations must embed UnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer
+// for forward compatibility
+type FenixExecutionServerGuiGrpcServicesForExecutionServerServer interface {
+	// ExecutionServer send over status for TestCaseExecutions and TestInstructionExecutions
+	SendExecutionStatusTowardsGuiClient(context.Context, *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) (*AckNackResponse, error)
+	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer()
+}
+
+// UnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer must be embedded to have forward compatible implementations.
+type UnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer struct {
+}
+
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer) SendExecutionStatusTowardsGuiClient(context.Context, *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendExecutionStatusTowardsGuiClient not implemented")
+}
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer) mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer() {
+}
+
+// UnsafeFenixExecutionServerGuiGrpcServicesForExecutionServerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FenixExecutionServerGuiGrpcServicesForExecutionServerServer will
+// result in compilation errors.
+type UnsafeFenixExecutionServerGuiGrpcServicesForExecutionServerServer interface {
+	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForExecutionServerServer()
+}
+
+func RegisterFenixExecutionServerGuiGrpcServicesForExecutionServerServer(s grpc.ServiceRegistrar, srv FenixExecutionServerGuiGrpcServicesForExecutionServerServer) {
+	s.RegisterService(&FenixExecutionServerGuiGrpcServicesForExecutionServer_ServiceDesc, srv)
+}
+
+func _FenixExecutionServerGuiGrpcServicesForExecutionServer_SendExecutionStatusTowardsGuiClient_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGuiGrpcServicesForExecutionServerServer).SendExecutionStatusTowardsGuiClient(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer/SendExecutionStatusTowardsGuiClient",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGuiGrpcServicesForExecutionServerServer).SendExecutionStatusTowardsGuiClient(ctx, req.(*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// FenixExecutionServerGuiGrpcServicesForExecutionServer_ServiceDesc is the grpc.ServiceDesc for FenixExecutionServerGuiGrpcServicesForExecutionServer service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var FenixExecutionServerGuiGrpcServicesForExecutionServer_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer",
+	HandlerType: (*FenixExecutionServerGuiGrpcServicesForExecutionServerServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SendExecutionStatusTowardsGuiClient",
+			Handler:    _FenixExecutionServerGuiGrpcServicesForExecutionServer_SendExecutionStatusTowardsGuiClient_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

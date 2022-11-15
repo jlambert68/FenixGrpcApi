@@ -1,16 +1,14 @@
 syntax = "proto3";
 package fenixExecutionServerGuiGrpcApi;
 option go_package = "./go_grpc_api";
-option csharp_namespace = "ExecutionServerGuiGrpc";
 
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto";
 
-
 // ****************************************************************************************************
 // Fenix Execution Server service definition. (Will support Test Suite building in feature, and will then be renamed)
 
-service FenixExecutionServerGuiGrpcServices {
+service FenixExecutionServerGuiGrpcServicesForGuiClient {
 
   // ************************ Admin ************************
 
@@ -47,6 +45,19 @@ service FenixExecutionServerGuiGrpcServices {
   rpc InitiateTestCaseExecution (InitiateSingleTestCaseExecutionRequestMessage) returns (InitiateSingleTestCaseExecutionResponseMessage) {
   }
 
+  // Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
+  // Messages can be everything from execution status, information messages or Environment status
+  rpc SubscribeToMessages(SubscribeToMessagesRequest) returns (stream SubscribeToMessagesStreamResponse) {
+  }
+
+}
+
+// Services used by ExecutionServer
+service FenixExecutionServerGuiGrpcServicesForExecutionServer {
+
+  // ExecutionServer send over status for TestCaseExecutions and TestInstructionExecutions
+  rpc SendExecutionStatusTowardsGuiClient (TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) returns (AckNackResponse) {
+  }
 
 }
 
