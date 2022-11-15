@@ -47,7 +47,7 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
 
   // Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
   // Messages can be everything from execution status, information messages or Environment status
-  rpc SubscribeToMessageStream(AckNackResponse) returns (stream SubscribeToMessagesStreamResponse) {
+  rpc SubscribeToMessageStream(EmptyParameter) returns (stream SubscribeToMessagesStreamResponse) {
   }
 
   // Call from TesterGui to GuiExecution regarding which messages to subscribe to
