@@ -167,10 +167,10 @@ message TestCaseExecutionStatusSubscriptionMessage {
 // The response message from 'GuiExecutionServer' to sent by stream of status-messages to 'TesterGui'
 message SubscribeToMessagesStreamResponse {
   CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
-  TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 2; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
+  bool IsKeepAliveMessage = 2; //Indicate if this is a 'Keep Alive Message' for TestGui to be aware that there is an active connection GUIExecutionServer
+  TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 3; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
   // More messages will be added to be stream to 'TestGui'
 }
-
 
 // Message holding status for TestCaseExecutions and TestInstructionExecutions
 message TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage {
