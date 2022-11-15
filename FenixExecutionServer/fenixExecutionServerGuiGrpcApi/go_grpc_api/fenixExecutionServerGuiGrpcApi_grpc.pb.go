@@ -32,7 +32,9 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientClient interface {
 	InitiateTestCaseExecution(ctx context.Context, in *InitiateSingleTestCaseExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestCaseExecutionResponseMessage, error)
 	// Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
 	// Messages can be everything from execution status, information messages or Environment status
-	SubscribeToMessages(ctx context.Context, in *SubscribeToMessagesRequest, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesClient, error)
+	SubscribeToMessageStream(ctx context.Context, in *AckNackResponse, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamClient, error)
+	// Call from TesterGui to GuiExecution regarding which messages to subscribe to
+	SubscribeToMessages(ctx context.Context, in *SubscribeToMessagesRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionServerGuiGrpcServicesForGuiClientClient struct {
@@ -97,12 +99,12 @@ func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) InitiateTestCase
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) SubscribeToMessages(ctx context.Context, in *SubscribeToMessagesRequest, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc.Streams[0], "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages", opts...)
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) SubscribeToMessageStream(ctx context.Context, in *AckNackResponse, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc.Streams[0], "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessageStream", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesClient{stream}
+	x := &fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessageStreamClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -112,21 +114,30 @@ func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) SubscribeToMessa
 	return x, nil
 }
 
-type FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesClient interface {
+type FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamClient interface {
 	Recv() (*SubscribeToMessagesStreamResponse, error)
 	grpc.ClientStream
 }
 
-type fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesClient struct {
+type fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessageStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesClient) Recv() (*SubscribeToMessagesStreamResponse, error) {
+func (x *fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessageStreamClient) Recv() (*SubscribeToMessagesStreamResponse, error) {
 	m := new(SubscribeToMessagesStreamResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
+}
+
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) SubscribeToMessages(ctx context.Context, in *SubscribeToMessagesRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 // FenixExecutionServerGuiGrpcServicesForGuiClientServer is the server API for FenixExecutionServerGuiGrpcServicesForGuiClient service.
@@ -147,7 +158,9 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientServer interface {
 	InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error)
 	// Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
 	// Messages can be everything from execution status, information messages or Environment status
-	SubscribeToMessages(*SubscribeToMessagesRequest, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesServer) error
+	SubscribeToMessageStream(*AckNackResponse, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamServer) error
+	// Call from TesterGui to GuiExecution regarding which messages to subscribe to
+	SubscribeToMessages(context.Context, *SubscribeToMessagesRequest) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer()
 }
 
@@ -173,8 +186,11 @@ func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) GetSin
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestCaseExecution not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) SubscribeToMessages(*SubscribeToMessagesRequest, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesServer) error {
-	return status.Errorf(codes.Unimplemented, "method SubscribeToMessages not implemented")
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) SubscribeToMessageStream(*AckNackResponse, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method SubscribeToMessageStream not implemented")
+}
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) SubscribeToMessages(context.Context, *SubscribeToMessagesRequest) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubscribeToMessages not implemented")
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer() {
 }
@@ -298,25 +314,43 @@ func _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(SubscribeToMessagesRequest)
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(AckNackResponse)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).SubscribeToMessages(m, &fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesServer{stream})
+	return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).SubscribeToMessageStream(m, &fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessageStreamServer{stream})
 }
 
-type FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessagesServer interface {
+type FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamServer interface {
 	Send(*SubscribeToMessagesStreamResponse) error
 	grpc.ServerStream
 }
 
-type fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesServer struct {
+type fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessageStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessagesServer) Send(m *SubscribeToMessagesStreamResponse) error {
+func (x *fenixExecutionServerGuiGrpcServicesForGuiClientSubscribeToMessageStreamServer) Send(m *SubscribeToMessagesStreamResponse) error {
 	return x.ServerStream.SendMsg(m)
+}
+
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubscribeToMessagesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).SubscribeToMessages(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).SubscribeToMessages(ctx, req.(*SubscribeToMessagesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 // FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc is the grpc.ServiceDesc for FenixExecutionServerGuiGrpcServicesForGuiClient service.
@@ -350,11 +384,15 @@ var FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc = grpc.ServiceDe
 			MethodName: "InitiateTestCaseExecution",
 			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_Handler,
 		},
+		{
+			MethodName: "SubscribeToMessages",
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "SubscribeToMessages",
-			Handler:       _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_Handler,
+			StreamName:    "SubscribeToMessageStream",
+			Handler:       _FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStream_Handler,
 			ServerStreams: true,
 		},
 	},
