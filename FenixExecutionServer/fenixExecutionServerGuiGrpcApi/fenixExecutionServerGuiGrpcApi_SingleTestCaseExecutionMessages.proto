@@ -7,7 +7,7 @@ import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServer
 
 // Message used for initiating a single TestCase Execution, with a specific TestData-identification
 message InitiateSingleTestCaseExecutionRequestMessage {
-  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   string TestCaseUuid = 2; // The UUID for the TestCase to be Executed
   string TestDataSetUuid = 3; // The UUID for the specific TestDataSet to be used for the Execution
 }
@@ -21,7 +21,7 @@ message InitiateSingleTestCaseExecutionResponseMessage {
 
 // Message to be used for requesting TestCases waiting to be executed, for specific Domains and DateTime-span
 message ListTestCasesInExecutionQueueRequest {
-  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   repeated string DomainUuids = 2; // All Domains in request
   google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
   google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
@@ -36,7 +36,7 @@ message ListTestCasesInExecutionQueueResponse{
 
 // Message to be used for requesting TestCases under execution, for specific Domains and DateTime-span
 message ListTestCasesUnderExecutionRequest {
-  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   repeated string DomainUuids = 2; // All Domains in request
   google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
   google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
@@ -56,7 +56,7 @@ message TestCaseUnderExecutionMessage {
 
 // Message to be used for requesting TestCase Executions that has been finished , for specific Domains and DateTime-span
 message ListTestCasesWithFinishedExecutionsRequest {
-  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   repeated string DomainUuids = 2; // All Domains in request
   google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 3; // Execution From TimeStamp in Request
   google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 4; // Execution To TimeStamp in Request
@@ -105,7 +105,7 @@ message TestCaseExecutionDetailsMessage {
 
 // Message holding a request to get a Single TestCase Execution
 message GetSingleTestCaseExecutionRequest {
-  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   string TestCaseExecutionUuid = 2; // The Unique UUID for the TestCase Execution wanted
 }
 
