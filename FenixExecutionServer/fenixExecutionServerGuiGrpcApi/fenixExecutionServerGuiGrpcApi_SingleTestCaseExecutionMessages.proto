@@ -154,7 +154,7 @@ message GetSingleTestCaseExecutionResponse {
 
 // The request message from 'TesterGui' to receive 'stream' of messages from GuiExecutionServer
 message SubscribeToMessagesRequest {
-  UserIdentificationMessage UserIdentification = 1; // Identifies User and Proto-file version used
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
    repeated TestCaseExecutionStatusSubscriptionMessage TestCaseExecutionsStatusSubscriptions = 2; // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
 }
 

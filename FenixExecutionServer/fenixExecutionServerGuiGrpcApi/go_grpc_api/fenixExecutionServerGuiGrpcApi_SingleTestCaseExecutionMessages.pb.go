@@ -979,8 +979,8 @@ type SubscribeToMessagesRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserIdentification                    *UserIdentificationMessage                    `protobuf:"bytes,1,opt,name=UserIdentification,proto3" json:"UserIdentification,omitempty"`                                       // Identifies User and Proto-file version used
-	TestCaseExecutionsStatusSubscriptions []*TestCaseExecutionStatusSubscriptionMessage `protobuf:"bytes,2,rep,name=TestCaseExecutionsStatusSubscriptions,proto3" json:"TestCaseExecutionsStatusSubscriptions,omitempty"` // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
+	UserAndApplicationRunTimeIdentification *UserAndApplicationRunTimeIdentificationMessage `protobuf:"bytes,1,opt,name=UserAndApplicationRunTimeIdentification,proto3" json:"UserAndApplicationRunTimeIdentification,omitempty"` // Identifies User, Application Runt time instance and Proto-file version used
+	TestCaseExecutionsStatusSubscriptions   []*TestCaseExecutionStatusSubscriptionMessage   `protobuf:"bytes,2,rep,name=TestCaseExecutionsStatusSubscriptions,proto3" json:"TestCaseExecutionsStatusSubscriptions,omitempty"`     // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
 }
 
 func (x *SubscribeToMessagesRequest) Reset() {
@@ -1015,9 +1015,9 @@ func (*SubscribeToMessagesRequest) Descriptor() ([]byte, []int) {
 	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *SubscribeToMessagesRequest) GetUserIdentification() *UserIdentificationMessage {
+func (x *SubscribeToMessagesRequest) GetUserAndApplicationRunTimeIdentification() *UserAndApplicationRunTimeIdentificationMessage {
 	if x != nil {
-		return x.UserIdentification
+		return x.UserAndApplicationRunTimeIdentification
 	}
 	return nil
 }
@@ -2117,15 +2117,19 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x46, 0x6f, 0x75, 0x6e,
 	0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x24, 0x0a, 0x0d, 0x45, 0x78, 0x70, 0x65, 0x63, 0x74,
 	0x65, 0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x45,
-	0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xaa, 0x02, 0x0a,
+	0x78, 0x70, 0x65, 0x63, 0x74, 0x65, 0x64, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0xea, 0x02, 0x0a,
 	0x1a, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x54, 0x6f, 0x4d, 0x65, 0x73, 0x73,
-	0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x69, 0x0a, 0x12, 0x55,
-	0x73, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x39, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45,
-	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75,
-	0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x65,
-	0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x52, 0x12, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69,
+	0x61, 0x67, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0xa8, 0x01, 0x0a, 0x27,
+	0x55, 0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x52, 0x75, 0x6e, 0x54, 0x69, 0x6d, 0x65, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x4e, 0x2e,
+	0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65,
+	0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x55,
+	0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x75, 0x6e, 0x54, 0x69, 0x6d, 0x65, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69,
+	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x27, 0x55,
+	0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x70, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x52, 0x75, 0x6e, 0x54, 0x69, 0x6d, 0x65, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69,
 	0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0xa0, 0x01, 0x0a, 0x25, 0x54, 0x65, 0x73, 0x74, 0x43,
 	0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x53, 0x74, 0x61,
 	0x74, 0x75, 0x73, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
@@ -2293,9 +2297,10 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	(*timestamppb.Timestamp)(nil),                                                             // 27: google.protobuf.Timestamp
 	(ExecutionPriorityEnum)(0),                                                                // 28: fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
 	(TestCaseExecutionStatusEnum)(0),                                                          // 29: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
-	(CurrentFenixExecutionGuiProtoFileVersionEnum)(0),                                         // 30: fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
-	(TestInstructionExecutionStatusEnum)(0),                                                   // 31: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
-	(LogPostStatusEnum)(0),                                                                    // 32: fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
+	(*UserAndApplicationRunTimeIdentificationMessage)(nil),                                    // 30: fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	(CurrentFenixExecutionGuiProtoFileVersionEnum)(0),                                         // 31: fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	(TestInstructionExecutionStatusEnum)(0),                                                   // 32: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	(LogPostStatusEnum)(0),                                                                    // 33: fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
 }
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages_proto_depIdxs = []int32{
 	25, // 0: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionRequestMessage.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
@@ -2326,23 +2331,23 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	29, // 25: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
 	25, // 26: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
 	20, // 27: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionsExecution:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage
-	25, // 28: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.UserIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserIdentificationMessage
+	30, // 28: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
 	15, // 29: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.TestCaseExecutionsStatusSubscriptions:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusSubscriptionMessage
-	30, // 30: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	31, // 30: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
 	17, // 31: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
-	30, // 32: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	31, // 32: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
 	18, // 33: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestCaseExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage
 	19, // 34: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestInstructionExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage
 	29, // 35: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
-	31, // 36: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	32, // 36: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
 	21, // 37: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage.TestInstructionExecutionSummary:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage
 	22, // 38: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionMessage.TestInstructionExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage
 	27, // 39: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestCaseExecutionFromTimeStamp:type_name -> google.protobuf.Timestamp
 	27, // 40: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestCaseExecutionToTimeStamp:type_name -> google.protobuf.Timestamp
-	31, // 41: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	32, // 41: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionSummaryMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
 	23, // 42: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestInstructionExecutionDetailsMessage.ExecutionLogPosts:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage
 	27, // 43: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
-	32, // 44: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostStatus:type_name -> fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
+	33, // 44: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.LogPostStatus:type_name -> fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
 	24, // 45: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.LogPostMessage.FoundVersusExpectedValueMessage
 	46, // [46:46] is the sub-list for method output_type
 	46, // [46:46] is the sub-list for method input_type

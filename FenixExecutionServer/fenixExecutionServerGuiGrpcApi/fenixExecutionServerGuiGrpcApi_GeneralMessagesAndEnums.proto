@@ -96,6 +96,13 @@ message UserIdentificationMessage {
   CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
 }
 
+// Message Holding active User and an unique run time identification, used when TesterGui calls GuiExecutionServer
+message UserAndApplicationRunTimeIdentificationMessage {
+  string ApplicationRunTimeUuid = 1; // unique run time identification, used when TesterGui calls GuiExecutionServer
+  string UserId = 2; // The Users Id, SEB S-id will be used for SEB
+  CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
+}
+
 // Each log post row is classified with the following
 enum LogPostStatusEnum {
   INFO = 0; // The Log-post row is of Information Type
