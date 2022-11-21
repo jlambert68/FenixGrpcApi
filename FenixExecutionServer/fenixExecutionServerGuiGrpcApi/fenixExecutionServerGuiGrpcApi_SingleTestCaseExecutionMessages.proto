@@ -99,9 +99,8 @@ message TestCaseExecutionDetailsMessage {
   google.protobuf.Timestamp ExecutionStopTimeStamp = 17; // The timestamp when the execution was ended, in anyway
   TestCaseExecutionStatusEnum TestCaseExecutionStatus = 18; // The status of the ongoing  TestCase execution
   bool ExecutionHasFinished = 19; // A simple status telling if the execution has ended or not
+  google.protobuf.Timestamp  ExecutionStatusUpdateTimeStamp = 20; // The timestamp when the status was last updated
 }
-
-
 
 // Message holding a request to get a Single TestCase Execution
 message GetSingleTestCaseExecutionRequest {
