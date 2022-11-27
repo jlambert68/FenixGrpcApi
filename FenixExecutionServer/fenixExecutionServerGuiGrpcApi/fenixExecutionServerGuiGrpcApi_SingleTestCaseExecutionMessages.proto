@@ -14,7 +14,7 @@ message InitiateSingleTestCaseExecutionRequestMessage {
 
 // Message response from initiating a single TestCase Execution
 message InitiateSingleTestCaseExecutionResponseMessage {
-  string TestCaseExecutionUuid = 1; // The UUID for the TestCase Execution
+  TestCaseExecutionBasicInformationMessage TestCasesInExecutionQueue = 1; // The Basic information regarding the TestCase-Execution
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
@@ -183,7 +183,7 @@ message TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage {
 message TestCaseExecutionStatusMessage {
   string TestCaseExecutionUuid = 1; // The UUID for the TestCaseExecution
   int32 TestCaseExecutionVersion = 2; // The Version Number for the TestCaseExecution
-  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 3; // The TestCaseExecution-status for this TestCaseExecution
+  TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 3; // The TestCaseExecution-status for this TestCaseExecution
 }
 
 // Message holding status for one TestInstructionExecution
@@ -194,3 +194,4 @@ message TestInstructionExecutionStatusMessage {
   int32 TestInstructionExecutionVersion = 4; // The Version Number for the TestInstructionExecution
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 5; // The TestInstructionExecution-status for this TestInstructionExecution
 }
+
