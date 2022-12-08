@@ -47,6 +47,8 @@ enum TestCaseExecutionStatusEnum {
   TCE_FINISHED_NOT_OK_CAN_BE_RERUN = 7; // Finish with errors in validations, but can be rerun
   TCE_UNEXPECTED_INTERRUPTION = 8; // The TestCase stopped executed in an unexpected way
   TCE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 9; // The TestCase stopped executed in an unexpected way, but can be rerun
+  TCE_TIMEOUT_INTERRUPTION = 10; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
+  TCE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 11; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
 
 }
 
@@ -62,6 +64,8 @@ enum TestInstructionExecutionStatusEnum {
   TIE_FINISHED_NOT_OK_CAN_BE_RERUN = 7; // Finish with errors in validations, but can be rerun
   TIE_UNEXPECTED_INTERRUPTION = 8; // The TestInstruction stopped executed in an unexpected way
   TIE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 9; // The TestInstruction stopped executed in an unexpected way, but can be rerun
+  TIE_TIMEOUT_INTERRUPTION = 10; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}
+  TIE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 11; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}, but can be rerun
 
 }
 
