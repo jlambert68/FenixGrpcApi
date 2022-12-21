@@ -1,0 +1,15 @@
+syntax = "proto3";
+package fenixExecutionsLoadGeneratorGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi/fenixExecutionsLoadGeneratorGrpcApi_GeneralMessagesAndEnums.proto";
+
+// Message having information of how many copies of TestCase-execution and how they are sent
+message TestCaseExecutionRequest {
+  CurrentFenixExecutionsLoadGeneratorProtoFileVersionEnum ProtoFileVersionUsedByCaller = 1; // The latest proto file version number to be used
+  string TestCaseUuid = 2; // The unique uuid for the TestCase to be executed, by Fenix Execution Server
+  int32 NumberOfItemsPerGroup = 3; // Defines hwo many items in one group that will be sent to ExecutionsServer
+  int32 NumberOfParallellGroups = 4; // Defines how many parallell executions that will be sent to ExecutionServer
+  int32 NumberOfSecondsBetweenItemsInGroup = 5; // The time between send of two items in each group
+}
+

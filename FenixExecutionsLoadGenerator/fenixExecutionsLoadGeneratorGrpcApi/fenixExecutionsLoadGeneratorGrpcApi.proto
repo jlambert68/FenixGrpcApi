@@ -3,6 +3,7 @@ package fenixExecutionsLoadGeneratorGrpcApi;
 option go_package = "./go_grpc_api";
 
 import "FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi/fenixExecutionsLoadGeneratorGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi/fenixExecutionsLoadGeneratorGrpcApi_Messages.proto";
 
 // ****************************************************************************************************
 //
@@ -17,6 +18,10 @@ service FenixExecutionsLoadGeneratorGrpcServices {
 
   //Ask 'FenixExecutionsLoadGenerator' if 'GuiExecutionServer' is alive with this service
   rpc GuiExecutionServerAreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  // Send TestCase to be Executed
+  rpc ExecuteTestCase (TestCaseExecutionRequest) returns (AckNackResponse) {
   }
 
 
