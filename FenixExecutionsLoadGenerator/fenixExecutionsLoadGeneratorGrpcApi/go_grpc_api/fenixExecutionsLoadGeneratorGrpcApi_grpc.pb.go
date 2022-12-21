@@ -23,7 +23,7 @@ type FenixExecutionsLoadGeneratorGrpcServicesClient interface {
 	//Ask 'FenixExecutionsLoadGenerator' if 'GuiExecutionServer' is alive with this service
 	GuiExecutionServerAreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Send TestCase to be Executed
-	ExecuteTestCase(ctx context.Context, in *TestCaseExecutionRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
+	GuiExecutionServerExecuteTestCase(ctx context.Context, in *TestCaseExecutionRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionsLoadGeneratorGrpcServicesClient struct {
@@ -52,9 +52,9 @@ func (c *fenixExecutionsLoadGeneratorGrpcServicesClient) GuiExecutionServerAreYo
 	return out, nil
 }
 
-func (c *fenixExecutionsLoadGeneratorGrpcServicesClient) ExecuteTestCase(ctx context.Context, in *TestCaseExecutionRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionsLoadGeneratorGrpcServicesClient) GuiExecutionServerExecuteTestCase(ctx context.Context, in *TestCaseExecutionRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
-	err := c.cc.Invoke(ctx, "/fenixExecutionsLoadGeneratorGrpcApi.FenixExecutionsLoadGeneratorGrpcServices/ExecuteTestCase", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/fenixExecutionsLoadGeneratorGrpcApi.FenixExecutionsLoadGeneratorGrpcServices/GuiExecutionServerExecuteTestCase", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -70,7 +70,7 @@ type FenixExecutionsLoadGeneratorGrpcServicesServer interface {
 	//Ask 'FenixExecutionsLoadGenerator' if 'GuiExecutionServer' is alive with this service
 	GuiExecutionServerAreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Send TestCase to be Executed
-	ExecuteTestCase(context.Context, *TestCaseExecutionRequest) (*AckNackResponse, error)
+	GuiExecutionServerExecuteTestCase(context.Context, *TestCaseExecutionRequest) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer()
 }
 
@@ -84,8 +84,8 @@ func (UnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer) AreYouAlive(c
 func (UnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer) GuiExecutionServerAreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GuiExecutionServerAreYouAlive not implemented")
 }
-func (UnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer) ExecuteTestCase(context.Context, *TestCaseExecutionRequest) (*AckNackResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ExecuteTestCase not implemented")
+func (UnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer) GuiExecutionServerExecuteTestCase(context.Context, *TestCaseExecutionRequest) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GuiExecutionServerExecuteTestCase not implemented")
 }
 func (UnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionsLoadGeneratorGrpcServicesServer() {
 }
@@ -137,20 +137,20 @@ func _FenixExecutionsLoadGeneratorGrpcServices_GuiExecutionServerAreYouAlive_Han
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionsLoadGeneratorGrpcServices_ExecuteTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _FenixExecutionsLoadGeneratorGrpcServices_GuiExecutionServerExecuteTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TestCaseExecutionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionsLoadGeneratorGrpcServicesServer).ExecuteTestCase(ctx, in)
+		return srv.(FenixExecutionsLoadGeneratorGrpcServicesServer).GuiExecutionServerExecuteTestCase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/fenixExecutionsLoadGeneratorGrpcApi.FenixExecutionsLoadGeneratorGrpcServices/ExecuteTestCase",
+		FullMethod: "/fenixExecutionsLoadGeneratorGrpcApi.FenixExecutionsLoadGeneratorGrpcServices/GuiExecutionServerExecuteTestCase",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionsLoadGeneratorGrpcServicesServer).ExecuteTestCase(ctx, req.(*TestCaseExecutionRequest))
+		return srv.(FenixExecutionsLoadGeneratorGrpcServicesServer).GuiExecutionServerExecuteTestCase(ctx, req.(*TestCaseExecutionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -171,8 +171,8 @@ var FenixExecutionsLoadGeneratorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FenixExecutionsLoadGeneratorGrpcServices_GuiExecutionServerAreYouAlive_Handler,
 		},
 		{
-			MethodName: "ExecuteTestCase",
-			Handler:    _FenixExecutionsLoadGeneratorGrpcServices_ExecuteTestCase_Handler,
+			MethodName: "GuiExecutionServerExecuteTestCase",
+			Handler:    _FenixExecutionsLoadGeneratorGrpcServices_GuiExecutionServerExecuteTestCase_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

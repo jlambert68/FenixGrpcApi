@@ -21,7 +21,7 @@ service FenixExecutionsLoadGeneratorGrpcServices {
   }
 
   // Send TestCase to be Executed
-  rpc ExecuteTestCase (TestCaseExecutionRequest) returns (AckNackResponse) {
+  rpc GuiExecutionServerExecuteTestCase (TestCaseExecutionRequest) returns (AckNackResponse) {
   }
 
 
