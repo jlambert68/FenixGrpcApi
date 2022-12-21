@@ -176,5 +176,5 @@ var FenixUserGuiGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "FenixUserGui/fenixUserGuiGrpcApi/fenixUserGuiGrpcApi.proto",
+	Metadata: "FenixUserGui/fenixUserGuiGrpcApi/fenixExecutionsLoadGeneratorGrpcApi.proto",
 }

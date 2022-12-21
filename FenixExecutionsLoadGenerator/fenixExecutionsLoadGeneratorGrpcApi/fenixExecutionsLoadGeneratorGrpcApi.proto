@@ -1,0 +1,27 @@
+syntax = "proto3";
+package fenixExecutionsLoadGeneratorGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi/fenixExecutionsLoadGeneratorGrpcApi_GeneralMessagesAndEnums.proto";
+
+// ****************************************************************************************************
+//
+
+service FenixExecutionsLoadGeneratorGrpcServices {
+
+  // ************************ Admin ************************
+
+  //Check if 'FenixExecutionsLoadGenerator' is alive with this service
+  rpc AreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+  //Ask 'FenixExecutionsLoadGenerator' if 'GuiExecutionServer' is alive with this service
+  rpc GuiExecutionServerAreYouAlive (EmptyParameter) returns (AckNackResponse) {
+  }
+
+
+}
+
+
+
+

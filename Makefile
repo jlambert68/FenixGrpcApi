@@ -131,6 +131,13 @@ compileFenixUserGui_go:
 # generate the services
 	protoc --go-grpc_out=FenixUserGui/fenixUserGuiGrpcApi FenixUserGui/fenixUserGuiGrpcApi/*.proto
 
+compileFenixExecutionsLoadGenerator_go:
+	@echo "Compile 'FenixExecutionsLoadGenerator' proto file..."
 
+ # generate the messages
+	protoc --go_out=FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi/*.proto
+
+# generate the services
+	protoc --go-grpc_out=FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi FenixExecutionsLoadGenerator/fenixExecutionsLoadGeneratorGrpcApi/*.proto
 
 

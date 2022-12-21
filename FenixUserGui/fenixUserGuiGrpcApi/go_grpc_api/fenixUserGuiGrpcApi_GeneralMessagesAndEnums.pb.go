@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.25.0-devel
 // 	protoc        v3.14.0
-// source: FenixUserGui/fenixUserGuiGrpcApi/fenixUserGuiGrpcApi_GeneralMessagesAndEnums.proto
+// source: FenixUserGui/fenixUserGuiGrpcApi/fenixExecutionsLoadGeneratorGrpcApi_GeneralMessagesAndEnums.proto
 
 package go_grpc_api
 
