@@ -87,7 +87,7 @@ message TestCaseExecutionBasicInformationMessage {
   string TestCaseName = 9; // The TestCase, Name, set in TestCase-builder
   uint32 TestCaseVersion = 10; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
   string TestCaseExecutionUuid = 11; // The Unique UUID for the TestCase Execution
-  uint32 TestCaseExecutionVersion = 12; // The Unique UUID for the TestCase Execution
+  uint32 TestCaseExecutionVersion = 12; // The Unique Version for the TestCase Execution
   google.protobuf.Timestamp PlacedOnTestExecutionQueueTimeStamp = 13; // The timestamp when the TestCase was placed on queue for execution
   string TestDataSetUuid = 14; // The UUID for the specific TestDataSet that was used for the Execution
   ExecutionPriorityEnum ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
@@ -106,17 +106,18 @@ message TestCaseExecutionDetailsMessage {
 message GetSingleTestCaseExecutionRequest {
   UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   string TestCaseExecutionUuid = 2; // The Unique UUID for the TestCase Execution wanted
+  uint32 TestCaseExecutionVersion = 3; // The Unique Version for the TestCase Execution
 }
 
 // Message holding a response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
   //SingleTestCaseExecutionSummaryMessage SingleTestCaseExecutionSummary = 1; // A list of Single TestCase Execution summaries
-  repeated TestInstructionExecutionMessage TestInstructionsExecution = 2; // A list of all TestInstructions and their Execution result
+  TestInstructionExecutionMessage TestInstructionsExecution = 2; // A list of all TestInstructions and their Execution result
 
   message TestInstructionExecutionMessage{
-    TestInstructionExecutionSummaryMessage TestInstructionExecutionSummary = 1; // Basic information regarding the TestInstruction-Execution
-    TestInstructionExecutionDetailsMessage TestInstructionExecutionDetails = 2; // Basic information regarding the TestInstruction-Execution
-
+    TestCaseExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestCase-Execution
+    TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // Detailed information about the Execution
+    TestExecutionLogAndFoundValuesMessage TestExecutionLogAndFoundValues = 3; // Log posts and found vs expected values
   }
 
   // The Summary information for TestExecution for one TestInstruction-execution
@@ -134,7 +135,7 @@ message GetSingleTestCaseExecutionResponse {
   }
 
   // All log post for the TestInstruction-execution
-  message TestInstructionExecutionDetailsMessage {
+  message TestExecutionLogAndFoundValuesMessage {
     repeated LogPostMessage ExecutionLogPosts = 1; // All log post rows for the TestInstruction-execution
   }
 
@@ -154,7 +155,7 @@ message GetSingleTestCaseExecutionResponse {
 // The request message from 'TesterGui' to receive 'stream' of messages from GuiExecutionServer
 message SubscribeToMessagesRequest {
   ApplicationRunTimeIdentificationMessage ApplicationRunTimeIdentification = 1; // Identifies Application Run time instance and Proto-file version used
-   repeated TestCaseExecutionStatusSubscriptionMessage TestCaseExecutionsStatusSubscriptions = 2; // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
+  repeated TestCaseExecutionStatusSubscriptionMessage TestCaseExecutionsStatusSubscriptions = 2; // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
 }
 
 // Holds one TestCaseExecution that the TesterGui want to subribe to
