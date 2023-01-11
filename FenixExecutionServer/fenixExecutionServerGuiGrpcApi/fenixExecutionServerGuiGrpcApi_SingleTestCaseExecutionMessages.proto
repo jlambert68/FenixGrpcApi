@@ -117,6 +117,11 @@ message TestCaseExecutionKeyMessage {
 
 // Message holding a full response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
+  TestCaseExecutionResponseMessage TestCaseExecutionResponse = 1; // Holds one full TestCaseExecution with all data belonging to that execution
+}
+
+//  Message holding a full response for a one TestCase Execution
+message TestCaseExecutionResponseMessage {
   TestCaseExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestCase-Execution
   TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // The execution information for The Detailed information about the Execution
   repeated TestInstructionExecutionsMessage TestInstructionExecutions = 4; // All TestInstructionExecutions for the TestCaseExecution
