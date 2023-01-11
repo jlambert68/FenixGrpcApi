@@ -140,7 +140,7 @@ message GetSingleTestCaseExecutionResponse {
   message TestInstructionExecutionsMessage {
     TestInstructionExecutionBasicInformationMessage TestInstructionExecutionBasicInformation = 1; // The Base information for the TestInstructionExecution
     TestInstructionExecutionsInformationMessage TestInstructionExecutionsInformation = 2; // The execution information for the TestInstructionExecution
-    repeated LogPostMessage ExecutionLogPosts = 3; // All log post rows for the TestInstructionExecution
+    repeated LogPostAndValuesMessage ExecutionLogPostsAndValues = 3; // All log post rows for the TestInstructionExecution
   }
 
   // The basi information for one TestInstructionExecution
@@ -175,7 +175,7 @@ message GetSingleTestCaseExecutionResponse {
 
 
   // This message holds one log post row from Client System
-  message LogPostMessage {
+  message LogPostAndValuesMessage {
     string TestInstructionExecutionUuid = 1; // The UUID for the TestInstructionExecution that log post is associate to
     int32 TestInstructionExecutionVersion = 2; // The Version Number for the TestInstructionExecution
     google.protobuf.Timestamp LogPostTimeStamp = 3; // The TimeStamp for the specific log post
