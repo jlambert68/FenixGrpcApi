@@ -125,14 +125,14 @@ message GetSingleTestCaseExecutionResponse {
 //  Message holding a full response for a one TestCase Execution
 message TestCaseExecutionResponseMessage {
   TestCaseExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestCase-Execution
-  TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // The execution information for The Detailed information about the Execution
-  repeated TestInstructionExecutionsMessage TestInstructionExecutions = 4; // All TestInstructionExecutions for the TestCaseExecution
+  repeated TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 2; // The execution information for The Detailed information about the Execution
+  repeated TestInstructionExecutionsMessage TestInstructionExecutions = 3; // All TestInstructionExecutions for the TestCaseExecution
 }
 
 // All TestInstructionExecution for a specific TestCaseExecution
 message TestInstructionExecutionsMessage {
   TestInstructionExecutionBasicInformationMessage TestInstructionExecutionBasicInformation = 1; // The Base information for the TestInstructionExecution
-  TestInstructionExecutionsInformationMessage TestInstructionExecutionsInformation = 2; // The execution information for the TestInstructionExecution
+  repeated TestInstructionExecutionsInformationMessage TestInstructionExecutionsInformation = 2; // The execution information for the TestInstructionExecution
   repeated LogPostAndValuesMessage ExecutionLogPostsAndValues = 3; // All log post rows for the TestInstructionExecution
 }
 
