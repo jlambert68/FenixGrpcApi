@@ -97,11 +97,12 @@ message TestCaseExecutionBasicInformationMessage {
 }
 
 message TestCaseExecutionDetailsMessage {
-  google.protobuf.Timestamp ExecutionStartTimeStamp = 16; // The timestamp when the execution was put for execution, not on queue for execution
-  google.protobuf.Timestamp ExecutionStopTimeStamp = 17; // The timestamp when the execution was ended, in anyway
-  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 18; // The status of the ongoing  TestCase execution
-  bool ExecutionHasFinished = 19; // A simple status telling if the execution has ended or not
-  google.protobuf.Timestamp  ExecutionStatusUpdateTimeStamp = 20; // The timestamp when the status was last updated
+  google.protobuf.Timestamp ExecutionStartTimeStamp = 1; // The timestamp when the execution was put for execution, not on queue for execution
+  google.protobuf.Timestamp ExecutionStopTimeStamp = 2; // The timestamp when the execution was ended, in anyway
+  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 3; // The status of the ongoing  TestCase execution
+  bool ExecutionHasFinished = 4; // A simple status telling if the execution has ended or not
+  google.protobuf.Timestamp  ExecutionStatusUpdateTimeStamp = 5; // The timestamp when the status was last updated
+  uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
 }
 
 // Message holding a request to get a Single TestCase Execution
@@ -156,11 +157,12 @@ message TestInstructionExecutionBasicInformationMessage {
 }
 // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
 message TestInstructionExecutionsInformationMessage {
-  google.protobuf.Timestamp SentTimeStamp = 1; //
-  google.protobuf.Timestamp ExpectedExecutionEndTimeStamp = 2; //
-  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; //
-  google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 4; //
-  bool TestInstructionExecutionHasFinished = 5; //
+  google.protobuf.Timestamp SentTimeStamp = 1; // The Time that the TestInstruction was sent towards worker
+  google.protobuf.Timestamp ExpectedExecutionEndTimeStamp = 2; // The maximum expected EndTimeStamp for the TestInstructionExecution
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; // The current Execution status for the TestInstructionExecution
+  google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 4; // The  EndTimeStamp for the TestInstructionExecution
+  bool TestInstructionExecutionHasFinished = 5; // Indicates if TestInstructionExecution has finished or not
+  uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
 
 }
 
@@ -171,10 +173,12 @@ message LogPostAndValuesMessage {
   google.protobuf.Timestamp LogPostTimeStamp = 3; // The TimeStamp for the specific log post
   LogPostStatusEnum LogPostStatus = 4; // the status for the log post
   repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 5; // A list with found versus expected values, in string representations
+  uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
 
   message FoundVersusExpectedValueMessage {
     string FoundValue = 1; // The value that was found
     string ExpectedValue = 2; // The value that was expected
+    uint64 UniqueDatabaseRowCounter = 3; // A unique counter for every database row
   }
 }
 
@@ -221,5 +225,6 @@ message TestInstructionExecutionStatusMessage {
   string TestInstructionExecutionUuid = 3; // The UUID for the TestInstructionExecution
   int32 TestInstructionExecutionVersion = 4; // The Version Number for the TestInstructionExecution
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 5; // The TestInstructionExecution-status for this TestInstructionExecution
+  TestInstructionExecutionsInformationMessage TestInstructionExecutionsStatusInformation = 6; // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
 }
 
