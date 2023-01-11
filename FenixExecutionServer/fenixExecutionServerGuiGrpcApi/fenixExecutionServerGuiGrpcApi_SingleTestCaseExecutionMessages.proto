@@ -117,7 +117,8 @@ message TestCaseExecutionKeyMessage {
 
 // Message holding a full response for a Single TestCase Execution
 message GetSingleTestCaseExecutionResponse {
-  TestCaseExecutionResponseMessage TestCaseExecutionResponse = 1; // Holds one full TestCaseExecution with all data belonging to that execution
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  TestCaseExecutionResponseMessage TestCaseExecutionResponse = 2; // Holds one full TestCaseExecution with all data belonging to that execution
 }
 
 //  Message holding a full response for a one TestCase Execution
