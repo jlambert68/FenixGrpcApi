@@ -105,8 +105,8 @@ message TestCaseExecutionDetailsMessage {
 
 
 message TestInstructionExecutionMessage {
-    TestInstructionExecutionBasicInformationMessage TestInstructionExecutionBasicInformation = 1;
-    TestInstructionExecutionDetailsMessage TestInstructionExecutionDetails = 2;
+  TestInstructionExecutionBasicInformationMessage TestInstructionExecutionBasicInformation = 1;
+  TestInstructionExecutionDetailsMessage TestInstructionExecutionDetails = 2;
 }
 message TestInstructionExecutionBasicInformationMessage {
 
@@ -119,8 +119,12 @@ message TestInstructionExecutionDetailsMessage {
 // Message holding a request to get a Single TestCase Execution
 message GetSingleTestCaseExecutionRequest {
   UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
-  string TestCaseExecutionUuid = 2; // The Unique UUID for the TestCase Execution wanted
-  uint32 TestCaseExecutionVersion = 3; // The Unique Version for the TestCase Execution
+  TestCaseExecutionKeyMessage TestCaseExecutionKey = 2; // The key data to find one specific TestCaseExecution
+}
+
+message TestCaseExecutionKeyMessage {
+  string TestCaseExecutionUuid = 1; // The Unique UUID for the TestCase Execution
+  uint32 TestCaseExecutionVersion = 2; // The Unique Version for the TestCase Execution
 }
 
 // Message holding a response for a Single TestCase Execution
