@@ -163,6 +163,7 @@ message TestInstructionExecutionsInformationMessage {
   google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 4; // The  EndTimeStamp for the TestInstructionExecution
   bool TestInstructionExecutionHasFinished = 5; // Indicates if TestInstructionExecution has finished or not
   uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
+  bool TestInstructionCanBeReExecuted = 7; // Depending of both type of TestInstruction and how execution ends the TestInstruction could be rerun
 
 }
 
