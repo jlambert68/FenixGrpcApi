@@ -200,8 +200,6 @@ message TestCaseExecutionStatusSubscriptionMessage {
 message SubscribeToMessagesStreamResponse {
   CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
   google.protobuf.Timestamp  OriginalMessageCreationTimeStamp = 2; // The timestamp from when the original message was created in ExecutionServer
-  google.protobuf.Timestamp BroadcastTimeStamp = 3; // The timestamp message was broadcasted from the ExecutionServer
-  google.protobuf.Timestamp PreviousBroadcastTimeStamp = 4; //  The timestamp for the previously broadcasted message form the ExecutionServer
   bool IsKeepAliveMessage = 5; //Indicate if this is a 'Keep Alive Message' for TestGui to be aware that there is an active connection GUIExecutionServer
   TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 6; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
   // More messages will be added to be stream to 'TestGui'
@@ -218,7 +216,9 @@ message TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage {
 message TestCaseExecutionStatusMessage {
   string TestCaseExecutionUuid = 1; // The UUID for the TestCaseExecution
   int32 TestCaseExecutionVersion = 2; // The Version Number for the TestCaseExecution
-  TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 3; // The TestCaseExecution-status for this TestCaseExecution
+  google.protobuf.Timestamp BroadcastTimeStamp = 3; // The timestamp message was broadcasted from the ExecutionServer, regarding this TestCaseExecution
+  google.protobuf.Timestamp PreviousBroadcastTimeStamp = 4; //  The timestamp for the previously broadcasted message form the ExecutionServer, regarding this TestCaseExecution
+  TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 5; // The TestCaseExecution-status for this TestCaseExecution
 }
 
 // Message holding status for one TestInstructionExecution
@@ -228,6 +228,8 @@ message TestInstructionExecutionStatusMessage {
   string TestInstructionExecutionUuid = 3; // The UUID for the TestInstructionExecution
   int32 TestInstructionExecutionVersion = 4; // The Version Number for the TestInstructionExecution
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 5; // The TestInstructionExecution-status for this TestInstructionExecution
-  TestInstructionExecutionsInformationMessage TestInstructionExecutionsStatusInformation = 6; // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
+  google.protobuf.Timestamp BroadcastTimeStamp = 6; // The timestamp message was broadcasted from the ExecutionServer, regarding this TestCaseExecution
+  google.protobuf.Timestamp PreviousBroadcastTimeStamp = 7; //  The timestamp for the previously broadcasted message form the ExecutionServer, regarding this TestCaseExecution
+  TestInstructionExecutionsInformationMessage TestInstructionExecutionsStatusInformation = 8; // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
 }
 
