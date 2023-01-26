@@ -199,9 +199,11 @@ message TestCaseExecutionStatusSubscriptionMessage {
 // The response message from 'GuiExecutionServer' to sent by stream of status-messages to 'TesterGui'
 message SubscribeToMessagesStreamResponse {
   CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
-  google.protobuf.Timestamp  OriginalMessageCreationTimeStamp = 2; // The timestamp from when the original message was created, not necessary in GuiExecutionServer
-  bool IsKeepAliveMessage = 3; //Indicate if this is a 'Keep Alive Message' for TestGui to be aware that there is an active connection GUIExecutionServer
-  TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 4; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
+  google.protobuf.Timestamp  OriginalMessageCreationTimeStamp = 2; // The timestamp from when the original message was created in ExecutionServer
+  google.protobuf.Timestamp BroadcastTimeStamp = 3; // The timestamp message was broadcasted from the ExecutionServer
+  google.protobuf.Timestamp PreviousBroadcastTimeStamp = 4; //  The timestamp for the previously broadcasted message form the ExecutionServer
+  bool IsKeepAliveMessage = 5; //Indicate if this is a 'Keep Alive Message' for TestGui to be aware that there is an active connection GUIExecutionServer
+  TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 6; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
   // More messages will be added to be stream to 'TestGui'
 }
 
