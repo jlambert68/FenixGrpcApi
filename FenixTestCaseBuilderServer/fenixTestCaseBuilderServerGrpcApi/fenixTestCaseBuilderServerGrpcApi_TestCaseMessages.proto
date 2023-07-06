@@ -185,3 +185,14 @@ message FullTestCaseMessage {
   MatureTestInstructionContainersMessage MatureTestInstructionContainers = 3; // All TestInstructionContainers to be saved
   string MessageHash = 4; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
 }
+
+
+// ****************************************************************************************************
+//  GetDetailedTestCaseResponse
+
+// Message response when TesterGui request a saved TestCase from Database
+
+message GetDetailedTestCaseResponse {
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  FullTestCaseMessage DetailedTestCase = 2; // Holds one full TestCase with all data belonging to that TestCase
+}

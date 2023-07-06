@@ -59,7 +59,7 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // The TestCase Builder asks for one complete TestCase
-  rpc GetDetailedTestCase(GetTestCaseRequestMessage) returns (FullTestCaseMessage) {
+  rpc GetDetailedTestCase(GetTestCaseRequestMessage) returns (GetDetailedTestCaseResponse) {
   }
 
   // List all TestInstructions in the TestCase
