@@ -53,6 +53,13 @@ message MatureTestCaseModelElementMessage {
   string FirstChildElementUuid = 6; // The UUID of the first child element. Only applicable when this is a TestInstructionContainer. When there are no child element then this field is populated with 'MatureElementUuid'
   string ParentElementUuid = 7; // The UUID of the parent, TestInstructionContainer. When there are no parent element then this field is populated with 'MatureElementUuid'
   TestCaseModelElementTypeEnum TestCaseModelElementType = 8; // The specific type of this TestCase-element
+  MatureTestCaseModelElementMetaDataMessage MatureTestCaseModelElementMetaData = 9; // The Color of the DropZone and the DropZone
+}
+
+// The Color inherit from the DropZone together with the DropZoneUuid
+message MatureTestCaseModelElementMetaDataMessage {
+  string ChosenDropZoneUuid = 1; // The DropZone's UUID that the TI was droped onto
+  string ChosenDropZoneColorString = 2; // The DropZone's color that will be used for the TI
 }
 
 // One Immature TestCaseElement which hold type, reference to previous, next and parent elements
