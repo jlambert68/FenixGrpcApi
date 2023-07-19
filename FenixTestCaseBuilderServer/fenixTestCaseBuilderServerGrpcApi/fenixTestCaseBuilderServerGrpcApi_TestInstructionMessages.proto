@@ -138,7 +138,8 @@ message MatureTestInstructionInformationMessage {
     string ParentTestInstructionContainerMatureUuid = 4; // A Mature-UUID-reference to TestInstructionContainer where this TestInstruction exists
     string ChosenDropZoneUuid = 5; // The chosen dropzone, UUID, which set the attributes in TestInstruction when it was added to the TestCase
     string ChosenDropZoneName = 6; // The chosen dropzone, Name, which set the attributes in TestInstruction when it was added to the TestCase
-    TestCaseModelElementTypeEnum TestInstructionType = 7; // Is the TestInstruction of TI-type or TIx-type
+    string ChosenDropZoneColor = 7; // The chosen dropzone, Color, which set the attributes in TestInstruction when it was added to the TestCase
+    TestCaseModelElementTypeEnum TestInstructionType = 8; // Is the TestInstruction of TI-type or TIx-type
   }
 
   CreatedAndUpdatedInformationMessage CreatedAndUpdatedInformation = 2; // Information regarding who did what and when
