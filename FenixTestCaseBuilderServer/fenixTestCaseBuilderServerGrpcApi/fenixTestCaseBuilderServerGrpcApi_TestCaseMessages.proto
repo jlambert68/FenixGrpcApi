@@ -196,3 +196,28 @@ message GetDetailedTestCaseResponse {
   AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
   FullTestCaseMessage DetailedTestCase = 2; // Holds one full TestCase with all data belonging to that TestCase
 }
+
+// ****************************************************************************************************
+//  TestCasesHashRequest
+
+// Message containing a list of TestCaseUuid's for which to get their Hashes as response
+
+message TestCasesHashRequest {
+  UserIdentificationMessage UserIdentification = 1; // User identification and users proto-file version
+ repeated string TestCaseUuids = 2; // Holds a list of UUIDs for TestCases
+}
+
+// ****************************************************************************************************
+//  TestCasesHashResponse
+
+// Message containing a list of TestCase-Hash's
+
+message TestCasesHashResponse {
+  AckNackResponse AckNack = 1; // User identification and users proto-file version
+  repeated TestCasesHashMessage TestCasesHashes = 2; // Holds a list of UUIDs and Hashes for TestCases
+
+  message TestCasesHashMessage {
+    string  TestCaseUuid = 1; // Holds the Uuid for the TestCase
+    string  TestCaseHash = 2; // Holds the Hash for the TestCase
+  }
+}

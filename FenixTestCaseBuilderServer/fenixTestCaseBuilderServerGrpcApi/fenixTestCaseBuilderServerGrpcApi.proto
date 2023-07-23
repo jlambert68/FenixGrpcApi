@@ -88,6 +88,11 @@ service FenixTestCaseBuilderServerGrpcServices {
   // Save all TestInstructionContainers from the TestCase
   rpc SaveAllTestCaseTestInstructionContainers(SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) returns (AckNackResponse) {
   }
+
+  // *** Check if TestCases are updated by comparing TestCase-hash ***
+  rpc GetTestCasesHashes(TestCasesHashRequest) returns (TestCasesHashResponse) {
+  }
+
 }
 
 

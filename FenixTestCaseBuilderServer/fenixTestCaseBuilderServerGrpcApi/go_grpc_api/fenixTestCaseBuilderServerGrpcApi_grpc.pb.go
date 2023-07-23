@@ -46,6 +46,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	SaveAllTestCaseTestInstructions(ctx context.Context, in *SaveAllTestInstructionsForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Save all TestInstructionContainers from the TestCase
 	SaveAllTestCaseTestInstructionContainers(ctx context.Context, in *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// *** Check if TestCases are updated by comparing TestCase-hash ***
+	GetTestCasesHashes(ctx context.Context, in *TestCasesHashRequest, opts ...grpc.CallOption) (*TestCasesHashResponse, error)
 }
 
 type fenixTestCaseBuilderServerGrpcServicesClient struct {
@@ -205,6 +207,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveAllTestCaseTestInstru
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetTestCasesHashes(ctx context.Context, in *TestCasesHashRequest, opts ...grpc.CallOption) (*TestCasesHashResponse, error) {
+	out := new(TestCasesHashResponse)
+	err := c.cc.Invoke(ctx, "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestCasesHashes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixTestCaseBuilderServerGrpcServicesServer is the server API for FenixTestCaseBuilderServerGrpcServices service.
 // All implementations must embed UnimplementedFenixTestCaseBuilderServerGrpcServicesServer
 // for forward compatibility
@@ -237,6 +248,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	SaveAllTestCaseTestInstructions(context.Context, *SaveAllTestInstructionsForSpecificTestCaseRequestMessage) (*AckNackResponse, error)
 	// Save all TestInstructionContainers from the TestCase
 	SaveAllTestCaseTestInstructionContainers(context.Context, *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*AckNackResponse, error)
+	// *** Check if TestCases are updated by comparing TestCase-hash ***
+	GetTestCasesHashes(context.Context, *TestCasesHashRequest) (*TestCasesHashResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer()
 }
 
@@ -285,6 +298,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllTestCase
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllTestCaseTestInstructionContainers(context.Context, *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveAllTestCaseTestInstructionContainers not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetTestCasesHashes(context.Context, *TestCasesHashRequest) (*TestCasesHashResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTestCasesHashes not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer() {
 }
@@ -555,6 +571,24 @@ func _FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructionConta
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcServices_GetTestCasesHashes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestCasesHashRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetTestCasesHashes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestCasesHashes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).GetTestCasesHashes(ctx, req.(*TestCasesHashRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixTestCaseBuilderServerGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestCaseBuilderServerGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -613,6 +647,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SaveAllTestCaseTestInstructionContainers",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructionContainers_Handler,
+		},
+		{
+			MethodName: "GetTestCasesHashes",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetTestCasesHashes_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
