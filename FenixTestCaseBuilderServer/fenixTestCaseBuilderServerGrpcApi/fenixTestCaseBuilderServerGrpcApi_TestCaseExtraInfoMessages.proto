@@ -1,0 +1,20 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+
+// All messages in this file is used to define the Extra Information stored for TestCase
+
+// ****************************************************************************************************
+// TestCaseExtraInformationMessage
+
+message TestCaseExtraInformationMessage {
+
+  TestCaseTextualRepresentationHistoryMessage TestCaseTextualRepresentaionHistory = 1; // The full history for the Textual TestCase representation
+
+  // A message the complete textual TestCase-model-history
+  message TestCaseTextualRepresentationHistoryMessage {
+    repeated string TextualTestCaseRepresentationSimpleHistory = 1; // The full history of the 'Simple" Textual TestCase representation
+    repeated string TextualTestCaseRepresentationComplexHistory = 2; // The full history of the 'Complex" Textual TestCase representation
+    repeated string TextualTestCaseRepresentationExtendedStackHistory = 3; //  The full history of the 'Extended" Textual TestCase representation
+  }
+}
