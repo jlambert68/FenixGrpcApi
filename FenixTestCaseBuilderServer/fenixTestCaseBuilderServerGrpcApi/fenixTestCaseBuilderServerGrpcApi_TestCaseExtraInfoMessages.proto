@@ -9,7 +9,7 @@ option go_package = "./go_grpc_api";
 
 message TestCaseExtraInformationMessage {
 
-  TestCaseTextualRepresentationHistoryMessage TestCaseTextualRepresentaionHistory = 1; // The full history for the Textual TestCase representation
+  TestCaseTextualRepresentationHistoryMessage TestCaseTextualRepresentationHistory = 1; // The full history for the Textual TestCase representation
 
   // A message the complete textual TestCase-model-history
   message TestCaseTextualRepresentationHistoryMessage {
