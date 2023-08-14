@@ -82,4 +82,3 @@ message ProcessTestInstructionExecutionReversedResponse {
   google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
   bool TestInstructionCanBeReExecuted = 4; // Indicates if the TestInstruction can be resent to be re-executed. Good example is validations that can be don't as many times as needed
 }
-

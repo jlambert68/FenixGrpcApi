@@ -41,7 +41,7 @@ var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGr
 	0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2f,
 	0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x5f, 0x4d, 0x65, 0x73, 0x73,
-	0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xd5, 0x0a, 0x0a, 0x20, 0x46,
+	0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xfb, 0x0b, 0x0a, 0x20, 0x46,
 	0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x12,
 	0x6a, 0x0a, 0x0b, 0x41, 0x72, 0x65, 0x59, 0x6f, 0x75, 0x41, 0x6c, 0x69, 0x76, 0x65, 0x12, 0x2b,
@@ -127,46 +127,59 @@ var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGr
 	0x1a, 0x2c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
 	0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41,
 	0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00,
-	0x28, 0x01, 0x42, 0x25, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f,
-	0x61, 0x70, 0x69, 0xaa, 0x02, 0x13, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x28, 0x01, 0x12, 0xa3, 0x01, 0x0a, 0x25, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x54, 0x65,
+	0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65,
+	0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x75, 0x62, 0x53, 0x75, 0x62, 0x12, 0x4a, 0x2e, 0x66,
+	0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x50, 0x72, 0x6f, 0x63, 0x65,
+	0x73, 0x73, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x1a, 0x2c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78,
+	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47,
+	0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x25, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f,
+	0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0xaa, 0x02, 0x13, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_proto_goTypes = []interface{}{
-	(*EmptyParameter)(nil),                               // 0: fenixExecutionServerGrpcApi.EmptyParameter
-	(*IsWorkerAliveRequest)(nil),                         // 1: fenixExecutionServerGrpcApi.IsWorkerAliveRequest
-	(*TestCaseExecutionsToProcessMessage)(nil),           // 2: fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
-	(*ProcessingCapabilityMessage)(nil),                  // 3: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage
-	(*FinalTestInstructionExecutionResultMessage)(nil),   // 4: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage
-	(*CurrentTestInstructionExecutionResultMessage)(nil), // 5: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage
-	(*LogPostsMessage)(nil),                              // 6: fenixExecutionServerGrpcApi.LogPostsMessage
-	(*AckNackResponse)(nil),                              // 7: fenixExecutionServerGrpcApi.AckNackResponse
+	(*EmptyParameter)(nil),                                // 0: fenixExecutionServerGrpcApi.EmptyParameter
+	(*IsWorkerAliveRequest)(nil),                          // 1: fenixExecutionServerGrpcApi.IsWorkerAliveRequest
+	(*TestCaseExecutionsToProcessMessage)(nil),            // 2: fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
+	(*ProcessingCapabilityMessage)(nil),                   // 3: fenixExecutionServerGrpcApi.ProcessingCapabilityMessage
+	(*FinalTestInstructionExecutionResultMessage)(nil),    // 4: fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage
+	(*CurrentTestInstructionExecutionResultMessage)(nil),  // 5: fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage
+	(*LogPostsMessage)(nil),                               // 6: fenixExecutionServerGrpcApi.LogPostsMessage
+	(*ProcessTestInstructionExecutionResponseStatus)(nil), // 7: fenixExecutionServerGrpcApi.ProcessTestInstructionExecutionResponseStatus
+	(*AckNackResponse)(nil),                               // 8: fenixExecutionServerGrpcApi.AckNackResponse
 }
 var file_FenixExecutionServer_fenixExecutionServerGrpcApi_fenixExecutionServerGrpcApi_proto_depIdxs = []int32{
-	0, // 0: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.AreYouAlive:input_type -> fenixExecutionServerGrpcApi.EmptyParameter
-	1, // 1: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.IsWorkerAlive:input_type -> fenixExecutionServerGrpcApi.IsWorkerAliveRequest
-	2, // 2: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestCasesOnExecutionQueue:input_type -> fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
-	2, // 3: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestInstructionsOnExecutionQueue:input_type -> fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
-	3, // 4: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportProcessingCapability:input_type -> fenixExecutionServerGrpcApi.ProcessingCapabilityMessage
-	2, // 5: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.TriggerSendNewTestInstructionsThatIsWaitingToBeSent:input_type -> fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
-	4, // 6: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCompleteTestInstructionExecutionResult:input_type -> fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage
-	5, // 7: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCurrentTestInstructionExecutionResult:input_type -> fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage
-	6, // 8: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.SendLogPostForExecution:input_type -> fenixExecutionServerGrpcApi.LogPostsMessage
-	7, // 9: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.AreYouAlive:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 10: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.IsWorkerAlive:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 11: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestCasesOnExecutionQueue:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 12: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestInstructionsOnExecutionQueue:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 13: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportProcessingCapability:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 14: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.TriggerSendNewTestInstructionsThatIsWaitingToBeSent:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 15: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCompleteTestInstructionExecutionResult:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 16: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCurrentTestInstructionExecutionResult:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	7, // 17: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.SendLogPostForExecution:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
-	9, // [9:18] is the sub-list for method output_type
-	0, // [0:9] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.AreYouAlive:input_type -> fenixExecutionServerGrpcApi.EmptyParameter
+	1,  // 1: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.IsWorkerAlive:input_type -> fenixExecutionServerGrpcApi.IsWorkerAliveRequest
+	2,  // 2: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestCasesOnExecutionQueue:input_type -> fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
+	2,  // 3: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestInstructionsOnExecutionQueue:input_type -> fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
+	3,  // 4: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportProcessingCapability:input_type -> fenixExecutionServerGrpcApi.ProcessingCapabilityMessage
+	2,  // 5: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.TriggerSendNewTestInstructionsThatIsWaitingToBeSent:input_type -> fenixExecutionServerGrpcApi.TestCaseExecutionsToProcessMessage
+	4,  // 6: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCompleteTestInstructionExecutionResult:input_type -> fenixExecutionServerGrpcApi.FinalTestInstructionExecutionResultMessage
+	5,  // 7: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCurrentTestInstructionExecutionResult:input_type -> fenixExecutionServerGrpcApi.CurrentTestInstructionExecutionResultMessage
+	6,  // 8: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.SendLogPostForExecution:input_type -> fenixExecutionServerGrpcApi.LogPostsMessage
+	7,  // 9: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ProcessTestInstructionExecutionPubSub:input_type -> fenixExecutionServerGrpcApi.ProcessTestInstructionExecutionResponseStatus
+	8,  // 10: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.AreYouAlive:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 11: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.IsWorkerAlive:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 12: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestCasesOnExecutionQueue:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 13: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.InformThatThereAreNewTestInstructionsOnExecutionQueue:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 14: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportProcessingCapability:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 15: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.TriggerSendNewTestInstructionsThatIsWaitingToBeSent:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 16: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCompleteTestInstructionExecutionResult:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 17: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ReportCurrentTestInstructionExecutionResult:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 18: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.SendLogPostForExecution:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	8,  // 19: fenixExecutionServerGrpcApi.FenixExecutionServerGrpcServices.ProcessTestInstructionExecutionPubSub:output_type -> fenixExecutionServerGrpcApi.AckNackResponse
+	10, // [10:20] is the sub-list for method output_type
+	0,  // [0:10] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() {

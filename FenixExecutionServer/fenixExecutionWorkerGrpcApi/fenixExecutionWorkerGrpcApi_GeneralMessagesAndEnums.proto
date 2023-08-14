@@ -11,7 +11,8 @@ option csharp_namespace = "FenixExecutionWorkerGrpcApi";
 enum CurrentFenixExecutionWorkerProtoFileVersionEnum {
   VERSION_0_0 = 0 [deprecated = true];
   VERSION_0_1 = 1 [deprecated = true];
-  VERSION_0_2 = 2; // Current version
+  VERSION_0_2 = 2 [deprecated = true];
+  VERSION_0_3 = 3; // Current version
 }
 
 // Error codes - for now a test

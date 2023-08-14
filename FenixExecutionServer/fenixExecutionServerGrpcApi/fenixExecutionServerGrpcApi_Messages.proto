@@ -72,3 +72,10 @@ message TestCaseExecutionToProcess {
     int32 TestCaseExecutionVersion = 2; // The version of the TestCaseExecution to process
 }
 
+// Response from execution client to execution server that client can execute TestInstruction
+message ProcessTestInstructionExecutionResponseStatus {
+  AckNackResponse AckNackResponse = 1;
+  string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
+  google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
+  bool TestInstructionCanBeReExecuted = 4; // Indicates if the TestInstruction can be resent to be re-executed. Good example is validations that can be don't as many times as needed
+}

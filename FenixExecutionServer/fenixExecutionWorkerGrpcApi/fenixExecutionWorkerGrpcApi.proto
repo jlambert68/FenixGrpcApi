@@ -1,10 +1,10 @@
 syntax = "proto3";
 package fenixExecutionWorkerGrpcApi;
 option go_package = "./go_grpc_api";
-option csharp_namespace = "FenixExecutionWorkerGrpcApi";
 
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_MessagesUsedTogetherWithPubSub.proto";
 
 
 // ****************************************************************************************************
@@ -26,6 +26,11 @@ service FenixExecutionWorkerGrpcServices {
 
   // Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
   rpc ProcessTestInstructionExecution(ProcessTestInstructionExecutionReveredRequest) returns (ProcessTestInstructionExecutionResponse) {
+
+  }
+
+  // Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
+  rpc ProcessTestInstructionExecutionPubSub(ProcessTestInstructionExecutionPubSubRequest) returns (AckNackResponse) {
 
   }
 
@@ -67,6 +72,11 @@ service FenixExecutionWorkerConnectorGrpcServices {
   // Response from execution client to execution Worker using direct gRPC call instead of doing response
   rpc ConnectorProcessTestInstructionExecutionReversedResponse(ProcessTestInstructionExecutionReversedResponse) returns (AckNackResponse){
   }
+
+  // Response from execution client to execution Worker using direct gRPC call instead of doing response
+  rpc ConnectorProcessTestInstructionExecutionResponse(ProcessTestInstructionExecutionResponse) returns (AckNackResponse){
+  }
+
 
 }
 
