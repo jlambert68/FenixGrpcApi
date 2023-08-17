@@ -48,11 +48,6 @@ service FenixExecutionWorkerGrpcServices {
   rpc SendAllLogPostForExecution(TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
 
-  // ************************ Connector report/respond back to Worker ************************
-
-    // When Connector receives a TestInstructionExecution over PubSub then it responds back via this one
-    rpc ConnectorRespondsToProcessTestInstructionExecutionPubSub(ProcessTestInstructionExecutionResponse) returns (AckNackResponse) {
-    }
 
 }
 
