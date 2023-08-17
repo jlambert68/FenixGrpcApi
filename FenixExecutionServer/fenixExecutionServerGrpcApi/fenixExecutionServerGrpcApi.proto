@@ -54,7 +54,7 @@ service FenixExecutionServerGrpcServices {
   rpc SendLogPostForExecution(stream LogPostsMessage) returns (AckNackResponse) {
   }
 
-  // TestInstructionExecution is received by connector and this response tells if the Connector can execution the TestInstruction or not
+  // TestInstructionExecution was received by connector and this response tells if the Connector can execution the TestInstruction or not
   rpc ProcessResponseTestInstructionExecution(ProcessTestInstructionExecutionResponseStatus) returns (AckNackResponse) {
   }
 

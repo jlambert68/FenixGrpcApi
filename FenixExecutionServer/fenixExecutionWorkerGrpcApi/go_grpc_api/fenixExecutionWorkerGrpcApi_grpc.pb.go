@@ -24,7 +24,7 @@ type FenixExecutionWorkerGrpcServicesClient interface {
 	ReportProcessingCapability(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
 	ProcessTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionReveredRequest, opts ...grpc.CallOption) (*ProcessTestInstructionExecutionResponse, error)
-	// Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
+	// Fenix Execution Server send a request to Execution Worker to initiate an execution of a TestInstruction
 	ProcessTestInstructionExecutionPubSub(ctx context.Context, in *ProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Execution Server ask Worker (client) to report the final results of the execution result to the Server
 	ReportCompleteTestInstructionExecutionResult(ctx context.Context, in *TestInstructionExecutionRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
@@ -32,6 +32,8 @@ type FenixExecutionWorkerGrpcServicesClient interface {
 	ReportCurrentTestInstructionExecutionResult(ctx context.Context, in *TestInstructionExecutionRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Execution Server ask Worker (client) to report all log posts of the execution result to the Server
 	SendAllLogPostForExecution(ctx context.Context, in *TestInstructionExecutionRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// When Connector receives a TestInstructionExecution over PubSub then it responds back via this one
+	ConnectorRespondsToProcessTestInstructionExecutionPubSub(ctx context.Context, in *ProcessTestInstructionExecutionResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionWorkerGrpcServicesClient struct {
@@ -105,6 +107,15 @@ func (c *fenixExecutionWorkerGrpcServicesClient) SendAllLogPostForExecution(ctx 
 	return out, nil
 }
 
+func (c *fenixExecutionWorkerGrpcServicesClient) ConnectorRespondsToProcessTestInstructionExecutionPubSub(ctx context.Context, in *ProcessTestInstructionExecutionResponse, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ConnectorRespondsToProcessTestInstructionExecutionPubSub", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixExecutionWorkerGrpcServicesServer is the server API for FenixExecutionWorkerGrpcServices service.
 // All implementations must embed UnimplementedFenixExecutionWorkerGrpcServicesServer
 // for forward compatibility
@@ -115,7 +126,7 @@ type FenixExecutionWorkerGrpcServicesServer interface {
 	ReportProcessingCapability(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
 	ProcessTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionReveredRequest) (*ProcessTestInstructionExecutionResponse, error)
-	// Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
+	// Fenix Execution Server send a request to Execution Worker to initiate an execution of a TestInstruction
 	ProcessTestInstructionExecutionPubSub(context.Context, *ProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error)
 	// Execution Server ask Worker (client) to report the final results of the execution result to the Server
 	ReportCompleteTestInstructionExecutionResult(context.Context, *TestInstructionExecutionRequestMessage) (*AckNackResponse, error)
@@ -123,6 +134,8 @@ type FenixExecutionWorkerGrpcServicesServer interface {
 	ReportCurrentTestInstructionExecutionResult(context.Context, *TestInstructionExecutionRequestMessage) (*AckNackResponse, error)
 	// Execution Server ask Worker (client) to report all log posts of the execution result to the Server
 	SendAllLogPostForExecution(context.Context, *TestInstructionExecutionRequestMessage) (*AckNackResponse, error)
+	// When Connector receives a TestInstructionExecution over PubSub then it responds back via this one
+	ConnectorRespondsToProcessTestInstructionExecutionPubSub(context.Context, *ProcessTestInstructionExecutionResponse) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerGrpcServicesServer()
 }
 
@@ -150,6 +163,9 @@ func (UnimplementedFenixExecutionWorkerGrpcServicesServer) ReportCurrentTestInst
 }
 func (UnimplementedFenixExecutionWorkerGrpcServicesServer) SendAllLogPostForExecution(context.Context, *TestInstructionExecutionRequestMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendAllLogPostForExecution not implemented")
+}
+func (UnimplementedFenixExecutionWorkerGrpcServicesServer) ConnectorRespondsToProcessTestInstructionExecutionPubSub(context.Context, *ProcessTestInstructionExecutionResponse) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorRespondsToProcessTestInstructionExecutionPubSub not implemented")
 }
 func (UnimplementedFenixExecutionWorkerGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerGrpcServicesServer() {
 }
@@ -291,6 +307,24 @@ func _FenixExecutionWorkerGrpcServices_SendAllLogPostForExecution_Handler(srv in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixExecutionWorkerGrpcServices_ConnectorRespondsToProcessTestInstructionExecutionPubSub_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProcessTestInstructionExecutionResponse)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerGrpcServicesServer).ConnectorRespondsToProcessTestInstructionExecutionPubSub(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ConnectorRespondsToProcessTestInstructionExecutionPubSub",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerGrpcServicesServer).ConnectorRespondsToProcessTestInstructionExecutionPubSub(ctx, req.(*ProcessTestInstructionExecutionResponse))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixExecutionWorkerGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionWorkerGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -326,6 +360,10 @@ var FenixExecutionWorkerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "SendAllLogPostForExecution",
 			Handler:    _FenixExecutionWorkerGrpcServices_SendAllLogPostForExecution_Handler,
 		},
+		{
+			MethodName: "ConnectorRespondsToProcessTestInstructionExecutionPubSub",
+			Handler:    _FenixExecutionWorkerGrpcServices_ConnectorRespondsToProcessTestInstructionExecutionPubSub_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
@@ -344,7 +382,7 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	ConnectorRequestForProcessTestInstructionExecution(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionClient, error)
 	// Response from execution client to execution Worker using direct gRPC call instead of doing response
 	ConnectorProcessTestInstructionExecutionReversedResponse(ctx context.Context, in *ProcessTestInstructionExecutionReversedResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
-	// Response from execution client to execution Worker using direct gRPC call instead of doing response
+	// Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
 	ConnectorProcessTestInstructionExecutionResponse(ctx context.Context, in *ProcessTestInstructionExecutionResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
@@ -437,7 +475,7 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	ConnectorRequestForProcessTestInstructionExecution(*EmptyParameter, FenixExecutionWorkerConnectorGrpcServices_ConnectorRequestForProcessTestInstructionExecutionServer) error
 	// Response from execution client to execution Worker using direct gRPC call instead of doing response
 	ConnectorProcessTestInstructionExecutionReversedResponse(context.Context, *ProcessTestInstructionExecutionReversedResponse) (*AckNackResponse, error)
-	// Response from execution client to execution Worker using direct gRPC call instead of doing response
+	// Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
 	ConnectorProcessTestInstructionExecutionResponse(context.Context, *ProcessTestInstructionExecutionResponse) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }

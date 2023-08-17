@@ -29,7 +29,7 @@ service FenixExecutionWorkerGrpcServices {
 
   }
 
-  // Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
+  // Fenix Execution Server send a request to Execution Worker to initiate an execution of a TestInstruction
   rpc ProcessTestInstructionExecutionPubSub(ProcessTestInstructionExecutionPubSubRequest) returns (AckNackResponse) {
 
   }
@@ -47,6 +47,12 @@ service FenixExecutionWorkerGrpcServices {
   // Execution Server ask Worker (client) to report all log posts of the execution result to the Server
   rpc SendAllLogPostForExecution(TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
+
+  // ************************ Connector report/respond back to Worker ************************
+
+    // When Connector receives a TestInstructionExecution over PubSub then it responds back via this one
+    rpc ConnectorRespondsToProcessTestInstructionExecutionPubSub(ProcessTestInstructionExecutionResponse) returns (AckNackResponse) {
+    }
 
 }
 
@@ -73,7 +79,7 @@ service FenixExecutionWorkerConnectorGrpcServices {
   rpc ConnectorProcessTestInstructionExecutionReversedResponse(ProcessTestInstructionExecutionReversedResponse) returns (AckNackResponse){
   }
 
-  // Response from execution client to execution Worker using direct gRPC call instead of doing response
+  // Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
   rpc ConnectorProcessTestInstructionExecutionResponse(ProcessTestInstructionExecutionResponse) returns (AckNackResponse){
   }
 
