@@ -9,80 +9,88 @@ option csharp_namespace = "ExecutionServerGrpc";
 
 // Used to have client and server in sync with using the same proto file version
 enum CurrentFenixExecutionServerProtoFileVersionEnum {
-  VERSION_0_0 = 0 [deprecated = true];
-  VERSION_0_1 = 1 [deprecated = true];
-  VERSION_0_2 = 2 [deprecated = true];
-  VERSION_0_3 = 3; // Current version
+  CurrentFenixExecutionServerProtoFileVersionEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  VERSION_0_0 = 1 [deprecated = true];
+  VERSION_0_1 = 2 [deprecated = true];
+  VERSION_0_2 = 3 [deprecated = true];
+  VERSION_0_3 = 4 [deprecated = true];
+  VERSION_0_4 = 5; // Current version
 }
 
 // Error codes - for now a test
 enum ErrorCodesEnum {
-  OK = 0;
-  ERROR_UNKNOWN_CALLER = 1;
-  ERROR_WRONG_PROTO_FILE_VERSION = 2;
-  ERROR_UNSPECIFIED = 3;
-  ERROR_DATABASE_PROBLEM = 4;
-  ERROR_CONNECTOR_NOT_RESPONDING = 5;
-  ERROR_CONNECTOR_INTERNAL_ERROR = 6;
+  ErrorCodesEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  OK = 1;
+  ERROR_UNKNOWN_CALLER = 2;
+  ERROR_WRONG_PROTO_FILE_VERSION = 3;
+  ERROR_UNSPECIFIED = 4;
+  ERROR_DATABASE_PROBLEM = 5;
+  ERROR_CONNECTOR_NOT_RESPONDING = 6;
+  ERROR_CONNECTOR_INTERNAL_ERROR = 7;
 }
 
 // Execution Enum for a TestCase Execution
 enum TestCaseExecutionStatusEnum {
-  TCE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
-  TCE_EXECUTING = 1; // TestCase is execution
-  TCE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
-  TCE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 3; // Interrupted by in a controlled way, but can be rerun
-  TCE_FINISHED_OK = 4; // Finish as expected to TestCase definition
-  TCE_FINISHED_OK_CAN_BE_RERUN = 5; // Finish as expected to TestCase definition, but can be rerun
-  TCE_FINISHED_NOT_OK = 6; // Finish with errors in validations
-  TCE_FINISHED_NOT_OK_CAN_BE_RERUN = 7; // Finish with errors in validations, but can be rerun
-  TCE_UNEXPECTED_INTERRUPTION = 8; // The TestCase stopped executed in an unexpected way
-  TCE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 9; // The TestCase stopped executed in an unexpected way, but can be rerun
-  TCE_TIMEOUT_INTERRUPTION = 10; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
-  TCE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 11; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
+  TestCaseExecutionStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  TCE_INITIATED = 1; // All set up for execution, but has not been triggered to start execution
+  TCE_EXECUTING = 2; // TestCase is execution
+  TCE_CONTROLLED_INTERRUPTION = 3; // Interrupted by in a controlled way
+  TCE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 4; // Interrupted by in a controlled way, but can be rerun
+  TCE_FINISHED_OK = 5; // Finish as expected to TestCase definition
+  TCE_FINISHED_OK_CAN_BE_RERUN = 6; // Finish as expected to TestCase definition, but can be rerun
+  TCE_FINISHED_NOT_OK = 7; // Finish with errors in validations
+  TCE_FINISHED_NOT_OK_CAN_BE_RERUN = 8; // Finish with errors in validations, but can be rerun
+  TCE_UNEXPECTED_INTERRUPTION = 9; // The TestCase stopped executed in an unexpected way
+  TCE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 10; // The TestCase stopped executed in an unexpected way, but can be rerun
+  TCE_TIMEOUT_INTERRUPTION = 11; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
+  TCE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 12; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
 
 }
 
 // Execution Enum for a TestInstruction Execution
 enum TestInstructionExecutionStatusEnum {
-  TIE_INITIATED = 0; // All set up for execution, but has not been triggered to start execution
-  TIE_EXECUTING = 1; // TestInstruction is execution
-  TIE_CONTROLLED_INTERRUPTION = 2; // Interrupted by in a controlled way
-  TIE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 3; // Interrupted by in a controlled way, but can be rerun
-  TIE_FINISHED_OK = 4; // Finish as expected to TestInstruction definition
-  TIE_FINISHED_OK_CAN_BE_RERUN = 5; // Finish as expected to TestInstruction definition, but can be rerun
-  TIE_FINISHED_NOT_OK = 6; // Finish with errors in validations
-  TIE_FINISHED_NOT_OK_CAN_BE_RERUN = 7; // Finish with errors in validations, but can be rerun
-  TIE_UNEXPECTED_INTERRUPTION = 8; // The TestInstruction stopped executed in an unexpected way
-  TIE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 9; // The TestInstruction stopped executed in an unexpected way, but can be rerun
-  TIE_TIMEOUT_INTERRUPTION = 10; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}
-  TIE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 11; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}, but can be rerun
+  TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  TIE_INITIATED = 1; // All set up for execution, but has not been triggered to start execution
+  TIE_EXECUTING = 2; // TestInstruction is execution
+  TIE_CONTROLLED_INTERRUPTION = 3; // Interrupted by in a controlled way
+  TIE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 4; // Interrupted by in a controlled way, but can be rerun
+  TIE_FINISHED_OK = 5; // Finish as expected to TestInstruction definition
+  TIE_FINISHED_OK_CAN_BE_RERUN = 6; // Finish as expected to TestInstruction definition, but can be rerun
+  TIE_FINISHED_NOT_OK = 7; // Finish with errors in validations
+  TIE_FINISHED_NOT_OK_CAN_BE_RERUN = 8; // Finish with errors in validations, but can be rerun
+  TIE_UNEXPECTED_INTERRUPTION = 9; // The TestInstruction stopped executed in an unexpected way
+  TIE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 10; // The TestInstruction stopped executed in an unexpected way, but can be rerun
+  TIE_TIMEOUT_INTERRUPTION = 11; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}
+  TIE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 12; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}, but can be rerun
 
 }
 
-// How a Client is able to process requests in serial or parallell, regarding TestInstructions, TestCases and/or TestSuites
+// How a Client is able to process requests in serial or parallel, regarding TestInstructions, TestCases and/or TestSuites
 enum    ProcessingCapabilityForClientSystemEnum {
-  CAN_PROCESS_IN_PARALLELL = 0; // Can be processed in parallell, by the Client system
-  CAN_ONLY_PROCESS_IN_SERIAL = 1; // Can only be processed in serial, by the Client system
-  STOP_SEND_NEW_EXECUTION_TASKS = 2; // Stopp sending new tasks for execution
+  ProcessingCapabilityForClientSystemEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  CAN_PROCESS_IN_PARALLEL = 1; // Can be processed in parallel, by the Client system
+  CAN_ONLY_PROCESS_IN_SERIAL = 2; // Can only be processed in serial, by the Client system
+  STOP_SEND_NEW_EXECUTION_TASKS = 3; // Stop sending new tasks for execution
 }
 
 // Each log post row is classified with the following
 enum LogPostStatusEnum {
-  INFO = 0; // The Log-post row is of Information Type
-  WARNING = 1; // The Log-post row is of Warning Type, to inform user that something is not like it should
-  VALIDATION_OK = 2; // The Log-post row is of Validation OK Type and should be used when the validation of the TestExecution matched expected result
-  VALIDATION_ERROR = 3; // The Log-post row is of Validation Error Type and should be used when the validation of the TestExecution didn't matched expected result
+  LogPostStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  INFO = 1; // The Log-post row is of Information Type
+  WARNING = 2; // The Log-post row is of Warning Type, to inform user that something is not like it should
+  VALIDATION_OK = 3; // The Log-post row is of Validation OK Type and should be used when the validation of the TestExecution matched expected result
+  VALIDATION_ERROR = 4; // The Log-post row is of Validation Error Type and should be used when the validation of the TestExecution didn't matched expected result
 }
 
 // Execution priority for TestInstructions, TestCases and TestSuites
 enum ExecutionPriorityEnum {
-  HIGHEST_PROBES = 0; // Only triggered by system that need to trigger probes ');
-  HIGH_SINGLE_TESTCASE = 1; // Used for execution of single TestCases triggered by the user');
-  HIGH_SINGLE_TESTSUITE = 2; // Used for execution of single TestSuite triggered by the user');
-  MEDIUM_MULTIPLE_TESTCASES = 3; // Used for execution of multiple TestCases triggered by the user');
-  MEDIUM_MULTIPLE_TESTSUITES = 4; // Used for execution of Multiple TestSuites triggered by the user');
-  LOW_SCHEDULED_TESTSUITES = 5; //Scheduled Suites use this priority');
+  ExecutionPriorityEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  HIGHEST_PROBES = 1; // Only triggered by system that need to trigger probes ');
+  HIGH_SINGLE_TESTCASE = 2; // Used for execution of single TestCases triggered by the user');
+  HIGH_SINGLE_TESTSUITE = 3; // Used for execution of single TestSuite triggered by the user');
+  MEDIUM_MULTIPLE_TESTCASES = 4; // Used for execution of multiple TestCases triggered by the user');
+  MEDIUM_MULTIPLE_TESTSUITES = 5; // Used for execution of Multiple TestSuites triggered by the user');
+  LOW_SCHEDULED_TESTSUITES = 6; //Scheduled Suites use this priority');
 
 }
 

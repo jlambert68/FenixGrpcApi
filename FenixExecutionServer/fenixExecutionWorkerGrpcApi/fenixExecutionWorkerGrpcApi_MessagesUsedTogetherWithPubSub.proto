@@ -46,10 +46,11 @@ message ProcessTestInstructionExecutionPubSubRequest {
   // The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
   // *** Must be synced with enum in 'fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto'
   enum TestInstructionAttributeTypeEnum {
-    TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
-    COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
-    FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
-    FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+    TestInstructionAttributeTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+    TEXTBOX = 1; // Defines that TestInstructionAttribute of type "TextBox"
+    COMBOBOX = 2; // Defines that TestInstructionAttriebute of type ComboBox
+    FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
+    FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
   }
 
   // Message Holding information about who is the calling client system
@@ -62,10 +63,12 @@ message ProcessTestInstructionExecutionPubSubRequest {
   // Used to have client and server in sync with using the same proto file version
   // *** Must be synced with enum in 'fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto'
   enum CurrentFenixExecutionWorkerProtoFileVersionEnum {
-    VERSION_0_0 = 0 [deprecated = true];
-    VERSION_0_1 = 1 [deprecated = true];
-    VERSION_0_2 = 2 [deprecated = true];
-    VERSION_0_3 = 3; // Current version
+    CurrentFenixExecutionWorkerProtoFileVersionEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+    VERSION_0_0 = 1 [deprecated = true];
+    VERSION_0_1 = 2 [deprecated = true];
+    VERSION_0_2 = 3 [deprecated = true];
+    VERSION_0_3 = 4 [deprecated = true];
+    VERSION_0_4 = 5; // Current version
   }
 
 }

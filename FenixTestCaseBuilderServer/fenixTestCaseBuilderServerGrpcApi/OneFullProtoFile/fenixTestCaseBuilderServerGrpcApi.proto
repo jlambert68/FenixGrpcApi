@@ -216,93 +216,101 @@ message MatureBondInformationMessage {
 
 // Used to have client and server in sync with using the same proto file version
 enum CurrentFenixTestCaseBuilderProtoFileVersionEnum {
-  VERSION_0_0 = 0 [deprecated = true];
-  VERSION_0_1 = 1 [deprecated = true];
-  VERSION_0_2 = 2 [deprecated = true];
-  VERSION_0_3 = 3 [deprecated = true];
-  VERSION_0_4 = 4; // Current version
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET = 0 [deprecated = true];
+  VERSION_0_0 = 1 [deprecated = true];
+  VERSION_0_1 = 2 [deprecated = true];
+  VERSION_0_2 = 3 [deprecated = true];
+  VERSION_0_3 = 4 [deprecated = true];
+  VERSION_0_4 = 5; // Current version
 }
 
 // Error codes - for now a test
 enum ErrorCodesEnum {
-  OK = 0;
-  ERROR_UNKNOWN_CALLER = 1;
-  ERROR_WRONG_PROTO_FILE_VERSION = 2;
-  ERROR_UNSPECIFIED = 3;
-  ERROR_DATABASE_PROBLEM = 4;
+  ErrorCodesEnum_DEFAULT_NOT_SET = 0;
+  OK = 1;
+  ERROR_UNKNOWN_CALLER = 2;
+  ERROR_WRONG_PROTO_FILE_VERSION = 3;
+  ERROR_UNSPECIFIED = 4;
+  ERROR_DATABASE_PROBLEM = 5;
 }
 
 // How a TestInstructionContainer is processed
 enum TestInstructionContainerExecutionTypeEnum {
-  PARALLELLED_PROCESSED = 0; // Children in container is parallelled processed
-  SERIAL_PROCESSED = 1; // Children in container is serial processed
+  TestInstructionContainerExecutionTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  PARALLELLED_PROCESSED = 1; // Children in container is parallelled processed
+  SERIAL_PROCESSED = 2; // Children in container is serial processed
 }
 
 // TestInstructionContainer Child Type
 enum TestInstructionContainerChildTypeEnum {
-  TESTINSTRUCTION = 0; // Child os of type TestInstruction
-  TESTINSTRUCTIONCONTAINER = 1; // Child os of type TestInstructionContainer
+  TestInstructionContainerChildTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  TESTINSTRUCTION = 1; // Child os of type TestInstruction
+  TESTINSTRUCTIONCONTAINER = 2; // Child os of type TestInstructionContainer
 }
 
 // All TestCaseModel-elements
 enum TestCaseModelElementTypeEnum {
-  B0_BOND = 0; // Bond with zero connection. This is the base for any TestCase: "B0"
-  B1f_BOND_NONE_SWAPPABLE = 1; // Bond with one connection. Use for starting a TestCase and is only found in pre-created TestInstructionContainers
-  B1l_BOND_NONE_SWAPPABLE = 2; // Bond with one connection. Use for ending a TestCase and is only found in pre-created TestInstructionContainers
-  B10_BOND = 3; // Bond with zero connections which appear as an element in a new TestInstructionContainer without any other elements
-  B11f_BOND = 4; // Bond with one connection which appear as first element inside a TestInstructionContainer
-  B11l_BOND = 5; // Bond with one connection which appear as last element inside a TestInstructionContainer
-  B12_BOND = 6; // Bond with two connections which connects TestInstructions or TestInstructionContainers
-  B10oxo_BOND = 7; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11fx-n-B11lx).
-  B10ox_BOND = 8; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11fx-n-B11l).
-  B10xo_BOND = 9; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11f-n-B11lx).
-  B11fx_BOND_NONE_SWAPPABLE = 10; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) structure.
-  B11lx_BOND_NONE_SWAPPABLE = 11; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers after(last) structure.
-  B12x_BOND_NONE_SWAPPABLE = 12; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
-  TI_TESTINSTRUCTION = 13; // TestInstruction
-  TIx_TESTINSTRUCTION_NONE_REMOVABLE = 14; // A standard TestInstruction which can not be removed or swapped out by the user
-  TIC_TESTINSTRUCTIONCONTAINER = 15; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
-  TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 16; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
+  TestCaseModelElementTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  B0_BOND = 1; // Bond with zero connection. This is the base for any TestCase: "B0"
+  B1f_BOND_NONE_SWAPPABLE = 2; // Bond with one connection. Use for starting a TestCase and is only found in pre-created TestInstructionContainers
+  B1l_BOND_NONE_SWAPPABLE = 3; // Bond with one connection. Use for ending a TestCase and is only found in pre-created TestInstructionContainers
+  B10_BOND = 4; // Bond with zero connections which appear as an element in a new TestInstructionContainer without any other elements
+  B11f_BOND = 5; // Bond with one connection which appear as first element inside a TestInstructionContainer
+  B11l_BOND = 6; // Bond with one connection which appear as last element inside a TestInstructionContainer
+  B12_BOND = 7; // Bond with two connections which connects TestInstructions or TestInstructionContainers
+  B10oxo_BOND = 8; //Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x*) into TIC(B11fx-n-B11lx).
+  B10ox_BOND = 9; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10*x) into TIC(B11fx-n-B11l).
+  B10xo_BOND = 10; // Bond with zero connections. This Bond is used in Pre-created containers and is used when user swap TIC(B10x*) into TIC(B11f-n-B11lx).
+  B11fx_BOND_NONE_SWAPPABLE = 11; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers before(first) structure.
+  B11lx_BOND_NONE_SWAPPABLE = 12; // Bond with one connection which appear as first element inside a TestInstructionContainer. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers after(last) structure.
+  B12x_BOND_NONE_SWAPPABLE = 13; // Bond with two connections which connects TestInstructions or TestInstructionContainers. This Bond is used in Pre-created containers and is used to stop a user to add new TestInstructions or TestInstructionsContainers within a pre-created container.
+  TI_TESTINSTRUCTION = 14; // TestInstruction
+  TIx_TESTINSTRUCTION_NONE_REMOVABLE = 15; // A standard TestInstruction which can not be removed or swapped out by the user
+  TIC_TESTINSTRUCTIONCONTAINER = 16; // TestInstructionContainer(X), where X is any valid structure. Children in TestExecutionContainer is executed in serial mode
+  TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE = 17; // A standard TestInstructionContainer(X), where X is any valid structure, which can not be removed or swapped out by the user. Children in TestExecutionContainer is executed in serial mode
 }
 
 // Presentation Names for above TestCaseModel-elements. When presenting then name only the part to left of "_" should presented
 enum TestCaseModelElementPresentationNameEnum {
-  B0_ = 0; // Presentation name for 'B0_BOND'. Only Present 'B0'
-  B1_01 = 1; // Presentation name for 'B1f_BOND_NONE_SWAPPABLE'. Only Present 'B1'
-  B1_02 = 2; // Presentation name for 'B1l_BOND_NONE_SWAPPABLE'. Only Present 'B1'
-  B10_ = 3; // Presentation name for 'B10_BOND'. Only Present 'B10'
-  B11_1 = 4; // Presentation name for 'B11f_BOND'. Only Present 'B11'
-  B11_2 = 5; // Presentation name for 'B11l_BOND'. Only Present 'B11'
-  B12_ = 6; // Presentation name for 'B12_BOND'. Only Present 'B12'
-  B10x_1 = 7; //Presentation name for 'B10oxo_BOND'. Only Present 'B10x'
-  B10x_2 = 8; // Presentation name for 'B10ox_BOND'. Only Present 'B10x'
-  B10x_3 = 9; // Presentation name for 'B10xo_BOND'. Only Present 'B10x'
-  B11x_1 = 10; // Presentation name for 'B11fx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
-  B11x_2 = 11; // Presentation name for 'B11lx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
-  B12x_ = 12; // Presentation name for 'B12x_BOND_NONE_SWAPPABLE'. Only Present 'B12x'
-  TI_ = 13; // Presentation name for 'TI_TESTINSTRUCTION'. Only Present 'TI'
-  TIx_ = 14; // Presentation name for 'TIx_TESTINSTRUCTION_NONE_REMOVABLE'. Only Present 'TIx'
-  TIC_ = 15; // Presentation name for 'TIC_TESTINSTRUCTIONCONTAINER'. Only Present 'TIC(...)'
-  TICx_ = 16; // Presentation name for 'TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE'. Only Present 'TICx(...)'
+  TestCaseModelElementPresentationNameEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  B0_ = 1; // Presentation name for 'B0_BOND'. Only Present 'B0'
+  B1_01 = 2; // Presentation name for 'B1f_BOND_NONE_SWAPPABLE'. Only Present 'B1'
+  B1_02 = 3; // Presentation name for 'B1l_BOND_NONE_SWAPPABLE'. Only Present 'B1'
+  B10_ = 4; // Presentation name for 'B10_BOND'. Only Present 'B10'
+  B11_1 = 5; // Presentation name for 'B11f_BOND'. Only Present 'B11'
+  B11_2 = 6; // Presentation name for 'B11l_BOND'. Only Present 'B11'
+  B12_ = 7; // Presentation name for 'B12_BOND'. Only Present 'B12'
+  B10x_1 = 8; //Presentation name for 'B10oxo_BOND'. Only Present 'B10x'
+  B10x_2 = 9; // Presentation name for 'B10ox_BOND'. Only Present 'B10x'
+  B10x_3 = 10; // Presentation name for 'B10xo_BOND'. Only Present 'B10x'
+  B11x_1 = 11; // Presentation name for 'B11fx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
+  B11x_2 = 12; // Presentation name for 'B11lx_BOND_NONE_SWAPPABLE'. Only Present 'B11x'
+  B12x_ = 13; // Presentation name for 'B12x_BOND_NONE_SWAPPABLE'. Only Present 'B12x'
+  TI_ = 14; // Presentation name for 'TI_TESTINSTRUCTION'. Only Present 'TI'
+  TIx_ = 15; // Presentation name for 'TIx_TESTINSTRUCTION_NONE_REMOVABLE'. Only Present 'TIx'
+  TIC_ = 16; // Presentation name for 'TIC_TESTINSTRUCTIONCONTAINER'. Only Present 'TIC(...)'
+  TICx_ = 17; // Presentation name for 'TICx_TESTINSTRUCTIONCONTAINER_NONE_REMOVABLE'. Only Present 'TICx(...)'
 }
 
 // All different commands that can be used to change  TestCase-Model
 enum TestCaseCommandTypeEnum {
-  NEW_TESTCASE = 0; //NewTestCase(). Creates a new TestCase
-  REMOVE_ELEMENT = 1; // RemoveElement(ElementUuidToBeRemoved). Remove an element from the TestCase
-  SWAP_OUT_ELEMENT_FOR_NEW_ELEMENT = 2; // SwapOutElementForNewElement(ElementUuidTobeSwappedOut, NewElementUuidTobeSwappedIn). Swap in a new element instead of an existing
-  COPY_ELEMENT = 3; // CopyElement(ElementUuid). Create a copy of an element and place it in the copy-buffer
-  SWAP_OUT_ELEMENT_FOR_COPY_BUFFER_ELEMENT = 4; // SwapOutElementForCopyBufferElement(ElementUuidTobeSwappedOut, CopyBufferElementUuidTobeSwappedIn). Swap in a copy of the element that exist in the copy buffer
-  CUT_ELEMENT = 5; // CopyElement(ElementUuid). Cut out an element and place in the cut buffer
-  SWAP_OUT_ELEMENT_FOR_CUT_BUFFER_ELEMENT = 6; // SwapOutElementForCutBufferElement(ElementUuidTobeSwappedOut, CutBufferElementUuidTobeSwappedIn). Swap in the element that exist in the cut buffer
+  TestCaseCommandTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  NEW_TESTCASE = 1; //NewTestCase(). Creates a new TestCase
+  REMOVE_ELEMENT = 2; // RemoveElement(ElementUuidToBeRemoved). Remove an element from the TestCase
+  SWAP_OUT_ELEMENT_FOR_NEW_ELEMENT = 3; // SwapOutElementForNewElement(ElementUuidTobeSwappedOut, NewElementUuidTobeSwappedIn). Swap in a new element instead of an existing
+  COPY_ELEMENT = 4; // CopyElement(ElementUuid). Create a copy of an element and place it in the copy-buffer
+  SWAP_OUT_ELEMENT_FOR_COPY_BUFFER_ELEMENT = 5; // SwapOutElementForCopyBufferElement(ElementUuidTobeSwappedOut, CopyBufferElementUuidTobeSwappedIn). Swap in a copy of the element that exist in the copy buffer
+  CUT_ELEMENT = 6; // CopyElement(ElementUuid). Cut out an element and place in the cut buffer
+  SWAP_OUT_ELEMENT_FOR_CUT_BUFFER_ELEMENT = 7; // SwapOutElementForCutBufferElement(ElementUuidTobeSwappedOut, CutBufferElementUuidTobeSwappedIn). Swap in the element that exist in the cut buffer
 }
 
 // The TestInstructionAttribute can have one of the following types: "TextBox", "ComboBox", "FileSelector", "FunctionSelector"
 enum TestInstructionAttributeTypeEnum {
-  TEXTBOX = 0; // Defines that TestInstructionAttribute of type "TextBox"
-  COMBOBOX = 1; // Defines that TestInstructionAttriebute of type ComboBox
-  FILE_SELECTOR = 2; // Defines that TestInstructionAttribute of type FileSelector
-  FUNCTION_SELECTOR = 3; // Defines that TestInstructionAttribute of type FunctionSelector
+  TestInstructionAttributeTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  TEXTBOX = 1; // Defines that TestInstructionAttribute of type "TextBox"
+  COMBOBOX = 2; // Defines that TestInstructionAttriebute of type ComboBox
+  FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
+  FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
 }
 
 // Parameter used for Empty inputs, only containing current proto-file version

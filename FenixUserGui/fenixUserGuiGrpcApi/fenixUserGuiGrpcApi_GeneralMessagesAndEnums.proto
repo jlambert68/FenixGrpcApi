@@ -7,16 +7,19 @@ option go_package = "./go_grpc_api";
 
 // Used to have client and server in sync with using the same proto file version
 enum CurrentFenixUserGuiProtoFileVersionEnum {
-  VERSION_0_0 = 0 [deprecated = true];
-  VERSION_0_1 = 1; // Current version
+  CurrentFenixUserGuiProtoFileVersionEnum_DEFAULT_NOT_SET = 0 [deprecated = true];
+  VERSION_0_0 = 1 [deprecated = true];
+  VERSION_0_1 = 2 [deprecated = true];
+  VERSION_0_2 = 3; // Current version
 }
 
 // Error codes - for now a test
 enum ErrorCodesEnum {
-  OK = 0;
-  ERROR_UNKNOWN_CALLER = 1;
-  ERROR_WRONG_PROTO_FILE_VERSION = 2;
-  ERROR_UNSPECIFIED = 3;
+  ErrorCodesEnum_DEFAULT_NOT_SET = 0;
+  OK = 1;
+  ERROR_UNKNOWN_CALLER = 2;
+  ERROR_WRONG_PROTO_FILE_VERSION = 3;
+  ERROR_UNSPECIFIED = 4;
 }
 
 // Parameter used for Empty inputs, only containing current proto-file version
