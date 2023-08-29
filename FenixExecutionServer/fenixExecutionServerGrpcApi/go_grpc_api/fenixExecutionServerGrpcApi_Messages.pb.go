@@ -83,7 +83,7 @@ func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecution
 	if x != nil {
 		return x.TestInstructionExecutionStatus
 	}
-	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+	return TestInstructionExecutionStatusEnum_TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionEndTimeStamp() *timestamppb.Timestamp {
@@ -154,7 +154,7 @@ func (x *CurrentTestInstructionExecutionResultMessage) GetTestInstructionExecuti
 	if x != nil {
 		return x.TestInstructionExecutionStatus
 	}
-	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+	return TestInstructionExecutionStatusEnum_TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET
 }
 
 // This message is a log post message that can be sent any time from Client System to Fenix Execution Server
@@ -276,21 +276,21 @@ func (x *ProcessingCapabilityMessage) GetTestInstructionProcessingCapability() P
 	if x != nil {
 		return x.TestInstructionProcessingCapability
 	}
-	return ProcessingCapabilityForClientSystemEnum_CAN_PROCESS_IN_PARALLELL
+	return ProcessingCapabilityForClientSystemEnum_ProcessingCapabilityForClientSystemEnum_DEFAULT_NOT_SET
 }
 
 func (x *ProcessingCapabilityMessage) GetTestCaseProcessingCapability() ProcessingCapabilityForClientSystemEnum {
 	if x != nil {
 		return x.TestCaseProcessingCapability
 	}
-	return ProcessingCapabilityForClientSystemEnum_CAN_PROCESS_IN_PARALLELL
+	return ProcessingCapabilityForClientSystemEnum_ProcessingCapabilityForClientSystemEnum_DEFAULT_NOT_SET
 }
 
 func (x *ProcessingCapabilityMessage) GetTestSuiteProcessingCapability() ProcessingCapabilityForClientSystemEnum {
 	if x != nil {
 		return x.TestSuiteProcessingCapability
 	}
-	return ProcessingCapabilityForClientSystemEnum_CAN_PROCESS_IN_PARALLELL
+	return ProcessingCapabilityForClientSystemEnum_ProcessingCapabilityForClientSystemEnum_DEFAULT_NOT_SET
 }
 
 // Message used to check if a specific worker is up and running
@@ -339,7 +339,7 @@ func (x *IsWorkerAliveRequest) GetProtoFileVersionUsedByClient() CurrentFenixExe
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionServerProtoFileVersionEnum_CurrentFenixExecutionServerProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *IsWorkerAliveRequest) GetWorkersDomainUuid() string {
@@ -395,7 +395,7 @@ func (x *TestCaseExecutionsToProcessMessage) GetProtoFileVersionUsedByClient() C
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionServerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionServerProtoFileVersionEnum_CurrentFenixExecutionServerProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestCaseExecutionsToProcessMessage) GetTestCaseExecutionsToProcess() []*TestCaseExecutionToProcess {
@@ -587,7 +587,7 @@ func (x *LogPostsMessage_LogPostMessage) GetLogPostStatus() LogPostStatusEnum {
 	if x != nil {
 		return x.LogPostStatus
 	}
-	return LogPostStatusEnum_INFO
+	return LogPostStatusEnum_LogPostStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *LogPostsMessage_LogPostMessage) GetLogPostText() string {

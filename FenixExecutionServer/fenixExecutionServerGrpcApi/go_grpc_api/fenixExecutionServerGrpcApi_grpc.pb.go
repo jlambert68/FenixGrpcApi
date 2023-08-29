@@ -36,7 +36,7 @@ type FenixExecutionServerGrpcServicesClient interface {
 	ReportCurrentTestInstructionExecutionResult(ctx context.Context, opts ...grpc.CallOption) (FenixExecutionServerGrpcServices_ReportCurrentTestInstructionExecutionResultClient, error)
 	// During the execution the Client can send log information that can be shown to the user
 	SendLogPostForExecution(ctx context.Context, opts ...grpc.CallOption) (FenixExecutionServerGrpcServices_SendLogPostForExecutionClient, error)
-	// TestInstructionExecution is received by connector and this response tells if the Connector can execution the TestInstruction or not
+	// TestInstructionExecution was received by connector and this response tells if the Connector can execution the TestInstruction or not
 	ProcessResponseTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionResponseStatus, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
@@ -210,7 +210,7 @@ type FenixExecutionServerGrpcServicesServer interface {
 	ReportCurrentTestInstructionExecutionResult(FenixExecutionServerGrpcServices_ReportCurrentTestInstructionExecutionResultServer) error
 	// During the execution the Client can send log information that can be shown to the user
 	SendLogPostForExecution(FenixExecutionServerGrpcServices_SendLogPostForExecutionServer) error
-	// TestInstructionExecution is received by connector and this response tells if the Connector can execution the TestInstruction or not
+	// TestInstructionExecution was received by connector and this response tells if the Connector can execution the TestInstruction or not
 	ProcessResponseTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionResponseStatus) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionServerGrpcServicesServer()
 }

@@ -205,7 +205,7 @@ func (x *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) GetAvailablePinnedTestInstructions() []*AvailablePinnedTestInstructionMessage {

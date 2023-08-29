@@ -181,7 +181,7 @@ func (x *BasicBondInformationMessage) GetVisibleBondAttributes() *BasicBondInfor
 	return nil
 }
 
-//  Message holding all data that is set for the Mature Bond
+// Message holding all data that is set for the Mature Bond
 type MatureBondInformationMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -421,7 +421,7 @@ func (x *BasicBondInformationMessage_VisibleBondAttributesMessage) GetTestCaseMo
 	if x != nil {
 		return x.TestCaseModelElementType
 	}
-	return TestCaseModelElementTypeEnum_B0_BOND
+	return TestCaseModelElementTypeEnum_TestCaseModelElementTypeEnum_DEFAULT_NOT_SET
 }
 
 func (x *BasicBondInformationMessage_VisibleBondAttributesMessage) GetShowBondAttributes() bool {

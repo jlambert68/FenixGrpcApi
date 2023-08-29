@@ -75,7 +75,7 @@ func (x *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) GetP
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) GetTestCaseUuid() string {
@@ -140,7 +140,7 @@ func (x *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) GetP
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) GetTestCaseUuid() string {
@@ -389,7 +389,7 @@ func (x *ImmatureTestInstructionContainerInformationMessage) GetAvailableDropZon
 	return nil
 }
 
-//  Message holding all data that is set for the Mature TestInstructionContainer
+// Message holding all data that is set for the Mature TestInstructionContainer
 type MatureTestInstructionContainerInformationMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -798,7 +798,7 @@ func (x *BasicTestInstructionContainerInformationMessage_EditableTestInstruction
 	if x != nil {
 		return x.TestInstructionContainerExecutionType
 	}
-	return TestInstructionContainerExecutionTypeEnum_PARALLELLED_PROCESSED
+	return TestInstructionContainerExecutionTypeEnum_TestInstructionContainerExecutionTypeEnum_DEFAULT_NOT_SET
 }
 
 // Message holding one DropZone
@@ -939,7 +939,7 @@ func (x *ImmatureTestInstructionContainerInformationMessage_AvailableDropZoneMes
 	if x != nil {
 		return x.TestInstructionAttributeType
 	}
-	return TestInstructionAttributeTypeEnum_TEXTBOX
+	return TestInstructionAttributeTypeEnum_TestInstructionAttributeTypeEnum_DEFAULT_NOT_SET
 }
 
 func (x *ImmatureTestInstructionContainerInformationMessage_AvailableDropZoneMessage_DropZonePreSetTestInstructionAttributeMessage) GetTestInstructionAttributeUuid() string {

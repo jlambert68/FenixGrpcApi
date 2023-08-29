@@ -794,7 +794,7 @@ func (x *TestCaseExecutionBasicInformationMessage) GetExecutionPriority() Execut
 	if x != nil {
 		return x.ExecutionPriority
 	}
-	return ExecutionPriorityEnum_HIGHEST_PROBES
+	return ExecutionPriorityEnum_ExecutionPriorityEnum_DEFAULT_NOT_SET
 }
 
 type TestCaseExecutionDetailsMessage struct {
@@ -860,7 +860,7 @@ func (x *TestCaseExecutionDetailsMessage) GetTestCaseExecutionStatus() TestCaseE
 	if x != nil {
 		return x.TestCaseExecutionStatus
 	}
-	return TestCaseExecutionStatusEnum_TCE_INITIATED
+	return TestCaseExecutionStatusEnum_TestCaseExecutionStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestCaseExecutionDetailsMessage) GetExecutionHasFinished() bool {
@@ -1294,7 +1294,7 @@ func (x *TestInstructionExecutionBasicInformationMessage) GetExecutionPriority()
 	if x != nil {
 		return x.ExecutionPriority
 	}
-	return ExecutionPriorityEnum_HIGHEST_PROBES
+	return ExecutionPriorityEnum_ExecutionPriorityEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestInstructionExecutionBasicInformationMessage) GetTestCaseExecutionUuid() string {
@@ -1405,7 +1405,7 @@ func (x *TestInstructionExecutionsInformationMessage) GetTestInstructionExecutio
 	if x != nil {
 		return x.TestInstructionExecutionStatus
 	}
-	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+	return TestInstructionExecutionStatusEnum_TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestInstructionExecutionsInformationMessage) GetTestInstructionExecutionEndTimeStamp() *timestamppb.Timestamp {
@@ -1514,7 +1514,7 @@ func (x *LogPostAndValuesMessage) GetLogPostStatus() LogPostStatusEnum {
 	if x != nil {
 		return x.LogPostStatus
 	}
-	return LogPostStatusEnum_INFO
+	return LogPostStatusEnum_LogPostStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *LogPostAndValuesMessage) GetFoundVersusExpectedValue() []*LogPostAndValuesMessage_FoundVersusExpectedValueMessage {
@@ -1691,7 +1691,7 @@ func (x *SubscribeToMessagesStreamResponse) GetProtoFileVersionUsedByClient() Cu
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionGuiProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionGuiProtoFileVersionEnum_CurrentFenixExecutionGuiProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *SubscribeToMessagesStreamResponse) GetOriginalMessageCreationTimeStamp() *timestamppb.Timestamp {
@@ -1762,7 +1762,7 @@ func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) GetP
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionGuiProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionGuiProtoFileVersionEnum_CurrentFenixExecutionGuiProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage) GetTestCaseExecutionsStatus() []*TestCaseExecutionStatusMessage {
@@ -1939,7 +1939,7 @@ func (x *TestInstructionExecutionStatusMessage) GetTestInstructionExecutionStatu
 	if x != nil {
 		return x.TestInstructionExecutionStatus
 	}
-	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+	return TestInstructionExecutionStatusEnum_TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestInstructionExecutionStatusMessage) GetBroadcastTimeStamp() *timestamppb.Timestamp {

@@ -252,7 +252,7 @@ func (x *MatureTestCaseModelElementMessage) GetTestCaseModelElementType() TestCa
 	if x != nil {
 		return x.TestCaseModelElementType
 	}
-	return TestCaseModelElementTypeEnum_B0_BOND
+	return TestCaseModelElementTypeEnum_TestCaseModelElementTypeEnum_DEFAULT_NOT_SET
 }
 
 func (x *MatureTestCaseModelElementMessage) GetMatureTestCaseModelElementMetaData() *MatureTestCaseModelElementMetaDataMessage {
@@ -419,7 +419,7 @@ func (x *ImmatureTestCaseModelElementMessage) GetTestCaseModelElementType() Test
 	if x != nil {
 		return x.TestCaseModelElementType
 	}
-	return TestCaseModelElementTypeEnum_B0_BOND
+	return TestCaseModelElementTypeEnum_TestCaseModelElementTypeEnum_DEFAULT_NOT_SET
 }
 
 // One command that describe one change to the TestCase
@@ -472,7 +472,7 @@ func (x *TestCaseModelMessage_TestCaseModelCommandMessage) GetTestCaseCommandTyp
 	if x != nil {
 		return x.TestCaseCommandType
 	}
-	return TestCaseCommandTypeEnum_NEW_TESTCASE
+	return TestCaseCommandTypeEnum_TestCaseCommandTypeEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestCaseModelMessage_TestCaseModelCommandMessage) GetTestCaseCommandName() string {

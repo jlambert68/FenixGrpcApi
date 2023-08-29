@@ -68,7 +68,7 @@ func (x *ProcessTestInstructionExecutionReveredRequest) GetProtoFileVersionUsedB
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_CurrentFenixExecutionWorkerProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *ProcessTestInstructionExecutionReveredRequest) GetTestInstruction() *ProcessTestInstructionExecutionReveredRequest_TestInstructionExecutionMessage {
@@ -203,7 +203,7 @@ func (x *TestInstructionExecutionRequestMessage) GetProtoFileVersionUsedByClient
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_CurrentFenixExecutionWorkerProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *TestInstructionExecutionRequestMessage) GetTestInstructionExecutionUuid() string {
@@ -259,7 +259,7 @@ func (x *CurrentTestInstructionExecutionResultRequestMessage) GetProtoFileVersio
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixExecutionWorkerProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixExecutionWorkerProtoFileVersionEnum_CurrentFenixExecutionWorkerProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *CurrentTestInstructionExecutionResultRequestMessage) GetTestInstructionExecutionUuid() string {
@@ -331,7 +331,7 @@ func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecution
 	if x != nil {
 		return x.TestInstructionExecutionStatus
 	}
-	return TestInstructionExecutionStatusEnum_TIE_INITIATED
+	return TestInstructionExecutionStatusEnum_TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET
 }
 
 func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionEndTimeStamp() *timestamppb.Timestamp {
@@ -552,7 +552,7 @@ func (x *ProcessTestInstructionExecutionReveredRequest_TestInstructionAttributeM
 	if x != nil {
 		return x.TestInstructionAttributeType
 	}
-	return TestInstructionAttributeTypeEnum_TEXTBOX
+	return TestInstructionAttributeTypeEnum_TestInstructionAttributeTypeEnum_DEFAULT_NOT_SET
 }
 
 func (x *ProcessTestInstructionExecutionReveredRequest_TestInstructionAttributeMessage) GetTestInstructionAttributeUuid() string {

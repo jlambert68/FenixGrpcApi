@@ -75,7 +75,7 @@ func (x *GetTestCaseRequestMessage) GetProtoFileVersionUsedByClient() CurrentFen
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *GetTestCaseRequestMessage) GetTestCaseUuid() string {
@@ -138,7 +138,7 @@ func (x *ListTestCasesRequestMessage) GetProtoFileVersionUsedByClient() CurrentF
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 // Message a list of TestCase
@@ -244,7 +244,7 @@ func (x *GetTestCaseMetaDataItemsRequestMessage) GetProtoFileVersionUsedByClient
 	if x != nil {
 		return x.ProtoFileVersionUsedByClient
 	}
-	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_VERSION_0_0
+	return CurrentFenixTestCaseBuilderProtoFileVersionEnum_CurrentFenixTestCaseBuilderProtoFileVersionEnum_DEFAULT_NOT_SET
 }
 
 func (x *GetTestCaseMetaDataItemsRequestMessage) GetDomainUuid() string {
