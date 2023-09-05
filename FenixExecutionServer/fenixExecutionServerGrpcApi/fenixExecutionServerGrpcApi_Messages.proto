@@ -68,8 +68,9 @@ message TestCaseExecutionsToProcessMessage {
 
 // Message holding one specific TestCaseExecution that should be processed
 message TestCaseExecutionToProcess {
-    string TestCaseExecutionsUuid = 1; // The TestCaseExecution to process
-    int32 TestCaseExecutionVersion = 2; // The version of the TestCaseExecution to process
+  string TestCaseExecutionsUuid = 1; // The TestCaseExecution to process
+  int32 TestCaseExecutionVersion = 2; // The version of the TestCaseExecution to process
+  bool TestCaseExecutionStatusShouldBeRealTimeReported = 3; // Used by GuiExecutionServer to tell ExecutionServer that ExecutionStatus should be reported
 }
 
 // Response from execution client to execution server that client can execute TestInstruction
