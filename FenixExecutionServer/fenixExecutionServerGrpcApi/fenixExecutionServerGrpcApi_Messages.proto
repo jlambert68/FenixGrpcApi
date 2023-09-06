@@ -70,7 +70,7 @@ message TestCaseExecutionsToProcessMessage {
 message TestCaseExecutionToProcess {
   string TestCaseExecutionsUuid = 1; // The TestCaseExecution to process
   int32 TestCaseExecutionVersion = 2; // The version of the TestCaseExecution to process
-  bool TestCaseExecutionStatusShouldBeRealTimeReported = 3; // Used by GuiExecutionServer to tell ExecutionServer that ExecutionStatus should be reported
+  ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 3; // Used to tell ExecutionServer what level of ExecutionStatus should be reported back
 }
 
 // Response from execution client to execution server that client can execute TestInstruction
