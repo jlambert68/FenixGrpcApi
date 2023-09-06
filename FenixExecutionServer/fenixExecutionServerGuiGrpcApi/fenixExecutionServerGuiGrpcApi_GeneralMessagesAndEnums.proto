@@ -87,6 +87,15 @@ enum ExecutionPriorityEnum {
 
 }
 
+// What level of real time reporting, regarding ExecutionStatus-changes, should ExecutionServer do
+enum ExecutionStatusReportLevelEnum {
+  ExecutionStatusReportLevelEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  NO_STATUS_REPORTING_FOR_EXECUTION = 1; // Do no reporting at all
+  REPORT_ALL_STATUS_CHANGES_ON_EXECUTIONS = 2; // All changes in execution status for TestInstructions and TestCases are reported
+  REPORT_ONLY_ALL_END_STATUS_CHANGES_ON_EXECUTIONS = 3; // Only changes into execution end status for TestInstructions and TestCases are reported
+  REPORT_ONLY_ALL_STATUS_CHANGES_ON_TESTCASE_EXECUTIONS = 4; // Only changes in execution status for TestCases are reported
+  REPORT_ONLY_ALL_END_STATUS_CHANGES_ON_TESTCASE_EXECUTIONS = 5; // Only changes into execution end status for TestCases are reported
+}
 
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {

@@ -10,6 +10,7 @@ message InitiateSingleTestCaseExecutionRequestMessage {
   UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   string TestCaseUuid = 2; // The UUID for the TestCase to be Executed
   string TestDataSetUuid = 3; // The UUID for the specific TestDataSet to be used for the Execution
+  ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 4; // Used to tell ExecutionServer what level of ExecutionStatus should be reported back
 }
 
 // Message response from initiating a single TestCase Execution
@@ -17,7 +18,6 @@ message InitiateSingleTestCaseExecutionResponseMessage {
   TestCaseExecutionBasicInformationMessage TestCasesInExecutionQueue = 1; // The Basic information regarding the TestCase-Execution
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
-
 
 // Message to be used for requesting TestCases waiting to be executed, for specific Domains and DateTime-span
 message ListTestCasesInExecutionQueueRequest {
