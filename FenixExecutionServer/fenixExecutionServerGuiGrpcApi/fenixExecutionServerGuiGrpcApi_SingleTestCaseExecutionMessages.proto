@@ -93,6 +93,7 @@ message TestCaseExecutionBasicInformationMessage {
   google.protobuf.Timestamp PlacedOnTestExecutionQueueTimeStamp = 13; // The timestamp when the TestCase was placed on queue for execution
   string TestDataSetUuid = 14; // The UUID for the specific TestDataSet that was used for the Execution
   ExecutionPriorityEnum ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
+ ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 16; // What level of real time reporting, regarding ExecutionStatus-changes, should ExecutionServer do
 
 }
 

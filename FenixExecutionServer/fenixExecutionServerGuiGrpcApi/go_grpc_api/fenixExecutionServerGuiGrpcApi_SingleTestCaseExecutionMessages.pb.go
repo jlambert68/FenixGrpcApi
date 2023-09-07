@@ -651,21 +651,22 @@ type TestCaseExecutionBasicInformationMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DomainUuid                          string                 `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                           // The Domain, UUID, where the TestCase 'has its home'
-	DomainName                          string                 `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`                                                                           // The Domain, Name, where the TestCase 'has its home'
-	TestSuiteUuid                       string                 `protobuf:"bytes,3,opt,name=TestSuiteUuid,proto3" json:"TestSuiteUuid,omitempty"`                                                                     // The TestSuite, UUID, that the TestCase was executed from
-	TestSuiteName                       string                 `protobuf:"bytes,4,opt,name=TestSuiteName,proto3" json:"TestSuiteName,omitempty"`                                                                     // The TestSuite, Name, that the TestCase was executed from
-	TestSuiteVersion                    uint32                 `protobuf:"varint,5,opt,name=TestSuiteVersion,proto3" json:"TestSuiteVersion,omitempty"`                                                              // The TestSuites version number
-	TestSuiteExecutionUuid              string                 `protobuf:"bytes,6,opt,name=TestSuiteExecutionUuid,proto3" json:"TestSuiteExecutionUuid,omitempty"`                                                   // The Unique UUID for the TestSuite Execution
-	TestSuiteExecutionVersion           uint32                 `protobuf:"varint,7,opt,name=TestSuiteExecutionVersion,proto3" json:"TestSuiteExecutionVersion,omitempty"`                                            // The TestSuites execution version
-	TestCaseUuid                        string                 `protobuf:"bytes,8,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                       // The TestCase, UUID, set by TestCase-builder
-	TestCaseName                        string                 `protobuf:"bytes,9,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                                                       // The TestCase, Name, set in TestCase-builder
-	TestCaseVersion                     uint32                 `protobuf:"varint,10,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                               // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
-	TestCaseExecutionUuid               string                 `protobuf:"bytes,11,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`                                                    // The Unique UUID for the TestCase Execution
-	TestCaseExecutionVersion            uint32                 `protobuf:"varint,12,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                                             // The Unique Version for the TestCase Execution
-	PlacedOnTestExecutionQueueTimeStamp *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=PlacedOnTestExecutionQueueTimeStamp,proto3" json:"PlacedOnTestExecutionQueueTimeStamp,omitempty"`                        // The timestamp when the TestCase was placed on queue for execution
-	TestDataSetUuid                     string                 `protobuf:"bytes,14,opt,name=TestDataSetUuid,proto3" json:"TestDataSetUuid,omitempty"`                                                                // The UUID for the specific TestDataSet that was used for the Execution
-	ExecutionPriority                   ExecutionPriorityEnum  `protobuf:"varint,15,opt,name=ExecutionPriority,proto3,enum=fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum" json:"ExecutionPriority,omitempty"` // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
+	DomainUuid                          string                         `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                                                      // The Domain, UUID, where the TestCase 'has its home'
+	DomainName                          string                         `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`                                                                                                      // The Domain, Name, where the TestCase 'has its home'
+	TestSuiteUuid                       string                         `protobuf:"bytes,3,opt,name=TestSuiteUuid,proto3" json:"TestSuiteUuid,omitempty"`                                                                                                // The TestSuite, UUID, that the TestCase was executed from
+	TestSuiteName                       string                         `protobuf:"bytes,4,opt,name=TestSuiteName,proto3" json:"TestSuiteName,omitempty"`                                                                                                // The TestSuite, Name, that the TestCase was executed from
+	TestSuiteVersion                    uint32                         `protobuf:"varint,5,opt,name=TestSuiteVersion,proto3" json:"TestSuiteVersion,omitempty"`                                                                                         // The TestSuites version number
+	TestSuiteExecutionUuid              string                         `protobuf:"bytes,6,opt,name=TestSuiteExecutionUuid,proto3" json:"TestSuiteExecutionUuid,omitempty"`                                                                              // The Unique UUID for the TestSuite Execution
+	TestSuiteExecutionVersion           uint32                         `protobuf:"varint,7,opt,name=TestSuiteExecutionVersion,proto3" json:"TestSuiteExecutionVersion,omitempty"`                                                                       // The TestSuites execution version
+	TestCaseUuid                        string                         `protobuf:"bytes,8,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                                                  // The TestCase, UUID, set by TestCase-builder
+	TestCaseName                        string                         `protobuf:"bytes,9,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                                                                                  // The TestCase, Name, set in TestCase-builder
+	TestCaseVersion                     uint32                         `protobuf:"varint,10,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                                                          // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+	TestCaseExecutionUuid               string                         `protobuf:"bytes,11,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`                                                                               // The Unique UUID for the TestCase Execution
+	TestCaseExecutionVersion            uint32                         `protobuf:"varint,12,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                                                                        // The Unique Version for the TestCase Execution
+	PlacedOnTestExecutionQueueTimeStamp *timestamppb.Timestamp         `protobuf:"bytes,13,opt,name=PlacedOnTestExecutionQueueTimeStamp,proto3" json:"PlacedOnTestExecutionQueueTimeStamp,omitempty"`                                                   // The timestamp when the TestCase was placed on queue for execution
+	TestDataSetUuid                     string                         `protobuf:"bytes,14,opt,name=TestDataSetUuid,proto3" json:"TestDataSetUuid,omitempty"`                                                                                           // The UUID for the specific TestDataSet that was used for the Execution
+	ExecutionPriority                   ExecutionPriorityEnum          `protobuf:"varint,15,opt,name=ExecutionPriority,proto3,enum=fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum" json:"ExecutionPriority,omitempty"`                            // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
+	ExecutionStatusReportLevel          ExecutionStatusReportLevelEnum `protobuf:"varint,16,opt,name=ExecutionStatusReportLevel,proto3,enum=fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum" json:"ExecutionStatusReportLevel,omitempty"` // What level of real time reporting, regarding ExecutionStatus-changes, should ExecutionServer do
 }
 
 func (x *TestCaseExecutionBasicInformationMessage) Reset() {
@@ -803,6 +804,13 @@ func (x *TestCaseExecutionBasicInformationMessage) GetExecutionPriority() Execut
 		return x.ExecutionPriority
 	}
 	return ExecutionPriorityEnum_ExecutionPriorityEnum_DEFAULT_NOT_SET
+}
+
+func (x *TestCaseExecutionBasicInformationMessage) GetExecutionStatusReportLevel() ExecutionStatusReportLevelEnum {
+	if x != nil {
+		return x.ExecutionStatusReportLevel
+	}
+	return ExecutionStatusReportLevelEnum_ExecutionStatusReportLevelEnum_DEFAULT_NOT_SET
 }
 
 type TestCaseExecutionDetailsMessage struct {
@@ -2272,7 +2280,7 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
 	0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
 	0x52, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
-	0x69, 0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x22, 0xb9, 0x06, 0x0a, 0x28, 0x54,
+	0x69, 0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61, 0x69, 0x6c, 0x73, 0x22, 0xb9, 0x07, 0x0a, 0x28, 0x54,
 	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
 	0x42, 0x61, 0x73, 0x69, 0x63, 0x49, 0x6e, 0x66, 0x6f, 0x72, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69,
@@ -2324,7 +2332,15 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x45, 0x78,
 	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72, 0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x45,
 	0x6e, 0x75, 0x6d, 0x52, 0x11, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x50, 0x72,
-	0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22, 0x96, 0x04, 0x0a, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x69, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x7e, 0x0a, 0x1a, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74,
+	0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x70, 0x6f, 0x72, 0x74, 0x4c,
+	0x65, 0x76, 0x65, 0x6c, 0x18, 0x10, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x3e, 0x2e, 0x66, 0x65, 0x6e,
+	0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x70, 0x6f, 0x72,
+	0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1a, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x70, 0x6f, 0x72,
+	0x74, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x22, 0x96, 0x04, 0x0a, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x43,
 	0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x44, 0x65, 0x74, 0x61,
 	0x69, 0x6c, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x54, 0x0a, 0x17, 0x45, 0x78,
 	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d, 0x65,
@@ -2866,50 +2882,51 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	11, // 22: fenixExecutionServerGuiGrpcApi.TestCaseWithFinishedExecutionMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
 	30, // 23: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.PlacedOnTestExecutionQueueTimeStamp:type_name -> google.protobuf.Timestamp
 	31, // 24: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.ExecutionPriority:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
-	30, // 25: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStartTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 26: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStopTimeStamp:type_name -> google.protobuf.Timestamp
-	32, // 27: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
-	30, // 28: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStatusUpdateTimeStamp:type_name -> google.protobuf.Timestamp
-	27, // 29: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	13, // 30: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.TestCaseExecutionKey:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionKeyMessage
-	29, // 31: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	15, // 32: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestCaseExecutionResponse:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage
-	10, // 33: fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage.TestCaseExecutionBasicInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
-	11, // 34: fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
-	16, // 35: fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage.TestInstructionExecutions:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage
-	17, // 36: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage.TestInstructionExecutionBasicInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionBasicInformationMessage
-	18, // 37: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage.TestInstructionExecutionsInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage
-	19, // 38: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage.ExecutionLogPostsAndValues:type_name -> fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage
-	30, // 39: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionBasicInformationMessage.QueueTimeStamp:type_name -> google.protobuf.Timestamp
-	31, // 40: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionBasicInformationMessage.ExecutionPriority:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
-	30, // 41: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.SentTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 42: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.ExpectedExecutionEndTimeStamp:type_name -> google.protobuf.Timestamp
-	33, // 43: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
-	30, // 44: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.TestInstructionExecutionEndTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 45: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.ExecutionStatusUpdateTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 46: fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
-	34, // 47: fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.LogPostStatus:type_name -> fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
-	26, // 48: fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.FoundVersusExpectedValueMessage
-	35, // 49: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.ApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.ApplicationRunTimeIdentificationMessage
-	21, // 50: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.TestCaseExecutionsStatusSubscriptions:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusSubscriptionMessage
-	36, // 51: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
-	30, // 52: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.OriginalMessageCreationTimeStamp:type_name -> google.protobuf.Timestamp
-	23, // 53: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
-	36, // 54: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
-	24, // 55: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestCaseExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage
-	25, // 56: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestInstructionExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage
-	30, // 57: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.BroadcastTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 58: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.PreviousBroadcastTimeStamp:type_name -> google.protobuf.Timestamp
-	11, // 59: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
-	33, // 60: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
-	30, // 61: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.BroadcastTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 62: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.PreviousBroadcastTimeStamp:type_name -> google.protobuf.Timestamp
-	18, // 63: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionsStatusInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage
-	64, // [64:64] is the sub-list for method output_type
-	64, // [64:64] is the sub-list for method input_type
-	64, // [64:64] is the sub-list for extension type_name
-	64, // [64:64] is the sub-list for extension extendee
-	0,  // [0:64] is the sub-list for field type_name
+	28, // 25: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage.ExecutionStatusReportLevel:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
+	30, // 26: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStartTimeStamp:type_name -> google.protobuf.Timestamp
+	30, // 27: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStopTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 28: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.TestCaseExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusEnum
+	30, // 29: fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage.ExecutionStatusUpdateTimeStamp:type_name -> google.protobuf.Timestamp
+	27, // 30: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	13, // 31: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest.TestCaseExecutionKey:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionKeyMessage
+	29, // 32: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	15, // 33: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse.TestCaseExecutionResponse:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage
+	10, // 34: fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage.TestCaseExecutionBasicInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
+	11, // 35: fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
+	16, // 36: fenixExecutionServerGuiGrpcApi.TestCaseExecutionResponseMessage.TestInstructionExecutions:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage
+	17, // 37: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage.TestInstructionExecutionBasicInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionBasicInformationMessage
+	18, // 38: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage.TestInstructionExecutionsInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage
+	19, // 39: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsMessage.ExecutionLogPostsAndValues:type_name -> fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage
+	30, // 40: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionBasicInformationMessage.QueueTimeStamp:type_name -> google.protobuf.Timestamp
+	31, // 41: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionBasicInformationMessage.ExecutionPriority:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionPriorityEnum
+	30, // 42: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.SentTimeStamp:type_name -> google.protobuf.Timestamp
+	30, // 43: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.ExpectedExecutionEndTimeStamp:type_name -> google.protobuf.Timestamp
+	33, // 44: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	30, // 45: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.TestInstructionExecutionEndTimeStamp:type_name -> google.protobuf.Timestamp
+	30, // 46: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage.ExecutionStatusUpdateTimeStamp:type_name -> google.protobuf.Timestamp
+	30, // 47: fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.LogPostTimeStamp:type_name -> google.protobuf.Timestamp
+	34, // 48: fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.LogPostStatus:type_name -> fenixExecutionServerGuiGrpcApi.LogPostStatusEnum
+	26, // 49: fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.FoundVersusExpectedValue:type_name -> fenixExecutionServerGuiGrpcApi.LogPostAndValuesMessage.FoundVersusExpectedValueMessage
+	35, // 50: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.ApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.ApplicationRunTimeIdentificationMessage
+	21, // 51: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest.TestCaseExecutionsStatusSubscriptions:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusSubscriptionMessage
+	36, // 52: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	30, // 53: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.OriginalMessageCreationTimeStamp:type_name -> google.protobuf.Timestamp
+	23, // 54: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse.ExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
+	36, // 55: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.ProtoFileVersionUsedByClient:type_name -> fenixExecutionServerGuiGrpcApi.CurrentFenixExecutionGuiProtoFileVersionEnum
+	24, // 56: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestCaseExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage
+	25, // 57: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage.TestInstructionExecutionsStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage
+	30, // 58: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.BroadcastTimeStamp:type_name -> google.protobuf.Timestamp
+	30, // 59: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.PreviousBroadcastTimeStamp:type_name -> google.protobuf.Timestamp
+	11, // 60: fenixExecutionServerGuiGrpcApi.TestCaseExecutionStatusMessage.TestCaseExecutionDetails:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionDetailsMessage
+	33, // 61: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionStatus:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusEnum
+	30, // 62: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.BroadcastTimeStamp:type_name -> google.protobuf.Timestamp
+	30, // 63: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.PreviousBroadcastTimeStamp:type_name -> google.protobuf.Timestamp
+	18, // 64: fenixExecutionServerGuiGrpcApi.TestInstructionExecutionStatusMessage.TestInstructionExecutionsStatusInformation:type_name -> fenixExecutionServerGuiGrpcApi.TestInstructionExecutionsInformationMessage
+	65, // [65:65] is the sub-list for method output_type
+	65, // [65:65] is the sub-list for method input_type
+	65, // [65:65] is the sub-list for extension type_name
+	65, // [65:65] is the sub-list for extension extendee
+	0,  // [0:65] is the sub-list for field type_name
 }
 
 func init() {
