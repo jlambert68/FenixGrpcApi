@@ -82,3 +82,9 @@ message ProcessTestInstructionExecutionReversedResponse {
   google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
   bool TestInstructionCanBeReExecuted = 4; // Indicates if the TestInstruction can be resent to be re-executed. Good example is validations that can be don't as many times as needed
 }
+
+// Message from Connector to Worker says that it is alive and can receive work or if Connector will shut down
+message ConnectorIsReadyMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  ConnectorIsReadyEnum ConnectorIsReady = 2; // The values the Connector sends to the Worker to tell it's status
+}

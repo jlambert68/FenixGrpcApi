@@ -100,3 +100,12 @@ enum TestInstructionAttributeTypeEnum {
   FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
   FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
 }
+
+
+// The values the Connector sends to the Worker to tell it's status
+enum ConnectorIsReadyEnum {
+  ConnectorIsReadyEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  CONNECTOR_IS_READY_TO_RECEIVE_WORK = 1; // Defines that the Connector can receive TestInstructions to be executed
+  CONNECTOR_IS_SHUTTING_DOWN = 2; // Defines that the Connector will shut down and can't receive any new TestInstructions
+
+}
