@@ -191,8 +191,20 @@ message SubscribeToMessagesRequest {
   repeated TestCaseExecutionStatusSubscriptionMessage TestCaseExecutionsStatusSubscriptions = 2; // An array of all TestCaseExecutions that the TesterGui want to receive updates on TestCaseExecutions and TestInstructionExecutions
 }
 
-// Holds one TestCaseExecution that the TesterGui want to subribe to
+// The request message from 'TesterGui' to unsubscribe from GuiExecutionServer
+message UnSubscribeToMessagesRequest {
+  ApplicationRunTimeIdentificationMessage ApplicationRunTimeIdentification = 1; // Identifies Application Run time instance and Proto-file version used
+  repeated TestCaseExecutionStatusUnSubscriptionMessage TestCaseExecutionsStatusUnSubscriptions = 2; // An array of all TestCaseExecutions that the TesterGui want to unsubscribe to regarding status on TestCaseExecutions and TestInstructionExecutions
+}
+
+// Holds one TestCaseExecution that the TesterGui want to subscribe to
 message TestCaseExecutionStatusSubscriptionMessage {
+  string TestCaseExecutionUuid = 2; // The UUID for the TestCaseExecution that is requested
+  int32 TestCaseExecutionVersion = 3; // The VersionNumber for the TestCaseExecution that is request
+}
+
+// Holds one TestCaseExecution that the TesterGui want to un-subscribe to
+message TestCaseExecutionStatusUnSubscriptionMessage {
   string TestCaseExecutionUuid = 2; // The UUID for the TestCaseExecution that is requested
   int32 TestCaseExecutionVersion = 3; // The VersionNumber for the TestCaseExecution that is request
 }

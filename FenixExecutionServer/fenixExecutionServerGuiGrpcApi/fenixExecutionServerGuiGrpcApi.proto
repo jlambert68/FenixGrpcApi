@@ -54,6 +54,14 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
   rpc SubscribeToMessages(SubscribeToMessagesRequest) returns (AckNackResponse) {
   }
 
+  // Call from TesterGui to GuiExecution regarding which messages to unsubscribe to
+  rpc UnSubscribeToMessages(UnSubscribeToMessagesRequest) returns (AckNackResponse) {
+  }
+
+  // Call from TesterGui to GuiExecution telling that the TesterGui is closing down
+  rpc TesterGuiIsClosingDowns(UserAndApplicationRunTimeIdentificationMessage) returns (AckNackResponse) {
+  }
+
 }
 
 // Services used by ExecutionServer
