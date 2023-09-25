@@ -59,7 +59,7 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
   }
 
   // Call from TesterGui to GuiExecution telling that the TesterGui is closing down
-  rpc TesterGuiIsClosingDowns(UserAndApplicationRunTimeIdentificationMessage) returns (AckNackResponse) {
+  rpc TesterGuiIsClosingDown(UserAndApplicationRunTimeIdentificationMessage) returns (AckNackResponse) {
   }
 
 }
