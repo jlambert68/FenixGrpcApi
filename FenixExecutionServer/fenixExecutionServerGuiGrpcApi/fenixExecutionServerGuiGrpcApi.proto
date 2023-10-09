@@ -62,6 +62,10 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
   rpc TesterGuiIsClosingDown(UserAndApplicationRunTimeIdentificationMessage) returns (AckNackResponse) {
   }
 
+  // Call from TesterGui to GuiExecution telling that the TesterGui is starting up
+  rpc TesterGuiIsStartingUp(UserAndApplicationRunTimeIdentificationMessage) returns (AckNackResponse) {
+  }
+
 }
 
 // Services used by ExecutionServer

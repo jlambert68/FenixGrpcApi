@@ -29,6 +29,7 @@ const (
 	FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_FullMethodName                 = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_UnSubscribeToMessages_FullMethodName               = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/UnSubscribeToMessages"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsClosingDown_FullMethodName              = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/TesterGuiIsClosingDown"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_FullMethodName               = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/TesterGuiIsStartingUp"
 )
 
 // FenixExecutionServerGuiGrpcServicesForGuiClientClient is the client API for FenixExecutionServerGuiGrpcServicesForGuiClient service.
@@ -56,6 +57,8 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientClient interface {
 	UnSubscribeToMessages(ctx context.Context, in *UnSubscribeToMessagesRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Call from TesterGui to GuiExecution telling that the TesterGui is closing down
 	TesterGuiIsClosingDown(ctx context.Context, in *UserAndApplicationRunTimeIdentificationMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Call from TesterGui to GuiExecution telling that the TesterGui is starting up
+	TesterGuiIsStartingUp(ctx context.Context, in *UserAndApplicationRunTimeIdentificationMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionServerGuiGrpcServicesForGuiClientClient struct {
@@ -179,6 +182,15 @@ func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) TesterGuiIsClosi
 	return out, nil
 }
 
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) TesterGuiIsStartingUp(ctx context.Context, in *UserAndApplicationRunTimeIdentificationMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixExecutionServerGuiGrpcServicesForGuiClientServer is the server API for FenixExecutionServerGuiGrpcServicesForGuiClient service.
 // All implementations must embed UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer
 // for forward compatibility
@@ -204,6 +216,8 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientServer interface {
 	UnSubscribeToMessages(context.Context, *UnSubscribeToMessagesRequest) (*AckNackResponse, error)
 	// Call from TesterGui to GuiExecution telling that the TesterGui is closing down
 	TesterGuiIsClosingDown(context.Context, *UserAndApplicationRunTimeIdentificationMessage) (*AckNackResponse, error)
+	// Call from TesterGui to GuiExecution telling that the TesterGui is starting up
+	TesterGuiIsStartingUp(context.Context, *UserAndApplicationRunTimeIdentificationMessage) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer()
 }
 
@@ -240,6 +254,9 @@ func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) UnSubs
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) TesterGuiIsClosingDown(context.Context, *UserAndApplicationRunTimeIdentificationMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TesterGuiIsClosingDown not implemented")
+}
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) TesterGuiIsStartingUp(context.Context, *UserAndApplicationRunTimeIdentificationMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TesterGuiIsStartingUp not implemented")
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) mustEmbedUnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer() {
 }
@@ -438,6 +455,24 @@ func _FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsClosingDown_Han
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserAndApplicationRunTimeIdentificationMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).TesterGuiIsStartingUp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).TesterGuiIsStartingUp(ctx, req.(*UserAndApplicationRunTimeIdentificationMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc is the grpc.ServiceDesc for FenixExecutionServerGuiGrpcServicesForGuiClient service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -480,6 +515,10 @@ var FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc = grpc.ServiceDe
 		{
 			MethodName: "TesterGuiIsClosingDown",
 			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsClosingDown_Handler,
+		},
+		{
+			MethodName: "TesterGuiIsStartingUp",
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
