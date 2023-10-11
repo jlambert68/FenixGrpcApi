@@ -1,0 +1,120 @@
+syntax = "proto3";
+package fenixExecutionServerGuiGrpcApi;
+option go_package = "./go_grpc_api";
+
+
+// The response message from 'GuiExecutionServer' to sent by PubSub to 'TesterGui'
+message ExecutionStatusMessagesPubSubSchema {
+  CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  Timestamp  OriginalMessageCreationTimeStamp = 2; // The timestamp from when the original message was created in ExecutionServer
+  bool IsKeepAliveMessage = 5; //Indicate if this is a 'Keep Alive Message' for TestGui to be aware that there is an active connection GUIExecutionServer
+  TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage ExecutionsStatus = 6; // An array of TestCaseExecutions and TestInstructionExecutions and their statuses
+  // More messages will be added to be stream to 'TestGui'
+
+  // Used to have client and server in sync with using the same proto file version
+  enum CurrentFenixExecutionGuiProtoFileVersionEnum {
+    CurrentFenixExecutionGuiProtoFileVersionEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+    VERSION_0_0 = 1 [deprecated = true];
+    VERSION_0_1 = 2 [deprecated = true];
+    VERSION_0_2 = 3 [deprecated = true];
+    VERSION_0_3 = 4; // Current version
+  }
+
+  message Timestamp {
+    // Represents seconds of UTC time since Unix epoch
+    // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+    // 9999-12-31T23:59:59Z inclusive.
+    int64 seconds = 1;
+
+    // Non-negative fractions of a second at nanosecond resolution. Negative
+    // second values with fractions must still have non-negative nanos values
+    // that count forward in time. Must be from 0 to 999,999,999
+    // inclusive.
+    int32 nanos = 2;
+  }
+
+  // Message holding status for TestCaseExecutions and TestInstructionExecutions
+  message TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage {
+    CurrentFenixExecutionGuiProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+    repeated TestCaseExecutionStatusMessage TestCaseExecutionsStatus = 2; // An array of TestCaseExecutions and their statuses
+    repeated TestInstructionExecutionStatusMessage TestInstructionExecutionsStatus = 3; // An array of TestInstructionExecutions and their statuses
+  }
+  // Message holding status for one TestCaseExecution
+  message TestCaseExecutionStatusMessage {
+    string TestCaseExecutionUuid = 1; // The UUID for the TestCaseExecution
+    int32 TestCaseExecutionVersion = 2; // The Version Number for the TestCaseExecution
+    Timestamp BroadcastTimeStamp = 3; // The timestamp message was broadcasted from the ExecutionServer, regarding this TestCaseExecution
+    Timestamp PreviousBroadcastTimeStamp = 4; //  The timestamp for the previously broadcasted message form the ExecutionServer, regarding this TestCaseExecution
+    TestCaseExecutionDetailsMessage TestCaseExecutionDetails = 5; // The TestCaseExecution-status for this TestCaseExecution
+  }
+
+  // Message holding status for one TestInstructionExecution
+  message TestInstructionExecutionStatusMessage {
+    string TestCaseExecutionUuid = 1; // The UUID for the TestCaseExecution to which this TestInstructionExecution belongs
+    int32 TestCaseExecutionVersion = 2; // The Version Number for the TestCaseExecution to which this TestInstructionExecution belongs
+    string TestInstructionExecutionUuid = 3; // The UUID for the TestInstructionExecution
+    int32 TestInstructionExecutionVersion = 4; // The Version Number for the TestInstructionExecution
+    TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 5; // The TestInstructionExecution-status for this TestInstructionExecution
+    Timestamp BroadcastTimeStamp = 6; // The timestamp message was broadcasted from the ExecutionServer, regarding this TestCaseExecution
+    Timestamp PreviousBroadcastTimeStamp = 7; //  The timestamp for the previously broadcasted message form the ExecutionServer, regarding this TestCaseExecution
+    TestInstructionExecutionsInformationMessage TestInstructionExecutionsStatusInformation = 8; // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
+  }
+
+  // Execution Enum for a TestInstruction Execution
+  enum TestInstructionExecutionStatusEnum {
+    TestInstructionExecutionStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+    TIE_INITIATED = 1; // All set up for execution, but has not been triggered to start execution
+    TIE_EXECUTING = 2; // TestInstruction is execution
+    TIE_CONTROLLED_INTERRUPTION = 3; // Interrupted by in a controlled way
+    TIE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 4; // Interrupted by in a controlled way, but can be rerun
+    TIE_FINISHED_OK = 5; // Finish as expected to TestInstruction definition
+    TIE_FINISHED_OK_CAN_BE_RERUN = 6; // Finish as expected to TestInstruction definition, but can be rerun
+    TIE_FINISHED_NOT_OK = 7; // Finish with errors in validations
+    TIE_FINISHED_NOT_OK_CAN_BE_RERUN = 8; // Finish with errors in validations, but can be rerun
+    TIE_UNEXPECTED_INTERRUPTION = 9; // The TestInstruction stopped executed in an unexpected way
+    TIE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 10; // The TestInstruction stopped executed in an unexpected way, but can be rerun
+    TIE_TIMEOUT_INTERRUPTION = 11; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}
+    TIE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 12; // The TestInstruction had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'}, but can be rerun
+
+  }
+
+  // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
+  message TestInstructionExecutionsInformationMessage {
+    Timestamp SentTimeStamp = 1; // The Time that the TestInstruction was sent towards worker
+    Timestamp ExpectedExecutionEndTimeStamp = 2; // The maximum expected EndTimeStamp for the TestInstructionExecution
+    TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 3; // The current Execution status for the TestInstructionExecution
+    Timestamp TestInstructionExecutionEndTimeStamp = 4; // The  EndTimeStamp for the TestInstructionExecution
+    bool TestInstructionExecutionHasFinished = 5; // Indicates if TestInstructionExecution has finished or not
+    uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
+    bool TestInstructionCanBeReExecuted = 7; // Depending of both type of TestInstruction and how execution ends the TestInstruction could be rerun
+    Timestamp  ExecutionStatusUpdateTimeStamp = 8; // When TestInstructionExecution was last updated
+  }
+
+  message TestCaseExecutionDetailsMessage {
+    Timestamp ExecutionStartTimeStamp = 1; // The timestamp when the execution was put for execution, not on queue for execution
+    Timestamp ExecutionStopTimeStamp = 2; // The timestamp when the execution was ended, in anyway
+    TestCaseExecutionStatusEnum TestCaseExecutionStatus = 3; // The status of the ongoing  TestCase execution
+    bool ExecutionHasFinished = 4; // A simple status telling if the execution has ended or not
+    Timestamp  ExecutionStatusUpdateTimeStamp = 5; // The timestamp when the status was last updated
+    uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
+  }
+
+  // Execution Enum for a TestCase Execution
+  enum TestCaseExecutionStatusEnum {
+    TestCaseExecutionStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+    TCE_INITIATED = 1; // All set up for execution, but has not been triggered to start execution
+    TCE_EXECUTING = 2; // TestCase is execution
+    TCE_CONTROLLED_INTERRUPTION = 3; // Interrupted by in a controlled way
+    TCE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 4; // Interrupted by in a controlled way, but can be rerun
+    TCE_FINISHED_OK = 5; // Finish as expected to TestCase definition
+    TCE_FINISHED_OK_CAN_BE_RERUN = 6; // Finish as expected to TestCase definition, but can be rerun
+    TCE_FINISHED_NOT_OK = 7; // Finish with errors in validations
+    TCE_FINISHED_NOT_OK_CAN_BE_RERUN = 8; // Finish with errors in validations, but can be rerun
+    TCE_UNEXPECTED_INTERRUPTION = 9; // The TestCase stopped executed in an unexpected way
+    TCE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 10; // The TestCase stopped executed in an unexpected way, but can be rerun
+    TCE_TIMEOUT_INTERRUPTION = 11; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
+    TCE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 12; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
+
+  }
+
+}

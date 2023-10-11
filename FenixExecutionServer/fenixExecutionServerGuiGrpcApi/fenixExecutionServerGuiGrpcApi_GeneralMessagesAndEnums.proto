@@ -12,6 +12,7 @@ enum CurrentFenixExecutionGuiProtoFileVersionEnum {
   VERSION_0_1 = 2 [deprecated = true];
   VERSION_0_2 = 3 [deprecated = true];
   VERSION_0_3 = 4; // Current version
+  // Remember to update PubSub-messages with version information
 }
 
 // Error codes - for now a test
