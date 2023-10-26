@@ -78,8 +78,9 @@ service FenixExecutionWorkerConnectorGrpcServices {
   rpc ConnectorProcessTestInstructionExecutionResponse(ProcessTestInstructionExecutionResponse) returns (AckNackResponse){
   }
 
-  // Connector reports to Worker that it is alive and can receive work or if Connector will shut down
-  rpc ConnectorInformsItIsAlive (ConnectorIsReadyMessage) returns (AckNackResponse) {
+  // Connector reports to Worker that it is alive and can receive work or if Connector will shut down.
+  // As response it gets the authorization token for PubSub-requests
+  rpc ConnectorInformsItIsAlive (ConnectorIsReadyMessage) returns (ConnectorIsReadyResponseMessage) {
   }
 
 }

@@ -369,8 +369,9 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	ConnectorProcessTestInstructionExecutionReversedResponse(ctx context.Context, in *ProcessTestInstructionExecutionReversedResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
 	ConnectorProcessTestInstructionExecutionResponse(ctx context.Context, in *ProcessTestInstructionExecutionResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
-	// Connector reports to Worker that it is alive and can receive work or if Connector will shut down
-	ConnectorInformsItIsAlive(ctx context.Context, in *ConnectorIsReadyMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector reports to Worker that it is alive and can receive work or if Connector will shut down.
+	// As response it gets the authorization token for PubSub-requests
+	ConnectorInformsItIsAlive(ctx context.Context, in *ConnectorIsReadyMessage, opts ...grpc.CallOption) (*ConnectorIsReadyResponseMessage, error)
 }
 
 type fenixExecutionWorkerConnectorGrpcServicesClient struct {
@@ -449,8 +450,8 @@ func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorProcessTestIn
 	return out, nil
 }
 
-func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorInformsItIsAlive(ctx context.Context, in *ConnectorIsReadyMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
-	out := new(AckNackResponse)
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorInformsItIsAlive(ctx context.Context, in *ConnectorIsReadyMessage, opts ...grpc.CallOption) (*ConnectorIsReadyResponseMessage, error) {
+	out := new(ConnectorIsReadyResponseMessage)
 	err := c.cc.Invoke(ctx, FenixExecutionWorkerConnectorGrpcServices_ConnectorInformsItIsAlive_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -473,8 +474,9 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	ConnectorProcessTestInstructionExecutionReversedResponse(context.Context, *ProcessTestInstructionExecutionReversedResponse) (*AckNackResponse, error)
 	// Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
 	ConnectorProcessTestInstructionExecutionResponse(context.Context, *ProcessTestInstructionExecutionResponse) (*AckNackResponse, error)
-	// Connector reports to Worker that it is alive and can receive work or if Connector will shut down
-	ConnectorInformsItIsAlive(context.Context, *ConnectorIsReadyMessage) (*AckNackResponse, error)
+	// Connector reports to Worker that it is alive and can receive work or if Connector will shut down.
+	// As response it gets the authorization token for PubSub-requests
+	ConnectorInformsItIsAlive(context.Context, *ConnectorIsReadyMessage) (*ConnectorIsReadyResponseMessage, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }
 
@@ -497,7 +499,7 @@ func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPro
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorProcessTestInstructionExecutionResponse(context.Context, *ProcessTestInstructionExecutionResponse) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorProcessTestInstructionExecutionResponse not implemented")
 }
-func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorInformsItIsAlive(context.Context, *ConnectorIsReadyMessage) (*AckNackResponse, error) {
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorInformsItIsAlive(context.Context, *ConnectorIsReadyMessage) (*ConnectorIsReadyResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorInformsItIsAlive not implemented")
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {

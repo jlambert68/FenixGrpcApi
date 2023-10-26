@@ -88,3 +88,9 @@ message ConnectorIsReadyMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   ConnectorIsReadyEnum ConnectorIsReady = 2; // The values the Connector sends to the Worker to tell it's status
 }
+
+// Message from Worker to Connector when Connector says that it is alive and can receive work or if Connector will shut down
+message ConnectorIsReadyResponseMessage {
+  AckNackResponse AckNackResponse = 1;
+  string PubSubAuthorizationToken = 2; // The token that the Connector should use to be able to connect to PubSUb to receive TestInstructionExecutions
+}
