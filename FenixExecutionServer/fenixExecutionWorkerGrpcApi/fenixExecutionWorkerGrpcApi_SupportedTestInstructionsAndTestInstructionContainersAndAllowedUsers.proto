@@ -1,0 +1,55 @@
+syntax = "proto3";
+package fenixExecutionWorkerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "google/protobuf/timestamp.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
+
+// SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage
+// Message for all TestInstructions, TestInstructionsContainers and Users for a specific "System", which will be sent to Fenix backend
+message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage {
+
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  SupportedTestInstructionsMessage  TestInstructions = 2; // All supported TestInstructions
+  SupportedTestInstructionContainersMessage TestInstructionContainers = 3;     //   All supported TestInstructionContainers
+  SupportedAllowedUsersMessage AllowedUsers = 4; // All users that are allowed to use TestInstructions and TestInstructionContainers for this system
+  google.protobuf.Timestamp MessageCreationTimeStamp = 5; // The TimeStamp for when the Message was created
+  string TestInstructionsAndTestInstructionsContainersMessageHash = 6; // SHA256(TestInstructionsHash, TestInstructionContainersHash, AllowedUsersHash)
+  bool ForceNewBaseLineForTestInstructionsAndTestInstructionContainers = 7; // Should there be a new baseline for TestInstructions and TestInstructionContainers, ie scrap the everything in database
+}
+
+// SupportedTestInstructionsMessage
+// Message for a TestInstructionsMap that hold all TestInstructions
+message SupportedTestInstructionsMessage {
+  map<string, TestInstructionInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
+  string  TestInstructionsHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
+}
+
+
+// TestInstructionInstanceVersionsMessage
+//  Message for all versions of one TestInstruction, first position holds version 1, second position holds version 2...
+message TestInstructionInstanceVersionsMessage {
+  TestInstructionInstanceVersionMessage     TestInstructionVersions = 1; // Array with all versions of a TestInstructions. First position holds version 1, second position holds version 2...
+  string TestInstructionVersionsHash = 2; // SHA256 of all TestInstructionInstanceVersions using Fenix standard way of hashing values together
+}
+
+message TestInstructionInstanceVersionMessage {
+  TestInstructionMessage TestInstructionInstance  =1; // Holds one TestInstructionInstance
+  int32 TestInstructionInstanceMajorVersion =2; // The major version for the TestInstruction
+  int32 TestInstructionInstanceMinorVersion = 3;  // The minor version for the TestInstruction
+  bool Deprecated = 4; // Should the user stop using this TestInstructionInstance-version
+  bool Enabled = 5; //               Is this TestInstructionInstance-version enabled or disabled
+  string TestInstructionInstanceVersionHash  string = 6; // SHA256 of all TestInstructionMessage using Fenix standard way of hashing values together
+}
+
+message  TestInstructionMessage {
+
+}
+
+message SupportedTestInstructionContainersMessage {
+
+}
+
+message SupportedAllowedUsersMessage {
+
+}

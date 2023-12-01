@@ -22,6 +22,11 @@ service FenixExecutionWorkerGrpcServices {
   rpc ReportProcessingCapability (EmptyParameter) returns (AckNackResponse) {
   }
 
+  // Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
+  rpc PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers (SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) returns (AckNackResponse) {
+  }
+
+
   // ************************ Execution Task ************************
 
   // Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
