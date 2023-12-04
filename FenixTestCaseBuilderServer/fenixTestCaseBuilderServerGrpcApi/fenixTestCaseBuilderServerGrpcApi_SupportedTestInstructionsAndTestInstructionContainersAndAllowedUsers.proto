@@ -1,0 +1,275 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+// SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage
+// Message for all TestInstructions, TestInstructionsContainers and Users for a specific "System", which will be sent to Fenix backend
+message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage {
+
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  SupportedTestInstructionsMessage  TestInstructions = 2; // All supported TestInstructions
+  SupportedTestInstructionContainersMessage TestInstructionContainers = 3;     //   All supported TestInstructionContainers
+  SupportedAllowedUsersMessage AllowedUsers = 4; // All users that are allowed to use TestInstructions and TestInstructionContainers for this system
+  google.protobuf.Timestamp MessageCreationTimeStamp = 5; // The TimeStamp for when the Message was created
+  string TestInstructionsAndTestInstructionsContainersMessageHash = 6; // SHA256(TestInstructionsHash, TestInstructionContainersHash, AllowedUsersHash)
+  bool ForceNewBaseLineForTestInstructionsAndTestInstructionContainers = 7; // Should there be a new baseline for TestInstructions and TestInstructionContainers, ie scrap the everything in database
+}
+
+// **************** **************** **************** TestInstruction **************** **************** ****************
+// SupportedTestInstructionsMessage
+// Message for a TestInstructionsMap that hold all TestInstructions
+message SupportedTestInstructionsMessage {
+  map<string, SupportedTestInstructionInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
+  string  TestInstructionsHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
+}
+
+
+// SupportedTestInstructionInstanceVersionsMessage
+//  Message for all versions of one TestInstruction, first position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
+message SupportedTestInstructionInstanceVersionsMessage {
+  repeated SupportedTestInstructionInstanceVersionMessage TestInstructionVersions = 1; // Array with all versions of a TestInstructions. First position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
+  string TestInstructionVersionsHash = 2; // SHA256 of all TestInstructionInstanceVersions using Fenix standard way of hashing values together
+}
+
+// SupportedTestInstructionInstanceVersionMessage
+// A Message holding one TestInstruction-version
+message SupportedTestInstructionInstanceVersionMessage {
+  SupportedTestInstructionMessage TestInstructionInstance = 1; // Holds one TestInstructionInstance
+  int32 TestInstructionInstanceMajorVersion = 2; // The major version for the TestInstruction
+  int32 TestInstructionInstanceMinorVersion = 3;  // The minor version for the TestInstruction
+  bool Deprecated = 4; // Should the user stop using this TestInstructionInstance-version
+  bool Enabled = 5; // Is this TestInstructionInstance-version enabled or disabled
+  string TestInstructionInstanceVersionHash = 6; // SHA256 of all TestInstructionMessage using Fenix standard way of hashing values together
+}
+
+// SupportedTestInstructionMessage
+// A message holding one complete TestInstruction
+message  SupportedTestInstructionMessage {
+  SupportedTestInstructionBaseMessage TestInstruction = 1; //
+  SupportedBasicTestInstructionInformationMessage BasicTestInstructionInformation = 2; //
+  repeated SupportedImmatureTestInstructionInformationMessage ImmatureTestInstructionInformations = 3; //
+  repeated SupportedTestInstructionAttributeMessage TestInstructionAttributes = 4; //
+  repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
+}
+
+// SupportedTestInstructionBaseMessage
+// The base information for the TestInstruction
+message SupportedTestInstructionBaseMessage {
+  string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
+  string DomainName = 2; // The Domain Name where the TestInstruction belong
+  string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
+  string TestInstructionName = 4; // The TestInstruction Name of the specific TestInstruction to be executed
+  string TestInstructionTypeUUID = 5; // The type UUID of the TestInstruction
+  string TestInstructionTypeName = 6; // The type Name of the TestInstruction
+  string TestInstructionDescription = 7; // The TestInstruction description for the TestInstruction
+  string TestInstructionMouseOverText = 8; // The TestInstruction MouseOver text for the TestInstruction
+  bool Deprecated = 9; // Is the TestInstruction depreciated and shouldn't be used by the user
+  bool Enabled = 10; // Is the TestInstruction enabled or not
+  int32 MajorVersionNumber = 11; // The Major version number for the TestInstruction
+  int32 MinorVersionNumber = 12; // The Minor version number for the TestInstruction
+  string UpdatedTimeStamp = 13; // When the TestInstruction was first created
+}
+
+// SupportedBasicTestInstructionInformationMessage
+// The Basic information for the TestInstruction
+message SupportedBasicTestInstructionInformationMessage {
+  string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
+  string DomainName = 2; // The Domain Name where the TestInstruction belong
+  string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
+  string TestInstructionName = 4; // The TestInstruction Name of the specific TestInstruction to be executed
+  string TestInstructionTypeUUID = 5; // The type UUID of the TestInstruction
+  string TestInstructionTypeName = 6; // The type Name of the TestInstruction
+  bool Deprecated = 7; // Is the TestInstruction depreciated and shouldn't be used by the user
+  int32 MajorVersionNumber = 8; // The Major version number for the TestInstruction
+  int32 MinorVersionNumber = 9; // The Minor version number for the TestInstruction
+  string UpdatedTimeStamp = 10; // When the TestInstruction was first created
+  string TestInstructionColor = 11; // The color used in GUI when showing the TestInstruction
+  string TCRuleDeletion = 12; // The Delete-rule defining how the TestInstruction can be deleted
+  string TCRuleSwap = 13; // The Swap-rule defining how the TestInstruction can be swapped out
+  string TestInstructionDescription = 14; // The TestInstruction description for the TestInstruction
+  string TestInstructionMouseOverText = 15; // The TestInstruction MouseOver text for the TestInstruction
+  bool Enabled = 16; // Is the TestInstruction enabled or not
+}
+
+// SupportedImmatureTestInstructionInformationMessage
+// A model holding one attribute and its value that will be set when user Drop TestInstruction on specific DropZone
+message SupportedImmatureTestInstructionInformationMessage {
+  string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
+  string DomainName = 2; // The Domain Name where the TestInstruction belong
+  string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
+  string TestInstructionName = 4; // The TestInstruction Name of the specific TestInstruction to be executed
+  string DropZoneUUID = 5; // The immature TestInstruction used this DropZone UUID for the user to chose
+  string DropZoneName = 6; // The immature TestInstruction used this DropZone Name for the user to chose
+  string DropZoneDescription = 7; // The DropZone description
+  string DropZoneMouseOver = 8; // The DropZone MouseOver text
+  string DropZoneColor = 9; // The DropZone color when presented to the user
+  string TestInstructionAttributeType = 10; // The Attribute type for the Attribute to be set - TEXTBOX, COMBOBOX, FILE_SELECTOR, FileSelector, FUNCTION_SELECTOR
+  string TestInstructionAttributeUUID = 11; // The Attribute UUID to be set
+  string TestInstructionAttributeName = 12; // The Attribute Name for the Attribute to be set
+  string AttributeValueAsString = 13; // The Attribute Value for the Attribute
+  string AttributeValueUUID = 14; // The Attribute Value UUID for the value to be set
+  string FirstImmatureElementUUID = 15; // The UUID to the first Element in the element model
+  int32 AttributeActionCommand = 16; // Should the Attribute value be updated or should the attribute be removed 1("USE_DROPZONE_VALUE_FOR_ATTRIBUTE") or 2("REMOVE_ATTRIBUTE_FROM_TESTINSTRUCTION")
+}
+
+// SupportedTestInstructionAttributeMessage
+// Message holding one attribute for the TestInstruction
+message SupportedTestInstructionAttributeMessage {
+  string DomainUUID = 1; // The Domain UUID where the Attribute belong
+  string DomainName = 2; // The Domain Name where the Attribute belong
+  string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies which TestInstruction that owns the attribute
+  string TestInstructionName = 4; // The TestInstruction Name of the specific TestInstruction that owns the attribute
+  string TestInstructionAttributeUUID = 5; // The Unique UUID that identifies which TestInstructionAttribute
+  string TestInstructionAttributeName = 6; // The Name of the TestInstructionAttribute
+  string TestInstructionAttributeDescription = 7; // The Attribute description
+  string TestInstructionAttributeMouseOver = 8; // The MouseOver text for the attribute
+  string TestInstructionAttributeTypeUUID = 9; // The Type of Attribute, used for grouping in GUI
+  string TestInstructionAttributeTypeName = 10; // The Name of the Type for the Attribute, shown in grouping in GUI
+  string TestInstructionAttributeValueAsString = 11; // The string representation of the value for the attribute
+  string TestInstructionAttributeValueUUID = 12; // The UUID for the value, when Combobox is used
+  bool TestInstructionAttributeVisible = 13; // Should the attribute be visible for the user or not
+  bool TestInstructionAttributeEnabled = 14; // Should the attribute be changeable by the user
+  bool TestInstructionAttributeMandatory = 15; // Is the attribute mandatory for user to fill
+  bool TestInstructionAttributeVisibleInTestCaseArea = 16; // Should the attribute be visible in the TestCase-area in the GUI
+  bool TestInstructionAttributeIsDeprecated = 17; // Is the attribute deprecated and shouldn't be used by the user
+  string TestInstructionAttributeInputMask = 18; // And input mask for the attribute to secure that only valid values can be entered
+  string TestInstructionAttributeType = 19; // What type of attribute this is - TEXTBOX, COMBOBOX, FILE_SELECTOR, FileSelector, FUNCTION_SELECTOR
+}
+
+// SupportedImmatureElementModelMessage
+// A message holding one model element for the element
+message SupportedImmatureElementModelMessage {
+  string DomainUUID = 1; // The Domain UUID where the Element belong
+  string DomainName = 2; // The Domain Name where the Element belong
+  string ImmatureElementUUID = 3; // The OriginalElementUUID
+  string ImmatureElementName = 4; // The OriginalElementName
+  string PreviousElementUUID = 5; // The UUID of the previous element. When there are no previous element then this field is populated with 'ImmatureElementUUID'
+  string NextElementUUID = 6; // The UUID of the next element. When there are no next element then this field is populated with 'ImmatureElementUUID'
+  string FirstChildElementUUID = 7; // The UUID of the first child element. When there are no child element then this field is populated with 'ImmatureElementUUID'
+  string ParentElementUUID = 8; // The UUID of the parent element. When there are no parent element then this field is populated with 'ImmatureElementUUID'
+  string TestCaseModelElementType = 9; // The Type of element, TI, TIC, Bond and so on
+  string OriginalElementUUID = 10; // The original elements UUID, e.g. a TestInstruction unique UUID set by client system
+  string TopImmatureElementUUID = 11; // The original elements Name, e.g. a TestInstruction Name set by client system
+  bool IsTopElement = 12; // Is this the top element of the element model
+}
+
+// **************** **************** **************** TestInstructionContainer **************** **************** ****************
+
+// SupportedTestInstructionContainersMessage
+// Message for a TestInstructionContainersMap that hold all TestInstructionContainers
+message SupportedTestInstructionContainersMessage {
+  map<string, SupportedTestInstructionContainerInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
+  string  TestInstructionsHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
+}
+
+// SupportedTestInstructionContainerInstanceVersionsMessage
+//  Message for all versions of one TestInstructionContainer, first position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
+message SupportedTestInstructionContainerInstanceVersionsMessage {
+  repeated SupportedTestInstructionContainerInstanceVersionMessage TestInstructionContainerVersions = 1; // Array with all versions of a TestInstructionContainers. First position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
+  string TestInstructionVersionsHash = 2; // SHA256 of all TestInstructionInstanceVersions using Fenix standard way of hashing values together
+}
+
+// SupportedTestInstructionContainerInstanceVersionMessage
+// A Message holding one TestInstructionContainer-version
+message SupportedTestInstructionContainerInstanceVersionMessage {
+  SupportedTestInstructionContainerMessage TestInstructionContainerInstance = 1; // Holds one TestInstructionContainerInstance
+  int32 TestInstructionContainerInstanceMajorVersion = 2; // The major version for the TestInstructionContainer
+  int32 TestInstructionContainerInstanceMinorVersion = 3;  // The minor version for the TestInstructionContainer
+  bool Deprecated = 4; // Should the user stop using this TestInstructionContainerInstance-version
+  bool Enabled = 5; // Is this TestInstructionContainerInstance-version enabled or disabled
+  string TestInstructionContainerInstanceVersionHash = 6; // SHA256 of all TestInstructionContainerMessage using Fenix standard way of hashing values together
+}
+
+// SupportedTestInstructionContainerMessage
+// A message holding one complete TestInstructionContainer
+message  SupportedTestInstructionContainerMessage {
+  SupportedTestInstructionContainerBaseMessage TestInstructionContainer = 1; //
+  SupportedBasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 2; //
+  repeated SupportedImmatureTestInstructionContainerInformationMessage ImmatureTestInstructionContainerInformations = 3; //
+  repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
+}
+
+// SupportedTestInstructionContainerBaseMessage
+// The base information for the TestInstructionContainer
+message SupportedTestInstructionContainerBaseMessage {
+  string DomainUUID = 1; // The Domain UUID where the TestInstructionContainer belong
+  string DomainName = 2; // The Domain Name where the TestInstructionContainer belong
+  string TestInstructionContainerUUID = 3; // The Unique TestInstructionContainer UUID that identifies the specific TestInstructionContainer to be executed
+  string TestInstructionContainerName = 4; // The TestInstructionContainer Name of the specific TestInstructionContainer to be executed
+  string TestInstructionContainerTypeUUID = 5; // The type UUID of the TestInstructionContainer
+  string TestInstructionContainerTypeName = 6; // The type Name of the TestInstructionContainer
+  string TestInstructionContainerDescription = 7; // The TestInstructionContainer description for the TestInstructionContainer
+  string TestInstructionContainerMouseOverText = 8; // The TestInstructionContainer MouseOver text for the TestInstructionContainer
+  bool Deprecated = 9; // Is the TestInstructionContainer depreciated and shouldn't be used by the user
+  bool Enabled = 10; // Is the TestInstructionContainer enabled or not
+  int32 MajorVersionNumber = 11; // The Major version number for the TestInstructionContainer
+  int32 MinorVersionNumber = 12; // The Minor version number for the TestInstructionContainer
+  string UpdatedTimeStamp = 13; // When the TestInstructionContainer was first created
+  bool ChildrenIsParallelProcessed = 14; // Should children be executed in parallel
+}
+
+// SupportedBasicTestInstructionContainerInformationMessage
+// The Basic information for the TestInstructionContainer
+message SupportedBasicTestInstructionContainerInformationMessage {
+  string DomainUUID = 1; // The Domain UUID where the TestInstructionContainer belong
+  string DomainName = 2; // The Domain Name where the TestInstructionContainer belong
+  string TestInstructionContainerUUID = 3; // The Unique TestInstructionContainer UUID that identifies the specific TestInstructionContainer to be executed
+  string TestInstructionContainerName = 4; // The TestInstructionContainer Name of the specific TestInstructionContainer to be executed
+  string TestInstructionContainerTypeUUID = 5; // The type UUID of the TestInstructionContainer
+  string TestInstructionContainerTypeName = 6; // The type Name of the TestInstructionContainer
+  bool Deprecated = 7; // Is the TestInstructionContainer depreciated and shouldn't be used by the user
+  int32 MajorVersionNumber = 8; // The Major version number for the TestInstructionContainer
+  int32 MinorVersionNumber = 9; // The Minor version number for the TestInstructionContainer
+  string UpdatedTimeStamp = 10; // When the TestInstructionContainer was first created
+  string TestInstructionContainerColor = 11; // The color used in GUI when showing the TestInstructionContainer
+  string TCRuleDeletion = 12; // The Delete-rule defining how the TestInstructionContainer can be deleted
+  string TCRuleSwap = 13; // The Swap-rule defining how the TestInstructionContainer can be swapped out
+  string TestInstructionContainerDescription = 14; // The TestInstructionContainer description for the TestInstructionContainer
+  string TestInstructionContainerMouseOverText = 15; // The TestInstructionContainer MouseOver text for the TestInstructionContainer
+  bool Enabled = 16; // Is the TestInstructionContainer enabled or not
+  string TestInstructionContainerExecutionType = 17; // Should execution of children be executed in serial or in parallel
+}
+
+// SupportedImmatureTestInstructionContainerInformationMessage
+// A model holding one attribute and its value that will be set when user Drop TestInstructionContainer on specific DropZone
+message SupportedImmatureTestInstructionContainerInformationMessage {
+  string DomainUUID = 1; // The Domain UUID where the TestInstructionContainer belong
+  string DomainName = 2; // The Domain Name where the TestInstructionContainer belong
+  string TestInstructionContainerUUID = 3; // The Unique TestInstructionContainer UUID that identifies the specific TestInstructionContainer to be executed
+  string TestInstructionContainerName = 4; // The TestInstructionContainer Name of the specific TestInstructionContainer to be executed
+  string DropZoneUUID = 5; // The immature TestInstructionContainer used this DropZone UUID for the user to chose
+  string DropZoneName = 6; // The immature TestInstructionContainer used this DropZone Name for the user to chose
+  string DropZoneDescription = 7; // The DropZone description
+  string DropZoneMouseOver = 8; // The DropZone MouseOver text
+  string DropZoneColor = 9; // The DropZone color when presented to the user
+  string TestInstructionContainerAttributeType = 10; // The Attribute type for the Attribute to be set - TEXTBOX, COMBOBOX, FILE_SELECTOR, FileSelector, FUNCTION_SELECTOR
+  string TestInstructionContainerAttributeUUID = 11; // The Attribute UUID to be set
+  string TestInstructionContainerAttributeName = 12; // The Attribute Name for the Attribute to be set
+  string AttributeValueAsString = 13; // The Attribute Value for the Attribute
+  string AttributeValueUUID = 14; // The Attribute Value UUID for the value to be set
+  string FirstImmatureElementUUID = 15; // The UUID to the first Element in the element model
+  int32 AttributeActionCommand = 16; // Should the Attribute value be updated or should the attribute be removed 1("USE_DROPZONE_VALUE_FOR_ATTRIBUTE") or 2("REMOVE_ATTRIBUTE_FROM_TestInstructionContainer")
+}
+
+
+// **************** **************** **************** Allowed Users **************** **************** ****************
+
+// SupportedAllowedUsersMessage
+// Message containing all users that are allowed to access the connectors published TestInstructions and TestInstructionContainers
+message SupportedAllowedUsersMessage {
+  repeated SupportedAllowedUserMessage AllowedUsers = 1; // Array with all allowed users for this Domain
+  string AllowedUsersHash = 2; // The Hash for all users-messages
+}
+
+// SupportedAllowedUserMessage
+// Message containing a user that are allowed to access the connectors published TestInstructions and TestInstructionContainers
+message SupportedAllowedUserMessage  {
+  string UserIdOnComputer = 1; // The user-id user use to login to computer with
+  string GCPAuthenticatedUser = 2; // The e-mail which user use to authenticate towards GCP
+  string UserEmail = 3; // The users e-mail
+  string UserFirstName = 4; // The users firs
+  string UserLastName = 5; // The users last name`
+}
