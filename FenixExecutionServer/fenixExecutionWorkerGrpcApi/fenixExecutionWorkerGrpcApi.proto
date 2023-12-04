@@ -5,7 +5,7 @@ option go_package = "./go_grpc_api";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_MessagesUsedTogetherWithPubSub.proto";
-
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
 
 // ****************************************************************************************************
 //

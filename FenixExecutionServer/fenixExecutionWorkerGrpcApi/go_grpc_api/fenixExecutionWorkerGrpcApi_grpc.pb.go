@@ -19,13 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	FenixExecutionWorkerGrpcServices_AreYouAlive_FullMethodName                                  = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/AreYouAlive"
-	FenixExecutionWorkerGrpcServices_ReportProcessingCapability_FullMethodName                   = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ReportProcessingCapability"
-	FenixExecutionWorkerGrpcServices_ProcessTestInstructionExecution_FullMethodName              = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ProcessTestInstructionExecution"
-	FenixExecutionWorkerGrpcServices_ProcessTestInstructionExecutionPubSub_FullMethodName        = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ProcessTestInstructionExecutionPubSub"
-	FenixExecutionWorkerGrpcServices_ReportCompleteTestInstructionExecutionResult_FullMethodName = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ReportCompleteTestInstructionExecutionResult"
-	FenixExecutionWorkerGrpcServices_ReportCurrentTestInstructionExecutionResult_FullMethodName  = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ReportCurrentTestInstructionExecutionResult"
-	FenixExecutionWorkerGrpcServices_SendAllLogPostForExecution_FullMethodName                   = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/SendAllLogPostForExecution"
+	FenixExecutionWorkerGrpcServices_AreYouAlive_FullMethodName                                                                 = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/AreYouAlive"
+	FenixExecutionWorkerGrpcServices_ReportProcessingCapability_FullMethodName                                                  = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ReportProcessingCapability"
+	FenixExecutionWorkerGrpcServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
+	FenixExecutionWorkerGrpcServices_ProcessTestInstructionExecution_FullMethodName                                             = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ProcessTestInstructionExecution"
+	FenixExecutionWorkerGrpcServices_ProcessTestInstructionExecutionPubSub_FullMethodName                                       = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ProcessTestInstructionExecutionPubSub"
+	FenixExecutionWorkerGrpcServices_ReportCompleteTestInstructionExecutionResult_FullMethodName                                = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ReportCompleteTestInstructionExecutionResult"
+	FenixExecutionWorkerGrpcServices_ReportCurrentTestInstructionExecutionResult_FullMethodName                                 = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/ReportCurrentTestInstructionExecutionResult"
+	FenixExecutionWorkerGrpcServices_SendAllLogPostForExecution_FullMethodName                                                  = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerGrpcServices/SendAllLogPostForExecution"
 )
 
 // FenixExecutionWorkerGrpcServicesClient is the client API for FenixExecutionWorkerGrpcServices service.
@@ -36,6 +37,8 @@ type FenixExecutionWorkerGrpcServicesClient interface {
 	AreYouAlive(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Ask Client to inform Execution Server of Clients capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
+	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
 	ProcessTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionReveredRequest, opts ...grpc.CallOption) (*ProcessTestInstructionExecutionResponse, error)
 	// Fenix Execution Server send a request to Execution Worker to initiate an execution of a TestInstruction
@@ -68,6 +71,15 @@ func (c *fenixExecutionWorkerGrpcServicesClient) AreYouAlive(ctx context.Context
 func (c *fenixExecutionWorkerGrpcServicesClient) ReportProcessingCapability(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, FenixExecutionWorkerGrpcServices_ReportProcessingCapability_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionWorkerGrpcServicesClient) PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionWorkerGrpcServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -127,6 +139,8 @@ type FenixExecutionWorkerGrpcServicesServer interface {
 	AreYouAlive(context.Context, *EmptyParameter) (*AckNackResponse, error)
 	// Ask Client to inform Execution Server of Clients capability to execute requests in parallell, serial or no processing at all
 	ReportProcessingCapability(context.Context, *EmptyParameter) (*AckNackResponse, error)
+	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
+	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error)
 	// Fenix Execution Server send a request to Execution Worker to initiate a execution of a TestInstruction
 	ProcessTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionReveredRequest) (*ProcessTestInstructionExecutionResponse, error)
 	// Fenix Execution Server send a request to Execution Worker to initiate an execution of a TestInstruction
@@ -149,6 +163,9 @@ func (UnimplementedFenixExecutionWorkerGrpcServicesServer) AreYouAlive(context.C
 }
 func (UnimplementedFenixExecutionWorkerGrpcServicesServer) ReportProcessingCapability(context.Context, *EmptyParameter) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportProcessingCapability not implemented")
+}
+func (UnimplementedFenixExecutionWorkerGrpcServicesServer) PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers not implemented")
 }
 func (UnimplementedFenixExecutionWorkerGrpcServicesServer) ProcessTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionReveredRequest) (*ProcessTestInstructionExecutionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessTestInstructionExecution not implemented")
@@ -211,6 +228,24 @@ func _FenixExecutionWorkerGrpcServices_ReportProcessingCapability_Handler(srv in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionWorkerGrpcServicesServer).ReportProcessingCapability(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixExecutionWorkerGrpcServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerGrpcServicesServer).PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionWorkerGrpcServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerGrpcServicesServer).PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx, req.(*SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -319,6 +354,10 @@ var FenixExecutionWorkerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReportProcessingCapability",
 			Handler:    _FenixExecutionWorkerGrpcServices_ReportProcessingCapability_Handler,
+		},
+		{
+			MethodName: "PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers",
+			Handler:    _FenixExecutionWorkerGrpcServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_Handler,
 		},
 		{
 			MethodName: "ProcessTestInstructionExecution",
