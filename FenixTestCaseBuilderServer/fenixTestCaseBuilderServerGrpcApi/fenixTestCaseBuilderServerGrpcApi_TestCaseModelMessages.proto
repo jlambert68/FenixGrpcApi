@@ -57,7 +57,7 @@ message MatureTestCaseModelElementMessage {
 
 // The Color inherit from the DropZone together with the DropZoneUuid
 message MatureTestCaseModelElementMetaDataMessage {
-  string ChosenDropZoneUuid = 1; // The DropZone's UUID that the TI was droped onto
+  string ChosenDropZoneUuid = 1; // The DropZone's UUID that the TI was dropped onto
   string ChosenDropZoneColorString = 2; // The DropZone's color that will be used for the TI
 }
 
