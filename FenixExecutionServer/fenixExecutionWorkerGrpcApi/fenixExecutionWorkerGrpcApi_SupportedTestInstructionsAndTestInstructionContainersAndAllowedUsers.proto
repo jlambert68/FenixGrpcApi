@@ -161,7 +161,7 @@ message ImmatureElementModelMessage {
 // Message for a TestInstructionContainersMap that hold all TestInstructionContainers
 message SupportedTestInstructionContainersMessage {
   map<string, TestInstructionContainerInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
-  string  TestInstructionsHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
+  string  TestInstructionContainersHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
 }
 
 // TestInstructionContainerInstanceVersionsMessage
