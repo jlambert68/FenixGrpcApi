@@ -22,21 +22,22 @@ message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMess
 // SupportedTestInstructionsMessage
 // Message for a TestInstructionsMap that hold all TestInstructions
 message SupportedTestInstructionsMessage {
-  map<string, TestInstructionInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
+  map<string, SupportedTestInstructionInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
   string  TestInstructionsHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
 }
 
 
-// TestInstructionInstanceVersionsMessage
+// SupportedTestInstructionInstanceVersionsMessage
 //  Message for all versions of one TestInstruction, first position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
-message TestInstructionInstanceVersionsMessage {
-  repeated TestInstructionInstanceVersionMessage TestInstructionVersions = 1; // Array with all versions of a TestInstructions. First position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
+message SupportedTestInstructionInstanceVersionsMessage {
+  repeated SupportedTestInstructionInstanceVersionMessage TestInstructionVersions = 1; // Array with all versions of a TestInstructions. First position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
   string TestInstructionVersionsHash = 2; // SHA256 of all TestInstructionInstanceVersions using Fenix standard way of hashing values together
 }
 
+// SupportedTestInstructionInstanceVersionMessage
 // A Message holding one TestInstruction-version
-message TestInstructionInstanceVersionMessage {
-  TestInstructionMessage TestInstructionInstance = 1; // Holds one TestInstructionInstance
+message SupportedTestInstructionInstanceVersionMessage {
+  SupportedTestInstructionMessage TestInstructionInstance = 1; // Holds one TestInstructionInstance
   int32 TestInstructionInstanceMajorVersion = 2; // The major version for the TestInstruction
   int32 TestInstructionInstanceMinorVersion = 3;  // The minor version for the TestInstruction
   bool Deprecated = 4; // Should the user stop using this TestInstructionInstance-version
@@ -44,19 +45,19 @@ message TestInstructionInstanceVersionMessage {
   string TestInstructionInstanceVersionHash = 6; // SHA256 of all TestInstructionMessage using Fenix standard way of hashing values together
 }
 
-// TestInstructionMessage
+// SupportedTestInstructionMessage
 // A message holding one complete TestInstruction
-message  TestInstructionMessage {
-  TestInstructionBaseMessage TestInstruction = 1; //
-  BasicTestInstructionInformationMessage BasicTestInstructionInformation = 2; //
-  repeated ImmatureTestInstructionInformationMessage ImmatureTestInstructionInformations = 3; //
-  repeated TestInstructionAttributeMessage TestInstructionAttributes = 4; //
-  repeated ImmatureElementModelMessage ImmatureElementModel = 5; //
+message  SupportedTestInstructionMessage {
+  SupportedTestInstructionBaseMessage TestInstruction = 1; //
+  SupportedBasicTestInstructionInformationMessage BasicTestInstructionInformation = 2; //
+  repeated SupportedImmatureTestInstructionInformationMessage ImmatureTestInstructionInformations = 3; //
+  repeated SupportedTestInstructionAttributeMessage TestInstructionAttributes = 4; //
+  repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
 }
 
-// TestInstructionBaseMessage
+// SupportedTestInstructionBaseMessage
 // The base information for the TestInstruction
-message TestInstructionBaseMessage {
+message SupportedTestInstructionBaseMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
   string DomainName = 2; // The Domain Name where the TestInstruction belong
   string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
@@ -72,9 +73,9 @@ message TestInstructionBaseMessage {
   string UpdatedTimeStamp = 13; // When the TestInstruction was first created
 }
 
-// BasicTestInstructionInformationMessage
+// SupportedBasicTestInstructionInformationMessage
 // The Basic information for the TestInstruction
-message BasicTestInstructionInformationMessage {
+message SupportedBasicTestInstructionInformationMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
   string DomainName = 2; // The Domain Name where the TestInstruction belong
   string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
@@ -93,9 +94,9 @@ message BasicTestInstructionInformationMessage {
   bool Enabled = 16; // Is the TestInstruction enabled or not
 }
 
-// ImmatureTestInstructionInformationMessage
+// SupportedImmatureTestInstructionInformationMessage
 // A model holding one attribute and its value that will be set when user Drop TestInstruction on specific DropZone
-message ImmatureTestInstructionInformationMessage {
+message SupportedImmatureTestInstructionInformationMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
   string DomainName = 2; // The Domain Name where the TestInstruction belong
   string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
@@ -114,9 +115,9 @@ message ImmatureTestInstructionInformationMessage {
   int32 AttributeActionCommand = 16; // Should the Attribute value be updated or should the attribute be removed 1("USE_DROPZONE_VALUE_FOR_ATTRIBUTE") or 2("REMOVE_ATTRIBUTE_FROM_TESTINSTRUCTION")
 }
 
-// TestInstructionAttributeMessage
+// SupportedTestInstructionAttributeMessage
 // Message holding one attribute for the TestInstruction
-message TestInstructionAttributeMessage {
+message SupportedTestInstructionAttributeMessage {
   string DomainUUID = 1; // The Domain UUID where the Attribute belong
   string DomainName = 2; // The Domain Name where the Attribute belong
   string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies which TestInstruction that owns the attribute
@@ -138,9 +139,9 @@ message TestInstructionAttributeMessage {
   string TestInstructionAttributeType = 19; // What type of attribute this is - TEXTBOX, COMBOBOX, FILE_SELECTOR, FileSelector, FUNCTION_SELECTOR
 }
 
-// ImmatureElementModelMessage
+// SupportedImmatureElementModelMessage
 // A message holding one model element for the element
-message ImmatureElementModelMessage {
+message SupportedImmatureElementModelMessage {
   string DomainUUID = 1; // The Domain UUID where the Element belong
   string DomainName = 2; // The Domain Name where the Element belong
   string ImmatureElementUUID = 3; // The OriginalElementUUID
@@ -160,20 +161,21 @@ message ImmatureElementModelMessage {
 // SupportedTestInstructionContainersMessage
 // Message for a TestInstructionContainersMap that hold all TestInstructionContainers
 message SupportedTestInstructionContainersMessage {
-  map<string, TestInstructionContainerInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
+  map<string, SupportedTestInstructionContainerInstanceVersionsMessage> TestInstructionsMap = 1; // The Map holding all TestInstructions
   string  TestInstructionContainersHash = 2; // SHA256 of all TestInstructionsMap using Fenix standard way of hashing values together
 }
 
-// TestInstructionContainerInstanceVersionsMessage
+// SupportedTestInstructionContainerInstanceVersionsMessage
 //  Message for all versions of one TestInstructionContainer, first position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
-message TestInstructionContainerInstanceVersionsMessage {
-  repeated TestInstructionContainerInstanceVersionMessage TestInstructionContainerVersions = 1; // Array with all versions of a TestInstructionContainers. First position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
+message SupportedTestInstructionContainerInstanceVersionsMessage {
+  repeated SupportedTestInstructionContainerInstanceVersionMessage TestInstructionContainerVersions = 1; // Array with all versions of a TestInstructionContainers. First position holds last version i.e. version x, second position holds the version before that i.e. version x-1...
   string TestInstructionVersionsHash = 2; // SHA256 of all TestInstructionInstanceVersions using Fenix standard way of hashing values together
 }
 
+// SupportedTestInstructionContainerInstanceVersionMessage
 // A Message holding one TestInstructionContainer-version
-message TestInstructionContainerInstanceVersionMessage {
-  TestInstructionContainerMessage TestInstructionContainerInstance = 1; // Holds one TestInstructionContainerInstance
+message SupportedTestInstructionContainerInstanceVersionMessage {
+  SupportedTestInstructionContainerMessage TestInstructionContainerInstance = 1; // Holds one TestInstructionContainerInstance
   int32 TestInstructionContainerInstanceMajorVersion = 2; // The major version for the TestInstructionContainer
   int32 TestInstructionContainerInstanceMinorVersion = 3;  // The minor version for the TestInstructionContainer
   bool Deprecated = 4; // Should the user stop using this TestInstructionContainerInstance-version
@@ -181,18 +183,18 @@ message TestInstructionContainerInstanceVersionMessage {
   string TestInstructionContainerInstanceVersionHash = 6; // SHA256 of all TestInstructionContainerMessage using Fenix standard way of hashing values together
 }
 
-// TestInstructionContainerMessage
+// SupportedTestInstructionContainerMessage
 // A message holding one complete TestInstructionContainer
-message  TestInstructionContainerMessage {
-  TestInstructionContainerBaseMessage TestInstructionContainer = 1; //
-  BasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 2; //
-  repeated ImmatureTestInstructionContainerInformationMessage ImmatureTestInstructionContainerInformations = 3; //
-  repeated ImmatureElementModelMessage ImmatureElementModel = 5; //
+message  SupportedTestInstructionContainerMessage {
+  SupportedTestInstructionContainerBaseMessage TestInstructionContainer = 1; //
+  SupportedBasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 2; //
+  repeated SupportedImmatureTestInstructionContainerInformationMessage ImmatureTestInstructionContainerInformations = 3; //
+  repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
 }
 
-// TestInstructionContainerBaseMessage
+// SupportedTestInstructionContainerBaseMessage
 // The base information for the TestInstructionContainer
-message TestInstructionContainerBaseMessage {
+message SupportedTestInstructionContainerBaseMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstructionContainer belong
   string DomainName = 2; // The Domain Name where the TestInstructionContainer belong
   string TestInstructionContainerUUID = 3; // The Unique TestInstructionContainer UUID that identifies the specific TestInstructionContainer to be executed
@@ -209,9 +211,9 @@ message TestInstructionContainerBaseMessage {
   bool ChildrenIsParallelProcessed = 14; // Should children be executed in parallel
 }
 
-// BasicTestInstructionContainerInformationMessage
+// SupportedBasicTestInstructionContainerInformationMessage
 // The Basic information for the TestInstructionContainer
-message BasicTestInstructionContainerInformationMessage {
+message SupportedBasicTestInstructionContainerInformationMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstructionContainer belong
   string DomainName = 2; // The Domain Name where the TestInstructionContainer belong
   string TestInstructionContainerUUID = 3; // The Unique TestInstructionContainer UUID that identifies the specific TestInstructionContainer to be executed
@@ -231,9 +233,9 @@ message BasicTestInstructionContainerInformationMessage {
   string TestInstructionContainerExecutionType = 17; // Should execution of children be executed in serial or in parallel
 }
 
-// ImmatureTestInstructionContainerInformationMessage
+// SupportedImmatureTestInstructionContainerInformationMessage
 // A model holding one attribute and its value that will be set when user Drop TestInstructionContainer on specific DropZone
-message ImmatureTestInstructionContainerInformationMessage {
+message SupportedImmatureTestInstructionContainerInformationMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstructionContainer belong
   string DomainName = 2; // The Domain Name where the TestInstructionContainer belong
   string TestInstructionContainerUUID = 3; // The Unique TestInstructionContainer UUID that identifies the specific TestInstructionContainer to be executed
@@ -258,13 +260,13 @@ message ImmatureTestInstructionContainerInformationMessage {
 // SupportedAllowedUsersMessage
 // Message containing all users that are allowed to access the connectors published TestInstructions and TestInstructionContainers
 message SupportedAllowedUsersMessage {
-  repeated AllowedUserMessage AllowedUsers = 1; // Array with all allowed users for this Domain
+  repeated SupportedAllowedUserMessage AllowedUsers = 1; // Array with all allowed users for this Domain
   string AllowedUsersHash = 2; // The Hash for all users-messages
 }
 
-// AllowedUserMessage
+// SupportedAllowedUserMessage
 // Message containing a user that are allowed to access the connectors published TestInstructions and TestInstructionContainers
-message AllowedUserMessage  {
+message SupportedAllowedUserMessage  {
   string UserIdOnComputer = 1; // The user-id user use to login to computer with
   string GCPAuthenticatedUser = 2; // The e-mail which user use to authenticate towards GCP
   string UserEmail = 3; // The users e-mail
