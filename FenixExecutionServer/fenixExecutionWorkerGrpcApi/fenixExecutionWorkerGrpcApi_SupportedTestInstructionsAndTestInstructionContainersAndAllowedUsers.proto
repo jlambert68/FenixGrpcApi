@@ -16,6 +16,7 @@ message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMess
   google.protobuf.Timestamp MessageCreationTimeStamp = 5; // The TimeStamp for when the Message was created
   string TestInstructionsAndTestInstructionsContainersMessageHash = 6; // SHA256(TestInstructionsHash, TestInstructionContainersHash, AllowedUsersHash)
   bool ForceNewBaseLineForTestInstructionsAndTestInstructionContainers = 7; // Should there be a new baseline for TestInstructions and TestInstructionContainers, ie scrap the everything in database
+  SupportedConnectorDomainMessage ConnectorDomain = 8; // Holds information about what Domain the Connector belongs to
 }
 
 // **************** **************** **************** TestInstruction **************** **************** ****************
@@ -272,4 +273,14 @@ message SupportedAllowedUserMessage  {
   string UserEmail = 3; // The users e-mail
   string UserFirstName = 4; // The users firs
   string UserLastName = 5; // The users last name`
+}
+
+// **************** **************** **************** Domain Information **************** **************** ****************
+
+// SupportedConnectorDomainMessage
+// Holds information about what Domain the Connector belongs to
+message SupportedConnectorDomainMessage {
+  string ConnectorsDomainUUID = 1; // The UUID for the Domain that the Connector belongs to
+  string ConnectorsDomainName = 2; // The Name for the Domain that the Connector belongs to
+  string ConnectorsDomainHash = 3; // The Hash for this message
 }
