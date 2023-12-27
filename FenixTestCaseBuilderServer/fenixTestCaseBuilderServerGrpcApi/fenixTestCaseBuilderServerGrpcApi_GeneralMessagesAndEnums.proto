@@ -151,5 +151,6 @@ message ClientSystemIdentificationMessage {
 
 // The message response containing the message to be signed by the Worker
 message    GetMessageToSignToProveCallerIdentityResponse {
-  string MessageToSign = 1; // The message received from BuilderServer for Worker to sign
+  AckNackResponse AckNack = 1; // User identification and users proto-file version
+  string MessageToSign = 2; // The message received from BuilderServer for Worker to sign
 }
