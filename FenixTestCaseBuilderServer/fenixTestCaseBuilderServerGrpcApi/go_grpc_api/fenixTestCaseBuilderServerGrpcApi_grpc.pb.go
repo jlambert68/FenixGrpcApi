@@ -687,6 +687,7 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 
 const (
 	FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
+	FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/GetMessageToSignToProveCallerIdentity"
 )
 
 // FenixTestCaseBuilderServerGrpcWorkerServicesClient is the client API for FenixTestCaseBuilderServerGrpcWorkerServices service.
@@ -695,6 +696,8 @@ const (
 type FenixTestCaseBuilderServerGrpcWorkerServicesClient interface {
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
+	GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error)
 }
 
 type fenixTestCaseBuilderServerGrpcWorkerServicesClient struct {
@@ -714,12 +717,23 @@ func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) PublishSupportedTes
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error) {
+	out := new(GetMessageToSignToProveCallerIdentityResponse)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixTestCaseBuilderServerGrpcWorkerServicesServer is the server API for FenixTestCaseBuilderServerGrpcWorkerServices service.
 // All implementations must embed UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer
 // for forward compatibility
 type FenixTestCaseBuilderServerGrpcWorkerServicesServer interface {
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error)
+	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
+	GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer()
 }
 
@@ -729,6 +743,9 @@ type UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer struct {
 
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMessageToSignToProveCallerIdentity not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer() {
 }
@@ -762,6 +779,24 @@ func _FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructi
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmptyParameter)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).GetMessageToSignToProveCallerIdentity(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).GetMessageToSignToProveCallerIdentity(ctx, req.(*EmptyParameter))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixTestCaseBuilderServerGrpcWorkerServices_ServiceDesc is the grpc.ServiceDesc for FenixTestCaseBuilderServerGrpcWorkerServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -772,6 +807,10 @@ var FenixTestCaseBuilderServerGrpcWorkerServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers",
 			Handler:    _FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_Handler,
+		},
+		{
+			MethodName: "GetMessageToSignToProveCallerIdentity",
+			Handler:    _FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

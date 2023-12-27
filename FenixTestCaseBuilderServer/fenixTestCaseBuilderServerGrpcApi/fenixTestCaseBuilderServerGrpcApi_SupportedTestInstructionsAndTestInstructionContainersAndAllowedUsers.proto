@@ -17,6 +17,7 @@ message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMess
   string TestInstructionsAndTestInstructionsContainersMessageHash = 6; // SHA256(TestInstructionsHash, TestInstructionContainersHash, AllowedUsersHash)
   bool ForceNewBaseLineForTestInstructionsAndTestInstructionContainers = 7; // Should there be a new baseline for TestInstructions and TestInstructionContainers, ie scrap the everything in database
   SupportedConnectorDomainMessage ConnectorDomain = 8; // Holds information about what Domain the Connector belongs to
+  SignedMessageByWorkerServiceAccountMessage SignedMessageByWorkerServiceAccount = 9; // Holds information about signature signed by Workers Service Account
 }
 
 // **************** **************** **************** TestInstruction **************** **************** ****************
@@ -281,4 +282,13 @@ message SupportedConnectorDomainMessage {
   string ConnectorsDomainUUID = 1; // The UUID for the Domain that the Connector belongs to
   string ConnectorsDomainName = 2; // The Name for the Domain that the Connector belongs to
   string ConnectorsDomainHash = 3; // The Hash for this message
+}
+
+// **************** **************** **************** Signed Message **************** **************** ****************
+
+// Holds information about signature signed by Workers Service Account
+message SignedMessageByWorkerServiceAccountMessage {
+  string MessageToBeSigned = 1; // The message that the service account signed
+  string Signature = 2; // The signature produced when signing the message
+  string PublicKeyForServiceAccount = 3; // The public key used when signing the message
 }

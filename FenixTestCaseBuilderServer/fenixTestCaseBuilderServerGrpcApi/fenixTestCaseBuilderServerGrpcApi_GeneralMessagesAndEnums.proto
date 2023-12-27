@@ -147,3 +147,9 @@ message ClientSystemIdentificationMessage {
   string DomainUuid = 1; // The Domain that send information
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
 }
+
+
+// The message response containing the message to be signed by the Worker
+message    GetMessageToSignToProveCallerIdentityResponse {
+  string MessageToSign = 1; // The message received from BuilderServer for Worker to sign
+}

@@ -106,5 +106,9 @@ service FenixTestCaseBuilderServerGrpcWorkerServices {
   rpc PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers (SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) returns (AckNackResponse) {
   }
 
+  // Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
+  rpc GetMessageToSignToProveCallerIdentity (EmptyParameter) returns (GetMessageToSignToProveCallerIdentityResponse) {
+  }
+
 }
 
