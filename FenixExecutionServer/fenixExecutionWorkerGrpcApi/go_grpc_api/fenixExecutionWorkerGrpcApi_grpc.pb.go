@@ -703,3 +703,94 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 	},
 	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
 }
+
+const (
+	FenixBuilderGprcServices_BuilderServerAskWorkerToSignMessage_FullMethodName = "/fenixExecutionWorkerGrpcApi.FenixBuilderGprcServices/BuilderServerAskWorkerToSignMessage"
+)
+
+// FenixBuilderGprcServicesClient is the client API for FenixBuilderGprcServices service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type FenixBuilderGprcServicesClient interface {
+	BuilderServerAskWorkerToSignMessage(ctx context.Context, in *SignMessageRequest, opts ...grpc.CallOption) (*SignMessageResponse, error)
+}
+
+type fenixBuilderGprcServicesClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewFenixBuilderGprcServicesClient(cc grpc.ClientConnInterface) FenixBuilderGprcServicesClient {
+	return &fenixBuilderGprcServicesClient{cc}
+}
+
+func (c *fenixBuilderGprcServicesClient) BuilderServerAskWorkerToSignMessage(ctx context.Context, in *SignMessageRequest, opts ...grpc.CallOption) (*SignMessageResponse, error) {
+	out := new(SignMessageResponse)
+	err := c.cc.Invoke(ctx, FenixBuilderGprcServices_BuilderServerAskWorkerToSignMessage_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// FenixBuilderGprcServicesServer is the server API for FenixBuilderGprcServices service.
+// All implementations must embed UnimplementedFenixBuilderGprcServicesServer
+// for forward compatibility
+type FenixBuilderGprcServicesServer interface {
+	BuilderServerAskWorkerToSignMessage(context.Context, *SignMessageRequest) (*SignMessageResponse, error)
+	mustEmbedUnimplementedFenixBuilderGprcServicesServer()
+}
+
+// UnimplementedFenixBuilderGprcServicesServer must be embedded to have forward compatible implementations.
+type UnimplementedFenixBuilderGprcServicesServer struct {
+}
+
+func (UnimplementedFenixBuilderGprcServicesServer) BuilderServerAskWorkerToSignMessage(context.Context, *SignMessageRequest) (*SignMessageResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuilderServerAskWorkerToSignMessage not implemented")
+}
+func (UnimplementedFenixBuilderGprcServicesServer) mustEmbedUnimplementedFenixBuilderGprcServicesServer() {
+}
+
+// UnsafeFenixBuilderGprcServicesServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to FenixBuilderGprcServicesServer will
+// result in compilation errors.
+type UnsafeFenixBuilderGprcServicesServer interface {
+	mustEmbedUnimplementedFenixBuilderGprcServicesServer()
+}
+
+func RegisterFenixBuilderGprcServicesServer(s grpc.ServiceRegistrar, srv FenixBuilderGprcServicesServer) {
+	s.RegisterService(&FenixBuilderGprcServices_ServiceDesc, srv)
+}
+
+func _FenixBuilderGprcServices_BuilderServerAskWorkerToSignMessage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SignMessageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixBuilderGprcServicesServer).BuilderServerAskWorkerToSignMessage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixBuilderGprcServices_BuilderServerAskWorkerToSignMessage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixBuilderGprcServicesServer).BuilderServerAskWorkerToSignMessage(ctx, req.(*SignMessageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// FenixBuilderGprcServices_ServiceDesc is the grpc.ServiceDesc for FenixBuilderGprcServices service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var FenixBuilderGprcServices_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "fenixExecutionWorkerGrpcApi.FenixBuilderGprcServices",
+	HandlerType: (*FenixBuilderGprcServicesServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "BuilderServerAskWorkerToSignMessage",
+			Handler:    _FenixBuilderGprcServices_BuilderServerAskWorkerToSignMessage_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi.proto",
+}

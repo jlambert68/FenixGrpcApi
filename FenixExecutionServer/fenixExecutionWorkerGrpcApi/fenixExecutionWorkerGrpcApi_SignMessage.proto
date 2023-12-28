@@ -1,0 +1,25 @@
+syntax = "proto3";
+package fenixExecutionWorkerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
+
+// The Message that BuilderServer send to Worker for Worker to sign
+message SignMessageRequest {
+  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  string MessageToBeSigned = 2; // The message to be Signe
+}
+
+// The Message that holds the signature data
+message SignMessageResponse {
+  AckNackResponse AckNackResponse = 1; // The AckNack message
+  SignedMessageByWorkerServiceAccountMessage  SignedMessageByWorkerServiceAccount = 2; // The message containing signature data
+}
+
+// Holds information about signature signed by Workers Service Account
+message SignedMessageByWorkerServiceAccountMessage {
+  string MessageToBeSigned = 1; // The message that the service account signed
+  string HashOfSignature = 2; // The signature produced when signing the message
+  string HashedKeyId = 3; // THe Hash of the KeyId used when signing
+}
+

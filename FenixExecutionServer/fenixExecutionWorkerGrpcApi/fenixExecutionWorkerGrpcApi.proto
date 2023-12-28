@@ -6,6 +6,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_Messages.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_MessagesUsedTogetherWithPubSub.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SignMessage.proto";
 
 // ****************************************************************************************************
 //
@@ -47,8 +48,6 @@ service FenixExecutionWorkerGrpcServices {
   // Execution Server ask Worker (client) to report all log posts of the execution result to the Server
   rpc SendAllLogPostForExecution(TestInstructionExecutionRequestMessage) returns (AckNackResponse) {
   }
-
-
 }
 
 
@@ -86,9 +85,16 @@ service FenixExecutionWorkerConnectorGrpcServices {
   // Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
   rpc ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers (SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) returns (AckNackResponse) {
   }
+}
 
+// Services used by BuilderServer when Worker needs to do something
+service FenixBuilderGprcServices {
+
+  rpc BuilderServerAskWorkerToSignMessage (SignMessageRequest) returns (SignMessageResponse) {
+  }
 
 }
+
 
 
 
