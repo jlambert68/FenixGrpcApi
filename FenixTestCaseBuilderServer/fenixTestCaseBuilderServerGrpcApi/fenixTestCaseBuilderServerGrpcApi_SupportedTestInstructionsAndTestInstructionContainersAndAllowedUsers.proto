@@ -289,6 +289,6 @@ message SupportedConnectorDomainMessage {
 // Holds information about signature signed by Workers Service Account
 message SignedMessageByWorkerServiceAccountMessage {
   string MessageToBeSigned = 1; // The message that the service account signed
-  bytes Signature = 2; // The signature produced when signing the message
-  string PublicKeyForServiceAccount = 3; // The public key used when signing the message
+  string HashOfSignature = 2; // The signature produced when signing the message
+  string HashedKeyId = 3; // THe Hash of the KeyId used when signing
 }
