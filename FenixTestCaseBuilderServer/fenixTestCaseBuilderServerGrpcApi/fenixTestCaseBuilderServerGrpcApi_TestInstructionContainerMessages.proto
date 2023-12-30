@@ -123,6 +123,14 @@ message ImmatureTestInstructionContainerInformationMessage {
       string TestInstructionAttributeName = 3; // The name of the TestInstructionAttribute
       string AttributeValueAsString = 4; // The String-representation of the value
       string AttributeValueUuid = 5; // Combo-boxes can us a UUID as unique value behind the text visible in the combo-box
+      AttributeActionCommandEnum AttributeActionCommand = 6; // Decides what to do with Attribute
+
+
+      enum AttributeActionCommandEnum {
+        AttributeActionCommandEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+        USE_DROPZONE_VALUE_FOR_ATTRIBUTE = 1; // The Attributes value will be used when adding the TestInstruction to the TestCase-model
+        REMOVE_ATTRIBUTE_FROM_TESTINSTRUCTION = 2; // Removes the attributes from the TestInstruction
+      }
     }
   }
 }
