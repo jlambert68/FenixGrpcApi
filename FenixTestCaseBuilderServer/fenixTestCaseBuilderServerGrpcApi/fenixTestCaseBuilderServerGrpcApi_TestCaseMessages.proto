@@ -18,17 +18,19 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 // Message holding information about who is the user and which TestCase that is requested
 message GetTestCaseRequestMessage {
-  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
-  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
-  string TestCaseUuid = 3; // The TestCase, UUID, that is requested from DB-Server
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
+  string TestCaseUuid = 4; // The TestCase, UUID, that is requested from DB-Server
 }
 // ****************************************************************************************************
 // List all TestCases Request Message
 
 // Message holding information about who is the user and which TestCase that is requested
 message ListTestCasesRequestMessage {
-  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
-  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
 
 }
 
@@ -46,10 +48,11 @@ message ListTestCasesResponseMessage {
 
 // Message holding information about who is the user and from which Domain and System to request the MetaDataItems
 message GetTestCaseMetaDataItemsRequestMessage {
-  string UserId = 1; // The Users Id, SEB S-id will be used for SEB
-  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
-  string DomainUuid = 3; // The Domain, UUID, who has the MetaDataItems
-  string DomainName = 4; // The Domain, Name, who has the MetaDataItems
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
+  string DomainUuid = 4; // The Domain, UUID, who has the MetaDataItems
+  string DomainName = 5; // The Domain, Name, who has the MetaDataItems
 }
 
 // ****************************************************************************************************

@@ -25,8 +25,9 @@ message TestCaseModelMessage {
     string TestCaseCommandName = 2; // The name of command
     string FirstParameter = 3; // The first parameter, an UUID, in the command
     string SecondParameter = 4; // The second parameter, an UUID, in the command
-    string UserId = 5; // User Id for the person executing the command
-    google.protobuf.Timestamp CommandExecutedTimeStamp = 6; // The TimeStamp when the Command was executed
+    string UserIdOnComputer = 5; // User Id for the person executing the command
+    string GCPAuthenticatedUser = 6; // The User that was identified towards GCP; the e-mail address
+    google.protobuf.Timestamp CommandExecutedTimeStamp = 7; // The TimeStamp when the Command was executed
   }
 }
 
