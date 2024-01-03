@@ -274,6 +274,17 @@ message SupportedAllowedUserMessage  {
   string UserEmail = 3; // The users e-mail
   string UserFirstName = 4; // The users firs
   string UserLastName = 5; // The users last name`
+  UserAuthorizationRightsMessage UserAuthorizationRights = 6; // The use rights for what to do on this Domain
+}
+
+// UserAuthorizationRightsMessage
+// Message defining the users right for this domain
+message UserAuthorizationRightsMessage  {
+  bool CanListAndViewTestCaseOwnedByThisDomain = 1; // Can List and View TestCases that belongs to this domain
+  bool CanBuildAndSaveTestCaseOwnedByThisDomain = 2; // Can Build, Edit and Save TestCases that belongs to this domain
+  bool CanListAndViewTestCaseHavingTIandTICFromThisDomain = 3; // Can List and View TestCases having TestInstruction and TestInstructionContainers from this domain
+  bool CanListAndViewTestCaseHavingTIandTICFromThisDomainExtended = 4; // Can List and View TestCases even having TestInstruction and TestInstructionContainers from this domain even though there are other TI and TIC from other domains that the users doesn't have explicit access to
+  bool CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain = 5; // Can Build, Edit and Save TestCases that has TestInstruction and TestInstructionContainers from this domain
 }
 
 // SupportedConnectorDomainMessage

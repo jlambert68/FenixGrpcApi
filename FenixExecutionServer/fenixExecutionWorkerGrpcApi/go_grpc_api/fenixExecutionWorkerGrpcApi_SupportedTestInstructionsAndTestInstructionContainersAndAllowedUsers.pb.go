@@ -2065,11 +2065,12 @@ type SupportedAllowedUserMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	UserIdOnComputer     string `protobuf:"bytes,1,opt,name=UserIdOnComputer,proto3" json:"UserIdOnComputer,omitempty"`         // The user-id user use to login to computer with
-	GCPAuthenticatedUser string `protobuf:"bytes,2,opt,name=GCPAuthenticatedUser,proto3" json:"GCPAuthenticatedUser,omitempty"` // The e-mail which user use to authenticate towards GCP
-	UserEmail            string `protobuf:"bytes,3,opt,name=UserEmail,proto3" json:"UserEmail,omitempty"`                       // The users e-mail
-	UserFirstName        string `protobuf:"bytes,4,opt,name=UserFirstName,proto3" json:"UserFirstName,omitempty"`               // The users firs
-	UserLastName         string `protobuf:"bytes,5,opt,name=UserLastName,proto3" json:"UserLastName,omitempty"`                 // The users last name`
+	UserIdOnComputer        string                          `protobuf:"bytes,1,opt,name=UserIdOnComputer,proto3" json:"UserIdOnComputer,omitempty"`               // The user-id user use to login to computer with
+	GCPAuthenticatedUser    string                          `protobuf:"bytes,2,opt,name=GCPAuthenticatedUser,proto3" json:"GCPAuthenticatedUser,omitempty"`       // The e-mail which user use to authenticate towards GCP
+	UserEmail               string                          `protobuf:"bytes,3,opt,name=UserEmail,proto3" json:"UserEmail,omitempty"`                             // The users e-mail
+	UserFirstName           string                          `protobuf:"bytes,4,opt,name=UserFirstName,proto3" json:"UserFirstName,omitempty"`                     // The users firs
+	UserLastName            string                          `protobuf:"bytes,5,opt,name=UserLastName,proto3" json:"UserLastName,omitempty"`                       // The users last name`
+	UserAuthorizationRights *UserAuthorizationRightsMessage `protobuf:"bytes,6,opt,name=UserAuthorizationRights,proto3" json:"UserAuthorizationRights,omitempty"` // The use rights for what to do on this Domain
 }
 
 func (x *SupportedAllowedUserMessage) Reset() {
@@ -2139,6 +2140,94 @@ func (x *SupportedAllowedUserMessage) GetUserLastName() string {
 	return ""
 }
 
+func (x *SupportedAllowedUserMessage) GetUserAuthorizationRights() *UserAuthorizationRightsMessage {
+	if x != nil {
+		return x.UserAuthorizationRights
+	}
+	return nil
+}
+
+// UserAuthorizationRightsMessage
+// Message defining the users right for this domain
+type UserAuthorizationRightsMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	CanListAndViewTestCaseOwnedByThisDomain                    bool `protobuf:"varint,1,opt,name=CanListAndViewTestCaseOwnedByThisDomain,proto3" json:"CanListAndViewTestCaseOwnedByThisDomain,omitempty"`                                       // Can List and View TestCases that belongs to this domain
+	CanBuildAndSaveTestCaseOwnedByThisDomain                   bool `protobuf:"varint,2,opt,name=CanBuildAndSaveTestCaseOwnedByThisDomain,proto3" json:"CanBuildAndSaveTestCaseOwnedByThisDomain,omitempty"`                                     // Can Build, Edit and Save TestCases that belongs to this domain
+	CanListAndViewTestCaseHavingTIandTICFromThisDomain         bool `protobuf:"varint,3,opt,name=CanListAndViewTestCaseHavingTIandTICFromThisDomain,proto3" json:"CanListAndViewTestCaseHavingTIandTICFromThisDomain,omitempty"`                 // Can List and View TestCases having TestInstruction and TestInstructionContainers from this domain
+	CanListAndViewTestCaseHavingTIandTICFromThisDomainExtended bool `protobuf:"varint,4,opt,name=CanListAndViewTestCaseHavingTIandTICFromThisDomainExtended,proto3" json:"CanListAndViewTestCaseHavingTIandTICFromThisDomainExtended,omitempty"` // Can List and View TestCases even having TestInstruction and TestInstructionContainers from this domain even though there are other TI and TIC from other domains that the users doesn't have explicit access to
+	CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain        bool `protobuf:"varint,5,opt,name=CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain,proto3" json:"CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain,omitempty"`               // Can Build, Edit and Save TestCases that has TestInstruction and TestInstructionContainers from this domain
+}
+
+func (x *UserAuthorizationRightsMessage) Reset() {
+	*x = UserAuthorizationRightsMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UserAuthorizationRightsMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserAuthorizationRightsMessage) ProtoMessage() {}
+
+func (x *UserAuthorizationRightsMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserAuthorizationRightsMessage.ProtoReflect.Descriptor instead.
+func (*UserAuthorizationRightsMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *UserAuthorizationRightsMessage) GetCanListAndViewTestCaseOwnedByThisDomain() bool {
+	if x != nil {
+		return x.CanListAndViewTestCaseOwnedByThisDomain
+	}
+	return false
+}
+
+func (x *UserAuthorizationRightsMessage) GetCanBuildAndSaveTestCaseOwnedByThisDomain() bool {
+	if x != nil {
+		return x.CanBuildAndSaveTestCaseOwnedByThisDomain
+	}
+	return false
+}
+
+func (x *UserAuthorizationRightsMessage) GetCanListAndViewTestCaseHavingTIandTICFromThisDomain() bool {
+	if x != nil {
+		return x.CanListAndViewTestCaseHavingTIandTICFromThisDomain
+	}
+	return false
+}
+
+func (x *UserAuthorizationRightsMessage) GetCanListAndViewTestCaseHavingTIandTICFromThisDomainExtended() bool {
+	if x != nil {
+		return x.CanListAndViewTestCaseHavingTIandTICFromThisDomainExtended
+	}
+	return false
+}
+
+func (x *UserAuthorizationRightsMessage) GetCanBuildAndSaveTestCaseHavingTIandTICFromThisDomain() bool {
+	if x != nil {
+		return x.CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain
+	}
+	return false
+}
+
 // SupportedConnectorDomainMessage
 // Holds information about what Domain the Connector belongs to
 type SupportedConnectorDomainMessage struct {
@@ -2154,7 +2243,7 @@ type SupportedConnectorDomainMessage struct {
 func (x *SupportedConnectorDomainMessage) Reset() {
 	*x = SupportedConnectorDomainMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[19]
+		mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2167,7 +2256,7 @@ func (x *SupportedConnectorDomainMessage) String() string {
 func (*SupportedConnectorDomainMessage) ProtoMessage() {}
 
 func (x *SupportedConnectorDomainMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[19]
+	mi := &file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2180,7 +2269,7 @@ func (x *SupportedConnectorDomainMessage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SupportedConnectorDomainMessage.ProtoReflect.Descriptor instead.
 func (*SupportedConnectorDomainMessage) Descriptor() ([]byte, []int) {
-	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_rawDescGZIP(), []int{19}
+	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *SupportedConnectorDomainMessage) GetConnectorsDomainUUID() string {
@@ -2976,7 +3065,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x65, 0x52, 0x0c, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x65, 0x64, 0x55, 0x73, 0x65, 0x72, 0x73, 0x12,
 	0x2a, 0x0a, 0x10, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x65, 0x64, 0x55, 0x73, 0x65, 0x72, 0x73, 0x48,
 	0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x41, 0x6c, 0x6c, 0x6f, 0x77,
-	0x65, 0x64, 0x55, 0x73, 0x65, 0x72, 0x73, 0x48, 0x61, 0x73, 0x68, 0x22, 0xe5, 0x01, 0x0a, 0x1b,
+	0x65, 0x64, 0x55, 0x73, 0x65, 0x72, 0x73, 0x48, 0x61, 0x73, 0x68, 0x22, 0xdc, 0x02, 0x0a, 0x1b,
 	0x53, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x41, 0x6c, 0x6c, 0x6f, 0x77, 0x65, 0x64,
 	0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x55,
 	0x73, 0x65, 0x72, 0x49, 0x64, 0x4f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x72, 0x18,
@@ -2991,20 +3080,63 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x52, 0x0d, 0x55, 0x73, 0x65, 0x72, 0x46, 0x69, 0x72, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12,
 	0x22, 0x0a, 0x0c, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x61, 0x73, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18,
 	0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x55, 0x73, 0x65, 0x72, 0x4c, 0x61, 0x73, 0x74, 0x4e,
-	0x61, 0x6d, 0x65, 0x22, 0xbd, 0x01, 0x0a, 0x1f, 0x53, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x65,
-	0x64, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
-	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x32, 0x0a, 0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x55, 0x49, 0x44, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72,
-	0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x55, 0x49, 0x44, 0x12, 0x32, 0x0a, 0x14, 0x43,
-	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e,
-	0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65,
-	0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12,
-	0x32, 0x0a, 0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d,
-	0x61, 0x69, 0x6e, 0x48, 0x61, 0x73, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x43,
-	0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x48,
-	0x61, 0x73, 0x68, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63,
-	0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x6d, 0x65, 0x12, 0x75, 0x0a, 0x17, 0x55, 0x73, 0x65, 0x72, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x69, 0x67, 0x68, 0x74, 0x73, 0x18, 0x06,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x3b, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x6f, 0x72, 0x6b, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41,
+	0x70, 0x69, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x69, 0x67, 0x68, 0x74, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x52, 0x17, 0x55, 0x73, 0x65, 0x72, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x69, 0x67, 0x68, 0x74, 0x73, 0x22, 0xb8, 0x04, 0x0a, 0x1e, 0x55,
+	0x73, 0x65, 0x72, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x69, 0x67, 0x68, 0x74, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x58, 0x0a,
+	0x27, 0x43, 0x61, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x56, 0x69, 0x65, 0x77, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4f, 0x77, 0x6e, 0x65, 0x64, 0x42, 0x79, 0x54, 0x68,
+	0x69, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x27,
+	0x43, 0x61, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x56, 0x69, 0x65, 0x77, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4f, 0x77, 0x6e, 0x65, 0x64, 0x42, 0x79, 0x54, 0x68, 0x69,
+	0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x12, 0x5a, 0x0a, 0x28, 0x43, 0x61, 0x6e, 0x42, 0x75,
+	0x69, 0x6c, 0x64, 0x41, 0x6e, 0x64, 0x53, 0x61, 0x76, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x4f, 0x77, 0x6e, 0x65, 0x64, 0x42, 0x79, 0x54, 0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x28, 0x43, 0x61, 0x6e, 0x42, 0x75,
+	0x69, 0x6c, 0x64, 0x41, 0x6e, 0x64, 0x53, 0x61, 0x76, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x4f, 0x77, 0x6e, 0x65, 0x64, 0x42, 0x79, 0x54, 0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x12, 0x6e, 0x0a, 0x32, 0x43, 0x61, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6e,
+	0x64, 0x56, 0x69, 0x65, 0x77, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61, 0x76,
+	0x69, 0x6e, 0x67, 0x54, 0x49, 0x61, 0x6e, 0x64, 0x54, 0x49, 0x43, 0x46, 0x72, 0x6f, 0x6d, 0x54,
+	0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52,
+	0x32, 0x43, 0x61, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6e, 0x64, 0x56, 0x69, 0x65, 0x77, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61, 0x76, 0x69, 0x6e, 0x67, 0x54, 0x49, 0x61,
+	0x6e, 0x64, 0x54, 0x49, 0x43, 0x46, 0x72, 0x6f, 0x6d, 0x54, 0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d,
+	0x61, 0x69, 0x6e, 0x12, 0x7e, 0x0a, 0x3a, 0x43, 0x61, 0x6e, 0x4c, 0x69, 0x73, 0x74, 0x41, 0x6e,
+	0x64, 0x56, 0x69, 0x65, 0x77, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61, 0x76,
+	0x69, 0x6e, 0x67, 0x54, 0x49, 0x61, 0x6e, 0x64, 0x54, 0x49, 0x43, 0x46, 0x72, 0x6f, 0x6d, 0x54,
+	0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x45, 0x78, 0x74, 0x65, 0x6e, 0x64, 0x65,
+	0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08, 0x52, 0x3a, 0x43, 0x61, 0x6e, 0x4c, 0x69, 0x73, 0x74,
+	0x41, 0x6e, 0x64, 0x56, 0x69, 0x65, 0x77, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48,
+	0x61, 0x76, 0x69, 0x6e, 0x67, 0x54, 0x49, 0x61, 0x6e, 0x64, 0x54, 0x49, 0x43, 0x46, 0x72, 0x6f,
+	0x6d, 0x54, 0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x45, 0x78, 0x74, 0x65, 0x6e,
+	0x64, 0x65, 0x64, 0x12, 0x70, 0x0a, 0x33, 0x43, 0x61, 0x6e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x41,
+	0x6e, 0x64, 0x53, 0x61, 0x76, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61,
+	0x76, 0x69, 0x6e, 0x67, 0x54, 0x49, 0x61, 0x6e, 0x64, 0x54, 0x49, 0x43, 0x46, 0x72, 0x6f, 0x6d,
+	0x54, 0x68, 0x69, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x33, 0x43, 0x61, 0x6e, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x41, 0x6e, 0x64, 0x53, 0x61, 0x76,
+	0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61, 0x76, 0x69, 0x6e, 0x67, 0x54,
+	0x49, 0x61, 0x6e, 0x64, 0x54, 0x49, 0x43, 0x46, 0x72, 0x6f, 0x6d, 0x54, 0x68, 0x69, 0x73, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x22, 0xbd, 0x01, 0x0a, 0x1f, 0x53, 0x75, 0x70, 0x70, 0x6f, 0x72,
+	0x74, 0x65, 0x64, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x32, 0x0a, 0x14, 0x43, 0x6f, 0x6e,
+	0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x55, 0x49,
+	0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74,
+	0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x55, 0x49, 0x44, 0x12, 0x32, 0x0a,
+	0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x43, 0x6f, 0x6e,
+	0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d,
+	0x65, 0x12, 0x32, 0x0a, 0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x48, 0x61, 0x73, 0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x14, 0x43, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x44, 0x6f, 0x6d, 0x61, 0x69,
+	0x6e, 0x48, 0x61, 0x73, 0x68, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72,
+	0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3019,7 +3151,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 	return file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_rawDescData
 }
 
-var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_goTypes = []interface{}{
 	(*SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage)(nil), // 0: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage
 	(*SupportedTestInstructionsMessage)(nil),                                            // 1: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage
@@ -3040,20 +3172,21 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	(*SupportedImmatureTestInstructionContainerInformationMessage)(nil),                 // 16: fenixExecutionWorkerGrpcApi.SupportedImmatureTestInstructionContainerInformationMessage
 	(*SupportedAllowedUsersMessage)(nil),                                                // 17: fenixExecutionWorkerGrpcApi.SupportedAllowedUsersMessage
 	(*SupportedAllowedUserMessage)(nil),                                                 // 18: fenixExecutionWorkerGrpcApi.SupportedAllowedUserMessage
-	(*SupportedConnectorDomainMessage)(nil),                                             // 19: fenixExecutionWorkerGrpcApi.SupportedConnectorDomainMessage
-	nil,                                                                                 // 20: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMapEntry
-	nil,                                                                                 // 21: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMapEntry
-	(*ClientSystemIdentificationMessage)(nil),                                           // 22: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
-	(*timestamp.Timestamp)(nil),                                                         // 23: google.protobuf.Timestamp
+	(*UserAuthorizationRightsMessage)(nil),                                              // 19: fenixExecutionWorkerGrpcApi.UserAuthorizationRightsMessage
+	(*SupportedConnectorDomainMessage)(nil),                                             // 20: fenixExecutionWorkerGrpcApi.SupportedConnectorDomainMessage
+	nil,                                                                                 // 21: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMapEntry
+	nil,                                                                                 // 22: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMapEntry
+	(*ClientSystemIdentificationMessage)(nil),                                           // 23: fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
+	(*timestamp.Timestamp)(nil),                                                         // 24: google.protobuf.Timestamp
 }
 var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_depIdxs = []int32{
-	22, // 0: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.ClientSystemIdentification:type_name -> fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
+	23, // 0: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.ClientSystemIdentification:type_name -> fenixExecutionWorkerGrpcApi.ClientSystemIdentificationMessage
 	1,  // 1: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.TestInstructions:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage
 	10, // 2: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.TestInstructionContainers:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage
 	17, // 3: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.AllowedUsers:type_name -> fenixExecutionWorkerGrpcApi.SupportedAllowedUsersMessage
-	23, // 4: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.MessageCreationTimeStamp:type_name -> google.protobuf.Timestamp
-	19, // 5: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.ConnectorDomain:type_name -> fenixExecutionWorkerGrpcApi.SupportedConnectorDomainMessage
-	20, // 6: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMap:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMapEntry
+	24, // 4: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.MessageCreationTimeStamp:type_name -> google.protobuf.Timestamp
+	20, // 5: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage.ConnectorDomain:type_name -> fenixExecutionWorkerGrpcApi.SupportedConnectorDomainMessage
+	21, // 6: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMap:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMapEntry
 	3,  // 7: fenixExecutionWorkerGrpcApi.SupportedTestInstructionInstanceVersionsMessage.TestInstructionVersions:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionInstanceVersionMessage
 	4,  // 8: fenixExecutionWorkerGrpcApi.SupportedTestInstructionInstanceVersionMessage.TestInstructionInstance:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionMessage
 	5,  // 9: fenixExecutionWorkerGrpcApi.SupportedTestInstructionMessage.TestInstruction:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionBaseMessage
@@ -3061,7 +3194,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	7,  // 11: fenixExecutionWorkerGrpcApi.SupportedTestInstructionMessage.ImmatureTestInstructionInformations:type_name -> fenixExecutionWorkerGrpcApi.SupportedImmatureTestInstructionInformationMessage
 	8,  // 12: fenixExecutionWorkerGrpcApi.SupportedTestInstructionMessage.TestInstructionAttributes:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionAttributeMessage
 	9,  // 13: fenixExecutionWorkerGrpcApi.SupportedTestInstructionMessage.ImmatureElementModel:type_name -> fenixExecutionWorkerGrpcApi.SupportedImmatureElementModelMessage
-	21, // 14: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMap:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMapEntry
+	22, // 14: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMap:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMapEntry
 	12, // 15: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerInstanceVersionsMessage.TestInstructionContainerVersions:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerInstanceVersionMessage
 	13, // 16: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerInstanceVersionMessage.TestInstructionContainerInstance:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerMessage
 	14, // 17: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerMessage.TestInstructionContainer:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerBaseMessage
@@ -3069,13 +3202,14 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	16, // 19: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerMessage.ImmatureTestInstructionContainerInformations:type_name -> fenixExecutionWorkerGrpcApi.SupportedImmatureTestInstructionContainerInformationMessage
 	9,  // 20: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerMessage.ImmatureElementModel:type_name -> fenixExecutionWorkerGrpcApi.SupportedImmatureElementModelMessage
 	18, // 21: fenixExecutionWorkerGrpcApi.SupportedAllowedUsersMessage.AllowedUsers:type_name -> fenixExecutionWorkerGrpcApi.SupportedAllowedUserMessage
-	2,  // 22: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMapEntry.value:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionInstanceVersionsMessage
-	11, // 23: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMapEntry.value:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerInstanceVersionsMessage
-	24, // [24:24] is the sub-list for method output_type
-	24, // [24:24] is the sub-list for method input_type
-	24, // [24:24] is the sub-list for extension type_name
-	24, // [24:24] is the sub-list for extension extendee
-	0,  // [0:24] is the sub-list for field type_name
+	19, // 22: fenixExecutionWorkerGrpcApi.SupportedAllowedUserMessage.UserAuthorizationRights:type_name -> fenixExecutionWorkerGrpcApi.UserAuthorizationRightsMessage
+	2,  // 23: fenixExecutionWorkerGrpcApi.SupportedTestInstructionsMessage.TestInstructionsMapEntry.value:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionInstanceVersionsMessage
+	11, // 24: fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainersMessage.TestInstructionsMapEntry.value:type_name -> fenixExecutionWorkerGrpcApi.SupportedTestInstructionContainerInstanceVersionsMessage
+	25, // [25:25] is the sub-list for method output_type
+	25, // [25:25] is the sub-list for method input_type
+	25, // [25:25] is the sub-list for extension type_name
+	25, // [25:25] is the sub-list for extension extendee
+	0,  // [0:25] is the sub-list for field type_name
 }
 
 func init() {
@@ -3316,6 +3450,18 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			}
 		}
 		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UserAuthorizationRightsMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*SupportedConnectorDomainMessage); i {
 			case 0:
 				return &v.state
@@ -3334,7 +3480,7 @@ func file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerG
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
