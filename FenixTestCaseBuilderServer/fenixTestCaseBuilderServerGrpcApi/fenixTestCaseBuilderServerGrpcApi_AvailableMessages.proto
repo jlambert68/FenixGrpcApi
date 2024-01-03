@@ -17,9 +17,19 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 // Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
 message AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage {
-  repeated ImmatureTestInstructionMessage ImmatureTestInstructions = 1; // List of all TestInstruction
-  repeated ImmatureTestInstructionContainerMessage ImmatureTestInstructionContainers = 2; // List of all pre-defined TestInstructionContainers
-  AckNackResponse ackNackResponse = 3; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated DomainsThatCanOwnTheTestCaseMessage DomainsThatCanOwnTheTestCase = 1; // A list of the Domains that can own a TestCase create by a specific user
+  repeated ImmatureTestInstructionMessage ImmatureTestInstructions = 2; // List of all TestInstruction
+  repeated ImmatureTestInstructionContainerMessage ImmatureTestInstructionContainers = 3; // List of all pre-defined TestInstructionContainers
+  AckNackResponse ackNackResponse = 4; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+}
+
+// ****************************************************************************************************
+// DomainsThatCanOwnTheTestCaseMessage - From DB
+
+// Message holding all supported TestInstructions and Pre-defined TestInstructionContainers that the user can use when building TestCases
+message DomainsThatCanOwnTheTestCaseMessage {
+  string DomainUuid = 1; // The Domain, UUID, which can own a TestCase
+  string DomainName = 2; // The Domain, Name, which can own a TestCase
 }
 
 // ****************************************************************************************************
