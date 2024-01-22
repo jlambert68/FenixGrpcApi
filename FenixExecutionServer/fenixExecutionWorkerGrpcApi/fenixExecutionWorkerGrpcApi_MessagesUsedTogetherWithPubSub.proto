@@ -55,8 +55,9 @@ message ProcessTestInstructionExecutionPubSubRequest {
 
   // Message Holding information about who is the calling client system
   message ClientSystemIdentificationMessage {
-    string DomainUuid = 1; // The Users Id, SEB S-id will be used for SEB
-    CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 2; // The latest proto file version number to be used
+    string DomainUuid = 1; // The Domain that sends the message
+    string ExecutionDomainUuid = 2; // The SubDomain, UUID, that executes this TestInstruction
+    CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
   }
 
 
