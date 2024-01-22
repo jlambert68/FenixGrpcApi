@@ -7,7 +7,7 @@ option go_package = "./go_grpc_api";
 // Request used by Execution Server to initiate an TestInstruction Execution by Execution Client
 message ProcessTestInstructionExecutionPubSubRequest {
 
-  CurrentFenixExecutionWorkerProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
+  ClientSystemIdentificationMessage DomainIdentificationAnfProtoFileVersionUsedByClient = 1; // The Domain identification and The latest proto file version number to be used
   TestInstructionExecutionMessage TestInstruction = 2; // The TestInstruction itself an its attributes
 
   message TestInstructionExecutionMessage {
