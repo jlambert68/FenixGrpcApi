@@ -62,17 +62,19 @@ message  SupportedTestInstructionMessage {
 message SupportedTestInstructionBaseMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
   string DomainName = 2; // The Domain Name where the TestInstruction belong
-  string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
-  string TestInstructionName = 4; // The TestInstruction Name of the specific TestInstruction to be executed
-  string TestInstructionTypeUUID = 5; // The type UUID of the TestInstruction
-  string TestInstructionTypeName = 6; // The type Name of the TestInstruction
-  string TestInstructionDescription = 7; // The TestInstruction description for the TestInstruction
-  string TestInstructionMouseOverText = 8; // The TestInstruction MouseOver text for the TestInstruction
-  bool Deprecated = 9; // Is the TestInstruction depreciated and shouldn't be used by the user
-  bool Enabled = 10; // Is the TestInstruction enabled or not
-  int32 MajorVersionNumber = 11; // The Major version number for the TestInstruction
-  int32 MinorVersionNumber = 12; // The Minor version number for the TestInstruction
-  string UpdatedTimeStamp = 13; // When the TestInstruction was first created
+  string ExecutionDomainUuid = 3; // The SubDomain, UUID, that executes this TestInstruction
+  string ExecutionDomainName = 4; // The SubDomain, Name, that executes this TestInstruction
+  string TestInstructionUUID = 5; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
+  string TestInstructionName = 6; // The TestInstruction Name of the specific TestInstruction to be executed
+  string TestInstructionTypeUUID = 7; // The type UUID of the TestInstruction
+  string TestInstructionTypeName = 8; // The type Name of the TestInstruction
+  string TestInstructionDescription = 9; // The TestInstruction description for the TestInstruction
+  string TestInstructionMouseOverText = 10; // The TestInstruction MouseOver text for the TestInstruction
+  bool Deprecated = 11; // Is the TestInstruction depreciated and shouldn't be used by the user
+  bool Enabled = 12; // Is the TestInstruction enabled or not
+  int32 MajorVersionNumber = 13; // The Major version number for the TestInstruction
+  int32 MinorVersionNumber = 14; // The Minor version number for the TestInstruction
+  string UpdatedTimeStamp = 15; // When the TestInstruction was first created
 }
 
 // SupportedBasicTestInstructionInformationMessage
@@ -80,20 +82,22 @@ message SupportedTestInstructionBaseMessage {
 message SupportedBasicTestInstructionInformationMessage {
   string DomainUUID = 1; // The Domain UUID where the TestInstruction belong
   string DomainName = 2; // The Domain Name where the TestInstruction belong
-  string TestInstructionUUID = 3; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
-  string TestInstructionName = 4; // The TestInstruction Name of the specific TestInstruction to be executed
-  string TestInstructionTypeUUID = 5; // The type UUID of the TestInstruction
-  string TestInstructionTypeName = 6; // The type Name of the TestInstruction
-  bool Deprecated = 7; // Is the TestInstruction depreciated and shouldn't be used by the user
-  int32 MajorVersionNumber = 8; // The Major version number for the TestInstruction
-  int32 MinorVersionNumber = 9; // The Minor version number for the TestInstruction
-  string UpdatedTimeStamp = 10; // When the TestInstruction was first created
-  string TestInstructionColor = 11; // The color used in GUI when showing the TestInstruction
-  string TCRuleDeletion = 12; // The Delete-rule defining how the TestInstruction can be deleted
-  string TCRuleSwap = 13; // The Swap-rule defining how the TestInstruction can be swapped out
-  string TestInstructionDescription = 14; // The TestInstruction description for the TestInstruction
-  string TestInstructionMouseOverText = 15; // The TestInstruction MouseOver text for the TestInstruction
-  bool Enabled = 16; // Is the TestInstruction enabled or not
+  string ExecutionDomainUuid = 3; // The SubDomain, UUID, that executes this TestInstruction
+  string ExecutionDomainName = 4; // The SubDomain, Name, that executes this TestInstruction
+  string TestInstructionUUID = 5; // The Unique TestInstruction UUID that identifies the specific TestInstruction to be executed
+  string TestInstructionName = 6; // The TestInstruction Name of the specific TestInstruction to be executed
+  string TestInstructionTypeUUID = 7; // The type UUID of the TestInstruction
+  string TestInstructionTypeName = 8; // The type Name of the TestInstruction
+  bool Deprecated = 9; // Is the TestInstruction depreciated and shouldn't be used by the user
+  int32 MajorVersionNumber = 10; // The Major version number for the TestInstruction
+  int32 MinorVersionNumber = 11; // The Minor version number for the TestInstruction
+  string UpdatedTimeStamp = 12; // When the TestInstruction was first created
+  string TestInstructionColor = 13; // The color used in GUI when showing the TestInstruction
+  string TCRuleDeletion = 14; // The Delete-rule defining how the TestInstruction can be deleted
+  string TCRuleSwap = 15; // The Swap-rule defining how the TestInstruction can be swapped out
+  string TestInstructionDescription = 16; // The TestInstruction description for the TestInstruction
+  string TestInstructionMouseOverText = 17; // The TestInstruction MouseOver text for the TestInstruction
+  bool Enabled = 18; // Is the TestInstruction enabled or not
 }
 
 // SupportedImmatureTestInstructionInformationMessage

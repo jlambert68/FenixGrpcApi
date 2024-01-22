@@ -137,23 +137,25 @@ message TestInstructionExecutionsMessage {
   repeated LogPostAndValuesMessage ExecutionLogPostsAndValues = 3; // All log post rows for the TestInstructionExecution
 }
 
-// The basi information for one TestInstructionExecution
+// The basic information for one TestInstructionExecution
 message TestInstructionExecutionBasicInformationMessage {
-  string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
-  string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
-  string TestInstructionExecutionUuid = 3; // The UUID for the TestInstructionExecution
-  string TestInstructionUuid = 4; // TestInstruction UUID, set by Client system
-  string TestInstructionName = 5; // TestInstruction Name, set by Client system
-  uint32 TestInstructionMajorVersionNumber = 6; // Major Version Number for the TestInstruction
-  uint32 TestInstructionMinorVersionNumber = 7; // Minor Version Number for the TestInstruction
-  google.protobuf.Timestamp QueueTimeStamp = 8; // The timestamp when the TestInstruction was put on the ExecutionQueue
-  ExecutionPriorityEnum ExecutionPriority = 9; // The Execution priority for the TestInstructions
-  string TestCaseExecutionUuid = 10; // The UUID of the TestCaseExecution
-  string TestDataSetUuid = 11; // The UUID of the TestDataSet used by the TestCaseExecution
-  uint32 TestCaseExecutionVersion = 12; // The version number of the TestCaseExecution
-  uint32 TestInstructionExecutionVersion = 13; // The version number for the TestInstructionExecution
-  uint32 TestInstructionExecutionOrder = 14; // The execution order for this TestInstructionExecution within the TestCaseExecution
-  string TestInstructionOriginalUuid = 15; // The original UUID for the TestInstruction
+  string DomainUuid = 1; // The Domain, UUID, that owns this TestInstruction
+  string DomainName = 2; // The Domain, Name, that owns this TestInstruction
+  string ExecutionDomainUuid = 3; // The SubDomain, UUID, that executes this TestInstruction
+  string ExecutionDomainName = 4; // The SubDomain, Name, that executes this TestInstruction
+  string TestInstructionExecutionUuid = 5; // The UUID for the TestInstructionExecution
+  string TestInstructionUuid = 6; // TestInstruction UUID, set by Client system
+  string TestInstructionName = 7; // TestInstruction Name, set by Client system
+  uint32 TestInstructionMajorVersionNumber = 8; // Major Version Number for the TestInstruction
+  uint32 TestInstructionMinorVersionNumber = 9; // Minor Version Number for the TestInstruction
+  google.protobuf.Timestamp QueueTimeStamp = 10; // The timestamp when the TestInstruction was put on the ExecutionQueue
+  ExecutionPriorityEnum ExecutionPriority = 11; // The Execution priority for the TestInstructions
+  string TestCaseExecutionUuid = 12; // The UUID of the TestCaseExecution
+  string TestDataSetUuid = 13; // The UUID of the TestDataSet used by the TestCaseExecution
+  uint32 TestCaseExecutionVersion = 14; // The version number of the TestCaseExecution
+  uint32 TestInstructionExecutionVersion = 15; // The version number for the TestInstructionExecution
+  uint32 TestInstructionExecutionOrder = 16; // The execution order for this TestInstructionExecution within the TestCaseExecution
+  string TestInstructionOriginalUuid = 17; // The original UUID for the TestInstruction
 
 }
 // The executions information for one TestInstruction-execution for when it is under execution or has finished executing

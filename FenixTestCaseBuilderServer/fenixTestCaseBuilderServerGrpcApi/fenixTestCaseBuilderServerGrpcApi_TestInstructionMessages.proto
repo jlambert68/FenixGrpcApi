@@ -67,15 +67,17 @@ message BasicTestInstructionInformationMessage {
   message NonEditableBasicInformationMessage {
     string DomainUuid = 1; // The Domain, UUID, to be tested with this TestInstruction
     string DomainName = 2; // The Domain, Name, to be tested with this TestInstruction
-    string TestInstructionOrignalUuid = 3; // TestInstruction UUID, set by Client system
-    string TestInstructionOriginalName = 4; // TestInstruction Name, set by Client system
-    string TestInstructionTypeUuid = 5; // The Type(Group), Uuid, of TestInstruction
-    string TestInstructionTypeName = 6; // The Type(Group), Name, of TestInstruction
-    bool Deprecated = 7; // Indicates that this TestInstruction shouldn't be used anymore
-    uint32 MajorVersionNumber = 8; // Change in Major Version Number means that user must act on change
-    uint32 MinorVersionNumber = 9; // Change in Minor Version Number means that user must NOT act on change
-    google.protobuf.Timestamp UpdatedTimeStamp = 10; // The TimeStamp when the TestInstruction was last updated by the client system
-    string TestInstructionColor = 11; // The color used for presenting the TestInstruction, e.g. #FAF437
+    string ExecutionDomainUuid = 3; // The SubDomain, UUID, that executes this TestInstruction
+    string ExecutionDomainName = 4; // The SubDomain, Name, that executes this TestInstruction
+    string TestInstructionOriginalUuid = 5; // TestInstruction UUID, set by Client system
+    string TestInstructionOriginalName = 6; // TestInstruction Name, set by Client system
+    string TestInstructionTypeUuid = 7; // The Type(Group), Uuid, of TestInstruction
+    string TestInstructionTypeName = 8; // The Type(Group), Name, of TestInstruction
+    bool Deprecated = 9; // Indicates that this TestInstruction shouldn't be used anymore
+    uint32 MajorVersionNumber = 10; // Change in Major Version Number means that user must act on change
+    uint32 MinorVersionNumber = 11; // Change in Minor Version Number means that user must NOT act on change
+    google.protobuf.Timestamp UpdatedTimeStamp = 12; // The TimeStamp when the TestInstruction was last updated by the client system
+    string TestInstructionColor = 13; // The color used for presenting the TestInstruction, e.g. #FAF437
     string TCRuleDeletion = 14; // The Deletion Rule for this TestInstruction
     string TCRuleSwap = 15; // The Swap Rule for this TestInstruction
   }
