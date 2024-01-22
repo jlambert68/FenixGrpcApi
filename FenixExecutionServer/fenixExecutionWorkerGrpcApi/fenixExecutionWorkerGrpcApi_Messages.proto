@@ -92,5 +92,4 @@ message ConnectorIsReadyMessage {
 // Message from Worker to Connector when Connector says that it is alive and can receive work or if Connector will shut down
 message ConnectorIsReadyResponseMessage {
   AckNackResponse AckNackResponse = 1;
-  string PubSubAuthorizationToken = 2; // The token that the Connector should use to be able to connect to PubSUb to receive TestInstructionExecutions
 }
