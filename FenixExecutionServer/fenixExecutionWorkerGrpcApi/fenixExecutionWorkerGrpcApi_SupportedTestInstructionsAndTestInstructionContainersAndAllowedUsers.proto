@@ -266,7 +266,8 @@ message SupportedImmatureTestInstructionContainerInformationMessage {
 // Message containing all users that are allowed to access the connectors published TestInstructions and TestInstructionContainers
 message SupportedAllowedUsersMessage {
   repeated SupportedAllowedUserMessage AllowedUsers = 1; // Array with all allowed users for this Domain
-  string AllowedUsersHash = 2; // The Hash for all users-messages
+  AllUsersAuthorizationRightsMessage AllUsersAuthorizationRights = 2; // Message defining right for all users regarding this domain
+  string AllowedUsersHash = 3; // The Hash for all users-messages
 }
 
 // SupportedAllowedUserMessage
@@ -289,6 +290,14 @@ message UserAuthorizationRightsMessage  {
     bool CanListAndViewTestCaseHavingTIandTICFromThisDomainExtended = 4; // Can List and View TestCases even having TestInstruction and TestInstructionContainers from this domain even though there are other TI and TIC from other domains that the users doesn't have explicit access to
     bool CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain = 5; // Can Build, Edit and Save TestCases that has TestInstruction and TestInstructionContainers from this domain
 }
+
+// AllUsersAuthorizationRightsMessage
+// Message defining right for all users regarding this domain
+message AllUsersAuthorizationRightsMessage  {
+  bool CanListAndViewTestCaseHavingTIandTICFromThisDomain = 1; // Can List and View TestCases having TestInstruction and TestInstructionContainers from this domain
+  bool CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain = 2; // Can Build, Edit and Save TestCases that has TestInstruction and TestInstructionContainers from this domain
+}
+
 
 // **************** **************** **************** Domain Information **************** **************** ****************
 
