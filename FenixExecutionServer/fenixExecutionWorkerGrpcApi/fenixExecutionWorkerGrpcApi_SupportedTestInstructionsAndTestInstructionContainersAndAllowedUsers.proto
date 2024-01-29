@@ -292,10 +292,10 @@ message UserAuthorizationRightsMessage  {
 }
 
 // AllUsersAuthorizationRightsMessage
-// Message defining right for all users regarding this domain
+// Message defining rights for all users regarding this domain
 message AllUsersAuthorizationRightsMessage  {
-  bool CanListAndViewTestCaseHavingTIandTICFromThisDomain = 1; // Can List and View TestCases having TestInstruction and TestInstructionContainers from this domain
-  bool CanBuildAndSaveTestCaseHavingTIandTICFromThisDomain = 2; // Can Build, Edit and Save TestCases that has TestInstruction and TestInstructionContainers from this domain
+  bool AllUsersCanListAndViewTestCaseHavingTIandTICFromThisDomain = 1; // Can List and View TestCases having TestInstruction and TestInstructionContainers from this domain
+  bool AllUsersCanBuildAndSaveTestCaseHavingTIandTICFromThisDomain = 2; // Can Build, Edit and Save TestCases that has TestInstruction and TestInstructionContainers from this domain
 }
 
 
