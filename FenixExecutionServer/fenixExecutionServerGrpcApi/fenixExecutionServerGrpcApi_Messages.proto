@@ -40,7 +40,6 @@ message LogPostsMessage {
       string ExpectedValue = 2; // The value that was expected
     }
   }
-
 }
 
 

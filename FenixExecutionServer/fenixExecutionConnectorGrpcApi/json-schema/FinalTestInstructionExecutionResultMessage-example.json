@@ -1,0 +1,47 @@
+{
+  "TestInstructionExecutionUuid": "uuid-1234",
+  "TestInstructionExecutionVersion": "1.0",
+  "TestInstructionExecutionStatus": "TIE_FINISHED_OK",
+  "TestInstructionExecutionStartTimeStamp": "2021-01-01T00:00:00Z",
+  "TestInstructionExecutionEndTimeStamp": "2021-01-01T01:00:00Z",
+  "ResponseVariables": [
+    {
+      "ResponseVariableUuid": "var-uuid-1",
+      "ResponseVariableName": "Variable1",
+      "ResponseVariableValueAsString": "Value1"
+    },
+    {
+      "ResponseVariableUuid": "var-uuid-2",
+      "ResponseVariableName": "Variable2",
+      "ResponseVariableValueAsString": "Value2"
+    }
+  ],
+  "LogPosts": [
+    {
+      "LogPostTimeStamp": "2021-01-01T00:30:00Z",
+      "LogPostStatus": "INFO",
+      "LogPostText": "Example log post",
+      "FoundVersusExpectedValue": [
+        {
+          "FoundValue": "found-1",
+          "ExpectedValue": "expected-1"
+        },
+        {
+          "FoundValue": "found-2",
+          "ExpectedValue": "expected-2"
+        }
+      ]
+    },
+    {
+      "LogPostTimeStamp": "2021-01-01T00:45:00Z",
+      "LogPostStatus": "VALIDATION_ERROR",
+      "LogPostText": "Validation failed",
+      "FoundVersusExpectedValue": [
+        {
+          "FoundValue": "found-3",
+          "ExpectedValue": "expected-3"
+        }
+      ]
+    }
+  ]
+}

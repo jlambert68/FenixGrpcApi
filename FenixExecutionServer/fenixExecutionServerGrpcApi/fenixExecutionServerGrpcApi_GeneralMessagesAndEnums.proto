@@ -80,6 +80,8 @@ enum LogPostStatusEnum {
   WARNING = 2; // The Log-post row is of Warning Type, to inform user that something is not like it should
   VALIDATION_OK = 3; // The Log-post row is of Validation OK Type and should be used when the validation of the TestExecution matched expected result
   VALIDATION_ERROR = 4; // The Log-post row is of Validation Error Type and should be used when the validation of the TestExecution didn't matched expected result
+  EXECUTION_OK = 5; // An execution, non validation, that was processed as expected
+  EXECUTION_ERROR = 6; // An execution, non validation, that was not process as expected
 }
 
 // Execution priority for TestInstructions, TestCases and TestSuites
