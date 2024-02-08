@@ -2519,9 +2519,9 @@ type ResponseVariableMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ResponseVariableUuid        string `protobuf:"bytes,1,opt,name=ResponseVariableUuid,proto3" json:"ResponseVariableUuid,omitempty"`               // The UUID for The Response variable
-	ResponseVariableName        string `protobuf:"bytes,2,opt,name=ResponseVariableName,proto3" json:"ResponseVariableName,omitempty"`               // The Name of the Response variable
-	ResponseVariableIsMandatory string `protobuf:"bytes,3,opt,name=ResponseVariableIsMandatory,proto3" json:"ResponseVariableIsMandatory,omitempty"` // Is Response variable mandatory or not
+	ResponseVariableUuid        string `protobuf:"bytes,1,opt,name=ResponseVariableUuid,proto3" json:"ResponseVariableUuid,omitempty"`                // The UUID for The Response variable
+	ResponseVariableName        string `protobuf:"bytes,2,opt,name=ResponseVariableName,proto3" json:"ResponseVariableName,omitempty"`                // The Name of the Response variable
+	ResponseVariableIsMandatory bool   `protobuf:"varint,3,opt,name=ResponseVariableIsMandatory,proto3" json:"ResponseVariableIsMandatory,omitempty"` // Is Response variable mandatory or not
 }
 
 func (x *ResponseVariableMessage) Reset() {
@@ -2570,11 +2570,11 @@ func (x *ResponseVariableMessage) GetResponseVariableName() string {
 	return ""
 }
 
-func (x *ResponseVariableMessage) GetResponseVariableIsMandatory() string {
+func (x *ResponseVariableMessage) GetResponseVariableIsMandatory() bool {
 	if x != nil {
 		return x.ResponseVariableIsMandatory
 	}
-	return ""
+	return false
 }
 
 var File_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto protoreflect.FileDescriptor
@@ -3515,7 +3515,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x65, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x40, 0x0a,
 	0x1b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x56, 0x61, 0x72, 0x69, 0x61, 0x62, 0x6c,
 	0x65, 0x49, 0x73, 0x4d, 0x61, 0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x1b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x56, 0x61, 0x72, 0x69,
+	0x28, 0x08, 0x52, 0x1b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x56, 0x61, 0x72, 0x69,
 	0x61, 0x62, 0x6c, 0x65, 0x49, 0x73, 0x4d, 0x61, 0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x42,
 	0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69,
 	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
