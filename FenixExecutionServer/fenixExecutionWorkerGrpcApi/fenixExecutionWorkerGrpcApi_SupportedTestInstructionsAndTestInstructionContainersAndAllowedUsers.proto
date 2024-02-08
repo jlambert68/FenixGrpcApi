@@ -43,7 +43,8 @@ message SupportedTestInstructionInstanceVersionMessage {
   int32 TestInstructionInstanceMinorVersion = 3;  // The minor version for the TestInstruction
   bool Deprecated = 4; // Should the user stop using this TestInstructionInstance-version
   bool Enabled = 5; // Is this TestInstructionInstance-version enabled or disabled
-  string TestInstructionInstanceVersionHash = 6; // SHA256 of all TestInstructionMessage using Fenix standard way of hashing values together
+  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 6; // Holds all Response variables expected for this
+  string TestInstructionInstanceVersionHash = 7; // SHA256 of all TestInstructionMessage, and Hash for 'SupportedResponseVariablesMapStructureMessage', using Fenix standard way of hashing values together a
 }
 
 // SupportedTestInstructionMessage
@@ -54,7 +55,7 @@ message  SupportedTestInstructionMessage {
   repeated SupportedImmatureTestInstructionInformationMessage ImmatureTestInstructionInformation = 3; //
   repeated SupportedTestInstructionAttributeMessage TestInstructionAttributes = 4; //
   repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
-  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 6; // Holds all Response variables expected for this
+
 }
 
 // SupportedTestInstructionBaseMessage

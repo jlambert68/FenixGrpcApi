@@ -186,7 +186,8 @@ message SupportedTestInstructionContainerInstanceVersionMessage {
   int32 TestInstructionContainerInstanceMinorVersion = 3;  // The minor version for the TestInstructionContainer
   bool Deprecated = 4; // Should the user stop using this TestInstructionContainerInstance-version
   bool Enabled = 5; // Is this TestInstructionContainerInstance-version enabled or disabled
-  string TestInstructionContainerInstanceVersionHash = 6; // SHA256 of all TestInstructionContainerMessage using Fenix standard way of hashing values together
+  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 6; // Holds all Response variables expected for this
+  string TestInstructionContainerInstanceVersionHash = 7; // SHA256 of all TestInstructionContainerMessage, and Hash for 'SupportedResponseVariablesMapStructureMessage',  using Fenix standard way of hashing values together
 }
 
 // SupportedTestInstructionContainerMessage
@@ -196,7 +197,6 @@ message  SupportedTestInstructionContainerMessage {
   SupportedBasicTestInstructionContainerInformationMessage BasicTestInstructionContainerInformation = 2; //
   repeated SupportedImmatureTestInstructionContainerInformationMessage ImmatureTestInstructionContainerInformation = 3; //
   repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
-  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 6; // Holds all Response variables expected for this
 }
 
 // SupportedTestInstructionContainerBaseMessage
