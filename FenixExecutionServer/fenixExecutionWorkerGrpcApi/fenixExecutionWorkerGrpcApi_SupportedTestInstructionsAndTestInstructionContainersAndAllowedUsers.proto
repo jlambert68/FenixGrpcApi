@@ -51,9 +51,10 @@ message SupportedTestInstructionInstanceVersionMessage {
 message  SupportedTestInstructionMessage {
   SupportedTestInstructionBaseMessage TestInstruction = 1; //
   SupportedBasicTestInstructionInformationMessage BasicTestInstructionInformation = 2; //
-  repeated SupportedImmatureTestInstructionInformationMessage ImmatureTestInstructionInformations = 3; //
+  repeated SupportedImmatureTestInstructionInformationMessage ImmatureTestInstructionInformation = 3; //
   repeated SupportedTestInstructionAttributeMessage TestInstructionAttributes = 4; //
   repeated SupportedImmatureElementModelMessage ImmatureElementModel = 5; //
+  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 6; // Holds all Response variables expected for this
 }
 
 // SupportedTestInstructionBaseMessage
@@ -307,4 +308,28 @@ message SupportedConnectorDomainMessage {
   string ConnectorsDomainUUID = 1; // The UUID for the Domain that the Connector belongs to
   string ConnectorsDomainName = 2; // The Name for the Domain that the Connector belongs to
   string ConnectorsDomainHash = 3; // The Hash for this message
+}
+
+// **************** **************** **************** Response Variables **************** **************** ****************
+
+// ResponseVariablesMapStructureMessage
+// This structures holds all Response variables and the over all hash
+message SupportedResponseVariablesMapStructureMessage  {
+  map<string, ResponseVariableStructureMessage> ResponseVariablesMap = 1; // The Map holding all Response variables
+  string    ResponseVariablesMapHash = 2; // The Hash for all Response variables
+}
+
+// ResponseVariableStructureMessage
+// Keeps a Response variable and its Hash
+message ResponseVariableStructureMessage {
+  ResponseVariableMessage ResponseVariable  = 1; // Holds one Response Variable
+  string    ResponseVariableHash = 2; // Holds the hash for the Response Variable
+}
+
+// ResponseVariableMessage
+// Message holding information about a Response variable
+message ResponseVariableMessage  {
+  string ResponseVariableUuid  = 1; // The UUID for The Response variable
+  string    ResponseVariableName = 2; // The Name of the Response variable
+  string    ResponseVariableIsMandatory = 3; // Is Response variable mandatory or not
 }
