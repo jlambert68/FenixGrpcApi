@@ -331,6 +331,7 @@ message ResponseVariableStructureMessage {
 // Message holding information about a Response variable
 message ResponseVariableMessage  {
   string ResponseVariableUuid  = 1; // The UUID for The Response variable
-  string    ResponseVariableName = 2; // The Name of the Response variable
-  bool    ResponseVariableIsMandatory = 3; // Is Response variable mandatory or not
+  string ResponseVariableName = 2; // The Name of the Response variable
+  string ResponseVariableDescription = 3; // The Name of the Response variable
+  bool   ResponseVariableIsMandatory = 4; // Is Response variable mandatory or not
 }
