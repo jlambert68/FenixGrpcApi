@@ -332,6 +332,8 @@ message ResponseVariableMessage  {
   string ResponseVariableName = 2; // The Name of the Response variable
   string ResponseVariableDescription = 3; // The Name of the Response variable
   bool   ResponseVariableIsMandatory = 4; // Is Response variable mandatory or not
+  string ResponseVariableTypeUuid = 5; // The UUID for Type or Group of Response variable
+  string ResponseVariableTypeName = 6; // The Name for Type or Group of Response variable
 }
 
 // **************** **************** **************** Signed Message **************** **************** ****************
