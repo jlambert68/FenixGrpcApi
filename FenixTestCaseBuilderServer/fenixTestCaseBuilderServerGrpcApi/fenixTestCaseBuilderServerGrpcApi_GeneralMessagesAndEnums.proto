@@ -104,9 +104,10 @@ enum TestCaseCommandTypeEnum {
 enum TestInstructionAttributeTypeEnum {
   TestInstructionAttributeTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
   TEXTBOX = 1; // Defines that TestInstructionAttribute of type "TextBox"
-  COMBOBOX = 2; // Defines that TestInstructionAttriebute of type ComboBox
+  COMBOBOX = 2; // Defines that TestInstructionAttribute of type ComboBox
   FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
   FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
+  RESPONSE_VARIABLE_COMBOBOX = 5; // List the available response variables from TestInstructionsExecutions done before this TestInstructions in this TestCase
 }
 
 // Parameter used for Empty inputs, only containing current proto-file version

@@ -111,6 +111,7 @@ enum TestInstructionAttributeTypeEnum {
   COMBOBOX = 2; // Defines that TestInstructionAttriebute of type ComboBox
   FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
   FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
+  RESPONSE_VARIABLE_COMBOBOX = 5; // List the available response variables from TestInstructionsExecutions done before this TestInstructions in this TestCase
 }
 
 

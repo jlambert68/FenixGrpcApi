@@ -214,6 +214,26 @@ message MatureTestInstructionInformationMessage {
         string TestInstructionAttributeFileReferenceName = 4; // A reference, Name, to a chosen file, that has been added to the TestCase
       }
 
+      TestInstructionAttributeResponseVariableComboBoxProperty ResponseVariableComboBoxProperty = 4; // If the attribute is a ResponseVariable then all properties can be found in structure
+      // Properties if it is a ResponseVariableComboBox attribute
+      message TestInstructionAttributeResponseVariableComboBoxProperty {
+        string TestInstructionAttributeResponseVariableComboBoxUuid = 1; // The unique uuid for the TestInstructionAttributeResponseVariableComboBoxProperty
+        string TestInstructionAttributeResponseVariableComboBoxName = 2; // The name of the TestInstructionAttributeResponseVariableComboBoxProperty
+        string ComboBoxAttributeTypeUuid = 5; // The unique uuid for the Type of the ComboBox Used for data manipulation
+        string ComboBoxAttributeTypeName = 6; // The Name for the Type of the ComboBox
+        repeated string AllowedResponseVariableType = 7; // A list of allowed response variable types
+        string ChosenResponseVariableTypeUuid = 8; // The Uuid of the chosen allowed response variable type
+        string ChosenResponseVariableTypeName = 9; // The Name of the chosen allowed response variable type
+        string ComboBoxAttributeValueAsString = 10; // The value for the the ComboBox, used for presentation
+
+        // Defines one Allowed Response Variable that will be able to choose from
+        message AllowedResponseVariableTypeMessage {
+          string AllowedResponseVariableTypeUuid = 1; // The UUID for a allowed response variable type
+          string AllowedResponseVariableTypeName = 2; // The Name for a allowed response variable type
+        }
+
+      }
+
       //TODO Create Attribute property for functions
     }
 

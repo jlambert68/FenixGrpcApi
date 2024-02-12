@@ -9,6 +9,7 @@ message ProcessTestInstructionExecutionPubSubRequest {
 
   ClientSystemIdentificationMessage DomainIdentificationAnfProtoFileVersionUsedByClient = 1; // The Domain identification and The latest proto file version number to be used
   TestInstructionExecutionMessage TestInstruction = 2; // The TestInstruction itself an its attributes
+  string TestCaseExecutionUuid = 3; // The TestCaseExecutionUuid, which holds all TestInstructionExecutions together
 
   message TestInstructionExecutionMessage {
     string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
@@ -30,7 +31,7 @@ message ProcessTestInstructionExecutionPubSubRequest {
   }
 
 
-  TestDataMessage TestData = 7; // TestData used in TestExecution
+  TestDataMessage TestData = 4; // TestData used in TestExecution
 
   message TestDataMessage {
     string TestDataSetUuid = 1; // Reference to TestDataSet held by client system to understand what testdata to use
@@ -51,6 +52,7 @@ message ProcessTestInstructionExecutionPubSubRequest {
     COMBOBOX = 2; // Defines that TestInstructionAttriebute of type ComboBox
     FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
     FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
+    RESPONSE_VARIABLE_COMBOBOX = 5; // List the available response variables from TestInstructionsExecutions done before this TestInstructions in this TestCase
   }
 
   // Message Holding information about who is the calling client system
