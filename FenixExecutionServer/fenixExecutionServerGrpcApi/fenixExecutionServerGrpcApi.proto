@@ -1,7 +1,6 @@
 syntax = "proto3";
 package fenixExecutionServerGrpcApi;
 option go_package = "./go_grpc_api";
-option csharp_namespace = "ExecutionServerGrpc";
 
 import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_Messages.proto";

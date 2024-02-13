@@ -1,10 +1,10 @@
 syntax = "proto3";
 package fenixExecutionConnectorGrpcApi;
 option go_package = "./go_grpc_api";
-option csharp_namespace = "FenixExecutionConnectorGrpcApi";
 
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_Messages.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_MessagesUsedTogetherWithPubSub.proto";
 
 // ****************************************************************************************************
 //
@@ -41,8 +41,9 @@ service FenixExecutionConnectorGrpcServices {
   rpc TriggerRequestForTestInstructionExecutionToProcess(TriggerTestInstructionExecutionResultMessage) returns (AckNackResponse) {
   }
 
-  // Trigger Execution Connector send TestInstruction to ExecutionEngine, which can be local Test WebServer, Local Test-FangEngine or 'real' FangEngine
-  rpc TriggerPostRestCallForTestInstructionExecution(ProcessTestInstructionExecutionReveredRequest) returns (TriggerPostRestCallForTestInstructionExecutionResponse) {
+  // Trigger Connector to Execute a TestInstruction, used for testing both internal execution code and when calls are
+  // done towards external execution. Can use local Test WebServer, internal execution logic or external execution logic
+  rpc TriggerTestInstructionExecution(fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionPubSubRequest) returns (AckNackResponse) {
   }
 
 }
