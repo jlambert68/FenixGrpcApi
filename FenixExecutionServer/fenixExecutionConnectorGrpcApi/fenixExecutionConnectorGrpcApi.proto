@@ -4,7 +4,7 @@ option go_package = "./go_grpc_api";
 
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionConnectorGrpcApi_Messages.proto";
-import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_MessagesUsedTogetherWithPubSub.proto";
+import "FenixExecutionServer/fenixExecutionConnectorGrpcApi/fenixExecutionWorkerGrpcApi_MessagesUsedTogetherWithPubSub.proto";
 
 // ****************************************************************************************************
 //
@@ -43,7 +43,7 @@ service FenixExecutionConnectorGrpcServices {
 
   // Trigger Connector to Execute a TestInstruction, used for testing both internal execution code and when calls are
   // done towards external execution. Can use local Test WebServer, internal execution logic or external execution logic
-  rpc TriggerTestInstructionExecution(fenixExecutionWorkerGrpcApi.ProcessTestInstructionExecutionPubSubRequest) returns (AckNackResponse) {
+  rpc TriggerTestInstructionExecution(TriggerProcessTestInstructionExecutionPubSubRequest) returns (AckNackResponse) {
   }
 
 }

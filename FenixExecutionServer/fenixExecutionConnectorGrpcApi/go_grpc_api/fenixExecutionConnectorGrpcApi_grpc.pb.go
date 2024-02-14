@@ -49,7 +49,7 @@ type FenixExecutionConnectorGrpcServicesClient interface {
 	TriggerRequestForTestInstructionExecutionToProcess(ctx context.Context, in *TriggerTestInstructionExecutionResultMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Trigger Connector to Execute a TestInstruction, used for testing both internal execution code and when calls are
 	// done towards external execution. Can use local Test WebServer, internal execution logic or external execution logic
-	TriggerTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
+	TriggerTestInstructionExecution(ctx context.Context, in *TriggerProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionConnectorGrpcServicesClient struct {
@@ -123,7 +123,7 @@ func (c *fenixExecutionConnectorGrpcServicesClient) TriggerRequestForTestInstruc
 	return out, nil
 }
 
-func (c *fenixExecutionConnectorGrpcServicesClient) TriggerTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionConnectorGrpcServicesClient) TriggerTestInstructionExecution(ctx context.Context, in *TriggerProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -152,7 +152,7 @@ type FenixExecutionConnectorGrpcServicesServer interface {
 	TriggerRequestForTestInstructionExecutionToProcess(context.Context, *TriggerTestInstructionExecutionResultMessage) (*AckNackResponse, error)
 	// Trigger Connector to Execute a TestInstruction, used for testing both internal execution code and when calls are
 	// done towards external execution. Can use local Test WebServer, internal execution logic or external execution logic
-	TriggerTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error)
+	TriggerTestInstructionExecution(context.Context, *TriggerProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionConnectorGrpcServicesServer()
 }
 
@@ -181,7 +181,7 @@ func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerSendAllLogP
 func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerRequestForTestInstructionExecutionToProcess(context.Context, *TriggerTestInstructionExecutionResultMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerRequestForTestInstructionExecutionToProcess not implemented")
 }
-func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error) {
+func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerTestInstructionExecution(context.Context, *TriggerProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerTestInstructionExecution not implemented")
 }
 func (UnimplementedFenixExecutionConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionConnectorGrpcServicesServer() {
@@ -325,7 +325,7 @@ func _FenixExecutionConnectorGrpcServices_TriggerRequestForTestInstructionExecut
 }
 
 func _FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProcessTestInstructionExecutionPubSubRequest)
+	in := new(TriggerProcessTestInstructionExecutionPubSubRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -337,7 +337,7 @@ func _FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_Handle
 		FullMethod: FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionConnectorGrpcServicesServer).TriggerTestInstructionExecution(ctx, req.(*ProcessTestInstructionExecutionPubSubRequest))
+		return srv.(FenixExecutionConnectorGrpcServicesServer).TriggerTestInstructionExecution(ctx, req.(*TriggerProcessTestInstructionExecutionPubSubRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
