@@ -26,7 +26,7 @@ const (
 	FenixExecutionConnectorGrpcServices_TriggerReportCurrentTestInstructionExecutionResult_FullMethodName  = "/fenixExecutionConnectorGrpcApi.FenixExecutionConnectorGrpcServices/TriggerReportCurrentTestInstructionExecutionResult"
 	FenixExecutionConnectorGrpcServices_TriggerSendAllLogPostForExecution_FullMethodName                   = "/fenixExecutionConnectorGrpcApi.FenixExecutionConnectorGrpcServices/TriggerSendAllLogPostForExecution"
 	FenixExecutionConnectorGrpcServices_TriggerRequestForTestInstructionExecutionToProcess_FullMethodName  = "/fenixExecutionConnectorGrpcApi.FenixExecutionConnectorGrpcServices/TriggerRequestForTestInstructionExecutionToProcess"
-	FenixExecutionConnectorGrpcServices_TriggerPostRestCallForTestInstructionExecution_FullMethodName      = "/fenixExecutionConnectorGrpcApi.FenixExecutionConnectorGrpcServices/TriggerPostRestCallForTestInstructionExecution"
+	FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_FullMethodName                     = "/fenixExecutionConnectorGrpcApi.FenixExecutionConnectorGrpcServices/TriggerTestInstructionExecution"
 )
 
 // FenixExecutionConnectorGrpcServicesClient is the client API for FenixExecutionConnectorGrpcServices service.
@@ -47,8 +47,9 @@ type FenixExecutionConnectorGrpcServicesClient interface {
 	TriggerSendAllLogPostForExecution(ctx context.Context, in *TriggerTestInstructionExecutionResultMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Trigger Execution Connector to set up gPRC-connection for sending TestInstructionsExecutions to Connector using streaming responses
 	TriggerRequestForTestInstructionExecutionToProcess(ctx context.Context, in *TriggerTestInstructionExecutionResultMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
-	// Trigger Execution Connector send TestInstruction to ExecutionEngine, which can be local Test WebServer, Local Test-FangEngine or 'real' FangEngine
-	TriggerPostRestCallForTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionReveredRequest, opts ...grpc.CallOption) (*TriggerPostRestCallForTestInstructionExecutionResponse, error)
+	// Trigger Connector to Execute a TestInstruction, used for testing both internal execution code and when calls are
+	// done towards external execution. Can use local Test WebServer, internal execution logic or external execution logic
+	TriggerTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionConnectorGrpcServicesClient struct {
@@ -122,9 +123,9 @@ func (c *fenixExecutionConnectorGrpcServicesClient) TriggerRequestForTestInstruc
 	return out, nil
 }
 
-func (c *fenixExecutionConnectorGrpcServicesClient) TriggerPostRestCallForTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionReveredRequest, opts ...grpc.CallOption) (*TriggerPostRestCallForTestInstructionExecutionResponse, error) {
-	out := new(TriggerPostRestCallForTestInstructionExecutionResponse)
-	err := c.cc.Invoke(ctx, FenixExecutionConnectorGrpcServices_TriggerPostRestCallForTestInstructionExecution_FullMethodName, in, out, opts...)
+func (c *fenixExecutionConnectorGrpcServicesClient) TriggerTestInstructionExecution(ctx context.Context, in *ProcessTestInstructionExecutionPubSubRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -149,8 +150,9 @@ type FenixExecutionConnectorGrpcServicesServer interface {
 	TriggerSendAllLogPostForExecution(context.Context, *TriggerTestInstructionExecutionResultMessage) (*AckNackResponse, error)
 	// Trigger Execution Connector to set up gPRC-connection for sending TestInstructionsExecutions to Connector using streaming responses
 	TriggerRequestForTestInstructionExecutionToProcess(context.Context, *TriggerTestInstructionExecutionResultMessage) (*AckNackResponse, error)
-	// Trigger Execution Connector send TestInstruction to ExecutionEngine, which can be local Test WebServer, Local Test-FangEngine or 'real' FangEngine
-	TriggerPostRestCallForTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionReveredRequest) (*TriggerPostRestCallForTestInstructionExecutionResponse, error)
+	// Trigger Connector to Execute a TestInstruction, used for testing both internal execution code and when calls are
+	// done towards external execution. Can use local Test WebServer, internal execution logic or external execution logic
+	TriggerTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionConnectorGrpcServicesServer()
 }
 
@@ -179,8 +181,8 @@ func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerSendAllLogP
 func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerRequestForTestInstructionExecutionToProcess(context.Context, *TriggerTestInstructionExecutionResultMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerRequestForTestInstructionExecutionToProcess not implemented")
 }
-func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerPostRestCallForTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionReveredRequest) (*TriggerPostRestCallForTestInstructionExecutionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TriggerPostRestCallForTestInstructionExecution not implemented")
+func (UnimplementedFenixExecutionConnectorGrpcServicesServer) TriggerTestInstructionExecution(context.Context, *ProcessTestInstructionExecutionPubSubRequest) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TriggerTestInstructionExecution not implemented")
 }
 func (UnimplementedFenixExecutionConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionConnectorGrpcServicesServer() {
 }
@@ -322,20 +324,20 @@ func _FenixExecutionConnectorGrpcServices_TriggerRequestForTestInstructionExecut
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionConnectorGrpcServices_TriggerPostRestCallForTestInstructionExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProcessTestInstructionExecutionReveredRequest)
+func _FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProcessTestInstructionExecutionPubSubRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionConnectorGrpcServicesServer).TriggerPostRestCallForTestInstructionExecution(ctx, in)
+		return srv.(FenixExecutionConnectorGrpcServicesServer).TriggerTestInstructionExecution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FenixExecutionConnectorGrpcServices_TriggerPostRestCallForTestInstructionExecution_FullMethodName,
+		FullMethod: FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionConnectorGrpcServicesServer).TriggerPostRestCallForTestInstructionExecution(ctx, req.(*ProcessTestInstructionExecutionReveredRequest))
+		return srv.(FenixExecutionConnectorGrpcServicesServer).TriggerTestInstructionExecution(ctx, req.(*ProcessTestInstructionExecutionPubSubRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -376,8 +378,8 @@ var FenixExecutionConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FenixExecutionConnectorGrpcServices_TriggerRequestForTestInstructionExecutionToProcess_Handler,
 		},
 		{
-			MethodName: "TriggerPostRestCallForTestInstructionExecution",
-			Handler:    _FenixExecutionConnectorGrpcServices_TriggerPostRestCallForTestInstructionExecution_Handler,
+			MethodName: "TriggerTestInstructionExecution",
+			Handler:    _FenixExecutionConnectorGrpcServices_TriggerTestInstructionExecution_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
