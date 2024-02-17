@@ -87,7 +87,13 @@ message FinalTestInstructionExecutionResultMessage {
     google.protobuf.Timestamp LogPostTimeStamp = 1; // The TimeStamp for the specific log post
     LogPostStatusEnum LogPostStatus = 2; // The status for the log post
     string LogPostText = 3; // Information text for log post
-    repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 4; // A list with found versus expected values, in string representations
+    repeated FoundVersusExpectedValueForVariableMessage FoundVersusExpectedValueForVariable = 4; // A list of variables with their found versus expected values, in string representations
+
+    message FoundVersusExpectedValueForVariableMessage {
+      string VariableName = 1; // The Name of the variable that is was validated
+      string VariableDescription = 2; // A longer description of  the variable that is was validated
+      FoundVersusExpectedValueMessage FoundVersusExpectedValue = 3; // Found values vs Expected value
+    }
 
     message FoundVersusExpectedValueMessage {
       string FoundValue = 1; // The value that was found
