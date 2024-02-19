@@ -13,11 +13,12 @@ message TriggerProcessTestInstructionExecutionPubSubRequest {
 
   message TestInstructionExecutionMessage {
     string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-    string TestInstructionUuid = 2; // TestInstruction UUID, set by Client system
-    string TestInstructionName = 3; // TestInstruction Name, set by Client system
-    uint32 MajorVersionNumber = 4; // Major Version Number
-    uint32 MinorVersionNumber = 5; // Minor Version Number
-    repeated TestInstructionAttributeMessage TestInstructionAttributes = 6; // A list of all attributes for the TestInstruction
+    uint32 TestInstructionExecutionVersion = 2; // The version number for the TestInstructionExecution, set by Fenix Execution Server
+    string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
+    string TestInstructionName = 4; // TestInstruction Name, set by Client system
+    uint32 MajorVersionNumber = 5; // Major Version Number
+    uint32 MinorVersionNumber = 6; // Minor Version Number
+    repeated TestInstructionAttributeMessage TestInstructionAttributes = 7; // A list of all attributes for the TestInstruction
   }
 
   message TestInstructionAttributeMessage {
