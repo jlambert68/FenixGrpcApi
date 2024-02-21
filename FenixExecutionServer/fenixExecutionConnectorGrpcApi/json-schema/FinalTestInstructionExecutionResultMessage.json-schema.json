@@ -41,6 +41,7 @@
         "TestInstructionExecutionEndTimeStamp",
         "LogPosts"
     ],
+    "additionalProperties": false,
     "definitions": {
         "TestInstructionExecutionStatusEnum": {
             "type": "string",
@@ -79,7 +80,8 @@
                     }
                 }
             },
-            "required": ["LogPostTimeStamp", "LogPostStatus", "LogPostText", "FoundVersusExpectedValue"]
+            "required": ["LogPostTimeStamp", "LogPostStatus", "LogPostText", "FoundVersusExpectedValue"],
+            "additionalProperties": false
         },
         "LogPostStatusEnum": {
             "type": "string",
@@ -102,7 +104,8 @@
                     "type": "string"
                 }
             },
-            "required": ["FoundValue", "ExpectedValue"]
+            "required": ["FoundValue", "ExpectedValue"],
+            "additionalProperties": false
         },
         "ResponseVariableMessage": {
             "type": "object",
@@ -117,10 +120,8 @@
                     "type": "string"
                 }
             },
-            "required": ["ResponseVariableUuid", "ResponseVariableName", "ResponseVariableValueAsString"]
+            "required": ["ResponseVariableUuid", "ResponseVariableName", "ResponseVariableValueAsString"],
+            "additionalProperties": false
         }
     }
 }
-
-
-
