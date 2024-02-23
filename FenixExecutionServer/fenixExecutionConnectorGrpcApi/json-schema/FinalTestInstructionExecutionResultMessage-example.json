@@ -1,47 +1,22 @@
 {
-  "TestInstructionExecutionUuid": "uuid-1234",
-  "TestInstructionExecutionVersion": "1.0",
+  "TestInstructionExecutionUuid": "ae344db4-2d34-474e-bd91-1b24ac408b75",
+  "TestInstructionExecutionVersion": "1",
   "TestInstructionExecutionStatus": "TIE_FINISHED_OK",
-  "TestInstructionExecutionStartTimeStamp": "2021-01-01T00:00:00Z",
-  "TestInstructionExecutionEndTimeStamp": "2021-01-01T01:00:00Z",
+  "TestInstructionExecutionStartTimeStamp": "2024-02-23T09:49:28Z",
+  "TestInstructionExecutionEndTimeStamp": "2024-02-23T09:49:33Z",
   "ResponseVariables": [
     {
-      "ResponseVariableUuid": "var-uuid-1",
-      "ResponseVariableName": "Variable1",
-      "ResponseVariableValueAsString": "Value1"
-    },
-    {
-      "ResponseVariableUuid": "var-uuid-2",
-      "ResponseVariableName": "Variable2",
-      "ResponseVariableValueAsString": "Value2"
+      "ResponseVariableUuid": "24fa2f84-827a-4c01-a86c-da42d888c295",
+      "ResponseVariableName": ":20C::SEME//",
+      "ResponseVariableValueAsString": "2402231049-5811"
     }
   ],
   "LogPosts": [
     {
-      "LogPostTimeStamp": "2021-01-01T00:30:00Z",
+      "LogPostTimeStamp": "2024-02-23T09:49:33Z",
       "LogPostStatus": "INFO",
-      "LogPostText": "Example log post",
-      "FoundVersusExpectedValue": [
-        {
-          "FoundValue": "found-1",
-          "ExpectedValue": "expected-1"
-        },
-        {
-          "FoundValue": "found-2",
-          "ExpectedValue": "expected-2"
-        }
-      ]
-    },
-    {
-      "LogPostTimeStamp": "2021-01-01T00:45:00Z",
-      "LogPostStatus": "VALIDATION_ERROR",
-      "LogPostText": "Validation failed",
-      "FoundVersusExpectedValue": [
-        {
-          "FoundValue": "found-3",
-          "ExpectedValue": "expected-3"
-        }
-      ]
+      "LogPostText": "Message Sent on MQ",
+      "FoundVersusExpectedValue": []
     }
   ]
 }

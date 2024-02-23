@@ -1,0 +1,9 @@
+{
+  "testStepExecutionStatus": {
+    "statusCode": 4,
+    "statusText": "FETSE_FINISHED_OK"
+  },
+  "details": "",
+  "responseValue": "{  \"TestInstructionExecutionUuid\": \"ae344db4-2d34-474e-bd91-1b24ac408b75\",  \"TestInstructionExecutionVersion\": \"1\",  \"TestInstructionExecutionStatus\": \"TIE_FINISHED_OK\",  \"TestInstructionExecutionStartTimeStamp\": \"2024-02-23T09:49:28Z\",  \"TestInstructionExecutionEndTimeStamp\": \"2024-02-23T09:49:33Z\",  \"ResponseVariables\": [    {      \"ResponseVariableUuid\": \"39818ba1-676d-42d0-87da-e1080e9d5ffd\",      \"ResponseVariableName\": \":20C::SEME//\",      \"ResponseVariableValueAsString\": \"2402231049-5811\"    }  ],  \"LogPosts\": [    {      \"LogPostTimeStamp\": \"2024-02-23T09:49:33Z\",      \"LogPostStatus\": \"INFO\",      \"LogPostText\": \"Message Sent on MQ\",      \"FoundVersusExpectedValue\": []    }  ]}",
+  "executionTimeStamp": "2024-02-23T09:49:33.9585348Z"
+}
