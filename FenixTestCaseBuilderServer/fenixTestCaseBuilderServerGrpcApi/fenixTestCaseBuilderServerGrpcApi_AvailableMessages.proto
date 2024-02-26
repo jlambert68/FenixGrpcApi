@@ -7,7 +7,7 @@ option go_package ="./go_grpc_api";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionContainerMessages.proto";
-
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
 
 // All messages in this file is used to control the "tree structure" in GUI where the user can choose from and the put them into a TestCase. They are referred as 'Available-typed'
 
@@ -20,7 +20,8 @@ message AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseM
   repeated DomainsThatCanOwnTheTestCaseMessage DomainsThatCanOwnTheTestCase = 1; // A list of the Domains that can own a TestCase create by a specific user
   repeated ImmatureTestInstructionMessage ImmatureTestInstructions = 2; // List of all TestInstruction
   repeated ImmatureTestInstructionContainerMessage ImmatureTestInstructionContainers = 3; // List of all pre-defined TestInstructionContainers
-  AckNackResponse ackNackResponse = 4; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 4; // Holds all Response variables expected for this
+  AckNackResponse ackNackResponse = 5; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
 // ****************************************************************************************************
