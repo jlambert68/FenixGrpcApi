@@ -39,7 +39,7 @@ message ImmatureTestInstructionMessage {
   BasicTestInstructionInformationMessage BasicTestInstructionInformation = 1; // Data is used to describe the basic information for the TestInstruction
   ImmatureTestInstructionInformationMessage ImmatureTestInstructionInformation = 2; // The immature information for the TestInstruction
   ImmatureElementModelMessage ImmatureSubTestCaseModel = 3; // The immature element model for this TestInstruction
-  SupportedResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 4; // Holds all Response variables expected for this
+  ImmatureResponseVariablesMapStructureMessage ResponseVariablesMapStructure = 4; // Holds all Response variables expected for this
 }
 
 // ****************************************************************************************************
@@ -274,4 +274,23 @@ message ImmatureTestInstructionAttributesMessage {
 
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 
+}
+
+//    **************** **************** **************** Response Variables **************** **************** ****************
+
+// ImmatureResponseVariablesMapStructureMessage
+// This structures holds all Response variables
+message ImmatureResponseVariablesMapStructureMessage  {
+  map<string, ResponseVariableMessage> ResponseVariablesMap = 1; // The Map holding all Response variables
+}
+
+// ImmatureResponseVariableMessage
+// Message holding information about a Response variable
+message ImmatureResponseVariableMessage  {
+  string ResponseVariableUuid  = 1; // The UUID for The Response variable
+  string ResponseVariableName = 2; // The Name of the Response variable
+  string ResponseVariableDescription = 3; // The Name of the Response variable
+  bool   ResponseVariableIsMandatory = 4; // Is Response variable mandatory or not
+  string ResponseVariableTypeUuid = 5; // The UUID for Type or Group of Response variable
+  string ResponseVariableTypeName = 6; // The Name for Type or Group of Response variable
 }

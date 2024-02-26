@@ -74,5 +74,3 @@ message ImmatureTestCaseModelElementMessage {
   TestCaseModelElementTypeEnum TestCaseModelElementType = 8; // The specific type of this TestCase-element
 }
 
-
-
