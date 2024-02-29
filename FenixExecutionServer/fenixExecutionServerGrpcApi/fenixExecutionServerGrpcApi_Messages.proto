@@ -21,14 +21,17 @@ message FinalTestInstructionExecutionResultMessage {
   message ResponseVariableMessage {
     string ResponseVariableUuid = 1; // The UUID of the Variable
     string ResponseVariableName = 2; // The Name of the Variable
-    string ResponseVariableValueAsString = 3; // The string representation of the Variable
+    string ResponseVariableTypeUuid = 3; // The UUID for the type ResponseVariable. Used for matching as input to TestInstruction
+    string ResponseVariableTypeName = 4; // The Name for the type ResponseVariable
+    string ResponseVariableValueAsString = 5; // The string representation of the Variable
   }
 
   message LogPostMessage {
-    google.protobuf.Timestamp LogPostTimeStamp = 1; // The TimeStamp for the specific log post
-    LogPostStatusEnum LogPostStatus = 2; // The status for the log post
-    string LogPostText = 3; // Information text for log post
-    repeated FoundVersusExpectedValueForVariableMessage FoundVersusExpectedValueForVariable = 4; // A list of variables with their found versus expected values, in string representations
+    string LogPostUuid = 1; // The unique uuid for this log post
+    google.protobuf.Timestamp LogPostTimeStamp = 2; // The TimeStamp for the specific log post
+    LogPostStatusEnum LogPostStatus = 3; // The status for the log post
+    string LogPostText = 4; // Information text for log post
+    repeated FoundVersusExpectedValueForVariableMessage FoundVersusExpectedValueForVariable = 5; // A list of variables with their found versus expected values, in string representations
 
     message FoundVersusExpectedValueForVariableMessage {
       string VariableName = 1; // The Name of the variable that is was validated
