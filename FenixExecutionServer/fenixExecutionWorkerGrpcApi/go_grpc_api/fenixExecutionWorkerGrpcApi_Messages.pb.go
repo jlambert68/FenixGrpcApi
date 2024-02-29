@@ -277,7 +277,7 @@ type FinalTestInstructionExecutionResultMessage struct {
 
 	ClientSystemIdentification             *ClientSystemIdentificationMessage                                    `protobuf:"bytes,1,opt,name=ClientSystemIdentification,proto3" json:"ClientSystemIdentification,omitempty"`                                                                              // Identifies Client System and Proto-file version used
 	TestInstructionExecutionUuid           string                                                                `protobuf:"bytes,2,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`                                                                          // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-	TestInstructionExecutionVersion        string                                                                `protobuf:"bytes,3,opt,name=TestInstructionExecutionVersion,proto3" json:"TestInstructionExecutionVersion,omitempty"`                                                                    // The version number for the TestInstructionExecution, set by Fenix Execution Server
+	TestInstructionExecutionVersion        int32                                                                 `protobuf:"varint,3,opt,name=TestInstructionExecutionVersion,proto3" json:"TestInstructionExecutionVersion,omitempty"`                                                                   // The version number for the TestInstructionExecution, set by Fenix Execution Server
 	TestInstructionExecutionStatus         TestInstructionExecutionStatusEnum                                    `protobuf:"varint,4,opt,name=TestInstructionExecutionStatus,proto3,enum=fenixExecutionWorkerGrpcApi.TestInstructionExecutionStatusEnum" json:"TestInstructionExecutionStatus,omitempty"` // The final status for the TestInstruction-execution
 	TestInstructionExecutionStartTimeStamp *timestamp.Timestamp                                                  `protobuf:"bytes,5,opt,name=TestInstructionExecutionStartTimeStamp,proto3" json:"TestInstructionExecutionStartTimeStamp,omitempty"`                                                      // The TimeStamp for when the TestInstructionExecution started
 	TestInstructionExecutionEndTimeStamp   *timestamp.Timestamp                                                  `protobuf:"bytes,6,opt,name=TestInstructionExecutionEndTimeStamp,proto3" json:"TestInstructionExecutionEndTimeStamp,omitempty"`                                                          // The TimeStamp for when the TestInstructionExecution ended
@@ -331,11 +331,11 @@ func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecution
 	return ""
 }
 
-func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionVersion() string {
+func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionVersion() int32 {
 	if x != nil {
 		return x.TestInstructionExecutionVersion
 	}
-	return ""
+	return 0
 }
 
 func (x *FinalTestInstructionExecutionResultMessage) GetTestInstructionExecutionStatus() TestInstructionExecutionStatusEnum {
@@ -1535,7 +1535,7 @@ var file_FenixExecutionServer_fenixExecutionWorkerGrpcApi_fenixExecutionWorkerGr
 	0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
 	0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x48, 0x0a, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73,
 	0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
-	0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1f,
+	0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x1f,
 	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x45,
 	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12,
 	0x87, 0x01, 0x0a, 0x1e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,

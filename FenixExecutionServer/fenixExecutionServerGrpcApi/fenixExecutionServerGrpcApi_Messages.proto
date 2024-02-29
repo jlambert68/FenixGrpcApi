@@ -11,7 +11,7 @@ import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrp
 message FinalTestInstructionExecutionResultMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
-  string TestInstructionExecutionVersion = 3; // The version number for the TestInstructionExecution, set by Fenix Execution Server
+  int32 TestInstructionExecutionVersion = 3; // The version number for the TestInstructionExecution, set by Fenix Execution Server
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 4; // The final status for the TestInstruction-execution
   google.protobuf.Timestamp TestInstructionExecutionStartTimeStamp = 5; // The TimeStamp for when the TestInstructionExecution started
   google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 6; // The TimeStamp for when the TestInstructionExecution ended
