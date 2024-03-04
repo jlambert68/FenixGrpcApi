@@ -140,6 +140,9 @@
         "ResponseVariableMessage": {
             "type": "object",
             "properties": {
+                "TestInstructionVersion": {
+                    "type": "string"
+                },
                 "ResponseVariableUuid": {
                     "type": "string",
                     "format": "uuid"
