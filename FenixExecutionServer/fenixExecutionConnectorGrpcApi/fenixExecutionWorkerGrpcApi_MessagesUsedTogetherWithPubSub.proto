@@ -14,7 +14,7 @@ message TriggerProcessTestInstructionExecutionPubSubRequest {
   message TestInstructionExecutionMessage {
     string TestInstructionExecutionUuid = 1; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
     uint32 TestInstructionExecutionVersion = 2; // The version number for the TestInstructionExecution, set by Fenix Execution Server
-    string TestInstructionUuid = 3; // TestInstruction UUID, set by Client system
+    string TestInstructionOriginalUuid = 3; // TestInstruction UUID, set by Client system
     string TestInstructionName = 4; // TestInstruction Name, set by Client system
     uint32 MajorVersionNumber = 5; // Major Version Number
     uint32 MinorVersionNumber = 6; // Minor Version Number
