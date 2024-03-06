@@ -72,11 +72,12 @@ message FinalTestInstructionExecutionResultMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
   int32 TestInstructionExecutionVersion = 3; // The version number for the TestInstructionExecution, set by Fenix Execution Server
-  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 4; // The final status for the TestInstruction-execution
-  google.protobuf.Timestamp TestInstructionExecutionStartTimeStamp = 5; // The TimeStamp for when the TestInstructionExecution started
-  google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 6; // The TimeStamp for when the TestInstructionExecution ended
-  repeated ResponseVariableMessage ResponseVariables = 7; // Connector can send back variables to be used by later TestInstructionExecutions
-  repeated LogPostMessage LogPosts = 8; // The container containing the actual log information
+  string MatureTestInstructionUuid = 4; // The unique uuid for the TestInstruction when it is added to a TestCase, set by FenixTesterGui
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 5; // The final status for the TestInstruction-execution
+  google.protobuf.Timestamp TestInstructionExecutionStartTimeStamp = 6; // The TimeStamp for when the TestInstructionExecution started
+  google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 7; // The TimeStamp for when the TestInstructionExecution ended
+  repeated ResponseVariableMessage ResponseVariables = 8; // Connector can send back variables to be used by later TestInstructionExecutions
+  repeated LogPostMessage LogPosts = 9; // The container containing the actual log information
 
   message ResponseVariableMessage {
     string ResponseVariableUuid = 1; // The UUID of the Variable
