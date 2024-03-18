@@ -227,6 +227,7 @@ message MatureTestInstructionInformationMessage {
         string ChosenResponseVariableTypeUuid = 8; // The Uuid of the chosen allowed response variable type
         string ChosenResponseVariableTypeName = 9; // The Name of the chosen allowed response variable type
         string ComboBoxAttributeValueAsString = 10; // The value for the the ComboBox, used for presentation
+        string ComboBoxResponseVariableInputMask = 11; // RegEx Input mask for the ResponseVariableComboBox
 
         // Defines one Allowed Response Variable that will be able to choose from
         message AllowedResponseVariableTypeMessage {
