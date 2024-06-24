@@ -353,6 +353,7 @@ const (
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorProcessTestInstructionExecutionResponse_FullMethodName                                     = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorProcessTestInstructionExecutionResponse"
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorInformsItIsAlive_FullMethodName                                                            = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorInformsItIsAlive"
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
+	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName                               = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishTemplateRepositoryConnectionParameters"
 )
 
 // FenixExecutionWorkerConnectorGrpcServicesClient is the client API for FenixExecutionWorkerConnectorGrpcServices service.
@@ -375,6 +376,8 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	ConnectorInformsItIsAlive(ctx context.Context, in *ConnectorIsReadyMessage, opts ...grpc.CallOption) (*ConnectorIsReadyResponseMessage, error)
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector publish Template Repository Connection Parameters
+	ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionWorkerConnectorGrpcServicesClient struct {
@@ -471,6 +474,15 @@ func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishSuppor
 	return out, nil
 }
 
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixExecutionWorkerConnectorGrpcServicesServer is the server API for FenixExecutionWorkerConnectorGrpcServices service.
 // All implementations must embed UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer
 // for forward compatibility
@@ -491,6 +503,8 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	ConnectorInformsItIsAlive(context.Context, *ConnectorIsReadyMessage) (*ConnectorIsReadyResponseMessage, error)
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error)
+	// Connector publish Template Repository Connection Parameters
+	ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }
 
@@ -518,6 +532,9 @@ func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorInf
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTemplateRepositoryConnectionParameters not implemented")
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {
 }
@@ -662,6 +679,24 @@ func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedTestIns
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AllTemplateRepositoryConnectionParameters)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishTemplateRepositoryConnectionParameters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishTemplateRepositoryConnectionParameters(ctx, req.(*AllTemplateRepositoryConnectionParameters))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixExecutionWorkerConnectorGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionWorkerConnectorGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -692,6 +727,10 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers",
 			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_Handler,
+		},
+		{
+			MethodName: "ConnectorPublishTemplateRepositoryConnectionParameters",
+			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
