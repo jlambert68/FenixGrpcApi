@@ -1,0 +1,27 @@
+syntax = "proto3";
+package fenixExecutionWorkerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "google/protobuf/timestamp.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
+
+// AllTemplateRepositoryConnectionParameters
+// Message holding parameters to be used to get all Templates from all Repositories
+message AllTemplateRepositoryConnectionParameters {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  repeated TemplateRepositoryConnectionParameters AllTemplateRepositories = 2; // A list with all parameters to all different template repositories
+}
+
+// TemplateRepositoryConnectionParameters
+// Message holding parameters to be used to get a Template or group of Templates from one Repository
+// TotalApiUrl := "repositoryApiUrl" + "/" +  repositoryOwner + "/" + repositoryName + "/contents" + repositoryPath
+// TotalApiUrl := "https://api.github.com/repos/jlambert68/FenixTesterGui/contents"
+message TemplateRepositoryConnectionParameters {
+  string RepositoryApiUrl = 1; // the base URL to the API e.g. "https://api.github.com/repos"
+  string RepositoryOwner = 2; // The owner of the repository e.g. "jlambert68"
+  string RepositoryName = 3; // The name of the repository e.g. "FenixTesterGui"
+  string RepositoryPath = 4; // The path within the repository e.g "" for storing templates in base of repository
+
+}
+
+
