@@ -44,6 +44,9 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc ListAllImmatureTestInstructionAttributes (UserIdentificationMessage) returns (ImmatureTestInstructionAttributesMessage) {
   }
 
+  // The TestCase Builder asks for a list of all url:s to repositories where templates are stored
+  rpc ListAllRepositoryApiUrls(UserIdentificationMessage)  returns (ListAllRepositoryApiUrlsResponseMessage) {
+  }
 
   // *** Send data to DB ***
 

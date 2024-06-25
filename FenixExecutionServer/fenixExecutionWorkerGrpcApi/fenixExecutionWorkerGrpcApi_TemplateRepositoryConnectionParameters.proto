@@ -16,12 +16,12 @@ message AllTemplateRepositoryConnectionParameters {
 // TotalApiUrl := "repositoryApiUrl" + "/" +  repositoryOwner + "/" + repositoryName + "/contents" + repositoryPath
 // TotalApiUrl := "https://api.github.com/repos/jlambert68/FenixTesterGui/contents"
 message TemplateRepositoryConnectionParameters {
-  string RepositoryApiUrl = 1; // the base URL to the API e.g. "https://api.github.com/repos"
-  string RepositoryOwner = 2; // The owner of the repository e.g. "jlambert68"
-  string RepositoryName = 3; // The name of the repository e.g. "FenixTesterGui"
-  string RepositoryPath = 4; // The path within the repository e.g "" for storing templates in base of repository
-  string GitHubApiKey = 5; // The key used to access the files in this repository
-
+  string RepositoryApiUrlName = 1; // The name the user will see in UI when to chose Template-repository
+  string RepositoryApiUrl = 2; // the base URL to the API e.g. "https://api.github.com/repos"
+  string RepositoryOwner = 3; // The owner of the repository e.g. "jlambert68"
+  string RepositoryName = 4; // The name of the repository e.g. "FenixTesterGui"
+  string RepositoryPath = 5; // The path within the repository e.g "" for storing templates in base of repository
+  string GitHubApiKey = 6; // The key used to access the files in this repository
 }
 
 
