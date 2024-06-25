@@ -687,6 +687,7 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 
 const (
 	FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
+	FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName                      = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/ConnectorPublishTemplateRepositoryConnectionParameters"
 	FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/GetMessageToSignToProveCallerIdentity"
 )
 
@@ -696,6 +697,8 @@ const (
 type FenixTestCaseBuilderServerGrpcWorkerServicesClient interface {
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector publish Template Repository Connection Parameters
+	ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
 	GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error)
 }
@@ -717,6 +720,15 @@ func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) PublishSupportedTes
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error) {
 	out := new(GetMessageToSignToProveCallerIdentityResponse)
 	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName, in, out, opts...)
@@ -732,6 +744,8 @@ func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) GetMessageToSignToP
 type FenixTestCaseBuilderServerGrpcWorkerServicesServer interface {
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error)
+	// Connector publish Template Repository Connection Parameters
+	ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error)
 	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
 	GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer()
@@ -743,6 +757,9 @@ type UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer struct {
 
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTemplateRepositoryConnectionParameters not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMessageToSignToProveCallerIdentity not implemented")
@@ -779,6 +796,24 @@ func _FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructi
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AllTemplateRepositoryConnectionParameters)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).ConnectorPublishTemplateRepositoryConnectionParameters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).ConnectorPublishTemplateRepositoryConnectionParameters(ctx, req.(*AllTemplateRepositoryConnectionParameters))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyParameter)
 	if err := dec(in); err != nil {
@@ -807,6 +842,10 @@ var FenixTestCaseBuilderServerGrpcWorkerServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers",
 			Handler:    _FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_Handler,
+		},
+		{
+			MethodName: "ConnectorPublishTemplateRepositoryConnectionParameters",
+			Handler:    _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_Handler,
 		},
 		{
 			MethodName: "GetMessageToSignToProveCallerIdentity",

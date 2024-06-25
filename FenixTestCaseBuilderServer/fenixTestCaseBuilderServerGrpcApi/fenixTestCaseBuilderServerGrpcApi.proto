@@ -10,7 +10,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionContainerMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
-
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters.proto";
 
 // ****************************************************************************************************
 // Fenix TestCase-builder server service definition. (Will support Test Suite building in feature, and will then be renamed)
@@ -104,6 +104,10 @@ service FenixTestCaseBuilderServerGrpcWorkerServices {
 
   // Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
   rpc PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers (SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) returns (AckNackResponse) {
+  }
+
+  // Connector publish Template Repository Connection Parameters
+  rpc ConnectorPublishTemplateRepositoryConnectionParameters (AllTemplateRepositoryConnectionParameters) returns (AckNackResponse) {
   }
 
   // Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
