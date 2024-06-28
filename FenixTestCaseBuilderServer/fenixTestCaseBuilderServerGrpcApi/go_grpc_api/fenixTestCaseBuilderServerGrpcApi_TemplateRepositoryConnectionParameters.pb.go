@@ -233,6 +233,8 @@ func (x *ListAllRepositoryApiUrlsResponseMessage) GetRepositoryApiUrls() []*Repo
 	return nil
 }
 
+// RepositoryApiUrlResponseMessage
+// One Repository with name, url and it GithubApiKey
 type RepositoryApiUrlResponseMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -292,6 +294,152 @@ func (x *RepositoryApiUrlResponseMessage) GetRepositoryApiFullUrl() string {
 func (x *RepositoryApiUrlResponseMessage) GetGitHubApiKey() string {
 	if x != nil {
 		return x.GitHubApiKey
+	}
+	return ""
+}
+
+// TestCaseTemplateFilesMessage
+// Message holding all Template files
+type TestCaseTemplateFilesMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCaseTemplateFile []*TestCaseTemplateFileMessage `protobuf:"bytes,1,rep,name=TestCaseTemplateFile,proto3" json:"TestCaseTemplateFile,omitempty"` // A list with all templates
+	HashForAllFiles      string                         `protobuf:"bytes,2,opt,name=HashForAllFiles,proto3" json:"HashForAllFiles,omitempty"`           // Hash calculated from all file-hashes, using Fenix standard method
+}
+
+func (x *TestCaseTemplateFilesMessage) Reset() {
+	*x = TestCaseTemplateFilesMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseTemplateFilesMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseTemplateFilesMessage) ProtoMessage() {}
+
+func (x *TestCaseTemplateFilesMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseTemplateFilesMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseTemplateFilesMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *TestCaseTemplateFilesMessage) GetTestCaseTemplateFile() []*TestCaseTemplateFileMessage {
+	if x != nil {
+		return x.TestCaseTemplateFile
+	}
+	return nil
+}
+
+func (x *TestCaseTemplateFilesMessage) GetHashForAllFiles() string {
+	if x != nil {
+		return x.HashForAllFiles
+	}
+	return ""
+}
+
+// TestCaseTemplateFileMessage
+// Message holding one Template file
+type TestCaseTemplateFileMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name                string `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`                               // E.g "TODO.txt"
+	URL                 string `protobuf:"bytes,2,opt,name=URL,proto3" json:"URL,omitempty"`                                 // E.g "https://api.github.com/repos/jlambert68/FenixTesterGui/contents/TODO.txt?ref=master"
+	DownloadURL         string `protobuf:"bytes,3,opt,name=DownloadURL,proto3" json:"DownloadURL,omitempty"`                 // E.g "https://raw.githubusercontent.com/jlambert68/FenixTesterGui/master/TODO.txt"
+	SHA                 string `protobuf:"bytes,4,opt,name=SHA,proto3" json:"SHA,omitempty"`                                 // E.g "8d8a4611838f57328ca3ba2a091686911659ef33"
+	Size                int64  `protobuf:"varint,5,opt,name=Size,proto3" json:"Size,omitempty"`                              // E.g 114
+	FileContentAsString string `protobuf:"bytes,6,opt,name=FileContentAsString,proto3" json:"FileContentAsString,omitempty"` // The file as readable text
+}
+
+func (x *TestCaseTemplateFileMessage) Reset() {
+	*x = TestCaseTemplateFileMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseTemplateFileMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseTemplateFileMessage) ProtoMessage() {}
+
+func (x *TestCaseTemplateFileMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseTemplateFileMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseTemplateFileMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *TestCaseTemplateFileMessage) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TestCaseTemplateFileMessage) GetURL() string {
+	if x != nil {
+		return x.URL
+	}
+	return ""
+}
+
+func (x *TestCaseTemplateFileMessage) GetDownloadURL() string {
+	if x != nil {
+		return x.DownloadURL
+	}
+	return ""
+}
+
+func (x *TestCaseTemplateFileMessage) GetSHA() string {
+	if x != nil {
+		return x.SHA
+	}
+	return ""
+}
+
+func (x *TestCaseTemplateFileMessage) GetSize() int64 {
+	if x != nil {
+		return x.Size
+	}
+	return 0
+}
+
+func (x *TestCaseTemplateFileMessage) GetFileContentAsString() string {
+	if x != nil {
+		return x.FileContentAsString
 	}
 	return ""
 }
@@ -403,9 +551,33 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x01, 0x28, 0x09, 0x52, 0x14, 0x52, 0x65, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x6f, 0x72, 0x79, 0x41,
 	0x70, 0x69, 0x46, 0x75, 0x6c, 0x6c, 0x55, 0x72, 0x6c, 0x12, 0x22, 0x0a, 0x0c, 0x47, 0x69, 0x74,
 	0x48, 0x75, 0x62, 0x41, 0x70, 0x69, 0x4b, 0x65, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x0c, 0x47, 0x69, 0x74, 0x48, 0x75, 0x62, 0x41, 0x70, 0x69, 0x4b, 0x65, 0x79, 0x42, 0x0f, 0x5a,
-	0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x0c, 0x47, 0x69, 0x74, 0x48, 0x75, 0x62, 0x41, 0x70, 0x69, 0x4b, 0x65, 0x79, 0x22, 0xbc, 0x01,
+	0x0a, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61,
+	0x74, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x72,
+	0x0a, 0x14, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61,
+	0x74, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3e, 0x2e, 0x66,
+	0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c,
+	0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69,
+	0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x14, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74, 0x65, 0x46, 0x69,
+	0x6c, 0x65, 0x12, 0x28, 0x0a, 0x0f, 0x48, 0x61, 0x73, 0x68, 0x46, 0x6f, 0x72, 0x41, 0x6c, 0x6c,
+	0x46, 0x69, 0x6c, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x48, 0x61, 0x73,
+	0x68, 0x46, 0x6f, 0x72, 0x41, 0x6c, 0x6c, 0x46, 0x69, 0x6c, 0x65, 0x73, 0x22, 0xbd, 0x01, 0x0a,
+	0x1b, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x65, 0x6d, 0x70, 0x6c, 0x61, 0x74,
+	0x65, 0x46, 0x69, 0x6c, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x12, 0x0a, 0x04,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x4e, 0x61, 0x6d, 0x65,
+	0x12, 0x10, 0x0a, 0x03, 0x55, 0x52, 0x4c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x55,
+	0x52, 0x4c, 0x12, 0x20, 0x0a, 0x0b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61, 0x64, 0x55, 0x52,
+	0x4c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x44, 0x6f, 0x77, 0x6e, 0x6c, 0x6f, 0x61,
+	0x64, 0x55, 0x52, 0x4c, 0x12, 0x10, 0x0a, 0x03, 0x53, 0x48, 0x41, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x03, 0x53, 0x48, 0x41, 0x12, 0x12, 0x0a, 0x04, 0x53, 0x69, 0x7a, 0x65, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x04, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x30, 0x0a, 0x13, 0x46, 0x69,
+	0x6c, 0x65, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x41, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x13, 0x46, 0x69, 0x6c, 0x65, 0x43, 0x6f, 0x6e,
+	0x74, 0x65, 0x6e, 0x74, 0x41, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x42, 0x0f, 0x5a, 0x0d,
+	0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -420,27 +592,30 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_rawDescData
 }
 
-var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_goTypes = []interface{}{
 	(*AllTemplateRepositoryConnectionParameters)(nil),  // 0: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters
 	(*TemplateRepositoryConnectionParameters)(nil),     // 1: fenixTestCaseBuilderServerGrpcApi.TemplateRepositoryConnectionParameters
 	(*ListAllRepositoryApiUrlsResponseMessage)(nil),    // 2: fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage
 	(*RepositoryApiUrlResponseMessage)(nil),            // 3: fenixTestCaseBuilderServerGrpcApi.RepositoryApiUrlResponseMessage
-	(*ClientSystemIdentificationMessage)(nil),          // 4: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
-	(*SignedMessageByWorkerServiceAccountMessage)(nil), // 5: fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
-	(*AckNackResponse)(nil),                            // 6: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	(*TestCaseTemplateFilesMessage)(nil),               // 4: fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFilesMessage
+	(*TestCaseTemplateFileMessage)(nil),                // 5: fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFileMessage
+	(*ClientSystemIdentificationMessage)(nil),          // 6: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	(*SignedMessageByWorkerServiceAccountMessage)(nil), // 7: fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
+	(*AckNackResponse)(nil),                            // 8: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_depIdxs = []int32{
-	4, // 0: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters.ClientSystemIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	6, // 0: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters.ClientSystemIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
 	1, // 1: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters.AllTemplateRepositories:type_name -> fenixTestCaseBuilderServerGrpcApi.TemplateRepositoryConnectionParameters
-	5, // 2: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters.SignedMessageByWorkerServiceAccount:type_name -> fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
-	6, // 3: fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	7, // 2: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters.SignedMessageByWorkerServiceAccount:type_name -> fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
+	8, // 3: fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 	3, // 4: fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage.RepositoryApiUrls:type_name -> fenixTestCaseBuilderServerGrpcApi.RepositoryApiUrlResponseMessage
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	5, // 5: fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFilesMessage.TestCaseTemplateFile:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFileMessage
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() {
@@ -501,6 +676,30 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 				return nil
 			}
 		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCaseTemplateFilesMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCaseTemplateFileMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -508,7 +707,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

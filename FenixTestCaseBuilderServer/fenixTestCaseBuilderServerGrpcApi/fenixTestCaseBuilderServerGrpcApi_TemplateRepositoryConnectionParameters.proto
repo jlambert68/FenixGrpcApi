@@ -34,8 +34,30 @@ message ListAllRepositoryApiUrlsResponseMessage {
   repeated RepositoryApiUrlResponseMessage RepositoryApiUrls = 2; // A list of all URLs tha the user can use when picking templates in TestCases
 }
 
+// RepositoryApiUrlResponseMessage
+// One Repository with name, url and it GithubApiKey
 message RepositoryApiUrlResponseMessage {
   string RepositoryApiUrlName = 1; // The name the user will see in UI when to chose Template-repository
   string RepositoryApiFullUrl = 2; // The full URL to the API, for TesterGui to use, e.g. "https://api.github.com/repos/jlambert68/FenixTesterGui/contents"
   string GitHubApiKey = 3; // The key used to access the files in this repository
+}
+
+
+// TestCaseTemplateFilesMessage
+// Message holding all Template files
+message     TestCaseTemplateFilesMessage {
+  repeated TestCaseTemplateFileMessage TestCaseTemplateFile = 1; // A list with all templates
+  string HashForAllFiles = 2; // Hash calculated from all file-hashes, using Fenix standard method
+}
+
+
+// TestCaseTemplateFileMessage
+// Message holding one Template file
+message TestCaseTemplateFileMessage {
+  string Name = 1; // E.g "TODO.txt"
+  string URL = 2; // E.g "https://api.github.com/repos/jlambert68/FenixTesterGui/contents/TODO.txt?ref=master"
+  string DownloadURL = 3; // E.g "https://raw.githubusercontent.com/jlambert68/FenixTesterGui/master/TODO.txt"
+  string SHA = 4; // E.g "8d8a4611838f57328ca3ba2a091686911659ef33"
+  int64 Size = 5; // E.g 114
+  string FileContentAsString = 6; // The file as readable text
 }

@@ -9,6 +9,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionContainerMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseExtraInfoMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters.proto";
 
 
 // All messages in this file is used to define the TestCase
@@ -189,7 +190,8 @@ message FullTestCaseMessage {
   MatureTestInstructionsMessage MatureTestInstructions = 2; // All TestInstructions to be saved
   MatureTestInstructionContainersMessage MatureTestInstructionContainers = 3; // All TestInstructionContainers to be saved
   TestCaseExtraInformationMessage TestCaseExtraInformation = 4; // Extra information saved for TestCase
-  string MessageHash = 5; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
+  TestCaseTemplateFilesMessage TestCaseTemplateFiles = 5; // All template files that are stored in the TestCase
+  string MessageHash = 6; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
 }
 
 
