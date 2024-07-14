@@ -17,6 +17,8 @@ message TestDataFromOneSimpleTestDataAreaFileMessage {
   string TestDataAreaName = 4; // The Name of  the TestData-area in Domain that the TestData belongs to
   repeated  HeaderForTestDataFromOneSimpleTestDataAreaFileMessage            HeadersForTestDataFromOneSimpleTestDataAreaFile = 5; // All headers for the TestData
   repeated SimpleTestDataRowMessage SimpleTestDataRows = 6; // All TestDataRows belonging to a simple TestData-file
+  string TestDataFileSha256Hash = 7; // The sha256 file hash for the simple TestData-file
+  string ImportantDataInFileSha256Hash = 8; // The sha256 of the following data in file;  TestDataDomainUuid, TestDataAreaUuid, SimpleTestDataRows
 }
 
 // Message holding one header from a "Simple" TestDataArea-file
