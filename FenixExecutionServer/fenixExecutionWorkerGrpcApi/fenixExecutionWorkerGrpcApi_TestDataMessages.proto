@@ -16,12 +16,13 @@ message TestDataFromSimpleTestDataAreaFileMessage {
 message TestDataFromOneSimpleTestDataAreaFileMessage {
   string TestDataDomainUuid = 1; // The UUID of the Domain that the TestData belongs to
   string TestDataDomainName = 2; // The Name of the Domain that the TestData belongs to
-  string  TestDataAreaUuid = 3; // The UUID of the TestData-area in Domain that the TestData belongs to
-  string TestDataAreaName = 4; // The Name of  the TestData-area in Domain that the TestData belongs to
-  repeated  HeaderForTestDataFromOneSimpleTestDataAreaFileMessage            HeadersForTestDataFromOneSimpleTestDataAreaFile = 5; // All headers for the TestData
-  repeated SimpleTestDataRowMessage SimpleTestDataRows = 6; // All TestDataRows belonging to a simple TestData-file
-  string TestDataFileSha256Hash = 7; // The sha256 file hash for the simple TestData-file
-  string ImportantDataInFileSha256Hash = 8; // The sha256 of the following data in file;  TestDataDomainUuid, TestDataAreaUuid, SimpleTestDataRows
+  string TestDataDomainTemplateName = 3; // The name used in Template to reference correct Domain- This name can't have any spaces in it
+  string  TestDataAreaUuid = 4; // The UUID of the TestData-area in Domain that the TestData belongs to
+  string TestDataAreaName = 5; // The Name of  the TestData-area in Domain that the TestData belongs to
+  repeated  HeaderForTestDataFromOneSimpleTestDataAreaFileMessage HeadersForTestDataFromOneSimpleTestDataAreaFile = 6; // All headers for the TestData
+  repeated SimpleTestDataRowMessage SimpleTestDataRows = 7; // All TestDataRows belonging to a simple TestData-file
+  string TestDataFileSha256Hash = 8; // The sha256 file hash for the simple TestData-file
+  string ImportantDataInFileSha256Hash = 9; // The sha256 of the following data in file;  TestDataDomainUuid, TestDataAreaUuid, SimpleTestDataRows
 }
 
 // Message holding one header from a "Simple" TestDataArea-file
