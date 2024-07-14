@@ -727,6 +727,7 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 const (
 	FenixTestCaseBuilderServerGrpcWorkerServices_PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
 	FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName                      = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/ConnectorPublishTemplateRepositoryConnectionParameters"
+	FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName                          = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/ConnectorPublishTestDataFromSimpleTestDataAreaFile"
 	FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices/GetMessageToSignToProveCallerIdentity"
 )
 
@@ -738,6 +739,8 @@ type FenixTestCaseBuilderServerGrpcWorkerServicesClient interface {
 	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Connector publish Template Repository Connection Parameters
 	ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector Publish TestData From a Simple TestData-file for one TestData-area
+	ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
 	GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error)
 }
@@ -768,6 +771,15 @@ func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) ConnectorPublishTem
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error) {
 	out := new(GetMessageToSignToProveCallerIdentityResponse)
 	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_FullMethodName, in, out, opts...)
@@ -785,6 +797,8 @@ type FenixTestCaseBuilderServerGrpcWorkerServicesServer interface {
 	PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error)
 	// Connector publish Template Repository Connection Parameters
 	ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error)
+	// Connector Publish TestData From a Simple TestData-file for one TestData-area
+	ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error)
 	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
 	GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer()
@@ -799,6 +813,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) PublishSu
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTemplateRepositoryConnectionParameters not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTestDataFromSimpleTestDataAreaFile not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMessageToSignToProveCallerIdentity not implemented")
@@ -853,6 +870,24 @@ func _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepos
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestDataFromSimpleTestDataAreaFileMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx, req.(*TestDataFromSimpleTestDataAreaFileMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixTestCaseBuilderServerGrpcWorkerServices_GetMessageToSignToProveCallerIdentity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EmptyParameter)
 	if err := dec(in); err != nil {
@@ -885,6 +920,10 @@ var FenixTestCaseBuilderServerGrpcWorkerServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConnectorPublishTemplateRepositoryConnectionParameters",
 			Handler:    _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTemplateRepositoryConnectionParameters_Handler,
+		},
+		{
+			MethodName: "ConnectorPublishTestDataFromSimpleTestDataAreaFile",
+			Handler:    _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_Handler,
 		},
 		{
 			MethodName: "GetMessageToSignToProveCallerIdentity",

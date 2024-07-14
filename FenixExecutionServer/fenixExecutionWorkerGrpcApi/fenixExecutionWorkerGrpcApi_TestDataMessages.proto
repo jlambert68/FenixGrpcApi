@@ -1,0 +1,35 @@
+syntax = "proto3";
+package fenixExecutionWorkerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
+
+
+
+// The Message that Connector sends and holds TestData for one TestDataArea from a "simple" TestData-file.
+message TestDataFromSimpleTestDataAreaFileMessage {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  TestDataFromOneSimpleTestDataAreaFileMessage TestDataFromSimpleTestDataAreaFile = 2; // The message to be Signe
+}
+
+// TestData from a Simple-file for one TestDataArea
+message TestDataFromOneSimpleTestDataAreaFileMessage {
+  string TestDataDomainUuid = 1; // The UUID of the Domain that the TestData belongs to
+  string TestDataDomainName = 2; // The Name of the Domain that the TestData belongs to
+  string  TestDataAreaUuid = 3; // The UUID of the TestData-area in Domain that the TestData belongs to
+  string TestDataAreaName = 4; // The Name of  the TestData-area in Domain that the TestData belongs to
+  repeated  HeaderForTestDataFromOneSimpleTestDataAreaFileMessage            HeadersForTestDataFromOneSimpleTestDataAreaFile = 5; // All headers for the TestData
+  repeated SimpleTestDataRowMessage SimpleTestDataRows = 6; // All TestDataRows belonging to a simple TestData-file
+}
+
+// Message holding one header from a "Simple" TestDataArea-file
+message HeaderForTestDataFromOneSimpleTestDataAreaFileMessage {
+  bool ShouldHeaderActAsFilter = 1; // Will this 'header' be in the filter when user filters for correct TestData
+  string HeaderName = 2; // The Name of the Column. This name can't have any spaces in it and is used in Templates
+  string HeaderUiName = 3; // The Name that will be presented in the GUI. Can have spaces in it
+}
+
+// One TestDataRow for TestData from a "Simple" TestData-file
+message SimpleTestDataRowMessage {
+  repeated string TestDataValue = 1; // All values in a TestDataRow that belongs to a SimpleTestData-file
+}

@@ -354,6 +354,7 @@ const (
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorInformsItIsAlive_FullMethodName                                                            = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorInformsItIsAlive"
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName                               = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishTemplateRepositoryConnectionParameters"
+	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName                                   = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishTestDataFromSimpleTestDataAreaFile"
 )
 
 // FenixExecutionWorkerConnectorGrpcServicesClient is the client API for FenixExecutionWorkerConnectorGrpcServices service.
@@ -371,13 +372,15 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	ConnectorProcessTestInstructionExecutionReversedResponse(ctx context.Context, in *ProcessTestInstructionExecutionReversedResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
 	ConnectorProcessTestInstructionExecutionResponse(ctx context.Context, in *ProcessTestInstructionExecutionResponse, opts ...grpc.CallOption) (*AckNackResponse, error)
-	// Connector reports to Worker that it is alive and can receive work or if Connector will shut down.
+	// Connector reports to Worker that it is alTestDataFromSimpleTestDataAreaStructive and can receive work or if Connector will shut down.
 	// As response it gets the authorization token for PubSub-requests
 	ConnectorInformsItIsAlive(ctx context.Context, in *ConnectorIsReadyMessage, opts ...grpc.CallOption) (*ConnectorIsReadyResponseMessage, error)
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(ctx context.Context, in *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Connector publish Template Repository Connection Parameters
 	ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector Publish TestData From a Simple TestData-file for one TestData-area
+	ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionWorkerConnectorGrpcServicesClient struct {
@@ -483,6 +486,15 @@ func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishTempla
 	return out, nil
 }
 
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixExecutionWorkerConnectorGrpcServicesServer is the server API for FenixExecutionWorkerConnectorGrpcServices service.
 // All implementations must embed UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer
 // for forward compatibility
@@ -498,13 +510,15 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	ConnectorProcessTestInstructionExecutionReversedResponse(context.Context, *ProcessTestInstructionExecutionReversedResponse) (*AckNackResponse, error)
 	// Response from execution client to execution Worker using direct gRPC call that Client(Connector) has taken care of TestInstructionExecution
 	ConnectorProcessTestInstructionExecutionResponse(context.Context, *ProcessTestInstructionExecutionResponse) (*AckNackResponse, error)
-	// Connector reports to Worker that it is alive and can receive work or if Connector will shut down.
+	// Connector reports to Worker that it is alTestDataFromSimpleTestDataAreaStructive and can receive work or if Connector will shut down.
 	// As response it gets the authorization token for PubSub-requests
 	ConnectorInformsItIsAlive(context.Context, *ConnectorIsReadyMessage) (*ConnectorIsReadyResponseMessage, error)
 	// Connector publish supported TestInstructions, TestInstructionContainers and allowed Users
 	ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers(context.Context, *SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage) (*AckNackResponse, error)
 	// Connector publish Template Repository Connection Parameters
 	ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error)
+	// Connector Publish TestData From a Simple TestData-file for one TestData-area
+	ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }
 
@@ -535,6 +549,9 @@ func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPub
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTemplateRepositoryConnectionParameters not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTestDataFromSimpleTestDataAreaFile not implemented")
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {
 }
@@ -697,6 +714,24 @@ func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateReposito
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TestDataFromSimpleTestDataAreaFileMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx, req.(*TestDataFromSimpleTestDataAreaFileMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixExecutionWorkerConnectorGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionWorkerConnectorGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -731,6 +766,10 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConnectorPublishTemplateRepositoryConnectionParameters",
 			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_Handler,
+		},
+		{
+			MethodName: "ConnectorPublishTestDataFromSimpleTestDataAreaFile",
+			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

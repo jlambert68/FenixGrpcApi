@@ -8,6 +8,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SignMessage.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_TemplateRepositoryConnectionParameters.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_TestDataMessages.proto";
 
 // ****************************************************************************************************
 //
@@ -78,7 +79,7 @@ service FenixExecutionWorkerConnectorGrpcServices {
   rpc ConnectorProcessTestInstructionExecutionResponse(ProcessTestInstructionExecutionResponse) returns (AckNackResponse){
   }
 
-  // Connector reports to Worker that it is alive and can receive work or if Connector will shut down.
+  // Connector reports to Worker that it is alTestDataFromSimpleTestDataAreaStructive and can receive work or if Connector will shut down.
   // As response it gets the authorization token for PubSub-requests
   rpc ConnectorInformsItIsAlive (ConnectorIsReadyMessage) returns (ConnectorIsReadyResponseMessage) {
   }
@@ -89,6 +90,11 @@ service FenixExecutionWorkerConnectorGrpcServices {
 
   // Connector publish Template Repository Connection Parameters
   rpc ConnectorPublishTemplateRepositoryConnectionParameters (AllTemplateRepositoryConnectionParameters) returns (AckNackResponse) {
+  }
+
+
+  // Connector Publish TestData From a Simple TestData-file for one TestData-area
+  rpc ConnectorPublishTestDataFromSimpleTestDataAreaFile (TestDataFromSimpleTestDataAreaFileMessage) returns (AckNackResponse) {
   }
 
 }
