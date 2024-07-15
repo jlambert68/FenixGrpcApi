@@ -2,11 +2,13 @@ syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
 
 // The Message that Connector sends and holds TestData for one TestDataArea from a "simple" TestData-file.
 message TestDataFromSimpleTestDataAreaFileMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   repeated TestDataFromOneSimpleTestDataAreaFileMessage TestDataFromSimpleTestDataAreaFiles = 2; // The message to be Signe
+  SignedMessageByWorkerServiceAccountMessage SignedMessageByWorkerServiceAccount = 3; // Holds information about signature signed by Workers Service Account
 }
 
 // TestData from a Simple-file for one TestDataArea
