@@ -11,6 +11,13 @@ message TestDataFromSimpleTestDataAreaFileMessage {
   SignedMessageByWorkerServiceAccountMessage SignedMessageByWorkerServiceAccount = 3; // Holds information about signature signed by Workers Service Account
 }
 
+
+// The response to TesterGui for all TestData to be used by the user
+message    ListAllTestDataForTestDataAreasResponseMessage {
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestDataFromOneSimpleTestDataAreaFileMessage TestDataFromSimpleTestDataAreaFiles = 2; // The message to be Signe
+}
+
 // TestData from a Simple-file for one TestDataArea
 message TestDataFromOneSimpleTestDataAreaFileMessage {
   string TestDataDomainUuid = 1; // The UUID of the Domain that the TestData belongs to

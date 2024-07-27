@@ -25,6 +25,7 @@ const (
 	FenixTestCaseBuilderServerGrpcServices_ListAllAvailableBonds_FullMethodName                                              = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllAvailableBonds"
 	FenixTestCaseBuilderServerGrpcServices_ListAllImmatureTestInstructionAttributes_FullMethodName                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllImmatureTestInstructionAttributes"
 	FenixTestCaseBuilderServerGrpcServices_ListAllRepositoryApiUrls_FullMethodName                                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllRepositoryApiUrls"
+	FenixTestCaseBuilderServerGrpcServices_ListAllTestDataForTestDataAreas_FullMethodName                                    = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllTestDataForTestDataAreas"
 	FenixTestCaseBuilderServerGrpcServices_SaveAllPinnedTestInstructionsAndTestInstructionContainers_FullMethodName          = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllPinnedTestInstructionsAndTestInstructionContainers"
 	FenixTestCaseBuilderServerGrpcServices_ListAllTestCases_FullMethodName                                                   = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllTestCases"
 	FenixTestCaseBuilderServerGrpcServices_GetDetailedTestCase_FullMethodName                                                = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetDetailedTestCase"
@@ -53,6 +54,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	ListAllImmatureTestInstructionAttributes(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ImmatureTestInstructionAttributesMessage, error)
 	// The TestCase Builder asks for a list of all url:s to repositories where templates are stored
 	ListAllRepositoryApiUrls(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ListAllRepositoryApiUrlsResponseMessage, error)
+	// The TestCase Builder asks for a list of all url:s to repositories where templates are stored
+	ListAllTestDataForTestDataAreas(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ListAllTestDataForTestDataAreasResponseMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
 	SaveAllPinnedTestInstructionsAndTestInstructionContainers(ctx context.Context, in *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
@@ -131,6 +134,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllImmatureTestInstru
 func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllRepositoryApiUrls(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ListAllRepositoryApiUrlsResponseMessage, error) {
 	out := new(ListAllRepositoryApiUrlsResponseMessage)
 	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_ListAllRepositoryApiUrls_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllTestDataForTestDataAreas(ctx context.Context, in *UserIdentificationMessage, opts ...grpc.CallOption) (*ListAllTestDataForTestDataAreasResponseMessage, error) {
+	out := new(ListAllTestDataForTestDataAreasResponseMessage)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_ListAllTestDataForTestDataAreas_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -266,6 +278,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	ListAllImmatureTestInstructionAttributes(context.Context, *UserIdentificationMessage) (*ImmatureTestInstructionAttributesMessage, error)
 	// The TestCase Builder asks for a list of all url:s to repositories where templates are stored
 	ListAllRepositoryApiUrls(context.Context, *UserIdentificationMessage) (*ListAllRepositoryApiUrlsResponseMessage, error)
+	// The TestCase Builder asks for a list of all url:s to repositories where templates are stored
+	ListAllTestDataForTestDataAreas(context.Context, *UserIdentificationMessage) (*ListAllTestDataForTestDataAreasResponseMessage, error)
 	// The TestCase Builder sends all TestInstructions and Pre-defined TestInstructionContainer that the user has pinned in the GUI by the user
 	SaveAllPinnedTestInstructionsAndTestInstructionContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error)
 	// The TestCase Builder asks for a list of TestCase, with some basic information. Messages will be streamed in chunks of e.g. 100 TestCases per chunk
@@ -310,6 +324,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllImmature
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllRepositoryApiUrls(context.Context, *UserIdentificationMessage) (*ListAllRepositoryApiUrlsResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllRepositoryApiUrls not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestDataForTestDataAreas(context.Context, *UserIdentificationMessage) (*ListAllTestDataForTestDataAreasResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAllTestDataForTestDataAreas not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllPinnedTestInstructionsAndTestInstructionContainers(context.Context, *SavePinnedTestInstructionsAndPreCreatedTestInstructionContainersMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveAllPinnedTestInstructionsAndTestInstructionContainers not implemented")
@@ -459,6 +476,24 @@ func _FenixTestCaseBuilderServerGrpcServices_ListAllRepositoryApiUrls_Handler(sr
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllRepositoryApiUrls(ctx, req.(*UserIdentificationMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixTestCaseBuilderServerGrpcServices_ListAllTestDataForTestDataAreas_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserIdentificationMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllTestDataForTestDataAreas(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcServices_ListAllTestDataForTestDataAreas_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListAllTestDataForTestDataAreas(ctx, req.(*UserIdentificationMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -676,6 +711,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAllRepositoryApiUrls",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllRepositoryApiUrls_Handler,
+		},
+		{
+			MethodName: "ListAllTestDataForTestDataAreas",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllTestDataForTestDataAreas_Handler,
 		},
 		{
 			MethodName: "SaveAllPinnedTestInstructionsAndTestInstructionContainers",
