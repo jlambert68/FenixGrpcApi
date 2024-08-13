@@ -60,4 +60,5 @@ message TestCaseTemplateFileMessage {
   string SHA = 4; // E.g "8d8a4611838f57328ca3ba2a091686911659ef33"
   int64 Size = 5; // E.g 114
   string FileContentAsString = 6; // The file as readable text
+  string FileHash = 7; // The sha256 of the file
 }
