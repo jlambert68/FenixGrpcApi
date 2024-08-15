@@ -50,7 +50,12 @@ message UsersChosenTestDataForTestCaseMessage {
 
 // Message holding one TestDataPoint and indirect its TestDataRows
 message TestDataPointNameMapMessage {
-  map<string, TestDataRowMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName][]TestDataRowMessage' is map holding TestDataRows for a TestDataPoint
+  map<string, TestDataRowsMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName]TestDataRowsMessage' is map holding TestDataRows for a TestDataPoint
+}
+
+// Message holding all TestDataRows for one TestDataPoint
+message TestDataRowsMessage {
+  repeated TestDataRowMessage TestDataRows = 1; // All TestDataRows for one TestDataPoints
 }
 
 // Message holding one TestDataRow and all data needed
