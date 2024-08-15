@@ -50,12 +50,7 @@ message UsersChosenTestDataForTestCaseMessage {
 
 // Message holding one TestDataPoint and indirect its TestDataRows
 message TestDataPointNameMapMessage {
-  map<string, TestDataRowsMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName]TestDataRowsMessage' is map holding TestDataRows for a TestDataPoint
-}
-
-// Message holding all TestDataRows for one TestDataPoint
-message TestDataRowsMessage {
-  repeated TestDataRowMessage TestDataRows = 1; // All TestDataRows for one TestDataPoints
+  map<string, TestDataRowMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName][]TestDataRowMessage' is map holding TestDataRows for a TestDataPoint
 }
 
 // Message holding one TestDataRow and all data needed
@@ -65,7 +60,7 @@ message TestDataRowMessage {
   string TestDataAreaUuid = 3; // The TestDataArea, Uuid, for the Domain
       string TestDataAreaName = 4; //  The TestDataArea, Name, for the Domain
   string TestDataPointName = 5; // The name for the TestDataRow. It create using filter parameters for that row, e.g. 'Sub Custody/Main TestData Area/SEK/AccTest/SE/CRDT/EU/Euroclear/Other bank/NOK/EUR/SEK'
-  map<string, TestDataPointRowValueSummaryMapMessage> TestDataPointRowValueSummaryMap = 6; //
+  map<string, TestDataPointRowValueSummaryMapMessage> TestDataPointRowValueSummaryMap = 6; // The Map['TestDataPointRowUuid']TestDataPointRowValueSummaryMapMessage
 }
 
 // Message holding
