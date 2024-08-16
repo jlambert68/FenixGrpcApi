@@ -46,12 +46,13 @@ message SimpleTestDataRowMessage {
 // Message holding Groups and their TestDataPoints
 message UsersChosenTestDataForTestCaseMessage {
   map<string, TestDataPointNameMapMessage> ChosenTestDataPointsPerGroupMap = 1; // The 'Map[TestDataGroupName]TestDataPointNameMapMessage' is map holding maps with TestDataPoints
+  string HashOfThisMessageWithEmptyHashField = 2; // The hash of this message but with hash-field set to empty string.
 }
 
 // Message holding one TestDataPoint and indirect its TestDataRows
 message TestDataPointNameMapMessage {
   map<string, TestDataRowsMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName]TestDataRowsMessage' is map holding TestDataRows for a TestDataPoint
-  string HashOfThisMessageWithEmptyHashField = 2; // The hash of this message but with hash-field set to empty string.
+
 }
 
 // Message holding all TestDataRows for one TestDataPoint
