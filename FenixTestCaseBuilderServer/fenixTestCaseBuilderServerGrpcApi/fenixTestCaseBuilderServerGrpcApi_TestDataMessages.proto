@@ -51,6 +51,7 @@ message UsersChosenTestDataForTestCaseMessage {
 // Message holding one TestDataPoint and indirect its TestDataRows
 message TestDataPointNameMapMessage {
   map<string, TestDataRowsMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName]TestDataRowsMessage' is map holding TestDataRows for a TestDataPoint
+  string HashOfThisMessageWithEmptyHashField = 2; // The hash of this message but with hash-field set to empty string.
 }
 
 // Message holding all TestDataRows for one TestDataPoint
