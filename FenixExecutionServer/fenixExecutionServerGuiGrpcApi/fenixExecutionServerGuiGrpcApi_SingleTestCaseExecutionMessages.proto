@@ -11,6 +11,7 @@ message InitiateSingleTestCaseExecutionRequestMessage {
   string TestCaseUuid = 2; // The UUID for the TestCase to be Executed
   string TestDataSetUuid = 3; // The UUID for the specific TestDataSet to be used for the Execution
   ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 4; // Used to tell ExecutionServer what level of ExecutionStatus should be reported back
+  TestDataForTestCaseExecutionMessage TestDataForTestCaseExecution = 5; // The TestData used when doing one TestCase execution
 }
 
 // Message response from initiating a single TestCase Execution
@@ -246,5 +247,25 @@ message TestInstructionExecutionStatusMessage {
   google.protobuf.Timestamp BroadcastTimeStamp = 6; // The timestamp message was broadcasted from the ExecutionServer, regarding this TestCaseExecution
   google.protobuf.Timestamp PreviousBroadcastTimeStamp = 7; //  The timestamp for the previously broadcasted message form the ExecutionServer, regarding this TestCaseExecution
   TestInstructionExecutionsInformationMessage TestInstructionExecutionsStatusInformation = 8; // The executions information for one TestInstruction-execution for when it is under execution or has finished executing
+}
+
+// The TestData used when doing one TestCase execution
+ message TestDataForTestCaseExecutionMessage {
+   string TestDataDomainUuid = 1; // The UUID of the Domain that the TestData belongs to
+   string TestDataDomainName = 2; // The Name of the Domain that the TestData belongs to
+   string TestDataDomainTemplateName = 3; // The name used in Template to reference correct Domain- This name can't have any spaces in it
+   string  TestDataAreaUuid = 4; // The UUID of the TestData-area in Domain that the TestData belongs to
+   string TestDataAreaName = 5; // The Name of  the TestData-area in Domain that the TestData belongs to
+   map<string, TestDataValueMapValueMessage> TestDataValueMap = 6; // The 'Map[HeaderDataName]TestDataValueMapValueMessage' is map holding the relation between Column and the value
+   string TestDataRowIdentifier = 7; // The identifier for the row, should be the first column in data set
+   string TestDataFileSha256Hash = 8; // The sha256 file hash for the simple TestData-file that is where the data comes from
+}
+
+// Hold one TestData value to corresponding Column(HeaderDataName)
+message TestDataValueMapValueMessage {
+  string HeaderDataName = 1; // The column for the TestData
+  string TestDataValue = 2; // The TestData value to be used
+  bool TestDataValueIsReplaced = 3; // Has the user manually replaced the data in the TesterGui
+  string TestDataOriginalValueWhenReplaced = 4; // If TestData value was replaced by the user then this shows the origiinal value
 }
 
