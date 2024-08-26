@@ -46,7 +46,8 @@ message SimpleTestDataRowMessage {
 // Message holding Groups and their TestDataPoints
 message UsersChosenTestDataForTestCaseMessage {
   map<string, TestDataPointNameMapMessage> ChosenTestDataPointsPerGroupMap = 1; // The 'Map[TestDataGroupName]TestDataPointNameMapMessage' is map holding maps with TestDataPoints
-  string HashOfThisMessageWithEmptyHashField = 2; // The hash of this message but with hash-field set to empty string.
+  UsersSelectedTestDataPointRowMessage UsersSelectedTestDataPointRow = 2; // The Selected TestData by the user for the TestCase to/from TesterGui
+  string HashOfThisMessageWithEmptyHashField = 3; // The hash of this message but with hash-field set to empty string.
 }
 
 // Message holding one TestDataPoint and indirect its TestDataRows
@@ -74,4 +75,11 @@ message TestDataRowMessage {
 message    TestDataPointRowValueSummaryMapMessage {
   string TestDataPointRowUuid = 1; // The TestDataRows Uuid
   string TestDataPointRowValuesSummary = 2; // The summary of the data, used for filtering, e.g. '613/3010001/5010001/SEK/AccTest/SE/CRDT/MGTCBEBEXXX/EU/Euroclear/Other bank/C/1182633/52018108263/NOK/NO9900027190/RÄNTEBÄRANDE/EUR/SEK/PRINCIPAL/NULL/No/6752528,843/Sub Custody/Main TestData Area/SEK/AccTest/SE/CRDT/EU/Euroclear/Other bank/NOK/EUR/SEK/655345d3-664d-521b-9cd7-50ba40689ff1'
+}
+
+// Message holding the Selected TestDataGroup, TestDataPoint and TestDataPointSummary
+message   UsersSelectedTestDataPointRowMessage {
+   string TestDataGroup = 1; // The Selected TestData Group in the TesterGui
+   string  TestDataPoint = 2; // The Selected TestDataPoint in the TesterGui
+   string TestDataPointSummary = 3; // The Selected TestDataPointSummary in the TesterGui
 }
