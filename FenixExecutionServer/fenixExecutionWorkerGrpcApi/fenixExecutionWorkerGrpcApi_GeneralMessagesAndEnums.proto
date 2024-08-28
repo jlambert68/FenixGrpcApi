@@ -106,10 +106,11 @@ message ClientSystemIdentificationMessage {
 enum TestInstructionAttributeTypeEnum {
   TestInstructionAttributeTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
   TEXTBOX = 1; // Defines that TestInstructionAttribute of type "TextBox"
-  COMBOBOX = 2; // Defines that TestInstructionAttriebute of type ComboBox
+  COMBOBOX = 2; // Defines that TestInstructionAttribute of type ComboBox
   FILE_SELECTOR = 3; // Defines that TestInstructionAttribute of type FileSelector
   FUNCTION_SELECTOR = 4; // Defines that TestInstructionAttribute of type FunctionSelector
   RESPONSE_VARIABLE_COMBOBOX = 5; // List the available response variables from TestInstructionsExecutions done before this TestInstructions in this TestCase
+  TESTCASE_BUILDER_SERVER_INJECTED_COMBOBOX = 6; // Attribute is a ComboBox but without any predefined value. All Values are injected by TestCaseBuilderServer when attribute sent to TesterGui
 }
 
 
