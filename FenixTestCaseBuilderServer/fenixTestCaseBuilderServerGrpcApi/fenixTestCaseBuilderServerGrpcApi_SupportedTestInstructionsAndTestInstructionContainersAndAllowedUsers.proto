@@ -145,6 +145,7 @@ message SupportedTestInstructionAttributeMessage {
   bool TestInstructionAttributeIsDeprecated = 17; // Is the attribute deprecated and shouldn't be used by the user
   string TestInstructionAttributeInputMask = 18; // And input mask for the attribute to secure that only valid values can be entered
   string TestInstructionAttributeType = 19; // What type of attribute this is - TEXTBOX, COMBOBOX, FILE_SELECTOR, FileSelector, FUNCTION_SELECTOR
+  repeated string TestInstructionAttributeComboBoxPredefinedValues = 20; // Holds the values used in a ComboBox when there are predefined static values
 }
 
 // SupportedImmatureElementModelMessage
