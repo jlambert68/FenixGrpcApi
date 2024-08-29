@@ -273,6 +273,7 @@ message ImmatureTestInstructionAttributesMessage {
     string TestInstructionAttributeValueUuid = 17; // The UUID for the value, when Combobox is used
     string TestInstructionAttributeUIType = 18; // The type that should be presented in GUI, TEXTBOX, COMBOBOX....
     string TestInstructionAttributeInputMask = 19; // And input mask for the attribute to secure that only valid values can be entered
+    repeated string TestInstructionAttributeComboBoxPredefinedValues = 20; // When there are predefined values for the attribute, i.e. a ComboBox, then they will be here
   }
 
   AckNackResponse ackNackResponse = 2; // Hold all error messages, if there are any. Message also gives of everything was OK or not
