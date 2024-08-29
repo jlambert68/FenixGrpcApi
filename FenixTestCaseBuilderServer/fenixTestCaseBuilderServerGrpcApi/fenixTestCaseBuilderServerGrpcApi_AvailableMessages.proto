@@ -19,7 +19,8 @@ message AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseM
   repeated DomainsThatCanOwnTheTestCaseMessage DomainsThatCanOwnTheTestCase = 1; // A list of the Domains that can own a TestCase create by a specific user
   repeated ImmatureTestInstructionMessage ImmatureTestInstructions = 2; // List of all TestInstruction
   repeated ImmatureTestInstructionContainerMessage ImmatureTestInstructionContainers = 3; // List of all pre-defined TestInstructionContainers
-  AckNackResponse ackNackResponse = 4; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated ExecutionDomainsThatCanReceiveDirectTargetedTestInstructionsMessage ExecutionDomainsThatCanReceiveDirectTargetedTestInstructions = 4; // A list of all ExecutionDomains that belongs to the users 'DomainsThatCanOwnTheTestCase'
+  AckNackResponse ackNackResponse = 5; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
 // ****************************************************************************************************
@@ -29,6 +30,18 @@ message AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseM
 message DomainsThatCanOwnTheTestCaseMessage {
   string DomainUuid = 1; // The Domain, UUID, which can own a TestCase
   string DomainName = 2; // The Domain, Name, which can own a TestCase
+}
+
+
+// ****************************************************************************************************
+// ExecutionDomainsThatCanReceiveDirectTargetedTestInstructionsMessage - From DB
+
+// Message holding one ExecutionDomain that belongs to a Domain that the user can use when building TestCases
+message ExecutionDomainsThatCanReceiveDirectTargetedTestInstructionsMessage {
+  string DomainUuid = 1; // The Domain, UUID, where a ExecutionDomain exist and where a TestInstruction can be executed
+  string DomainName = 2; // The Domain, Name, where a ExecutionDomain exist and where a TestInstruction can be executed
+  string ExecutionDomainUuid = 3; // The ExecutionDomain, UUID, where a TestInstruction can be executed
+  string ExecutionDomainName = 4; // The ExecutionDomain, Name, where a TestInstruction can be executed
 }
 
 // ****************************************************************************************************
