@@ -20,7 +20,8 @@ message AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseM
   repeated ImmatureTestInstructionMessage ImmatureTestInstructions = 2; // List of all TestInstruction
   repeated ImmatureTestInstructionContainerMessage ImmatureTestInstructionContainers = 3; // List of all pre-defined TestInstructionContainers
   repeated ExecutionDomainsThatCanReceiveDirectTargetedTestInstructionsMessage ExecutionDomainsThatCanReceiveDirectTargetedTestInstructions = 4; // A list of all ExecutionDomains that belongs to the users 'DomainsThatCanOwnTheTestCase'
-  AckNackResponse ackNackResponse = 5; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  ImmatureTestInstructionAttributesMessage ImmatureTestInstructionAttributes = 5; //  Message holding all attribute data for all Immature TestInstructions
+  AckNackResponse ackNackResponse = 6; // Hold all error messages, if there are any. Message also gives of everything was OK or not
 }
 
 // ****************************************************************************************************
