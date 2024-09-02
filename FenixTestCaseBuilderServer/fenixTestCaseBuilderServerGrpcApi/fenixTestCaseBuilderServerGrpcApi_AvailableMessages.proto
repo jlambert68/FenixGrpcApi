@@ -43,6 +43,7 @@ message ExecutionDomainsThatCanReceiveDirectTargetedTestInstructionsMessage {
   string DomainName = 2; // The Domain, Name, where a ExecutionDomain exist and where a TestInstruction can be executed
   string ExecutionDomainUuid = 3; // The ExecutionDomain, UUID, where a TestInstruction can be executed
   string ExecutionDomainName = 4; // The ExecutionDomain, Name, where a TestInstruction can be executed
+  string NameUsedInGui = 5; // The name used in the Gui
 }
 
 // ****************************************************************************************************
