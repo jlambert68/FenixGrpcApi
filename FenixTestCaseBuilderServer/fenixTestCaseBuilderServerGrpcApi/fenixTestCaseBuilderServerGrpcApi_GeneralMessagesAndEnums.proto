@@ -111,6 +111,24 @@ enum TestInstructionAttributeTypeEnum {
   TESTCASE_BUILDER_SERVER_INJECTED_COMBOBOX = 6; // Attribute is a ComboBox but without any predefined value. All Values are injected by TestCaseBuilderServer when attribute sent to TesterGui
 }
 
+// Execution Enum for a TestCase Execution
+enum TestCaseExecutionStatusEnum {
+  TestCaseExecutionStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  TCE_INITIATED = 1; // All set up for execution, but has not been triggered to start execution
+  TCE_EXECUTING = 2; // TestCase is execution
+  TCE_CONTROLLED_INTERRUPTION = 3; // Interrupted by in a controlled way
+  TCE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 4; // Interrupted by in a controlled way, but can be rerun
+  TCE_FINISHED_OK = 5; // Finish as expected to TestCase definition
+  TCE_FINISHED_OK_CAN_BE_RERUN = 6; // Finish as expected to TestCase definition, but can be rerun
+  TCE_FINISHED_NOT_OK = 7; // Finish with errors in validations
+  TCE_FINISHED_NOT_OK_CAN_BE_RERUN = 8; // Finish with errors in validations, but can be rerun
+  TCE_UNEXPECTED_INTERRUPTION = 9; // The TestCase stopped executed in an unexpected way
+  TCE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 10; // The TestCase stopped executed in an unexpected way, but can be rerun
+  TCE_TIMEOUT_INTERRUPTION = 11; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
+  TCE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 12; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
+
+}
+
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used

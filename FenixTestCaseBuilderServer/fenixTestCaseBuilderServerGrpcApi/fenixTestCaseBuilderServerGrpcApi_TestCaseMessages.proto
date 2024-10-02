@@ -257,6 +257,8 @@ message TestCaseThatCanBeEditedByUserMessage {
   string TestCaseUuid = 3; // The TestCase, UUID, set by TestCase-builder
   string TestCaseName = 4; // The TestCase, Name, set by user in TestCase-builder
   uint32 TestCaseVersion = 5; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
-  google.protobuf.Timestamp InsertTimeStamp = 6; // The TimeStamp when this 'TestCaseVersion' was inserted into the Database
+  TestCaseExecutionStatusEnum LatestTestCaseExecutionStatus = 6; // The latest ExecutionStatus for the TestCase
+  google.protobuf.Timestamp LatestTestCaseExecutionStatusInsertTimeStamp = 7; // The TimeStamp when this 'TestCaseExecution' was inserted into the Database
+  google.protobuf.Timestamp LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp = 8; // The TimeStamp when the latest OK 'TestCaseExecution' was inserted into the Database
 }
 
