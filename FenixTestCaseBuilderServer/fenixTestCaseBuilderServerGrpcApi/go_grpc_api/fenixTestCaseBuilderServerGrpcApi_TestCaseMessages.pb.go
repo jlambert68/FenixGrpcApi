@@ -841,6 +841,148 @@ func (x *TestCasesHashResponse) GetTestCasesHashes() []*TestCasesHashResponse_Te
 	return nil
 }
 
+type ListTestCasesThatCanBeEditedResponseMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AckNackResponse                *AckNackResponse                        `protobuf:"bytes,1,opt,name=ackNackResponse,proto3" json:"ackNackResponse,omitempty"`                               // Hold all error messages, if there are any. Message also gives of everything was OK or not
+	TestCasesThatCanBeEditedByUser []*TestCaseThatCanBeEditedByUserMessage `protobuf:"bytes,2,rep,name=TestCasesThatCanBeEditedByUser,proto3" json:"TestCasesThatCanBeEditedByUser,omitempty"` // Holds a list of all TestCases that can be edited by the user
+}
+
+func (x *ListTestCasesThatCanBeEditedResponseMessage) Reset() {
+	*x = ListTestCasesThatCanBeEditedResponseMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTestCasesThatCanBeEditedResponseMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTestCasesThatCanBeEditedResponseMessage) ProtoMessage() {}
+
+func (x *ListTestCasesThatCanBeEditedResponseMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTestCasesThatCanBeEditedResponseMessage.ProtoReflect.Descriptor instead.
+func (*ListTestCasesThatCanBeEditedResponseMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ListTestCasesThatCanBeEditedResponseMessage) GetAckNackResponse() *AckNackResponse {
+	if x != nil {
+		return x.AckNackResponse
+	}
+	return nil
+}
+
+func (x *ListTestCasesThatCanBeEditedResponseMessage) GetTestCasesThatCanBeEditedByUser() []*TestCaseThatCanBeEditedByUserMessage {
+	if x != nil {
+		return x.TestCasesThatCanBeEditedByUser
+	}
+	return nil
+}
+
+type TestCaseThatCanBeEditedByUserMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DomainUuid      string               `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`            // The Domain, UUID, where the TestCase 'has its home'
+	DomainName      string               `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`            // The Domain, Name, where the TestCase 'has its home'
+	TestCaseUuid    string               `protobuf:"bytes,3,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`        // The TestCase, UUID, set by TestCase-builder
+	TestCaseName    string               `protobuf:"bytes,4,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`        // The TestCase, Name, set by user in TestCase-builder
+	TestCaseVersion uint32               `protobuf:"varint,5,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"` // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+	InsertTimeStamp *timestamp.Timestamp `protobuf:"bytes,6,opt,name=InsertTimeStamp,proto3" json:"InsertTimeStamp,omitempty"`  // The TimeStamp when this 'TestCaseVersion' was inserted into the Database
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) Reset() {
+	*x = TestCaseThatCanBeEditedByUserMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseThatCanBeEditedByUserMessage) ProtoMessage() {}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseThatCanBeEditedByUserMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseThatCanBeEditedByUserMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetDomainUuid() string {
+	if x != nil {
+		return x.DomainUuid
+	}
+	return ""
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetDomainName() string {
+	if x != nil {
+		return x.DomainName
+	}
+	return ""
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetTestCaseUuid() string {
+	if x != nil {
+		return x.TestCaseUuid
+	}
+	return ""
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetTestCaseName() string {
+	if x != nil {
+		return x.TestCaseName
+	}
+	return ""
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetTestCaseVersion() uint32 {
+	if x != nil {
+		return x.TestCaseVersion
+	}
+	return 0
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetInsertTimeStamp() *timestamp.Timestamp {
+	if x != nil {
+		return x.InsertTimeStamp
+	}
+	return nil
+}
+
 // Message holding information about changes to the TestCase, who and when
 type TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage struct {
 	state         protoimpl.MessageState
@@ -858,7 +1000,7 @@ type TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage struct 
 func (x *TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage) Reset() {
 	*x = TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[13]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -871,7 +1013,7 @@ func (x *TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage) St
 func (*TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage) ProtoMessage() {}
 
 func (x *TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[13]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -944,7 +1086,7 @@ type BasicTestCaseInformationMessage_NonEditableBasicInformationMessage struct {
 func (x *BasicTestCaseInformationMessage_NonEditableBasicInformationMessage) Reset() {
 	*x = BasicTestCaseInformationMessage_NonEditableBasicInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[14]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -957,7 +1099,7 @@ func (x *BasicTestCaseInformationMessage_NonEditableBasicInformationMessage) Str
 func (*BasicTestCaseInformationMessage_NonEditableBasicInformationMessage) ProtoMessage() {}
 
 func (x *BasicTestCaseInformationMessage_NonEditableBasicInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[14]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1014,7 +1156,7 @@ type BasicTestCaseInformationMessage_EditableBasicInformationMessage struct {
 func (x *BasicTestCaseInformationMessage_EditableBasicInformationMessage) Reset() {
 	*x = BasicTestCaseInformationMessage_EditableBasicInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[15]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1027,7 +1169,7 @@ func (x *BasicTestCaseInformationMessage_EditableBasicInformationMessage) String
 func (*BasicTestCaseInformationMessage_EditableBasicInformationMessage) ProtoMessage() {}
 
 func (x *BasicTestCaseInformationMessage_EditableBasicInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[15]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1073,7 +1215,7 @@ type TestCaseMetaDataMessage_MetaDataItemMessage struct {
 func (x *TestCaseMetaDataMessage_MetaDataItemMessage) Reset() {
 	*x = TestCaseMetaDataMessage_MetaDataItemMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[16]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1086,7 +1228,7 @@ func (x *TestCaseMetaDataMessage_MetaDataItemMessage) String() string {
 func (*TestCaseMetaDataMessage_MetaDataItemMessage) ProtoMessage() {}
 
 func (x *TestCaseMetaDataMessage_MetaDataItemMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[16]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1158,7 +1300,7 @@ type TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage struct {
 func (x *TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage) Reset() {
 	*x = TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[17]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1171,7 +1313,7 @@ func (x *TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage) String
 func (*TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage) ProtoMessage() {}
 
 func (x *TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[17]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1222,7 +1364,7 @@ type TestCaseFilesMessage_TestCaseFileMessage struct {
 func (x *TestCaseFilesMessage_TestCaseFileMessage) Reset() {
 	*x = TestCaseFilesMessage_TestCaseFileMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[18]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1235,7 +1377,7 @@ func (x *TestCaseFilesMessage_TestCaseFileMessage) String() string {
 func (*TestCaseFilesMessage_TestCaseFileMessage) ProtoMessage() {}
 
 func (x *TestCaseFilesMessage_TestCaseFileMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[18]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1289,7 +1431,7 @@ type TestCaseFilesMessage_CreatedAndUpdatedInformationMessage struct {
 func (x *TestCaseFilesMessage_CreatedAndUpdatedInformationMessage) Reset() {
 	*x = TestCaseFilesMessage_CreatedAndUpdatedInformationMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[19]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1302,7 +1444,7 @@ func (x *TestCaseFilesMessage_CreatedAndUpdatedInformationMessage) String() stri
 func (*TestCaseFilesMessage_CreatedAndUpdatedInformationMessage) ProtoMessage() {}
 
 func (x *TestCaseFilesMessage_CreatedAndUpdatedInformationMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[19]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1372,7 +1514,7 @@ type TestCasesHashResponse_TestCasesHashMessage struct {
 func (x *TestCasesHashResponse_TestCasesHashMessage) Reset() {
 	*x = TestCasesHashResponse_TestCasesHashMessage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[20]
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1385,7 +1527,7 @@ func (x *TestCasesHashResponse_TestCasesHashMessage) String() string {
 func (*TestCasesHashResponse_TestCasesHashMessage) ProtoMessage() {}
 
 func (x *TestCasesHashResponse_TestCasesHashMessage) ProtoReflect() protoreflect.Message {
-	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[20]
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1891,9 +2033,45 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
 	0x73, 0x65, 0x55, 0x75, 0x69, 0x64, 0x12, 0x22, 0x0a, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
 	0x73, 0x65, 0x48, 0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x54, 0x65,
-	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61, 0x73, 0x68, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f,
-	0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x48, 0x61, 0x73, 0x68, 0x22, 0x9d, 0x02, 0x0a, 0x2b, 0x4c,
+	0x69, 0x73, 0x74, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x73, 0x54, 0x68, 0x61, 0x74,
+	0x43, 0x61, 0x6e, 0x42, 0x65, 0x45, 0x64, 0x69, 0x74, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x5c, 0x0a, 0x0f, 0x61, 0x63,
+	0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0f, 0x61, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x8f, 0x01, 0x0a, 0x1e, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x73, 0x54, 0x68, 0x61, 0x74, 0x43, 0x61, 0x6e, 0x42, 0x65, 0x45,
+	0x64, 0x69, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x18, 0x02, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x47, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
+	0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72,
+	0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x68,
+	0x61, 0x74, 0x43, 0x61, 0x6e, 0x42, 0x65, 0x45, 0x64, 0x69, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55,
+	0x73, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x1e, 0x54, 0x65, 0x73, 0x74,
+	0x43, 0x61, 0x73, 0x65, 0x73, 0x54, 0x68, 0x61, 0x74, 0x43, 0x61, 0x6e, 0x42, 0x65, 0x45, 0x64,
+	0x69, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x22, 0x9e, 0x02, 0x0a, 0x24, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x68, 0x61, 0x74, 0x43, 0x61, 0x6e, 0x42, 0x65,
+	0x45, 0x64, 0x69, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x75, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55,
+	0x75, 0x69, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e,
+	0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x55,
+	0x75, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x61, 0x73, 0x65, 0x55, 0x75, 0x69, 0x64, 0x12, 0x22, 0x0a, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x61, 0x73, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x28, 0x0a, 0x0f, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x0d, 0x52, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x56, 0x65,
+	0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x44, 0x0a, 0x0f, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x54,
+	0x69, 0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0f, 0x49, 0x6e, 0x73, 0x65,
+	0x72, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x0f, 0x5a, 0x0d, 0x2e,
+	0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1908,7 +2086,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_rawDescData
 }
 
-var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_goTypes = []interface{}{
 	(*GetTestCaseRequestMessage)(nil),                                           // 0: fenixTestCaseBuilderServerGrpcApi.GetTestCaseRequestMessage
 	(*ListTestCasesRequestMessage)(nil),                                         // 1: fenixTestCaseBuilderServerGrpcApi.ListTestCasesRequestMessage
@@ -1923,66 +2101,71 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	(*GetDetailedTestCaseResponse)(nil),                                         // 10: fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse
 	(*TestCasesHashRequest)(nil),                                                // 11: fenixTestCaseBuilderServerGrpcApi.TestCasesHashRequest
 	(*TestCasesHashResponse)(nil),                                               // 12: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse
-	(*TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage)(nil), // 13: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage
-	(*BasicTestCaseInformationMessage_NonEditableBasicInformationMessage)(nil),  // 14: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.NonEditableBasicInformationMessage
-	(*BasicTestCaseInformationMessage_EditableBasicInformationMessage)(nil),     // 15: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.EditableBasicInformationMessage
-	(*TestCaseMetaDataMessage_MetaDataItemMessage)(nil),                         // 16: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage
-	(*TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage)(nil),     // 17: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
-	(*TestCaseFilesMessage_TestCaseFileMessage)(nil),                            // 18: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.TestCaseFileMessage
-	(*TestCaseFilesMessage_CreatedAndUpdatedInformationMessage)(nil),            // 19: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage
-	(*TestCasesHashResponse_TestCasesHashMessage)(nil),                          // 20: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.TestCasesHashMessage
-	(CurrentFenixTestCaseBuilderProtoFileVersionEnum)(0),                        // 21: fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
-	(*TestCaseModelMessage)(nil),                                                // 22: fenixTestCaseBuilderServerGrpcApi.TestCaseModelMessage
-	(*UserIdentificationMessage)(nil),                                           // 23: fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
-	(*MatureTestInstructionsMessage)(nil),                                       // 24: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
-	(*MatureTestInstructionContainersMessage)(nil),                              // 25: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
-	(*TestCaseExtraInformationMessage)(nil),                                     // 26: fenixTestCaseBuilderServerGrpcApi.TestCaseExtraInformationMessage
-	(*TestCaseTemplateFilesMessage)(nil),                                        // 27: fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFilesMessage
-	(*UsersChosenTestDataForTestCaseMessage)(nil),                               // 28: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage
-	(*AckNackResponse)(nil),                                                     // 29: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	(*timestamp.Timestamp)(nil),                                                 // 30: google.protobuf.Timestamp
+	(*ListTestCasesThatCanBeEditedResponseMessage)(nil),                         // 13: fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage
+	(*TestCaseThatCanBeEditedByUserMessage)(nil),                                // 14: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage
+	(*TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage)(nil), // 15: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage
+	(*BasicTestCaseInformationMessage_NonEditableBasicInformationMessage)(nil),  // 16: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.NonEditableBasicInformationMessage
+	(*BasicTestCaseInformationMessage_EditableBasicInformationMessage)(nil),     // 17: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.EditableBasicInformationMessage
+	(*TestCaseMetaDataMessage_MetaDataItemMessage)(nil),                         // 18: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage
+	(*TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage)(nil),     // 19: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
+	(*TestCaseFilesMessage_TestCaseFileMessage)(nil),                            // 20: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.TestCaseFileMessage
+	(*TestCaseFilesMessage_CreatedAndUpdatedInformationMessage)(nil),            // 21: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage
+	(*TestCasesHashResponse_TestCasesHashMessage)(nil),                          // 22: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.TestCasesHashMessage
+	(CurrentFenixTestCaseBuilderProtoFileVersionEnum)(0),                        // 23: fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	(*TestCaseModelMessage)(nil),                                                // 24: fenixTestCaseBuilderServerGrpcApi.TestCaseModelMessage
+	(*UserIdentificationMessage)(nil),                                           // 25: fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
+	(*MatureTestInstructionsMessage)(nil),                                       // 26: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
+	(*MatureTestInstructionContainersMessage)(nil),                              // 27: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
+	(*TestCaseExtraInformationMessage)(nil),                                     // 28: fenixTestCaseBuilderServerGrpcApi.TestCaseExtraInformationMessage
+	(*TestCaseTemplateFilesMessage)(nil),                                        // 29: fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFilesMessage
+	(*UsersChosenTestDataForTestCaseMessage)(nil),                               // 30: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage
+	(*AckNackResponse)(nil),                                                     // 31: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	(*timestamp.Timestamp)(nil),                                                 // 32: google.protobuf.Timestamp
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_depIdxs = []int32{
-	21, // 0: fenixTestCaseBuilderServerGrpcApi.GetTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
-	21, // 1: fenixTestCaseBuilderServerGrpcApi.ListTestCasesRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	23, // 0: fenixTestCaseBuilderServerGrpcApi.GetTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	23, // 1: fenixTestCaseBuilderServerGrpcApi.ListTestCasesRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
 	6,  // 2: fenixTestCaseBuilderServerGrpcApi.ListTestCasesResponseMessage.BasicTestCaseInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage
-	21, // 3: fenixTestCaseBuilderServerGrpcApi.GetTestCaseMetaDataItemsRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
+	23, // 3: fenixTestCaseBuilderServerGrpcApi.GetTestCaseMetaDataItemsRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
 	7,  // 4: fenixTestCaseBuilderServerGrpcApi.GetTestCaseMetaDataItemsResponseMessage.TestCaseMetaData:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage
 	6,  // 5: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.BasicTestCaseInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage
-	13, // 6: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage
-	22, // 7: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.TestCaseModel:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseModelMessage
+	15, // 6: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage
+	24, // 7: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.TestCaseModel:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseModelMessage
 	7,  // 8: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.TestCaseMetaData:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage
 	8,  // 9: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.TestCaseFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage
-	23, // 10: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.UserIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
-	14, // 11: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.NonEditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.NonEditableBasicInformationMessage
-	15, // 12: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.EditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.EditableBasicInformationMessage
-	16, // 13: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItems:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage
-	18, // 14: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.TestCaseFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.TestCaseFileMessage
-	19, // 15: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage
+	25, // 10: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.UserIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
+	16, // 11: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.NonEditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.NonEditableBasicInformationMessage
+	17, // 12: fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.EditableInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.BasicTestCaseInformationMessage.EditableBasicInformationMessage
+	18, // 13: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItems:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage
+	20, // 14: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.TestCaseFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.TestCaseFileMessage
+	21, // 15: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage
 	5,  // 16: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseBasicInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage
-	24, // 17: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.MatureTestInstructions:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
-	25, // 18: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.MatureTestInstructionContainers:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
-	26, // 19: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseExtraInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseExtraInformationMessage
-	27, // 20: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseTemplateFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFilesMessage
-	28, // 21: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseTestData:type_name -> fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage
-	29, // 22: fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	26, // 17: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.MatureTestInstructions:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
+	27, // 18: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.MatureTestInstructionContainers:type_name -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
+	28, // 19: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseExtraInformation:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseExtraInformationMessage
+	29, // 20: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseTemplateFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseTemplateFilesMessage
+	30, // 21: fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage.TestCaseTestData:type_name -> fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage
+	31, // 22: fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 	9,  // 23: fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse.DetailedTestCase:type_name -> fenixTestCaseBuilderServerGrpcApi.FullTestCaseMessage
-	23, // 24: fenixTestCaseBuilderServerGrpcApi.TestCasesHashRequest.UserIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
-	29, // 25: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.AckNack:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	20, // 26: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.TestCasesHashes:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.TestCasesHashMessage
-	30, // 27: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 28: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 29: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	17, // 30: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.AvailableMetaDataItems:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
-	17, // 31: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.ChosenMetaDataItem:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
-	30, // 32: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 33: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	30, // 34: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	35, // [35:35] is the sub-list for method output_type
-	35, // [35:35] is the sub-list for method input_type
-	35, // [35:35] is the sub-list for extension type_name
-	35, // [35:35] is the sub-list for extension extendee
-	0,  // [0:35] is the sub-list for field type_name
+	25, // 24: fenixTestCaseBuilderServerGrpcApi.TestCasesHashRequest.UserIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
+	31, // 25: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.AckNack:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	22, // 26: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.TestCasesHashes:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse.TestCasesHashMessage
+	31, // 27: fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	14, // 28: fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage.TestCasesThatCanBeEditedByUser:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage
+	32, // 29: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage.InsertTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 30: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 31: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 32: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	19, // 33: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.AvailableMetaDataItems:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
+	19, // 34: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.ChosenMetaDataItem:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
+	32, // 35: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 36: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	32, // 37: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	38, // [38:38] is the sub-list for method output_type
+	38, // [38:38] is the sub-list for method input_type
+	38, // [38:38] is the sub-list for extension type_name
+	38, // [38:38] is the sub-list for extension extendee
+	0,  // [0:38] is the sub-list for field type_name
 }
 
 func init() {
@@ -2157,7 +2340,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage); i {
+			switch v := v.(*ListTestCasesThatCanBeEditedResponseMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2169,7 +2352,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BasicTestCaseInformationMessage_NonEditableBasicInformationMessage); i {
+			switch v := v.(*TestCaseThatCanBeEditedByUserMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2181,7 +2364,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BasicTestCaseInformationMessage_EditableBasicInformationMessage); i {
+			switch v := v.(*TestCaseBasicInformationMessage_CreatedAndUpdatedInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2193,7 +2376,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TestCaseMetaDataMessage_MetaDataItemMessage); i {
+			switch v := v.(*BasicTestCaseInformationMessage_NonEditableBasicInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2205,7 +2388,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage); i {
+			switch v := v.(*BasicTestCaseInformationMessage_EditableBasicInformationMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2217,7 +2400,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TestCaseFilesMessage_TestCaseFileMessage); i {
+			switch v := v.(*TestCaseMetaDataMessage_MetaDataItemMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2229,7 +2412,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*TestCaseFilesMessage_CreatedAndUpdatedInformationMessage); i {
+			switch v := v.(*TestCaseMetaDataMessage_MetaDataItemMessage_MetaDataItemMessage); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2241,6 +2424,30 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			}
 		}
 		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCaseFilesMessage_TestCaseFileMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCaseFilesMessage_CreatedAndUpdatedInformationMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TestCasesHashResponse_TestCasesHashMessage); i {
 			case 0:
 				return &v.state
@@ -2259,7 +2466,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -214,7 +214,7 @@ message GetDetailedTestCaseResponse {
 
 message TestCasesHashRequest {
   UserIdentificationMessage UserIdentification = 1; // User identification and users proto-file version
- repeated string TestCaseUuids = 2; // Holds a list of UUIDs for TestCases
+  repeated string TestCaseUuids = 2; // Holds a list of UUIDs for TestCases
 }
 
 // ****************************************************************************************************
@@ -231,3 +231,32 @@ message TestCasesHashResponse {
     string  TestCaseHash = 2; // Holds the Hash for the TestCase
   }
 }
+
+
+// ****************************************************************************************************
+//  ListTestCasesThatCanBeEditedResponseMessage
+
+// Message containing a list of TestCases that the user can edit
+
+message ListTestCasesThatCanBeEditedResponseMessage {
+
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestCaseThatCanBeEditedByUserMessage TestCasesThatCanBeEditedByUser = 2; // Holds a list of all TestCases that can be edited by the user
+}
+
+
+// ****************************************************************************************************
+//  TestCaseThatCanBeEditedByUserMessage
+
+// Message containing a message of TestCase that the user can edit
+
+message TestCaseThatCanBeEditedByUserMessage {
+
+  string DomainUuid = 1; // The Domain, UUID, where the TestCase 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestCase 'has its home'
+  string TestCaseUuid = 3; // The TestCase, UUID, set by TestCase-builder
+  string TestCaseName = 4; // The TestCase, Name, set by user in TestCase-builder
+  uint32 TestCaseVersion = 5; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  google.protobuf.Timestamp InsertTimeStamp = 6; // The TimeStamp when this 'TestCaseVersion' was inserted into the Database
+}
+

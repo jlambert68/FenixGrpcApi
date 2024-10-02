@@ -30,6 +30,7 @@ const (
 	FenixTestCaseBuilderServerGrpcServices_GetDetailedTestCase_FullMethodName                                                = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetDetailedTestCase"
 	FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructions_FullMethodName                                    = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllTestCaseTestInstructions"
 	FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructionContainers_FullMethodName                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllTestCaseTestInstructionContainers"
+	FenixTestCaseBuilderServerGrpcServices_ListTestCasesThatCanBeEdited_FullMethodName                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListTestCasesThatCanBeEdited"
 	FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_FullMethodName                                                   = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveFullTestCase"
 	FenixTestCaseBuilderServerGrpcServices_SaveTestCase_FullMethodName                                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveTestCase"
 	FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructions_FullMethodName                                    = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllTestCaseTestInstructions"
@@ -63,6 +64,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	ListAllTestCaseTestInstructions(ctx context.Context, in *ListAllTestInstructionsForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*MatureTestInstructionsMessage, error)
 	// List all TestInstructionContainers in the TestCase
 	ListAllTestCaseTestInstructionContainers(ctx context.Context, in *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*MatureTestInstructionContainersMessage, error)
+	// List TestCases that the user can edit
+	ListTestCasesThatCanBeEdited(ctx context.Context, in *ListTestCasesRequestMessage, opts ...grpc.CallOption) (*ListTestCasesThatCanBeEditedResponseMessage, error)
 	// Save full TestCase in DB
 	SaveFullTestCase(ctx context.Context, in *FullTestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Save a Basic TestCase info in DB
@@ -205,6 +208,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListAllTestCaseTestInstru
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) ListTestCasesThatCanBeEdited(ctx context.Context, in *ListTestCasesRequestMessage, opts ...grpc.CallOption) (*ListTestCasesThatCanBeEditedResponseMessage, error) {
+	out := new(ListTestCasesThatCanBeEditedResponseMessage)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_ListTestCasesThatCanBeEdited_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveFullTestCase(ctx context.Context, in *FullTestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_FullMethodName, in, out, opts...)
@@ -276,6 +288,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	ListAllTestCaseTestInstructions(context.Context, *ListAllTestInstructionsForSpecificTestCaseRequestMessage) (*MatureTestInstructionsMessage, error)
 	// List all TestInstructionContainers in the TestCase
 	ListAllTestCaseTestInstructionContainers(context.Context, *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*MatureTestInstructionContainersMessage, error)
+	// List TestCases that the user can edit
+	ListTestCasesThatCanBeEdited(context.Context, *ListTestCasesRequestMessage) (*ListTestCasesThatCanBeEditedResponseMessage, error)
 	// Save full TestCase in DB
 	SaveFullTestCase(context.Context, *FullTestCaseMessage) (*AckNackResponse, error)
 	// Save a Basic TestCase info in DB
@@ -325,6 +339,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCase
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListAllTestCaseTestInstructionContainers(context.Context, *ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*MatureTestInstructionContainersMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAllTestCaseTestInstructionContainers not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListTestCasesThatCanBeEdited(context.Context, *ListTestCasesRequestMessage) (*ListTestCasesThatCanBeEditedResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTestCasesThatCanBeEdited not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveFullTestCase(context.Context, *FullTestCaseMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveFullTestCase not implemented")
@@ -556,6 +573,24 @@ func _FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructionConta
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcServices_ListTestCasesThatCanBeEdited_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTestCasesRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListTestCasesThatCanBeEdited(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcServices_ListTestCasesThatCanBeEdited_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).ListTestCasesThatCanBeEdited(ctx, req.(*ListTestCasesRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(FullTestCaseMessage)
 	if err := dec(in); err != nil {
@@ -692,6 +727,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAllTestCaseTestInstructionContainers",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructionContainers_Handler,
+		},
+		{
+			MethodName: "ListTestCasesThatCanBeEdited",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_ListTestCasesThatCanBeEdited_Handler,
 		},
 		{
 			MethodName: "SaveFullTestCase",

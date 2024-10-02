@@ -80,6 +80,9 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc ListAllTestCaseTestInstructionContainers(ListAllTestInstructionContainersForSpecificTestCaseRequestMessage) returns (MatureTestInstructionContainersMessage) {
   }
 
+  // List TestCases that the user can edit
+  rpc ListTestCasesThatCanBeEdited(ListTestCasesRequestMessage) returns (ListTestCasesThatCanBeEditedResponseMessage) {
+  }
 
   // *** Send data to server ***
 
