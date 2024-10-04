@@ -99,9 +99,6 @@ message TestCasePreviewStructureMessage {
   string ComplexTextualDescription = 5; // A textual description of the TestCase-model
   string TestCaseUuid = 6; // The TestCaseUuid
   string TestCaseVersion = 7; // The version of the TestCase
-  string CreatedByUserOnComputer = 8; // The logged in user on the computer that created the TestCase
-  string CreatedByUserGCPAuthorization = 9; // The authorized user towards GCP that created the TestCase
-  string CreatedTimeStamp = 10; // The Timestamp when the TestCase first was created
   string LastSavedByUserOnComputer = 12; // The logged in user on the computer that last saved the TestCase
   string LastSavedByUserGCPAuthorization = 13; // The authorized user towards GCP that last saved the TestCase
   string LastSavedTimeStamp = 14; // The Timestamp when the TestCase first was last saved
@@ -110,11 +107,13 @@ message TestCasePreviewStructureMessage {
   message TestCaseStructureObjectMessage {
     TestCaseStructureObjectTypeEnum TestCaseStructureObjectType = 1; // The type of TestCaseStructureObject, TIC, TI, Attribute
     uint32 IndentationLevel = 2; // How much should the object be move to create the tree like structure
-    string TestInstructionContainerName = 3; // The name of the TestInstructionContainer
-    bool TestInstructionIsSerialProcessed = 4; // Is the TestInstructionContainer 'serial' or 'parallel' processed
-    string TestInstructionName = 5; // The name of the TestInstruction
-    string TestInstructionColor = 6; // The color code used for the TestInstruction
-    repeated TestInstructionAttributeMessage TestInstructionAttributes = 7; // The Attributes for the TestInstruction
+    string TestInstructionContainerName = 3; // The Name of the TestInstructionContainer
+    string TestInstructionContainerUuid = 4; // The Uuid of the TestInstructionContainer
+    bool TestInstructionIsSerialProcessed = 5; // Is the TestInstructionContainer 'serial' or 'parallel' processed
+    string TestInstructionName = 6; // The Name of the TestInstruction
+    string TestInstructionUuid = 7; // The Uuid of the TestInstruction
+    string TestInstructionColor = 8; // The color code used for the TestInstruction
+    repeated TestInstructionAttributeMessage TestInstructionAttributes = 9; // The Attributes for the TestInstruction
 
     // Message holding one TestInstructionAttribute
     message TestInstructionAttributeMessage {
