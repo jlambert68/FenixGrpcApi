@@ -20,6 +20,58 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum int32
+
+const (
+	TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum = 0 //Value used for when the variable is not actively set
+	TestCasePreviewStructureMessage_TestInstructionContainer                        TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum = 1 // Type is a TestInstructionContainer
+	TestCasePreviewStructureMessage_TestInstruction                                 TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum = 2 // Type is a TestInstruction
+	TestCasePreviewStructureMessage_TestInstructionAttribute                        TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum = 3 // Type is a TestInstructionAttribute
+)
+
+// Enum value maps for TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum.
+var (
+	TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum_name = map[int32]string{
+		0: "TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET",
+		1: "TestInstructionContainer",
+		2: "TestInstruction",
+		3: "TestInstructionAttribute",
+	}
+	TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum_value = map[string]int32{
+		"TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET": 0,
+		"TestInstructionContainer":                        1,
+		"TestInstruction":                                 2,
+		"TestInstructionAttribute":                        3,
+	}
+)
+
+func (x TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum) Enum() *TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum {
+	p := new(TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum)
+	*p = x
+	return p
+}
+
+func (x TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum) Descriptor() protoreflect.EnumDescriptor {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_enumTypes[0].Descriptor()
+}
+
+func (TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum) Type() protoreflect.EnumType {
+	return &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_enumTypes[0]
+}
+
+func (x TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum.Descriptor instead.
+func (TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum) EnumDescriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDescGZIP(), []int{12, 0}
+}
+
 // The Message that Connector sends and holds TestData for one TestDataArea from a "simple" TestData-file.
 type TestDataFromSimpleTestDataAreaFileMessage struct {
 	state         protoimpl.MessageState
@@ -732,6 +784,367 @@ func (x *UsersSelectedTestDataPointRowMessage) GetTestDataPointSummary() string 
 	return ""
 }
 
+// Message holden a preview and the hash of the preview  of the TestCase. Only used for looking at and no editing
+type TestCasePreviewMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCasePreview     *TestCasePreviewStructureMessage `protobuf:"bytes,1,opt,name=TestCasePreview,proto3" json:"TestCasePreview,omitempty"`         // The Preview message of the TestCase
+	TestCasePreviewHash string                           `protobuf:"bytes,2,opt,name=TestCasePreviewHash,proto3" json:"TestCasePreviewHash,omitempty"` // The hash of the Preview message
+}
+
+func (x *TestCasePreviewMessage) Reset() {
+	*x = TestCasePreviewMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCasePreviewMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCasePreviewMessage) ProtoMessage() {}
+
+func (x *TestCasePreviewMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCasePreviewMessage.ProtoReflect.Descriptor instead.
+func (*TestCasePreviewMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *TestCasePreviewMessage) GetTestCasePreview() *TestCasePreviewStructureMessage {
+	if x != nil {
+		return x.TestCasePreview
+	}
+	return nil
+}
+
+func (x *TestCasePreviewMessage) GetTestCasePreviewHash() string {
+	if x != nil {
+		return x.TestCasePreviewHash
+	}
+	return ""
+}
+
+// Message holding the full preview of the TestCase
+type TestCasePreviewStructureMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCaseName                    string                                                            `protobuf:"bytes,1,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                        // The name of the TestCase
+	DomainThatOwnTheTestCase        string                                                            `protobuf:"bytes,2,opt,name=DomainThatOwnTheTestCase,proto3" json:"DomainThatOwnTheTestCase,omitempty"`                // The Domain that owns the TestCase
+	TestCaseDescription             string                                                            `protobuf:"bytes,3,opt,name=TestCaseDescription,proto3" json:"TestCaseDescription,omitempty"`                          // The Description of the TestCase
+	TestCaseStructureObjects        []*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage `protobuf:"bytes,4,rep,name=TestCaseStructureObjects,proto3" json:"TestCaseStructureObjects,omitempty"`                // A list of the different components of the TestCase, TIC, TI and Attributes
+	ComplexTextualDescription       string                                                            `protobuf:"bytes,5,opt,name=ComplexTextualDescription,proto3" json:"ComplexTextualDescription,omitempty"`              // A textual description of the TestCase-model
+	TestCaseUuid                    string                                                            `protobuf:"bytes,6,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                        // The TestCaseUuid
+	TestCaseVersion                 string                                                            `protobuf:"bytes,7,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                  // The version of the TestCase
+	CreatedByUserOnComputer         string                                                            `protobuf:"bytes,8,opt,name=CreatedByUserOnComputer,proto3" json:"CreatedByUserOnComputer,omitempty"`                  // The logged in user on the computer that created the TestCase
+	CreatedByUserGCPAuthorization   string                                                            `protobuf:"bytes,9,opt,name=CreatedByUserGCPAuthorization,proto3" json:"CreatedByUserGCPAuthorization,omitempty"`      // The authorized user towards GCP that created the TestCase
+	CreatedTimeStamp                string                                                            `protobuf:"bytes,10,opt,name=CreatedTimeStamp,proto3" json:"CreatedTimeStamp,omitempty"`                               // The Timestamp when the TestCase first was created
+	LastSavedByUserOnComputer       string                                                            `protobuf:"bytes,12,opt,name=LastSavedByUserOnComputer,proto3" json:"LastSavedByUserOnComputer,omitempty"`             // The logged in user on the computer that last saved the TestCase
+	LastSavedByUserGCPAuthorization string                                                            `protobuf:"bytes,13,opt,name=LastSavedByUserGCPAuthorization,proto3" json:"LastSavedByUserGCPAuthorization,omitempty"` // The authorized user towards GCP that last saved the TestCase
+	LastSavedTimeStamp              string                                                            `protobuf:"bytes,14,opt,name=LastSavedTimeStamp,proto3" json:"LastSavedTimeStamp,omitempty"`                           // The Timestamp when the TestCase first was last saved
+}
+
+func (x *TestCasePreviewStructureMessage) Reset() {
+	*x = TestCasePreviewStructureMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCasePreviewStructureMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCasePreviewStructureMessage) ProtoMessage() {}
+
+func (x *TestCasePreviewStructureMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCasePreviewStructureMessage.ProtoReflect.Descriptor instead.
+func (*TestCasePreviewStructureMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *TestCasePreviewStructureMessage) GetTestCaseName() string {
+	if x != nil {
+		return x.TestCaseName
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetDomainThatOwnTheTestCase() string {
+	if x != nil {
+		return x.DomainThatOwnTheTestCase
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetTestCaseDescription() string {
+	if x != nil {
+		return x.TestCaseDescription
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetTestCaseStructureObjects() []*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage {
+	if x != nil {
+		return x.TestCaseStructureObjects
+	}
+	return nil
+}
+
+func (x *TestCasePreviewStructureMessage) GetComplexTextualDescription() string {
+	if x != nil {
+		return x.ComplexTextualDescription
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetTestCaseUuid() string {
+	if x != nil {
+		return x.TestCaseUuid
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetTestCaseVersion() string {
+	if x != nil {
+		return x.TestCaseVersion
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetCreatedByUserOnComputer() string {
+	if x != nil {
+		return x.CreatedByUserOnComputer
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetCreatedByUserGCPAuthorization() string {
+	if x != nil {
+		return x.CreatedByUserGCPAuthorization
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetCreatedTimeStamp() string {
+	if x != nil {
+		return x.CreatedTimeStamp
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetLastSavedByUserOnComputer() string {
+	if x != nil {
+		return x.LastSavedByUserOnComputer
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetLastSavedByUserGCPAuthorization() string {
+	if x != nil {
+		return x.LastSavedByUserGCPAuthorization
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage) GetLastSavedTimeStamp() string {
+	if x != nil {
+		return x.LastSavedTimeStamp
+	}
+	return ""
+}
+
+// A message holding one TestCaseStructureObject, like TIC, TI or TI's attributes
+type TestCasePreviewStructureMessage_TestCaseStructureObjectMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestCaseStructureObjectType      TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum                                   `protobuf:"varint,1,opt,name=TestCaseStructureObjectType,proto3,enum=fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum" json:"TestCaseStructureObjectType,omitempty"` // The type of TestCaseStructureObject, TIC, TI, Attribute
+	IndentationLevel                 uint32                                                                                            `protobuf:"varint,2,opt,name=IndentationLevel,proto3" json:"IndentationLevel,omitempty"`                                                                                                                              // How much should the object be move to create the tree like structure
+	TestInstructionContainerName     string                                                                                            `protobuf:"bytes,3,opt,name=TestInstructionContainerName,proto3" json:"TestInstructionContainerName,omitempty"`                                                                                                       // The name of the TestInstructionContainer
+	TestInstructionIsSerialProcessed bool                                                                                              `protobuf:"varint,4,opt,name=TestInstructionIsSerialProcessed,proto3" json:"TestInstructionIsSerialProcessed,omitempty"`                                                                                              // Is the TestInstructionContainer 'serial' or 'parallel' processed
+	TestInstructionName              string                                                                                            `protobuf:"bytes,5,opt,name=TestInstructionName,proto3" json:"TestInstructionName,omitempty"`                                                                                                                         // The name of the TestInstruction
+	TestInstructionColor             string                                                                                            `protobuf:"bytes,6,opt,name=TestInstructionColor,proto3" json:"TestInstructionColor,omitempty"`                                                                                                                       // The color code used for the TestInstruction
+	TestInstructionAttributes        []*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage `protobuf:"bytes,7,rep,name=TestInstructionAttributes,proto3" json:"TestInstructionAttributes,omitempty"`                                                                                                             // The Attributes for the TestInstruction
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) Reset() {
+	*x = TestCasePreviewStructureMessage_TestCaseStructureObjectMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) ProtoMessage() {}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCasePreviewStructureMessage_TestCaseStructureObjectMessage.ProtoReflect.Descriptor instead.
+func (*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDescGZIP(), []int{12, 0}
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetTestCaseStructureObjectType() TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum {
+	if x != nil {
+		return x.TestCaseStructureObjectType
+	}
+	return TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetIndentationLevel() uint32 {
+	if x != nil {
+		return x.IndentationLevel
+	}
+	return 0
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetTestInstructionContainerName() string {
+	if x != nil {
+		return x.TestInstructionContainerName
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetTestInstructionIsSerialProcessed() bool {
+	if x != nil {
+		return x.TestInstructionIsSerialProcessed
+	}
+	return false
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetTestInstructionName() string {
+	if x != nil {
+		return x.TestInstructionName
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetTestInstructionColor() string {
+	if x != nil {
+		return x.TestInstructionColor
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage) GetTestInstructionAttributes() []*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage {
+	if x != nil {
+		return x.TestInstructionAttributes
+	}
+	return nil
+}
+
+// Message holding one TestInstructionAttribute
+type TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AttributeName      string `protobuf:"bytes,1,opt,name=AttributeName,proto3" json:"AttributeName,omitempty"`           // The name of the Attribute
+	AttributeValue     string `protobuf:"bytes,2,opt,name=AttributeValue,proto3" json:"AttributeValue,omitempty"`         // The value of the Attribute
+	AttributeGroupName string `protobuf:"bytes,3,opt,name=AttributeGroupName,proto3" json:"AttributeGroupName,omitempty"` // The Group name for the Attribute in the UI
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) Reset() {
+	*x = TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) ProtoMessage() {
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage.ProtoReflect.Descriptor instead.
+func (*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDescGZIP(), []int{12, 0, 0}
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) GetAttributeName() string {
+	if x != nil {
+		return x.AttributeName
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) GetAttributeValue() string {
+	if x != nil {
+		return x.AttributeValue
+	}
+	return ""
+}
+
+func (x *TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage) GetAttributeGroupName() string {
+	if x != nil {
+		return x.AttributeGroupName
+	}
+	return ""
+}
+
 var File_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto protoreflect.FileDescriptor
 
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDesc = []byte{
@@ -1000,9 +1413,136 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x74, 0x61, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x12, 0x32, 0x0a, 0x14, 0x54, 0x65, 0x73, 0x74, 0x44,
 	0x61, 0x74, 0x61, 0x50, 0x6f, 0x69, 0x6e, 0x74, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x79, 0x18,
 	0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x14, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x50,
-	0x6f, 0x69, 0x6e, 0x74, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x79, 0x42, 0x0f, 0x5a, 0x0d, 0x2e,
-	0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x69, 0x6e, 0x74, 0x53, 0x75, 0x6d, 0x6d, 0x61, 0x72, 0x79, 0x22, 0xb8, 0x01, 0x0a, 0x16,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x4d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x6c, 0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x42, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42,
+	0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76,
+	0x69, 0x65, 0x77, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x52, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65,
+	0x76, 0x69, 0x65, 0x77, 0x12, 0x30, 0x0a, 0x13, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65,
+	0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x48, 0x61, 0x73, 0x68, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x13, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69,
+	0x65, 0x77, 0x48, 0x61, 0x73, 0x68, 0x22, 0xbe, 0x0e, 0x0a, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x75, 0x72, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x22, 0x0a, 0x0c, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3a,
+	0x0a, 0x18, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x68, 0x61, 0x74, 0x4f, 0x77, 0x6e, 0x54,
+	0x68, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x18, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x54, 0x68, 0x61, 0x74, 0x4f, 0x77, 0x6e, 0x54,
+	0x68, 0x65, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x13, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
+	0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x13, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
+	0x65, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x9d, 0x01, 0x0a,
+	0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75,
+	0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x61, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42,
+	0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76,
+	0x69, 0x65, 0x77, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x52, 0x18, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x73, 0x12, 0x3c, 0x0a, 0x19,
+	0x43, 0x6f, 0x6d, 0x70, 0x6c, 0x65, 0x78, 0x54, 0x65, 0x78, 0x74, 0x75, 0x61, 0x6c, 0x44, 0x65,
+	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x19, 0x43, 0x6f, 0x6d, 0x70, 0x6c, 0x65, 0x78, 0x54, 0x65, 0x78, 0x74, 0x75, 0x61, 0x6c, 0x44,
+	0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x22, 0x0a, 0x0c, 0x54, 0x65,
+	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x55, 0x75, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x55, 0x75, 0x69, 0x64, 0x12, 0x28,
+	0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f,
+	0x6e, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
+	0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x38, 0x0a, 0x17, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x75,
+	0x74, 0x65, 0x72, 0x18, 0x08, 0x20, 0x01, 0x28, 0x09, 0x52, 0x17, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x75, 0x74,
+	0x65, 0x72, 0x12, 0x44, 0x0a, 0x1d, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55,
+	0x73, 0x65, 0x72, 0x47, 0x43, 0x50, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x18, 0x09, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1d, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x47, 0x43, 0x50, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2a, 0x0a, 0x10, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x0a, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x10, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53,
+	0x74, 0x61, 0x6d, 0x70, 0x12, 0x3c, 0x0a, 0x19, 0x4c, 0x61, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65,
+	0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65,
+	0x72, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x19, 0x4c, 0x61, 0x73, 0x74, 0x53, 0x61, 0x76,
+	0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x4f, 0x6e, 0x43, 0x6f, 0x6d, 0x70, 0x75, 0x74,
+	0x65, 0x72, 0x12, 0x48, 0x0a, 0x1f, 0x4c, 0x61, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x42,
+	0x79, 0x55, 0x73, 0x65, 0x72, 0x47, 0x43, 0x50, 0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1f, 0x4c, 0x61, 0x73,
+	0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x47, 0x43, 0x50, 0x41,
+	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x2e, 0x0a, 0x12,
+	0x4c, 0x61, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61,
+	0x6d, 0x70, 0x18, 0x0e, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x4c, 0x61, 0x73, 0x74, 0x53, 0x61,
+	0x76, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x1a, 0xce, 0x06, 0x0a,
+	0x1e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75,
+	0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12,
+	0xa4, 0x01, 0x0a, 0x1b, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x62, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75,
+	0x72, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63,
+	0x74, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75, 0x6d, 0x52, 0x1b, 0x54, 0x65, 0x73, 0x74, 0x43,
+	0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65,
+	0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x49, 0x6e, 0x64, 0x65, 0x6e, 0x74,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d,
+	0x52, 0x10, 0x49, 0x6e, 0x64, 0x65, 0x6e, 0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4c, 0x65, 0x76,
+	0x65, 0x6c, 0x12, 0x42, 0x0a, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x4e, 0x61,
+	0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e,
+	0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x4a, 0x0a, 0x20, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x73, 0x53, 0x65, 0x72, 0x69, 0x61,
+	0x6c, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x20, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x49, 0x73, 0x53, 0x65, 0x72, 0x69, 0x61, 0x6c, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73,
+	0x65, 0x64, 0x12, 0x30, 0x0a, 0x13, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x13, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x32, 0x0a, 0x14, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74,
+	0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6c, 0x6f, 0x72, 0x18, 0x06, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x14, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6c, 0x6f, 0x72, 0x12, 0xc0, 0x01, 0x0a, 0x19, 0x54, 0x65, 0x73,
+	0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x18, 0x07, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x81, 0x01, 0x2e,
+	0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69,
+	0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65,
+	0x77, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x2e, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e,
+	0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x52, 0x19, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x73, 0x1a, 0x9f, 0x01, 0x0a, 0x1f,
+	0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12,
+	0x24, 0x0a, 0x0d, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x4e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74,
+	0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x26, 0x0a, 0x0e, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75,
+	0x74, 0x65, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x41,
+	0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x12, 0x2e, 0x0a,
+	0x12, 0x41, 0x74, 0x74, 0x72, 0x69, 0x62, 0x75, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4e,
+	0x61, 0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x41, 0x74, 0x74, 0x72, 0x69,
+	0x62, 0x75, 0x74, 0x65, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0xa7, 0x01,
+	0x0a, 0x1f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72, 0x75, 0x63, 0x74,
+	0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65, 0x45, 0x6e, 0x75,
+	0x6d, 0x12, 0x33, 0x0a, 0x2f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x53, 0x74, 0x72,
+	0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x54, 0x79, 0x70, 0x65,
+	0x45, 0x6e, 0x75, 0x6d, 0x5f, 0x44, 0x45, 0x46, 0x41, 0x55, 0x4c, 0x54, 0x5f, 0x4e, 0x4f, 0x54,
+	0x5f, 0x53, 0x45, 0x54, 0x10, 0x00, 0x12, 0x1c, 0x0a, 0x18, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e,
+	0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e,
+	0x65, 0x72, 0x10, 0x01, 0x12, 0x13, 0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x49, 0x6e, 0x73, 0x74,
+	0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x10, 0x02, 0x12, 0x1c, 0x0a, 0x18, 0x54, 0x65, 0x73,
+	0x74, 0x49, 0x6e, 0x73, 0x74, 0x72, 0x75, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x41, 0x74, 0x74, 0x72,
+	0x69, 0x62, 0x75, 0x74, 0x65, 0x10, 0x03, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f,
+	0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1017,47 +1557,57 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDescData
 }
 
-var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_goTypes = []interface{}{
-	(*TestDataFromSimpleTestDataAreaFileMessage)(nil),             // 0: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage
-	(*ListAllTestDataForTestDataAreasResponseMessage)(nil),        // 1: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage
-	(*TestDataFromOneSimpleTestDataAreaFileMessage)(nil),          // 2: fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage
-	(*HeaderForTestDataFromOneSimpleTestDataAreaFileMessage)(nil), // 3: fenixTestCaseBuilderServerGrpcApi.HeaderForTestDataFromOneSimpleTestDataAreaFileMessage
-	(*SimpleTestDataRowMessage)(nil),                              // 4: fenixTestCaseBuilderServerGrpcApi.SimpleTestDataRowMessage
-	(*UsersChosenTestDataForTestCaseMessage)(nil),                 // 5: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage
-	(*TestDataPointNameMapMessage)(nil),                           // 6: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage
-	(*TestDataRowsMessage)(nil),                                   // 7: fenixTestCaseBuilderServerGrpcApi.TestDataRowsMessage
-	(*TestDataRowMessage)(nil),                                    // 8: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage
-	(*TestDataPointRowValueSummaryMapMessage)(nil),                // 9: fenixTestCaseBuilderServerGrpcApi.TestDataPointRowValueSummaryMapMessage
-	(*UsersSelectedTestDataPointRowMessage)(nil),                  // 10: fenixTestCaseBuilderServerGrpcApi.UsersSelectedTestDataPointRowMessage
-	nil, // 11: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMapEntry
-	nil, // 12: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMapEntry
-	nil, // 13: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMapEntry
-	(*ClientSystemIdentificationMessage)(nil),          // 14: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
-	(*SignedMessageByWorkerServiceAccountMessage)(nil), // 15: fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
-	(*AckNackResponse)(nil),                            // 16: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	(TestCasePreviewStructureMessage_TestCaseStructureObjectTypeEnum)(0), // 0: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectTypeEnum
+	(*TestDataFromSimpleTestDataAreaFileMessage)(nil),                    // 1: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage
+	(*ListAllTestDataForTestDataAreasResponseMessage)(nil),               // 2: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage
+	(*TestDataFromOneSimpleTestDataAreaFileMessage)(nil),                 // 3: fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage
+	(*HeaderForTestDataFromOneSimpleTestDataAreaFileMessage)(nil),        // 4: fenixTestCaseBuilderServerGrpcApi.HeaderForTestDataFromOneSimpleTestDataAreaFileMessage
+	(*SimpleTestDataRowMessage)(nil),                                     // 5: fenixTestCaseBuilderServerGrpcApi.SimpleTestDataRowMessage
+	(*UsersChosenTestDataForTestCaseMessage)(nil),                        // 6: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage
+	(*TestDataPointNameMapMessage)(nil),                                  // 7: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage
+	(*TestDataRowsMessage)(nil),                                          // 8: fenixTestCaseBuilderServerGrpcApi.TestDataRowsMessage
+	(*TestDataRowMessage)(nil),                                           // 9: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage
+	(*TestDataPointRowValueSummaryMapMessage)(nil),                       // 10: fenixTestCaseBuilderServerGrpcApi.TestDataPointRowValueSummaryMapMessage
+	(*UsersSelectedTestDataPointRowMessage)(nil),                         // 11: fenixTestCaseBuilderServerGrpcApi.UsersSelectedTestDataPointRowMessage
+	(*TestCasePreviewMessage)(nil),                                       // 12: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewMessage
+	(*TestCasePreviewStructureMessage)(nil),                              // 13: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage
+	nil,                                                                  // 14: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMapEntry
+	nil,                                                                  // 15: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMapEntry
+	nil,                                                                  // 16: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMapEntry
+	(*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage)(nil),                                 // 17: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectMessage
+	(*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage)(nil), // 18: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectMessage.TestInstructionAttributeMessage
+	(*ClientSystemIdentificationMessage)(nil),                                                              // 19: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	(*SignedMessageByWorkerServiceAccountMessage)(nil),                                                     // 20: fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
+	(*AckNackResponse)(nil), // 21: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_depIdxs = []int32{
-	14, // 0: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage.ClientSystemIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
-	2,  // 1: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage.TestDataFromSimpleTestDataAreaFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage
-	15, // 2: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage.SignedMessageByWorkerServiceAccount:type_name -> fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
-	16, // 3: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	2,  // 4: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage.TestDataFromSimpleTestDataAreaFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage
-	3,  // 5: fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage.HeadersForTestDataFromOneSimpleTestDataAreaFile:type_name -> fenixTestCaseBuilderServerGrpcApi.HeaderForTestDataFromOneSimpleTestDataAreaFileMessage
-	4,  // 6: fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage.SimpleTestDataRows:type_name -> fenixTestCaseBuilderServerGrpcApi.SimpleTestDataRowMessage
-	11, // 7: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMap:type_name -> fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMapEntry
-	10, // 8: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.UsersSelectedTestDataPointRow:type_name -> fenixTestCaseBuilderServerGrpcApi.UsersSelectedTestDataPointRowMessage
-	12, // 9: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMap:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMapEntry
-	8,  // 10: fenixTestCaseBuilderServerGrpcApi.TestDataRowsMessage.TestDataRows:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage
-	13, // 11: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMap:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMapEntry
-	6,  // 12: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMapEntry.value:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage
-	7,  // 13: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMapEntry.value:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataRowsMessage
-	9,  // 14: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMapEntry.value:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataPointRowValueSummaryMapMessage
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	19, // 0: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage.ClientSystemIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	3,  // 1: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage.TestDataFromSimpleTestDataAreaFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage
+	20, // 2: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage.SignedMessageByWorkerServiceAccount:type_name -> fenixTestCaseBuilderServerGrpcApi.SignedMessageByWorkerServiceAccountMessage
+	21, // 3: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	3,  // 4: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage.TestDataFromSimpleTestDataAreaFiles:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage
+	4,  // 5: fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage.HeadersForTestDataFromOneSimpleTestDataAreaFile:type_name -> fenixTestCaseBuilderServerGrpcApi.HeaderForTestDataFromOneSimpleTestDataAreaFileMessage
+	5,  // 6: fenixTestCaseBuilderServerGrpcApi.TestDataFromOneSimpleTestDataAreaFileMessage.SimpleTestDataRows:type_name -> fenixTestCaseBuilderServerGrpcApi.SimpleTestDataRowMessage
+	14, // 7: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMap:type_name -> fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMapEntry
+	11, // 8: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.UsersSelectedTestDataPointRow:type_name -> fenixTestCaseBuilderServerGrpcApi.UsersSelectedTestDataPointRowMessage
+	15, // 9: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMap:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMapEntry
+	9,  // 10: fenixTestCaseBuilderServerGrpcApi.TestDataRowsMessage.TestDataRows:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage
+	16, // 11: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMap:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMapEntry
+	13, // 12: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewMessage.TestCasePreview:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage
+	17, // 13: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjects:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectMessage
+	7,  // 14: fenixTestCaseBuilderServerGrpcApi.UsersChosenTestDataForTestCaseMessage.ChosenTestDataPointsPerGroupMapEntry.value:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage
+	8,  // 15: fenixTestCaseBuilderServerGrpcApi.TestDataPointNameMapMessage.ChosenTestDataRowsPerTestDataPointMapEntry.value:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataRowsMessage
+	10, // 16: fenixTestCaseBuilderServerGrpcApi.TestDataRowMessage.TestDataPointRowValueSummaryMapEntry.value:type_name -> fenixTestCaseBuilderServerGrpcApi.TestDataPointRowValueSummaryMapMessage
+	0,  // 17: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectMessage.TestCaseStructureObjectType:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectTypeEnum
+	18, // 18: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectMessage.TestInstructionAttributes:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage.TestCaseStructureObjectMessage.TestInstructionAttributeMessage
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() {
@@ -1202,19 +1752,68 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 				return nil
 			}
 		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCasePreviewMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCasePreviewStructureMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCasePreviewStructureMessage_TestCaseStructureObjectMessage_TestInstructionAttributeMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_rawDesc,
-			NumEnums:      0,
-			NumMessages:   14,
+			NumEnums:      1,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_goTypes,
 		DependencyIndexes: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_depIdxs,
+		EnumInfos:         file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_enumTypes,
 		MessageInfos:      file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_msgTypes,
 	}.Build()
 	File_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto = out.File

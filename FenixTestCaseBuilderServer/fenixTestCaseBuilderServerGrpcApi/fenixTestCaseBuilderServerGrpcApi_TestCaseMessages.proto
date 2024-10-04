@@ -193,7 +193,8 @@ message FullTestCaseMessage {
   TestCaseExtraInformationMessage TestCaseExtraInformation = 4; // Extra information saved for TestCase
   TestCaseTemplateFilesMessage TestCaseTemplateFiles = 5; // All template files that are stored in the TestCase
   UsersChosenTestDataForTestCaseMessage TestCaseTestData = 6; // The TestData added to the TestCase. TestData is stored per user in the Database
-  string MessageHash = 7; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
+  TestCasePreviewMessage TestCasePreview = 7; // A preview structure used be shown quickly to user when searching for TestCases
+  string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
 }
 
 
