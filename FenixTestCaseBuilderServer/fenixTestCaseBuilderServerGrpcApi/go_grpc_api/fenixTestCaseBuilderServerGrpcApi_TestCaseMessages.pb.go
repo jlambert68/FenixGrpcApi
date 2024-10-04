@@ -909,14 +909,16 @@ type TestCaseThatCanBeEditedByUserMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	DomainUuid                                             string                      `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                                                           // The Domain, UUID, where the TestCase 'has its home'
-	DomainName                                             string                      `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`                                                                                                           // The Domain, Name, where the TestCase 'has its home'
-	TestCaseUuid                                           string                      `protobuf:"bytes,3,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                                                       // The TestCase, UUID, set by TestCase-builder
-	TestCaseName                                           string                      `protobuf:"bytes,4,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                                                                                       // The TestCase, Name, set by user in TestCase-builder
-	TestCaseVersion                                        uint32                      `protobuf:"varint,5,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                                                                // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
-	LatestTestCaseExecutionStatus                          TestCaseExecutionStatusEnum `protobuf:"varint,6,opt,name=LatestTestCaseExecutionStatus,proto3,enum=fenixTestCaseBuilderServerGrpcApi.TestCaseExecutionStatusEnum" json:"LatestTestCaseExecutionStatus,omitempty"` // The latest ExecutionStatus for the TestCase
-	LatestTestCaseExecutionStatusInsertTimeStamp           *timestamp.Timestamp        `protobuf:"bytes,7,opt,name=LatestTestCaseExecutionStatusInsertTimeStamp,proto3" json:"LatestTestCaseExecutionStatusInsertTimeStamp,omitempty"`                                       // The TimeStamp when this 'TestCaseExecution' was inserted into the Database
-	LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp *timestamp.Timestamp        `protobuf:"bytes,8,opt,name=LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp,proto3" json:"LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp,omitempty"`                   // The TimeStamp when the latest OK 'TestCaseExecution' was inserted into the Database
+	DomainUuid                                             string                           `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                                                                                                           // The Domain, UUID, where the TestCase 'has its home'
+	DomainName                                             string                           `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`                                                                                                           // The Domain, Name, where the TestCase 'has its home'
+	TestCaseUuid                                           string                           `protobuf:"bytes,3,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                                                       // The TestCase, UUID, set by TestCase-builder
+	TestCaseName                                           string                           `protobuf:"bytes,4,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                                                                                       // The TestCase, Name, set by user in TestCase-builder
+	TestCaseVersion                                        uint32                           `protobuf:"varint,5,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                                                                // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+	LatestTestCaseExecutionStatus                          TestCaseExecutionStatusEnum      `protobuf:"varint,6,opt,name=LatestTestCaseExecutionStatus,proto3,enum=fenixTestCaseBuilderServerGrpcApi.TestCaseExecutionStatusEnum" json:"LatestTestCaseExecutionStatus,omitempty"` // The latest ExecutionStatus for the TestCase
+	LatestTestCaseExecutionStatusInsertTimeStamp           *timestamp.Timestamp             `protobuf:"bytes,7,opt,name=LatestTestCaseExecutionStatusInsertTimeStamp,proto3" json:"LatestTestCaseExecutionStatusInsertTimeStamp,omitempty"`                                       // The TimeStamp when this 'TestCaseExecution' was inserted into the Database
+	LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp *timestamp.Timestamp             `protobuf:"bytes,8,opt,name=LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp,proto3" json:"LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp,omitempty"`                   // The TimeStamp when the latest OK 'TestCaseExecution' was inserted into the Database
+	LastSavedTimeStamp                                     *timestamp.Timestamp             `protobuf:"bytes,9,opt,name=LastSavedTimeStamp,proto3" json:"LastSavedTimeStamp,omitempty"`                                                                                           // The TimeStamp when the TestCase was last saved into the Database
+	TestCasePreview                                        *TestCasePreviewStructureMessage `protobuf:"bytes,10,opt,name=TestCasePreview,proto3" json:"TestCasePreview,omitempty"`                                                                                                // The Preview message of the TestCase
 }
 
 func (x *TestCaseThatCanBeEditedByUserMessage) Reset() {
@@ -1003,6 +1005,20 @@ func (x *TestCaseThatCanBeEditedByUserMessage) GetLatestTestCaseExecutionStatusI
 func (x *TestCaseThatCanBeEditedByUserMessage) GetLatestFinishedOkTestCaseExecutionStatusInsertTimeStamp() *timestamp.Timestamp {
 	if x != nil {
 		return x.LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp
+	}
+	return nil
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetLastSavedTimeStamp() *timestamp.Timestamp {
+	if x != nil {
+		return x.LastSavedTimeStamp
+	}
+	return nil
+}
+
+func (x *TestCaseThatCanBeEditedByUserMessage) GetTestCasePreview() *TestCasePreviewStructureMessage {
+	if x != nil {
+		return x.TestCasePreview
 	}
 	return nil
 }
@@ -2082,7 +2098,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52,
 	0x1e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x73, 0x54, 0x68, 0x61, 0x74, 0x43, 0x61,
 	0x6e, 0x42, 0x65, 0x45, 0x64, 0x69, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65, 0x72, 0x22,
-	0xf4, 0x04, 0x0a, 0x24, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x68, 0x61, 0x74,
+	0xae, 0x06, 0x0a, 0x24, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x54, 0x68, 0x61, 0x74,
 	0x43, 0x61, 0x6e, 0x42, 0x65, 0x45, 0x64, 0x69, 0x74, 0x65, 0x64, 0x42, 0x79, 0x55, 0x73, 0x65,
 	0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x44, 0x6f, 0x6d, 0x61,
 	0x69, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x44, 0x6f,
@@ -2121,8 +2137,20 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x46, 0x69, 0x6e, 0x69, 0x73, 0x68, 0x65, 0x64, 0x4f, 0x6b,
 	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
 	0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x49, 0x6e, 0x73, 0x65, 0x72, 0x74, 0x54, 0x69, 0x6d,
-	0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67,
-	0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x12, 0x4a, 0x0a, 0x12, 0x4c, 0x61, 0x73, 0x74, 0x53, 0x61,
+	0x76, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x09, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x12,
+	0x4c, 0x61, 0x73, 0x74, 0x53, 0x61, 0x76, 0x65, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x74, 0x61,
+	0x6d, 0x70, 0x12, 0x6c, 0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72,
+	0x65, 0x76, 0x69, 0x65, 0x77, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x42, 0x2e, 0x66, 0x65,
+	0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64,
+	0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e,
+	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x53,
+	0x74, 0x72, 0x75, 0x63, 0x74, 0x75, 0x72, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52,
+	0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x50, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77,
+	0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70,
+	0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2174,6 +2202,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	(*AckNackResponse)(nil),                                                     // 32: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 	(TestCaseExecutionStatusEnum)(0),                                            // 33: fenixTestCaseBuilderServerGrpcApi.TestCaseExecutionStatusEnum
 	(*timestamp.Timestamp)(nil),                                                 // 34: google.protobuf.Timestamp
+	(*TestCasePreviewStructureMessage)(nil),                                     // 35: fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestCaseMessages_proto_depIdxs = []int32{
 	23, // 0: fenixTestCaseBuilderServerGrpcApi.GetTestCaseRequestMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
@@ -2209,19 +2238,21 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	33, // 30: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage.LatestTestCaseExecutionStatus:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseExecutionStatusEnum
 	34, // 31: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage.LatestTestCaseExecutionStatusInsertTimeStamp:type_name -> google.protobuf.Timestamp
 	34, // 32: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage.LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp:type_name -> google.protobuf.Timestamp
-	34, // 33: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	34, // 34: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	34, // 35: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	19, // 36: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.AvailableMetaDataItems:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
-	19, // 37: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.ChosenMetaDataItem:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
-	34, // 38: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	34, // 39: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	34, // 40: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
-	41, // [41:41] is the sub-list for method output_type
-	41, // [41:41] is the sub-list for method input_type
-	41, // [41:41] is the sub-list for extension type_name
-	41, // [41:41] is the sub-list for extension extendee
-	0,  // [0:41] is the sub-list for field type_name
+	34, // 33: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage.LastSavedTimeStamp:type_name -> google.protobuf.Timestamp
+	35, // 34: fenixTestCaseBuilderServerGrpcApi.TestCaseThatCanBeEditedByUserMessage.TestCasePreview:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage
+	34, // 35: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	34, // 36: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	34, // 37: fenixTestCaseBuilderServerGrpcApi.TestCaseBasicInformationMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	19, // 38: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.AvailableMetaDataItems:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
+	19, // 39: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.ChosenMetaDataItem:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataMessage.MetaDataItemMessage.MetaDataItemMessage
+	34, // 40: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.AddedToTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	34, // 41: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.LastUpdatedInTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	34, // 42: fenixTestCaseBuilderServerGrpcApi.TestCaseFilesMessage.CreatedAndUpdatedInformationMessage.DeletedFromTestCaseTimeStamp:type_name -> google.protobuf.Timestamp
+	43, // [43:43] is the sub-list for method output_type
+	43, // [43:43] is the sub-list for method input_type
+	43, // [43:43] is the sub-list for extension type_name
+	43, // [43:43] is the sub-list for extension extendee
+	0,  // [0:43] is the sub-list for field type_name
 }
 
 func init() {
