@@ -262,6 +262,6 @@ message TestCaseThatCanBeEditedByUserMessage {
   google.protobuf.Timestamp LatestTestCaseExecutionStatusInsertTimeStamp = 7; // The TimeStamp when this 'TestCaseExecution' was inserted into the Database
   google.protobuf.Timestamp LatestFinishedOkTestCaseExecutionStatusInsertTimeStamp = 8; // The TimeStamp when the latest OK 'TestCaseExecution' was inserted into the Database
   google.protobuf.Timestamp LastSavedTimeStamp = 9; // The TimeStamp when the TestCase was last saved into the Database
-  TestCasePreviewStructureMessage TestCasePreview = 10; // The Preview message of the TestCase
+  TestCasePreviewMessage TestCasePreview = 10; // The Preview message of the TestCase
 }
 
