@@ -33,7 +33,8 @@ message ListTestCasesRequestMessage {
   string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
   string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
-
+  google.protobuf.Timestamp TestCaseUpdatedMinTimeStamp = 4; // The TimeStamp when the TestCase was latest updated. Used to be able to get only part, new, of the data set
+  google.protobuf.Timestamp TestCaseExecutionUpdatedMinTimeStamp = 6; // The TimeStamp when the TestCaseExecution was latest updated. Used to be able to get only part, new, of the data set
 }
 
 // ****************************************************************************************************
