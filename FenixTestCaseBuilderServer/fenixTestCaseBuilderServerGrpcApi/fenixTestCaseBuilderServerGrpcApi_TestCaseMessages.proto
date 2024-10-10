@@ -266,3 +266,19 @@ message TestCaseThatCanBeEditedByUserMessage {
   TestCasePreviewMessage TestCasePreview = 10; // The Preview message of the TestCase
 }
 
+
+// ****************************************************************************************************
+//  DeleteTestCaseAtThisDateRequest
+
+// Message containing which TestCase that should be deleted and on what date
+
+message DeleteTestCaseAtThisDateRequest {
+  UserIdentificationMessage UserIdentification = 1; // User identification and users proto-file version
+  DeleteTestCaseAtThisDateRequestMessage DeleteThisTestCaseAtThisDate = 2; // Holds which TestCase that should be deleted and on what date
+}
+
+message DeleteTestCaseAtThisDateRequestMessage {
+  string TestCaseUuid = 1; // The TestCase, UUID, that should be deleted
+  uint32 TestCaseVersion = 2; // The version of the TestCase, must match the latest version in the Database
+  string DeletedDate = 3; // The Date from when the TestCase should be seen as deleted, YYYY-MM-DD
+}

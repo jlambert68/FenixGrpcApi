@@ -36,6 +36,7 @@ const (
 	FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructions_FullMethodName                                    = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllTestCaseTestInstructions"
 	FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructionContainers_FullMethodName                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllTestCaseTestInstructionContainers"
 	FenixTestCaseBuilderServerGrpcServices_GetTestCasesHashes_FullMethodName                                                 = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/GetTestCasesHashes"
+	FenixTestCaseBuilderServerGrpcServices_DeleteTestCaseAtThisDate_FullMethodName                                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/DeleteTestCaseAtThisDate"
 )
 
 // FenixTestCaseBuilderServerGrpcServicesClient is the client API for FenixTestCaseBuilderServerGrpcServices service.
@@ -76,6 +77,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	SaveAllTestCaseTestInstructionContainers(ctx context.Context, in *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// *** Check if TestCases are updated by comparing TestCase-hash ***
 	GetTestCasesHashes(ctx context.Context, in *TestCasesHashRequest, opts ...grpc.CallOption) (*TestCasesHashResponse, error)
+	// *** TesterGui send Delete-command that updates database that TestCase will be delete per a certain date ***
+	DeleteTestCaseAtThisDate(ctx context.Context, in *DeleteTestCaseAtThisDateRequest, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixTestCaseBuilderServerGrpcServicesClient struct {
@@ -262,6 +265,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) GetTestCasesHashes(ctx co
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) DeleteTestCaseAtThisDate(ctx context.Context, in *DeleteTestCaseAtThisDateRequest, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_DeleteTestCaseAtThisDate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixTestCaseBuilderServerGrpcServicesServer is the server API for FenixTestCaseBuilderServerGrpcServices service.
 // All implementations must embed UnimplementedFenixTestCaseBuilderServerGrpcServicesServer
 // for forward compatibility
@@ -300,6 +312,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	SaveAllTestCaseTestInstructionContainers(context.Context, *SaveAllTestInstructionContainersForSpecificTestCaseRequestMessage) (*AckNackResponse, error)
 	// *** Check if TestCases are updated by comparing TestCase-hash ***
 	GetTestCasesHashes(context.Context, *TestCasesHashRequest) (*TestCasesHashResponse, error)
+	// *** TesterGui send Delete-command that updates database that TestCase will be delete per a certain date ***
+	DeleteTestCaseAtThisDate(context.Context, *DeleteTestCaseAtThisDateRequest) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer()
 }
 
@@ -357,6 +371,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveAllTestCase
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) GetTestCasesHashes(context.Context, *TestCasesHashRequest) (*TestCasesHashResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTestCasesHashes not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) DeleteTestCaseAtThisDate(context.Context, *DeleteTestCaseAtThisDateRequest) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteTestCaseAtThisDate not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcServicesServer() {
 }
@@ -681,6 +698,24 @@ func _FenixTestCaseBuilderServerGrpcServices_GetTestCasesHashes_Handler(srv inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcServices_DeleteTestCaseAtThisDate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteTestCaseAtThisDateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).DeleteTestCaseAtThisDate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcServices_DeleteTestCaseAtThisDate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).DeleteTestCaseAtThisDate(ctx, req.(*DeleteTestCaseAtThisDateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixTestCaseBuilderServerGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixTestCaseBuilderServerGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -751,6 +786,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTestCasesHashes",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_GetTestCasesHashes_Handler,
+		},
+		{
+			MethodName: "DeleteTestCaseAtThisDate",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_DeleteTestCaseAtThisDate_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -106,6 +106,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc GetTestCasesHashes(TestCasesHashRequest) returns (TestCasesHashResponse) {
   }
 
+  // *** TesterGui send Delete-command that updates database that TestCase will be delete per a certain date ***
+  rpc DeleteTestCaseAtThisDate(DeleteTestCaseAtThisDateRequest) returns (AckNackResponse) {
+  }
+
 
 
 }
