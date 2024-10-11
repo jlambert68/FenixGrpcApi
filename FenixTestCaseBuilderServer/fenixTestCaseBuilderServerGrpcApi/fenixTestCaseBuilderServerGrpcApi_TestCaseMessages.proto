@@ -278,7 +278,9 @@ message DeleteTestCaseAtThisDateRequest {
 }
 
 message DeleteTestCaseAtThisDateRequestMessage {
-  string TestCaseUuid = 1; // The TestCase, UUID, that should be deleted
-  uint32 TestCaseVersion = 2; // The version of the TestCase, must match the latest version in the Database
-  string DeletedDate = 3; // The Date from when the TestCase should be seen as deleted, YYYY-MM-DD
+  string DomainUuid = 1; // The Domain, UUID, where the TestCase 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestCase 'has its home'
+  string TestCaseUuid = 3; // The TestCase, UUID, that should be deleted
+  uint32 TestCaseVersion = 4; // The version of the TestCase, must match the latest version in the Database
+  string DeletedDate = 5; // The Date from when the TestCase should be seen as deleted, YYYY-MM-DD
 }
