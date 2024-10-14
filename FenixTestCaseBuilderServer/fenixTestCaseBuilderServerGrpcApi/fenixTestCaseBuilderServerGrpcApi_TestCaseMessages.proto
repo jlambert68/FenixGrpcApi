@@ -196,6 +196,7 @@ message FullTestCaseMessage {
   UsersChosenTestDataForTestCaseMessage TestCaseTestData = 6; // The TestData added to the TestCase. TestData is stored per user in the Database
   TestCasePreviewMessage TestCasePreview = 7; // A preview structure used be shown quickly to user when searching for TestCases
   string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
+  string DeletedDate = 9; // The Date from when the TestCase should be seen as deleted, YYYY-MM-DD
 }
 
 
