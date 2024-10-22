@@ -17,6 +17,14 @@ message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMess
   string TestInstructionsAndTestInstructionsContainersMessageHash = 6; // SHA256(TestInstructionsHash, TestInstructionContainersHash, AllowedUsersHash)
   bool ForceNewBaseLineForTestInstructionsAndTestInstructionContainers = 7; // Should there be a new baseline for TestInstructions and TestInstructionContainers, ie scrap the everything in database
   SupportedConnectorDomainMessage ConnectorDomain = 8; // Holds information about what Domain the Connector belongs to
+  MessageSignatureDataMessage MessageSignatureData = 9; // The message with the message that was signed and the signature
+}
+
+// MessageSignatureDataMessage
+// Message containing the hash that was signed and the resulting signature
+message MessageSignatureDataMessage {
+  string HashToBeSigned = 1; // The hash that was signed
+  string Signature = 2; // The resulting signature
 }
 
 // **************** **************** **************** TestInstruction **************** **************** ****************
