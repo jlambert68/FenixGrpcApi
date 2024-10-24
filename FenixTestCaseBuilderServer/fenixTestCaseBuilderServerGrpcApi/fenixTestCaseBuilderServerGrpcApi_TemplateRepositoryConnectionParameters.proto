@@ -3,14 +3,13 @@ package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
-import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
 
 // AllTemplateRepositoryConnectionParameters
 // Message holding parameters to be used to get all Templates from all Repositories
 message AllTemplateRepositoryConnectionParameters {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   repeated TemplateRepositoryConnectionParameters AllTemplateRepositories = 2; // A list with all parameters to all different template repositories
-  SignedMessageByWorkerServiceAccountMessage SignedMessageByWorkerServiceAccount = 3; // Holds information about signature signed by Workers Service Account
+  MessageSignatureDataMessage MessageSignatureData = 3; // The message with the message that was signed and the signature}
 }
 
 // TemplateRepositoryConnectionParameters

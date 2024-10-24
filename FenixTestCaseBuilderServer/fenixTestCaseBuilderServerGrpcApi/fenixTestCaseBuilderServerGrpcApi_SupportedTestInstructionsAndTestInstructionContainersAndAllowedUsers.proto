@@ -20,12 +20,7 @@ message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMess
   MessageSignatureDataMessage MessageSignatureData = 9; // The message with the message that was signed and the signature
 }
 
-// MessageSignatureDataMessage
-// Message containing the hash that was signed and the resulting signature
-message MessageSignatureDataMessage {
-  string HashToBeSigned = 1; // The hash that was signed
-  string Signature = 2; // The resulting signature
-}
+
 
 // **************** **************** **************** TestInstruction **************** **************** ****************
 // SupportedTestInstructionsMessage
@@ -344,11 +339,3 @@ message ResponseVariableMessage  {
   string ResponseVariableTypeName = 6; // The Name for Type or Group of Response variable
 }
 
-// **************** **************** **************** Signed Message **************** **************** ****************
-
-// Holds information about signature signed by Workers Service Account
-message SignedMessageByWorkerServiceAccountMessage {
-  string MessageToBeSigned = 1; // The message that the service account signed
-  string HashOfSignature = 2; // The signature produced when signing the message
-  string HashedKeyId = 3; // THe Hash of the KeyId used when signing
-}

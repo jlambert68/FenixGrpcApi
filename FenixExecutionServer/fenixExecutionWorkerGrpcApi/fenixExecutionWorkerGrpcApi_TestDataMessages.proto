@@ -10,6 +10,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 message TestDataFromSimpleTestDataAreaFileMessage {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   repeated TestDataFromOneSimpleTestDataAreaFileMessage TestDataFromSimpleTestDataAreaFiles = 2; // The message to be Signe
+  MessageSignatureDataMessage MessageSignatureData = 3; // The message with the message that was signed and the signature
 }
 
 // TestData from a Simple-file for one TestDataArea

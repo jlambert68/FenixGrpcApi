@@ -175,3 +175,10 @@ message    GetMessageToSignToProveCallerIdentityResponse {
   AckNackResponse AckNack = 1; // User identification and users proto-file version
   string MessageToSign = 2; // The message received from BuilderServer for Worker to sign
 }
+
+// MessageSignatureDataMessage
+// Message containing the hash that was signed and the resulting signature
+message MessageSignatureDataMessage {
+  string HashToBeSigned = 1; // The hash that was signed
+  string Signature = 2; // The resulting signature
+}

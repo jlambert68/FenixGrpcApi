@@ -121,3 +121,10 @@ enum ConnectorIsReadyEnum {
   CONNECTOR_IS_SHUTTING_DOWN = 2; // Defines that the Connector will shut down and can't receive any new TestInstructions
 
 }
+
+// MessageSignatureDataMessage
+// Message containing the hash that was signed and the resulting signature
+message MessageSignatureDataMessage {
+  string HashToBeSigned = 1; // The hash that was signed
+  string Signature = 2; // The resulting signature
+}

@@ -20,12 +20,7 @@ message SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMess
   MessageSignatureDataMessage MessageSignatureData = 9; // The message with the message that was signed and the signature
 }
 
-// MessageSignatureDataMessage
-// Message containing the hash that was signed and the resulting signature
-message MessageSignatureDataMessage {
-  string HashToBeSigned = 1; // The hash that was signed
-  string Signature = 2; // The resulting signature
-}
+
 
 // **************** **************** **************** TestInstruction **************** **************** ****************
 // SupportedTestInstructionsMessage

@@ -9,6 +9,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 message AllTemplateRepositoryConnectionParameters {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   repeated TemplateRepositoryConnectionParameters AllTemplateRepositories = 2; // A list with all parameters to all different template repositories
+  MessageSignatureDataMessage MessageSignatureData = 3; // The message with the message that was signed and the signature
 }
 
 // TemplateRepositoryConnectionParameters
