@@ -4,6 +4,7 @@ option go_package = "./go_grpc_api";
 
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_ListTestCaseExecutions.proto";
 
 // ****************************************************************************************************
 // Fenix Execution Server service definition. (Will support Test Suite building in feature, and will then be renamed)
@@ -64,6 +65,10 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
 
   // Call from TesterGui to GuiExecution telling that the TesterGui is starting up
   rpc TesterGuiIsStartingUp(UserAndApplicationRunTimeIdentificationMessage) returns (AckNackResponse) {
+  }
+
+  // Call from TesterGui to GuiExecution to get a list of all TestCaseExecutions with their current execution status
+  rpc ListTestCaseExecutions(ListTestCaseExecutionsRequest) returns (ListTestCaseExecutionsResponse) {
   }
 
 }
