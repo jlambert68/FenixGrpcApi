@@ -4,7 +4,6 @@ option go_package = "./go_grpc_api";
 
 import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
-import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
 import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_Messages.proto";
 
 // Message to be used for requesting a list of all TestCaseExecutions with their current execution status
