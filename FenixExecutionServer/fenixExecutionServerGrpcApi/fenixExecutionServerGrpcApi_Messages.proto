@@ -160,8 +160,6 @@ message    TestInstructionExecutionStatusPreviewValueMessage {
   google.protobuf.Timestamp SentTimeStamp = 7; // The time when the TestInstruction was sent for execution
   google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 8; // The time when the TestInstruction was received after execution
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
-  google.protobuf.Timestamp ExecutionStartTimeStamp = 10; // The Start TimeStamp of the execution
-  google.protobuf.Timestamp ExecutionStopTimeStamp = 11; // The Stop TimeStamp of the execution
-  string ExecutionDomainUuid = 13; // The Domain Uuid responsible for execution
-  string ExecutionDomainName = 14; // The Domain Name responsible for execution
+  string ExecutionDomainUuid = 10; // The Domain Uuid responsible for execution
+  string ExecutionDomainName = 11; // The Domain Name responsible for execution
 }
