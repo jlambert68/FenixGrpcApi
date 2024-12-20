@@ -4,6 +4,7 @@ option go_package = "./go_grpc_api";
 
 import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
 
 
 
@@ -109,4 +110,58 @@ message ProcessTestInstructionExecutionResponseStatus {
   string TestInstructionExecutionUuid = 2; // The unique uuid for the TestInstructionExecution, set by Fenix Execution Server
   google.protobuf.Timestamp ExpectedExecutionDuration = 3; // The expected time during an execution result can be expected back to execution server
   bool TestInstructionCanBeReExecuted = 4; // Indicates if the TestInstruction can be resent to be re-executed. Good example is validations that can be don't as many times as needed
+}
+
+
+
+// Message holding one TestCaseExecution
+// Owner is ExecutionServer due to it's that server that store the information in the database
+message  TestCaseExecutionsListMessage {
+  string DomainUUID = 1; // The DomainUUID where the TestCase belongs
+  string DomainName = 2; // The DomainName where the TestCase belongs
+  string  TestSuiteUuid = 3; // The SuiteUuid when the TestCase was executed in  suite
+  string  TestSuiteName = 4; // The SuiteName when the TestCase was executed in  suite
+  string  TestSuiteVersion = 5; // The SuiteVersion when the TestCase was executed in  suite
+  string  TestSuiteExecutionUuid = 6; // The SuiteExecution Uuid when the TestCase was executed in  suite
+  int32  TestSuiteExecutionVersion = 7; // The SuiteExecutionVersion when the TestCase was executed in  suite
+  string  TestCaseUuid = 8; // The TestCaseUuid
+  string  TestCaseName = 9; // The TestCaseName
+  int32  TestCaseVersion = 10; // The TestCaseVersion
+  string  TestCaseExecutionUuid = 11; // The TestCaseExecutionUuid
+  int32 TestCaseExecutionVersion = 12; // The TestCaseExecutionVersion
+  google.protobuf.Timestamp QueueTimeStamp = 13; // The TimeStamp when the TestCaseExecution was put on the Execution-queue
+  string TestDataSetUuid = 14; // TestDataSet Uuid - Not used
+  ExecutionPriorityEnum ExecutionPriority = 15; // The execution priority. Helps the execution engine to prioritize the executions between different TestCaseExecutions
+  google.protobuf.Timestamp ExecutionStartTimeStamp = 16; // The Start TimeStamp of the execution
+  google.protobuf.Timestamp ExecutionStopTimeStamp = 17; // The Stop TimeStamp of the execution
+  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 18; // Execution Status for the TestCaseExecution
+  bool ExecutionHasFinished = 19; // Boolean telling if the TestCase is finished its execution
+  int32 UniqueCounter = 20; // A unique counter coming from the database table for ongoing executions
+  google.protobuf.Timestamp ExecutionStatusUpdateTimeStamp = 21; // The timeStamo when the executions status was last updated
+  ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 22; // Helps the execution engine to decide if real time execution status updates should be sent using the postgres broadcast system
+  fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage TestCasePreview = 23; // The full TestCase-preview structure from the TestCase-data. Used in TestCaseExecutions.list to create a preview of execution status for TestCase.
+  TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 24; // All TestInstructionExecutions and their execution status.
+  int32 UniqueExecutionCounter = 25; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
+}
+
+// Message holding all TestInstructionExecutions, and their execution status, for one TestCase
+message TestInstructionsExecutionStatusPreviewValuesMessage {
+  repeated TestInstructionExecutionStatusPreviewValueMessage TestInstructionExecutionStatusPreviewValues = 1; // A list of all TestInstructionExecutions, and their status, belonging to TestCaseExecution
+}
+
+// A Message holding one TestInstructionExecutions and its execution status
+message    TestInstructionExecutionStatusPreviewValueMessage {
+  string TestCaseExecutionUuid = 1; // The TestCaseExecution Uuid responsible for this TestInstructionExecution
+  int32 TestCaseExecutionVersion = 2; // The TestCaseExecution Version responsible for this TestInstructionExecution
+  string TestInstructionExecutionUuid = 3; // TestInstructionExecution Uuid
+  int32 TestInstructionInstructionExecutionVersion = 4; // TestInstructionExecution Version
+  string MatureTestInstructionUuid = 5; // The Uuid for the TestInstruction used in the TestCase
+  string TestInstructionName = 6; // The Name for the TestInstruction used in the TestCase
+  google.protobuf.Timestamp SentTimeStamp = 7; // The time when the TestInstruction was sent for execution
+  google.protobuf.Timestamp TestInstructionExecutionEndTimeStamp = 8; // The time when the TestInstruction was received after execution
+  TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
+  google.protobuf.Timestamp ExecutionStartTimeStamp = 10; // The Start TimeStamp of the execution
+  google.protobuf.Timestamp ExecutionStopTimeStamp = 11; // The Stop TimeStamp of the execution
+  string ExecutionDomainUuid = 13; // The Domain Uuid responsible for execution
+  string ExecutionDomainName = 14; // The Domain Name responsible for execution
 }

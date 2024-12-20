@@ -4,6 +4,8 @@ option go_package = "./go_grpc_api";
 
 import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
+import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_Messages.proto";
 
 // Message to be used for requesting a list of all TestCaseExecutions with their current execution status
 message ListTestCaseExecutionsRequest {
@@ -18,36 +20,11 @@ message ListTestCaseExecutionsRequest {
 // Message to be used in the response when requesting a list of all TestCaseExecutions with their current execution status
 message ListTestCaseExecutionsResponse {
   AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
-  repeated TestCaseExecutionsListMessage TestCaseExecutionsList = 2; // A list with all requested TestCaseExecutions
+  repeated fenixExecutionServerGrpcApi.TestCaseExecutionsListMessage TestCaseExecutionsList = 2; // A list with all requested TestCaseExecutions
   int32   LatestUniqueTestCaseExecutionDatabaseRowId = 3; // Tha last unique row id for the response
   bool MoreRowsExists = 4; // An indicator what tells if there are more rows that can be retrieve. Is used to quickly get the latest rows and present to the user and the in the background retrieve the rest.
 }
 
-// Message holding one TestCaseExecution
-message  TestCaseExecutionsListMessage {
-  string DomainUUID = 1; // The DomainUUID where the TestCase belongs
-  string DomainName = 2; // The DomainName where the TestCase belongs
-  string  TestSuiteUuid = 3; // The SuiteUuid when the TestCase was executed in  suite
-  string  TestSuiteName = 4; // The SuiteName when the TestCase was executed in  suite
-  string  TestSuiteVersion = 5; // The SuiteVersion when the TestCase was executed in  suite
-  string  TestSuiteExecutionUuid = 6; // The SuiteExecution Uuid when the TestCase was executed in  suite
-  int32  TestSuiteExecutionVersion = 7; // The SuiteExecutionVersion when the TestCase was executed in  suite
-  string  TestCaseUuid = 8; // The TestCaseUuid
-  string  TestCaseName = 9; // The TestCaseName
-  int32  TestCaseVersion = 10; // The TestCaseVersion
-  string  TestCaseExecutionUuid = 11; // The TestCaseExecutionUuid
-  int32 TestCaseExecutionVersion = 12; // The TestCaseExecutionVersion
-  google.protobuf.Timestamp QueueTimeStamp = 13; // The TimeStamp when the TestCaseExecution was put on the Execution-queue
-  string TestDataSetUuid = 14; // TestDataSet Uuid - Not used
-  int32 ExecutionPriority = 15; // The execution priority. Helps the execution engine to prioritize the executions between different TestCaseExecutions
-  google.protobuf.Timestamp ExecutionStartTimeStamp = 16; // The Start TimeStamp of the execution
-  google.protobuf.Timestamp ExecutionStopTimeStamp = 17; // The Stop TimeStamp of the execution
-  int32 TestCaseExecutionStatus = 18; // Execution Status for the TestCaseExecution
-  bool ExecutionHasFinished = 19; // Boolean telling if the TestCase is finished its execution
-  int32 UniqueCounter = 20; // A unique counter coming from the database table for ongoing executions
-  google.protobuf.Timestamp ExecutionStatusUpdateTimeStamp = 21; // The timeStamo when the executions status was last updated
-  int32 ExecutionStatusReportLevel = 22; // Helps the execution engine to decide if real time execution status updates should be sent using the postgres broadcast system
-  string TestCasePreview = 23; // The full TestCase-preview structure from the TestCase-data. Used in TestCaseExecutions.list to create a preview of execution status for TestCase. In json
-  string ExecutionStatusPreviewValue = 24; // All TestInstructionExecutions and their execution status. In json
-  int32 UniqueExecutionCounter = 25; // The unique database row indicator. Used to be able for TesterGui to only retrieve the lastest and updated rows from the database
-}
+
+
+
