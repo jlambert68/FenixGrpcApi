@@ -113,7 +113,6 @@ message ProcessTestInstructionExecutionResponseStatus {
 }
 
 
-
 // Message holding one TestCaseExecution
 // Owner is ExecutionServer due to it's that server that store the information in the database
 message  TestCaseExecutionsListMessage {

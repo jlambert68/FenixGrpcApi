@@ -841,6 +841,7 @@ func (x *TestCasePreviewMessage) GetTestCasePreviewHash() string {
 }
 
 // Message holding the full preview of the TestCase
+// Update and sync with 'fenixExecutionServerGrpcApi_Messages.proto'
 type TestCasePreviewStructureMessage struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
