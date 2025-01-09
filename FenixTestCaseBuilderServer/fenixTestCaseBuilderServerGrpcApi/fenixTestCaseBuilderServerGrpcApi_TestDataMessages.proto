@@ -90,6 +90,7 @@ message TestCasePreviewMessage {
 }
 
 // Message holding the full preview of the TestCase
+// Update and sync with 'fenixExecutionServerGrpcApi_Messages.proto'
 message TestCasePreviewStructureMessage {
   string TestCaseName = 1; // The name of the TestCase
   string DomainThatOwnTheTestCase = 2; // The Domain that owns the TestCase
@@ -122,6 +123,7 @@ message TestCasePreviewStructureMessage {
     }
 
   }
+
 
   enum TestCaseStructureObjectTypeEnum {
     TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set

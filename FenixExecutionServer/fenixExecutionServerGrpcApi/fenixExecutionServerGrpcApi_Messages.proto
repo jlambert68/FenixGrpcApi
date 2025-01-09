@@ -4,7 +4,7 @@ option go_package = "./go_grpc_api";
 
 import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionServerGrpcApi/fenixExecutionServerGrpcApi_GeneralMessagesAndEnums.proto";
-import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
 
 
 
@@ -139,7 +139,7 @@ message  TestCaseExecutionsListMessage {
   int32 UniqueCounter = 20; // A unique counter coming from the database table for ongoing executions
   google.protobuf.Timestamp ExecutionStatusUpdateTimeStamp = 21; // The timeStamo when the executions status was last updated
   ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 22; // Helps the execution engine to decide if real time execution status updates should be sent using the postgres broadcast system
-  fenixTestCaseBuilderServerGrpcApi.TestCasePreviewStructureMessage TestCasePreview = 23; // The full TestCase-preview structure from the TestCase-data. Used in TestCaseExecutions.list to create a preview of execution status for TestCase.
+  TestCasePreviewStructureMessage TestCasePreview = 23; // The full TestCase-preview structure from the TestCase-data. Used in TestCaseExecutions.list to create a preview of execution status for TestCase.
   TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 24; // All TestInstructionExecutions and their execution status.
   int32 UniqueExecutionCounter = 25; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
 }
@@ -162,4 +162,49 @@ message    TestInstructionExecutionStatusPreviewValueMessage {
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
   string ExecutionDomainUuid = 10; // The Domain Uuid responsible for execution
   string ExecutionDomainName = 11; // The Domain Name responsible for execution
+}
+
+
+// Message holding the full preview of the TestCase
+// Update and sync with 'fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto'
+message TestCasePreviewStructureMessage {
+  string TestCaseName = 1; // The name of the TestCase
+  string DomainThatOwnTheTestCase = 2; // The Domain that owns the TestCase
+  string TestCaseDescription = 3; // The Description of the TestCase
+  repeated TestCaseStructureObjectMessage TestCaseStructureObjects = 4; // A list of the different components of the TestCase, TIC, TI and Attributes
+  string ComplexTextualDescription = 5; // A textual description of the TestCase-model
+  string TestCaseUuid = 6; // The TestCaseUuid
+  string TestCaseVersion = 7; // The version of the TestCase
+  string LastSavedByUserOnComputer = 12; // The logged in user on the computer that last saved the TestCase
+  string LastSavedByUserGCPAuthorization = 13; // The authorized user towards GCP that last saved the TestCase
+  string LastSavedTimeStamp = 14; // The Timestamp when the TestCase first was last saved
+
+  // A message holding one TestCaseStructureObject, like TIC, TI or TI's attributes
+  message TestCaseStructureObjectMessage {
+    TestCaseStructureObjectTypeEnum TestCaseStructureObjectType = 1; // The type of TestCaseStructureObject, TIC, TI, Attribute
+    uint32 IndentationLevel = 2; // How much should the object be move to create the tree like structure
+    string TestInstructionContainerName = 3; // The Name of the TestInstructionContainer
+    string TestInstructionContainerUuid = 4; // The Uuid of the TestInstructionContainer
+    bool TestInstructionIsSerialProcessed = 5; // Is the TestInstructionContainer 'serial' or 'parallel' processed
+    string TestInstructionName = 6; // The Name of the TestInstruction
+    string TestInstructionUuid = 7; // The Uuid of the TestInstruction
+    string TestInstructionColor = 8; // The color code used for the TestInstruction
+    repeated TestInstructionAttributeMessage TestInstructionAttributes = 9; // The Attributes for the TestInstruction
+
+    // Message holding one TestInstructionAttribute
+    message TestInstructionAttributeMessage {
+      string AttributeName = 1; // The name of the Attribute
+      string AttributeValue = 2; // The value of the Attribute
+      string AttributeGroupName = 3; // The Group name for the Attribute in the UI
+    }
+
+  }
+
+  enum TestCaseStructureObjectTypeEnum {
+    TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+    TestInstructionContainer = 1; // Type is a TestInstructionContainer
+    TestInstruction = 2; // Type is a TestInstruction
+    TestInstructionAttribute = 3; // Type is a TestInstructionAttribute
+  }
+
 }
