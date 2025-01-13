@@ -237,7 +237,7 @@ type TestCaseExecutionsListMessage struct {
 	DomainName                                   string                                               `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`                                                                                                      // The DomainName where the TestCase belongs
 	TestSuiteUuid                                string                                               `protobuf:"bytes,3,opt,name=TestSuiteUuid,proto3" json:"TestSuiteUuid,omitempty"`                                                                                                // The SuiteUuid when the TestCase was executed in  suite
 	TestSuiteName                                string                                               `protobuf:"bytes,4,opt,name=TestSuiteName,proto3" json:"TestSuiteName,omitempty"`                                                                                                // The SuiteName when the TestCase was executed in  suite
-	TestSuiteVersion                             string                                               `protobuf:"bytes,5,opt,name=TestSuiteVersion,proto3" json:"TestSuiteVersion,omitempty"`                                                                                          // The SuiteVersion when the TestCase was executed in  suite
+	TestSuiteVersion                             int32                                                `protobuf:"varint,5,opt,name=TestSuiteVersion,proto3" json:"TestSuiteVersion,omitempty"`                                                                                         // The SuiteVersion when the TestCase was executed in  suite
 	TestSuiteExecutionUuid                       string                                               `protobuf:"bytes,6,opt,name=TestSuiteExecutionUuid,proto3" json:"TestSuiteExecutionUuid,omitempty"`                                                                              // The SuiteExecution Uuid when the TestCase was executed in  suite
 	TestSuiteExecutionVersion                    int32                                                `protobuf:"varint,7,opt,name=TestSuiteExecutionVersion,proto3" json:"TestSuiteExecutionVersion,omitempty"`                                                                       // The SuiteExecutionVersion when the TestCase was executed in  suite
 	TestCaseUuid                                 string                                               `protobuf:"bytes,8,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                                                  // The TestCaseUuid
@@ -320,11 +320,11 @@ func (x *TestCaseExecutionsListMessage) GetTestSuiteName() string {
 	return ""
 }
 
-func (x *TestCaseExecutionsListMessage) GetTestSuiteVersion() string {
+func (x *TestCaseExecutionsListMessage) GetTestSuiteVersion() int32 {
 	if x != nil {
 		return x.TestSuiteVersion
 	}
-	return ""
+	return 0
 }
 
 func (x *TestCaseExecutionsListMessage) GetTestSuiteExecutionUuid() string {
@@ -1033,7 +1033,7 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x12, 0x24, 0x0a, 0x0d, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x4e, 0x61, 0x6d,
 	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69,
 	0x74, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x2a, 0x0a, 0x10, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75,
-	0x69, 0x74, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
+	0x69, 0x74, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05,
 	0x52, 0x10, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69,
 	0x6f, 0x6e, 0x12, 0x36, 0x0a, 0x16, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45,
 	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01,

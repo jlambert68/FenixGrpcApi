@@ -33,7 +33,7 @@ message  TestCaseExecutionsListMessage {
   string DomainName = 2; // The DomainName where the TestCase belongs
   string  TestSuiteUuid = 3; // The SuiteUuid when the TestCase was executed in  suite
   string  TestSuiteName = 4; // The SuiteName when the TestCase was executed in  suite
-  string  TestSuiteVersion = 5; // The SuiteVersion when the TestCase was executed in  suite
+  int32  TestSuiteVersion = 5; // The SuiteVersion when the TestCase was executed in  suite
   string  TestSuiteExecutionUuid = 6; // The SuiteExecution Uuid when the TestCase was executed in  suite
   int32  TestSuiteExecutionVersion = 7; // The SuiteExecutionVersion when the TestCase was executed in  suite
   string  TestCaseUuid = 8; // The TestCaseUuid
