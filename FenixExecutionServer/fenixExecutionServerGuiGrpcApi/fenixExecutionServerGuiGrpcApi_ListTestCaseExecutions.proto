@@ -54,6 +54,7 @@ message  TestCaseExecutionsListMessage {
   TestCasePreviewStructureMessage TestCasePreview = 23; // The full TestCase-preview structure from the TestCase-data. Used in TestCaseExecutions.list to create a preview of execution status for TestCase.
   TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 24; // All TestInstructionExecutions and their execution status.
   int32 UniqueExecutionCounter = 25; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
+  string   TestCasePreviewHash = 26; // Comes from TestCasePreview in Database, but is not used here. But is need due to Unmarshal into Proto-message
 }
 
 // Message holding all TestInstructionExecutions, and their execution status, for one TestCase
