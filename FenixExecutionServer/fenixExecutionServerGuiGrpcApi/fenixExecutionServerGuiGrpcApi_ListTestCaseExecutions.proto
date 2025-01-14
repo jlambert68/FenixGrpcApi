@@ -11,8 +11,9 @@ message ListTestCaseExecutionsRequest {
   UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   int32 LatestUniqueTestCaseExecutionDatabaseRowId = 2 ; //  Specifies the latest database row id for executions that the TesterGui has  in its memory, if zero then TesterGui has no Executions
   bool OnlyRetrieveLimitedSizedBatch = 3; // Inform that only a limited number of rows should be retrieved. Used to give a fast response for the user
-  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 4; // Execution From TimeStamp in Request. Filter to be able to select a narrow date span
-  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 5; // Execution To TimeStamp in Request. Filter to be able to select a narrow date span
+  int32 BatchSize = 4; // If limited batch is wanted by caller then use this batch size
+  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 5; // Execution From TimeStamp in Request. Filter to be able to select a narrow date span
+  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 6; // Execution To TimeStamp in Request. Filter to be able to select a narrow date span
 }
 
 
