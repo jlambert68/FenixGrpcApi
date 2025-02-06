@@ -1,0 +1,25 @@
+{
+  "TestApiEngineResponseJsonSchemaVersion": "v1.1",
+  "TestInstructionExecutionUuid": "ae344db4-2d34-474e-bd91-1b24ac408b75",
+  "TestInstructionExecutionVersion": "1",
+  "TestInstructionExecutionStatus": "TIE_FINISHED_OK",
+  "TestInstructionExecutionStartTimeStamp": "2024-02-23T09:49:28Z",
+  "TestInstructionExecutionEndTimeStamp": "2024-02-23T09:49:33Z",
+  "ResponseVariables": [
+    {
+      "TestStepActionMethod": "MyActionMethod_v1_0",
+      "TestInstructionVersion": "v1.0",
+      "ResponseVariableTypeUuid": "24fa2f84-827a-4c01-a86c-da42d888c295",
+      "ResponseVariableTypeName": ":20C::SEME//",
+      "ResponseVariableValueAsString": "2402231049-5811"
+    }
+  ],
+  "LogPosts": [
+    {
+      "LogPostTimeStamp": "2024-02-23T09:49:33Z",
+      "LogPostStatus": "INFO",
+      "LogPostText": "Message Sent on MQ",
+      "FoundVersusExpectedValue": []
+    }
+  ]
+}
