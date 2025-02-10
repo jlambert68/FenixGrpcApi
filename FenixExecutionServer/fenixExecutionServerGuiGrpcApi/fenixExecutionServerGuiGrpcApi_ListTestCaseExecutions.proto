@@ -12,8 +12,10 @@ message ListTestCaseExecutionsRequest {
   int32 LatestUniqueTestCaseExecutionDatabaseRowId = 2 ; //  Specifies the latest database row id for executions that the TesterGui has  in its memory, if zero then TesterGui has no Executions
   bool OnlyRetrieveLimitedSizedBatch = 3; // Inform that only a limited number of rows should be retrieved. Used to give a fast response for the user
   int32 BatchSize = 4; // If limited batch is wanted by caller then use this batch size
-  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 5; // Execution From TimeStamp in Request. Filter to be able to select a narrow date span
-  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 6; // Execution To TimeStamp in Request. Filter to be able to select a narrow date span
+  bool RetrieveAllExecutionsForSpecificTestCaseUuid = 5; // Should all TestCaseExecutions be retrieved for attached TestCaseUuid?
+  string SpecificTestCaseUuid = 6; // TestCaseUuid for which all  all TestCaseExecutions should be retrieved
+  google.protobuf.Timestamp TestCaseExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request. Filter to be able to select a narrow date span
+  google.protobuf.Timestamp TestCaseExecutionToTimeStamp = 8; // Execution To TimeStamp in Request. Filter to be able to select a narrow date span
 }
 
 
@@ -56,6 +58,7 @@ message  TestCaseExecutionsListMessage {
   TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 24; // All TestInstructionExecutions and their execution status.
   int32 UniqueExecutionCounter = 25; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
   string   TestCasePreviewHash = 26; // Comes from TestCasePreview in Database, but is not used here. But is need due to Unmarshal into Proto-message
+  int32 NumberOfTestCaseExecutionForTestCase = 27; // The number of TestCaseExecutions this specific TestCaseUuid has produced
 }
 
 // Message holding all TestInstructionExecutions, and their execution status, for one TestCase
