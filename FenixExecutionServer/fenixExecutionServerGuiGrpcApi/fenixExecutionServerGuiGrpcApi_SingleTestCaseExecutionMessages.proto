@@ -190,16 +190,18 @@ message LogPostAndValuesMessage {
 
 // Message holding one Attribute with its updated value
 message RunTimeUpdatedAttributeMessage {
-  string TestInstructionExecutionUuid = 1; // The TestInstructionExecutions Uuid
-  int32 TestInstructionExecutionVersion = 2; //The TestInstructionExecutions version
-  int32 TestInstructionAttributeType =  3; // The Type in the GUI. TEXTBOX, COMBOBOX, FILE_SELECTOR, FUNCTION_SELECTOR ...
-  string  TestInstructionAttributeUuid = 4; // The unique UUID for the Attribute
-  string TestInstructionAttributeTypeUuid = 5; // The type for the Attribute. Used in GUI to handle sorting and grouping of attributes
-  string TestInstructionAttributeTypeName = 6; // The Name for type in previous row
-  string AttributeValueUuid = 7; // If the Attribute value can be define as a specific UUID, then it can be found here
-   string TestInstructionAttributeName = 8; // The name of the Attribute
-  string AttributeValueAsString = 9; // The RunTime updated value for the attribute
-  google.protobuf.Timestamp UpdateTimeStamp = 10; // The timestamp when the attribute was updated
+  string TestCaseExecutionUuid = 1; // The TestCaseExecutionUuid that the attribute belongs to
+  string TestCaseExecutionVersion = 2; // The TestCaseExecutionVersion that the Attribute was changed under
+  string TestInstructionExecutionUuid = 3; // The TestInstructionExecutions Uuid
+  int32 TestInstructionExecutionVersion = 4; //The TestInstructionExecutions version
+  int32 TestInstructionAttributeType =  5; // The Type in the GUI. TEXTBOX, COMBOBOX, FILE_SELECTOR, FUNCTION_SELECTOR ...
+  string  TestInstructionAttributeUuid = 6; // The unique UUID for the Attribute
+  string TestInstructionAttributeTypeUuid = 7; // The type for the Attribute. Used in GUI to handle sorting and grouping of attributes
+  string TestInstructionAttributeTypeName = 8; // The Name for type in previous row
+  string AttributeValueUuid = 9; // If the Attribute value can be define as a specific UUID, then it can be found here
+   string TestInstructionAttributeName = 10; // The name of the Attribute
+  string AttributeValueAsString = 11; // The RunTime updated value for the attribute
+  google.protobuf.Timestamp UpdateTimeStamp = 12; // The timestamp when the attribute was updated
 }
 
 // The request message from 'TesterGui' to receive 'stream' of messages from GuiExecutionServer
