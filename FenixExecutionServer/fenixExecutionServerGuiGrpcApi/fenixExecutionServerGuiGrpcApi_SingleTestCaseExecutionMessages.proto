@@ -191,7 +191,7 @@ message LogPostAndValuesMessage {
 // Message holding one Attribute with its updated value
 message RunTimeUpdatedAttributeMessage {
   string TestCaseExecutionUuid = 1; // The TestCaseExecutionUuid that the attribute belongs to
-  string TestCaseExecutionVersion = 2; // The TestCaseExecutionVersion that the Attribute was changed under
+  string TestCaseExecutionVersion = 2; // The TestCaseExecutionVersion that the Attribute was changed under.
   string TestInstructionExecutionUuid = 3; // The TestInstructionExecutions Uuid
   int32 TestInstructionExecutionVersion = 4; //The TestInstructionExecutions version
   int32 TestInstructionAttributeType =  5; // The Type in the GUI. TEXTBOX, COMBOBOX, FILE_SELECTOR, FUNCTION_SELECTOR ...

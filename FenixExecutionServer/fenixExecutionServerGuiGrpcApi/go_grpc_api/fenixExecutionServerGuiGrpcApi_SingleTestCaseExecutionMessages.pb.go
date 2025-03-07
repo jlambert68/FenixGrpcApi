@@ -1586,7 +1586,7 @@ type RunTimeUpdatedAttributeMessage struct {
 	unknownFields protoimpl.UnknownFields
 
 	TestCaseExecutionUuid            string               `protobuf:"bytes,1,opt,name=TestCaseExecutionUuid,proto3" json:"TestCaseExecutionUuid,omitempty"`                       // The TestCaseExecutionUuid that the attribute belongs to
-	TestCaseExecutionVersion         string               `protobuf:"bytes,2,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                 // The TestCaseExecutionVersion that the Attribute was changed under
+	TestCaseExecutionVersion         string               `protobuf:"bytes,2,opt,name=TestCaseExecutionVersion,proto3" json:"TestCaseExecutionVersion,omitempty"`                 // The TestCaseExecutionVersion that the Attribute was changed under.
 	TestInstructionExecutionUuid     string               `protobuf:"bytes,3,opt,name=TestInstructionExecutionUuid,proto3" json:"TestInstructionExecutionUuid,omitempty"`         // The TestInstructionExecutions Uuid
 	TestInstructionExecutionVersion  int32                `protobuf:"varint,4,opt,name=TestInstructionExecutionVersion,proto3" json:"TestInstructionExecutionVersion,omitempty"`  //The TestInstructionExecutions version
 	TestInstructionAttributeType     int32                `protobuf:"varint,5,opt,name=TestInstructionAttributeType,proto3" json:"TestInstructionAttributeType,omitempty"`        // The Type in the GUI. TEXTBOX, COMBOBOX, FILE_SELECTOR, FUNCTION_SELECTOR ...
