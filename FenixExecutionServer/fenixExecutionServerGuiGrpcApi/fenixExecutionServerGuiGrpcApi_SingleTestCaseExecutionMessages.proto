@@ -178,13 +178,12 @@ message LogPostAndValuesMessage {
   int32 TestInstructionExecutionVersion = 2; // The Version Number for the TestInstructionExecution
   google.protobuf.Timestamp LogPostTimeStamp = 3; // The TimeStamp for the specific log post
   LogPostStatusEnum LogPostStatus = 4; // the status for the log post
-  repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 5; // A list with found versus expected values, in string representations
-  uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
+  string LogPostText = 5; // The text for the log post
+  repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 6; // A list with found versus expected values, in string representations
 
   message FoundVersusExpectedValueMessage {
     string FoundValue = 1; // The value that was found
     string ExpectedValue = 2; // The value that was expected
-    uint64 UniqueDatabaseRowCounter = 3; // A unique counter for every database row
   }
 }
 
