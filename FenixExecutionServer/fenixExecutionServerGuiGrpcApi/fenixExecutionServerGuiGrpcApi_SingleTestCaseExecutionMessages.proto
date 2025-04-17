@@ -182,9 +182,10 @@ message LogPostAndValuesMessage {
   repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 6; // A list with found versus expected values, in string representations
 
   message FoundVersusExpectedValueMessage {
-    string Name = 1; // The name or description of the attribute
-    string FoundValue = 2; // The value that was found
-    string ExpectedValue = 3; // The value that was expected
+    string VariableName = 1; // The Name of the variable for expected vs found check
+    string VariableDescription = 2; // A description of the variable for expected vs found check
+    string FoundValue = 3; // The value that was found
+    string ExpectedValue = 4; // The value that was expected
   }
 }
 

@@ -42,8 +42,10 @@ message FinalTestInstructionExecutionResultMessage {
     }
 
     message FoundVersusExpectedValueMessage {
-      string FoundValue = 1; // The value that was found
-      string ExpectedValue = 2; // The value that was expected
+      string VariableName = 1; // The Name of the variable for expected vs found check
+      string VariableDescription = 2; // A description of the variable for expected vs found check
+      string FoundValue = 3; // The value that was found
+      string ExpectedValue = 4; // The value that was expected
     }
   }
 }
@@ -68,8 +70,10 @@ message LogPostsMessage {
     repeated FoundVersusExpectedValueMessage FoundVersusExpectedValue = 4; // A list with found versus expected values, in string representations
 
     message FoundVersusExpectedValueMessage {
-      string FoundValue = 1; // The value that was found
-      string ExpectedValue = 2; // The value that was expected
+      string VariableName = 1; // The Name of the variable for expected vs found check
+      string VariableDescription = 2; // A description of the variable for expected vs found check
+      string FoundValue = 3; // The value that was found
+      string ExpectedValue = 4; // The value that was expected
     }
   }
 }
