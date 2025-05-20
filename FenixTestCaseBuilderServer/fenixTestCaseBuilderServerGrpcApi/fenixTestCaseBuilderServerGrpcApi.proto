@@ -12,6 +12,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData.proto";
 
 // ****************************************************************************************************
 // Fenix TestCase-builder server service definition. (Will support Test Suite building in feature, and will then be renamed)
@@ -128,6 +129,10 @@ service FenixTestCaseBuilderServerGrpcWorkerServices {
 
   // Connector Publish TestData From a Simple TestData-file for one TestData-area
   rpc ConnectorPublishTestDataFromSimpleTestDataAreaFile (TestDataFromSimpleTestDataAreaFileMessage) returns (AckNackResponse) {
+  }
+
+  // Connector Publish Support MetaData for the Domain
+  rpc ConnectorPublishSupportedMetaData (SupportedTestCaseMetaData) returns (AckNackResponse) {
   }
 
   // Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity

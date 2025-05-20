@@ -104,6 +104,14 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x5f, 0x54, 0x65, 0x73,
 	0x74, 0x44, 0x61, 0x74, 0x61, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x1a, 0x7e, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
+	0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f,
+	0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69,
+	0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2f, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42,
+	0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x5f, 0x53, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x32, 0xa2, 0x19, 0x0a, 0x26, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73,
 	0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x12, 0x76,
@@ -306,7 +314,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x73, 0x74, 0x1a, 0x32, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61,
 	0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47,
 	0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x32, 0xcf, 0x06, 0x0a, 0x2c, 0x46, 0x65, 0x6e,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x32, 0xe9, 0x07, 0x0a, 0x2c, 0x46, 0x65, 0x6e,
 	0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65,
 	0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x57, 0x6f, 0x72, 0x6b, 0x65,
 	0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x12, 0xf3, 0x01, 0x0a, 0x4b, 0x50, 0x75,
@@ -348,20 +356,29 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x61, 0x67, 0x65, 0x1a, 0x32, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43,
 	0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
 	0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0xae, 0x01, 0x0a, 0x25, 0x47, 0x65,
-	0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x53, 0x69, 0x67, 0x6e, 0x54, 0x6f,
-	0x50, 0x72, 0x6f, 0x76, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74,
-	0x69, 0x74, 0x79, 0x12, 0x31, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43,
-	0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x65, 0x74, 0x65, 0x72, 0x1a, 0x50, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65,
-	0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x54, 0x6f, 0x53, 0x69, 0x67, 0x6e, 0x54, 0x6f, 0x50, 0x72, 0x6f,
-	0x76, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f,
-	0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x97, 0x01, 0x0a, 0x21, 0x43, 0x6f,
+	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x50, 0x75, 0x62, 0x6c, 0x69, 0x73, 0x68, 0x53, 0x75,
+	0x70, 0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x12,
+	0x3c, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42,
+	0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x2e, 0x53, 0x75, 0x70, 0x70, 0x6f, 0x72, 0x74, 0x65, 0x64, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x1a, 0x32, 0x2e,
+	0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69,
+	0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x12, 0xae, 0x01, 0x0a, 0x25, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x54, 0x6f, 0x53, 0x69, 0x67, 0x6e, 0x54, 0x6f, 0x50, 0x72, 0x6f, 0x76, 0x65, 0x43,
+	0x61, 0x6c, 0x6c, 0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x12, 0x31, 0x2e,
+	0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69,
+	0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x65, 0x74, 0x65, 0x72,
+	0x1a, 0x50, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65,
+	0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70,
+	0x63, 0x41, 0x70, 0x69, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x54,
+	0x6f, 0x53, 0x69, 0x67, 0x6e, 0x54, 0x6f, 0x50, 0x72, 0x6f, 0x76, 0x65, 0x43, 0x61, 0x6c, 0x6c,
+	0x65, 0x72, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x00, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70,
+	0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_proto_goTypes = []interface{}{
@@ -381,19 +398,20 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	(*SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage)(nil),          // 13: fenixTestCaseBuilderServerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage
 	(*AllTemplateRepositoryConnectionParameters)(nil),                                            // 14: fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters
 	(*TestDataFromSimpleTestDataAreaFileMessage)(nil),                                            // 15: fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage
-	(*AckNackResponse)(nil),                                                                      // 16: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	(*AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage)(nil),       // 17: fenixTestCaseBuilderServerGrpcApi.AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
-	(*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage)(nil), // 18: fenixTestCaseBuilderServerGrpcApi.AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
-	(*ImmatureBondsMessage)(nil),                                                                 // 19: fenixTestCaseBuilderServerGrpcApi.ImmatureBondsMessage
-	(*ListAllRepositoryApiUrlsResponseMessage)(nil),                                              // 20: fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage
-	(*ListAllTestDataForTestDataAreasResponseMessage)(nil),                                       // 21: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage
-	(*ListTestCasesResponseMessage)(nil),                                                         // 22: fenixTestCaseBuilderServerGrpcApi.ListTestCasesResponseMessage
-	(*GetDetailedTestCaseResponse)(nil),                                                          // 23: fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse
-	(*MatureTestInstructionsMessage)(nil),                                                        // 24: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
-	(*MatureTestInstructionContainersMessage)(nil),                                               // 25: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
-	(*ListTestCasesThatCanBeEditedResponseMessage)(nil),                                          // 26: fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage
-	(*TestCasesHashResponse)(nil),                                                                // 27: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse
-	(*GetMessageToSignToProveCallerIdentityResponse)(nil),                                        // 28: fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse
+	(*SupportedTestCaseMetaData)(nil),                                                            // 16: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData
+	(*AckNackResponse)(nil),                                                                      // 17: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	(*AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage)(nil),       // 18: fenixTestCaseBuilderServerGrpcApi.AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
+	(*AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage)(nil), // 19: fenixTestCaseBuilderServerGrpcApi.AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
+	(*ImmatureBondsMessage)(nil),                                                                 // 20: fenixTestCaseBuilderServerGrpcApi.ImmatureBondsMessage
+	(*ListAllRepositoryApiUrlsResponseMessage)(nil),                                              // 21: fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage
+	(*ListAllTestDataForTestDataAreasResponseMessage)(nil),                                       // 22: fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage
+	(*ListTestCasesResponseMessage)(nil),                                                         // 23: fenixTestCaseBuilderServerGrpcApi.ListTestCasesResponseMessage
+	(*GetDetailedTestCaseResponse)(nil),                                                          // 24: fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse
+	(*MatureTestInstructionsMessage)(nil),                                                        // 25: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
+	(*MatureTestInstructionContainersMessage)(nil),                                               // 26: fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
+	(*ListTestCasesThatCanBeEditedResponseMessage)(nil),                                          // 27: fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage
+	(*TestCasesHashResponse)(nil),                                                                // 28: fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse
+	(*GetMessageToSignToProveCallerIdentityResponse)(nil),                                        // 29: fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_proto_depIdxs = []int32{
 	0,  // 0: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.AreYouAlive:input_type -> fenixTestCaseBuilderServerGrpcApi.EmptyParameter
@@ -417,31 +435,33 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	13, // 18: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers:input_type -> fenixTestCaseBuilderServerGrpcApi.SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsersMessage
 	14, // 19: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishTemplateRepositoryConnectionParameters:input_type -> fenixTestCaseBuilderServerGrpcApi.AllTemplateRepositoryConnectionParameters
 	15, // 20: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishTestDataFromSimpleTestDataAreaFile:input_type -> fenixTestCaseBuilderServerGrpcApi.TestDataFromSimpleTestDataAreaFileMessage
-	0,  // 21: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.GetMessageToSignToProveCallerIdentity:input_type -> fenixTestCaseBuilderServerGrpcApi.EmptyParameter
-	16, // 22: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.AreYouAlive:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	17, // 23: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllAvailableTestInstructionsAndTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
-	18, // 24: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
-	19, // 25: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllAvailableBonds:output_type -> fenixTestCaseBuilderServerGrpcApi.ImmatureBondsMessage
-	20, // 26: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllRepositoryApiUrls:output_type -> fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage
-	21, // 27: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestDataForTestDataAreas:output_type -> fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage
-	16, // 28: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveAllPinnedTestInstructionsAndTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	22, // 29: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestCases:output_type -> fenixTestCaseBuilderServerGrpcApi.ListTestCasesResponseMessage
-	23, // 30: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.GetDetailedTestCase:output_type -> fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse
-	24, // 31: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestCaseTestInstructions:output_type -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
-	25, // 32: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestCaseTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
-	26, // 33: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListTestCasesThatCanBeEdited:output_type -> fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage
-	16, // 34: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveFullTestCase:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	16, // 35: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveTestCase:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	16, // 36: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveAllTestCaseTestInstructions:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	16, // 37: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveAllTestCaseTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	27, // 38: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.GetTestCasesHashes:output_type -> fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse
-	16, // 39: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.DeleteTestCaseAtThisDate:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	16, // 40: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	16, // 41: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishTemplateRepositoryConnectionParameters:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	16, // 42: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishTestDataFromSimpleTestDataAreaFile:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	28, // 43: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.GetMessageToSignToProveCallerIdentity:output_type -> fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse
-	22, // [22:44] is the sub-list for method output_type
-	0,  // [0:22] is the sub-list for method input_type
+	16, // 21: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishSupportedMetaData:input_type -> fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData
+	0,  // 22: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.GetMessageToSignToProveCallerIdentity:input_type -> fenixTestCaseBuilderServerGrpcApi.EmptyParameter
+	17, // 23: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.AreYouAlive:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	18, // 24: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllAvailableTestInstructionsAndTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AvailableTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
+	19, // 25: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllAvailablePinnedTestInstructionsAndTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AvailablePinnedTestInstructionsAndPreCreatedTestInstructionContainersResponseMessage
+	20, // 26: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllAvailableBonds:output_type -> fenixTestCaseBuilderServerGrpcApi.ImmatureBondsMessage
+	21, // 27: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllRepositoryApiUrls:output_type -> fenixTestCaseBuilderServerGrpcApi.ListAllRepositoryApiUrlsResponseMessage
+	22, // 28: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestDataForTestDataAreas:output_type -> fenixTestCaseBuilderServerGrpcApi.ListAllTestDataForTestDataAreasResponseMessage
+	17, // 29: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveAllPinnedTestInstructionsAndTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	23, // 30: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestCases:output_type -> fenixTestCaseBuilderServerGrpcApi.ListTestCasesResponseMessage
+	24, // 31: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.GetDetailedTestCase:output_type -> fenixTestCaseBuilderServerGrpcApi.GetDetailedTestCaseResponse
+	25, // 32: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestCaseTestInstructions:output_type -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionsMessage
+	26, // 33: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListAllTestCaseTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.MatureTestInstructionContainersMessage
+	27, // 34: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.ListTestCasesThatCanBeEdited:output_type -> fenixTestCaseBuilderServerGrpcApi.ListTestCasesThatCanBeEditedResponseMessage
+	17, // 35: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveFullTestCase:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 36: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveTestCase:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 37: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveAllTestCaseTestInstructions:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 38: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.SaveAllTestCaseTestInstructionContainers:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	28, // 39: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.GetTestCasesHashes:output_type -> fenixTestCaseBuilderServerGrpcApi.TestCasesHashResponse
+	17, // 40: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices.DeleteTestCaseAtThisDate:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 41: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.PublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 42: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishTemplateRepositoryConnectionParameters:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 43: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishTestDataFromSimpleTestDataAreaFile:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	17, // 44: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.ConnectorPublishSupportedMetaData:output_type -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	29, // 45: fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcWorkerServices.GetMessageToSignToProveCallerIdentity:output_type -> fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse
+	23, // [23:46] is the sub-list for method output_type
+	0,  // [0:23] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -463,6 +483,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_proto_init()
 	file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters_proto_init()
 	file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_TestDataMessages_proto_init()
+	file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

@@ -1,0 +1,15 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+// SupportedTestCaseMetaData
+// Message holding the supported MetaData for the Domain
+message SupportedTestCaseMetaData {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  string SupportedMetaDataAsJson = 2; // All supported metadata in json-format
+  MessageSignatureDataMessage MessageSignatureData = 3; // The message with the message that was signed and the signature
+}
+
+
