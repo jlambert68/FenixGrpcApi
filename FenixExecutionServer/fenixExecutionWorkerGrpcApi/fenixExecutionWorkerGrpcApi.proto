@@ -99,7 +99,7 @@ service FenixExecutionWorkerConnectorGrpcServices {
   }
 
   // Connector Publish Support MetaData for the Domain
-  rpc ConnectorPublishSupportedMetaData (SupportedMetaData) returns (AckNackResponse) {
+  rpc ConnectorPublishSupportedMetaData (SupportedTestCaseMetaData) returns (AckNackResponse) {
   }
 
 }

@@ -383,7 +383,7 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	// Connector Publish TestData From a Simple TestData-file for one TestData-area
 	ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Connector Publish Support MetaData for the Domain
-	ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedMetaData, opts ...grpc.CallOption) (*AckNackResponse, error)
+	ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedTestCaseMetaData, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionWorkerConnectorGrpcServicesClient struct {
@@ -498,7 +498,7 @@ func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishTestDa
 	return out, nil
 }
 
-func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedMetaData, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedTestCaseMetaData, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -532,7 +532,7 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	// Connector Publish TestData From a Simple TestData-file for one TestData-area
 	ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error)
 	// Connector Publish Support MetaData for the Domain
-	ConnectorPublishSupportedMetaData(context.Context, *SupportedMetaData) (*AckNackResponse, error)
+	ConnectorPublishSupportedMetaData(context.Context, *SupportedTestCaseMetaData) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }
 
@@ -567,7 +567,7 @@ func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPub
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTestDataFromSimpleTestDataAreaFile not implemented")
 }
-func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishSupportedMetaData(context.Context, *SupportedMetaData) (*AckNackResponse, error) {
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishSupportedMetaData(context.Context, *SupportedTestCaseMetaData) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishSupportedMetaData not implemented")
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {
@@ -750,7 +750,7 @@ func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimp
 }
 
 func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SupportedMetaData)
+	in := new(SupportedTestCaseMetaData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -762,7 +762,7 @@ func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaDat
 		FullMethod: FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishSupportedMetaData(ctx, req.(*SupportedMetaData))
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishSupportedMetaData(ctx, req.(*SupportedTestCaseMetaData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
