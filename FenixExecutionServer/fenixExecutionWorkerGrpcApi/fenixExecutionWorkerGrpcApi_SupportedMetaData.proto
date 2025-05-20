@@ -1,0 +1,17 @@
+syntax = "proto3";
+package fenixExecutionWorkerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers.proto";
+
+// SupportedMetaData
+// Message holding the supported MetaData for the Domain
+message SupportedMetaData {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  string SupportedMetaDataAsJson = 2; // All metadata in json-format
+  SupportedConnectorDomainMessage ConnectorDomain = 3; // Holds information about what Domain the Connector belongs to
+  MessageSignatureDataMessage MessageSignatureData = 4; // The message with the message that was signed and the signature
+}
+
+

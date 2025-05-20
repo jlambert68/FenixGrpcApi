@@ -355,6 +355,7 @@ const (
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers_FullMethodName = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishSupportedTestInstructionsAndTestInstructionContainersAndAllowedUsers"
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTemplateRepositoryConnectionParameters_FullMethodName                               = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishTemplateRepositoryConnectionParameters"
 	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_FullMethodName                                   = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishTestDataFromSimpleTestDataAreaFile"
+	FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_FullMethodName                                                    = "/fenixExecutionWorkerGrpcApi.FenixExecutionWorkerConnectorGrpcServices/ConnectorPublishSupportedMetaData"
 )
 
 // FenixExecutionWorkerConnectorGrpcServicesClient is the client API for FenixExecutionWorkerConnectorGrpcServices service.
@@ -381,6 +382,8 @@ type FenixExecutionWorkerConnectorGrpcServicesClient interface {
 	ConnectorPublishTemplateRepositoryConnectionParameters(ctx context.Context, in *AllTemplateRepositoryConnectionParameters, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Connector Publish TestData From a Simple TestData-file for one TestData-area
 	ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Connector Publish Support MetaData for the Domain
+	ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedMetaData, opts ...grpc.CallOption) (*AckNackResponse, error)
 }
 
 type fenixExecutionWorkerConnectorGrpcServicesClient struct {
@@ -495,6 +498,15 @@ func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishTestDa
 	return out, nil
 }
 
+func (c *fenixExecutionWorkerConnectorGrpcServicesClient) ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedMetaData, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FenixExecutionWorkerConnectorGrpcServicesServer is the server API for FenixExecutionWorkerConnectorGrpcServices service.
 // All implementations must embed UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer
 // for forward compatibility
@@ -519,6 +531,8 @@ type FenixExecutionWorkerConnectorGrpcServicesServer interface {
 	ConnectorPublishTemplateRepositoryConnectionParameters(context.Context, *AllTemplateRepositoryConnectionParameters) (*AckNackResponse, error)
 	// Connector Publish TestData From a Simple TestData-file for one TestData-area
 	ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error)
+	// Connector Publish Support MetaData for the Domain
+	ConnectorPublishSupportedMetaData(context.Context, *SupportedMetaData) (*AckNackResponse, error)
 	mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer()
 }
 
@@ -552,6 +566,9 @@ func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPub
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTestDataFromSimpleTestDataAreaFile not implemented")
+}
+func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) ConnectorPublishSupportedMetaData(context.Context, *SupportedMetaData) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishSupportedMetaData not implemented")
 }
 func (UnimplementedFenixExecutionWorkerConnectorGrpcServicesServer) mustEmbedUnimplementedFenixExecutionWorkerConnectorGrpcServicesServer() {
 }
@@ -732,6 +749,24 @@ func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimp
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SupportedMetaData)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishSupportedMetaData(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionWorkerConnectorGrpcServicesServer).ConnectorPublishSupportedMetaData(ctx, req.(*SupportedMetaData))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FenixExecutionWorkerConnectorGrpcServices_ServiceDesc is the grpc.ServiceDesc for FenixExecutionWorkerConnectorGrpcServices service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -770,6 +805,10 @@ var FenixExecutionWorkerConnectorGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConnectorPublishTestDataFromSimpleTestDataAreaFile",
 			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishTestDataFromSimpleTestDataAreaFile_Handler,
+		},
+		{
+			MethodName: "ConnectorPublishSupportedMetaData",
+			Handler:    _FenixExecutionWorkerConnectorGrpcServices_ConnectorPublishSupportedMetaData_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

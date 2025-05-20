@@ -9,6 +9,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SignMessage.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_TemplateRepositoryConnectionParameters.proto";
 import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_TestDataMessages.proto";
+import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrpcApi_SupportedMetaData.proto";
 
 // ****************************************************************************************************
 //
@@ -95,6 +96,10 @@ service FenixExecutionWorkerConnectorGrpcServices {
 
   // Connector Publish TestData From a Simple TestData-file for one TestData-area
   rpc ConnectorPublishTestDataFromSimpleTestDataAreaFile (TestDataFromSimpleTestDataAreaFileMessage) returns (AckNackResponse) {
+  }
+
+  // Connector Publish Support MetaData for the Domain
+  rpc ConnectorPublishSupportedMetaData (SupportedMetaData) returns (AckNackResponse) {
   }
 
 }
