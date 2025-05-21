@@ -12,4 +12,17 @@ message SupportedTestCaseMetaData {
   MessageSignatureDataMessage MessageSignatureData = 3; // The message with the message that was signed and the signature
 }
 
+// ListTestCaseMetaDataResponseMessage
+// Message having all TestCaseMetaData that a user is allowed to use. Based on same logic as Owner-Domain
+message ListTestCaseMetaDataResponseMessage {
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestCaseMetaDataForOneDomainMessage TestCaseMetaDataForDomains = 2; // A list of all URLs tha the user can use when picking templates in TestCases
+}
 
+// TestCaseMetaDataMessage
+// Message having TestCaseMetaData for one domain
+message TestCaseMetaDataForOneDomainMessage {
+  string DomainUuid = 1; // The Domain, UUID, for the TestCaseMetaData
+  string DomainName = 2; // The Domain, Name, for the TestCaseMetaData
+  string TestCaseMetaDataAsJson = 3; // All supported metadata in json-format
+}

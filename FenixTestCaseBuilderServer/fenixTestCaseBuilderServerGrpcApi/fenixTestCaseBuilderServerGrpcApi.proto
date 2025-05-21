@@ -54,6 +54,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc ListAllTestDataForTestDataAreas(UserIdentificationMessage)  returns (ListAllTestDataForTestDataAreasResponseMessage) {
   }
 
+  // The TestCase Builder asks for a list of all TestCaseMetaData that the user can use for different Domains
+  rpc ListTestCaseMetaData(UserIdentificationMessage)  returns (ListTestCaseMetaDataResponseMessage) {
+  }
+
 
   // *** Send data to DB ***
 

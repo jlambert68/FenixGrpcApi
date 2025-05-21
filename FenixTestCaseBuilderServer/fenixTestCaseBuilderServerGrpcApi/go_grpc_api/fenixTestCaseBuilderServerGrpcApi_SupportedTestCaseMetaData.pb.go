@@ -85,6 +85,128 @@ func (x *SupportedTestCaseMetaData) GetMessageSignatureData() *MessageSignatureD
 	return nil
 }
 
+// ListTestCaseMetaDataResponseMessage
+// Message having all TestCaseMetaData that a user is allowed to use. Based on same logic as Owner-Domain
+type ListTestCaseMetaDataResponseMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AckNackResponse            *AckNackResponse                       `protobuf:"bytes,1,opt,name=ackNackResponse,proto3" json:"ackNackResponse,omitempty"`                       // Hold all error messages, if there are any. Message also gives of everything was OK or not
+	TestCaseMetaDataForDomains []*TestCaseMetaDataForOneDomainMessage `protobuf:"bytes,2,rep,name=TestCaseMetaDataForDomains,proto3" json:"TestCaseMetaDataForDomains,omitempty"` // A list of all URLs tha the user can use when picking templates in TestCases
+}
+
+func (x *ListTestCaseMetaDataResponseMessage) Reset() {
+	*x = ListTestCaseMetaDataResponseMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ListTestCaseMetaDataResponseMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListTestCaseMetaDataResponseMessage) ProtoMessage() {}
+
+func (x *ListTestCaseMetaDataResponseMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListTestCaseMetaDataResponseMessage.ProtoReflect.Descriptor instead.
+func (*ListTestCaseMetaDataResponseMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *ListTestCaseMetaDataResponseMessage) GetAckNackResponse() *AckNackResponse {
+	if x != nil {
+		return x.AckNackResponse
+	}
+	return nil
+}
+
+func (x *ListTestCaseMetaDataResponseMessage) GetTestCaseMetaDataForDomains() []*TestCaseMetaDataForOneDomainMessage {
+	if x != nil {
+		return x.TestCaseMetaDataForDomains
+	}
+	return nil
+}
+
+// TestCaseMetaDataMessage
+// Message having TestCaseMetaData for one domain
+type TestCaseMetaDataForOneDomainMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	DomainUuid             string `protobuf:"bytes,1,opt,name=DomainUuid,proto3" json:"DomainUuid,omitempty"`                         // The Domain, UUID, for the TestCaseMetaData
+	DomainName             string `protobuf:"bytes,2,opt,name=DomainName,proto3" json:"DomainName,omitempty"`                         // The Domain, Name, for the TestCaseMetaData
+	TestCaseMetaDataAsJson string `protobuf:"bytes,3,opt,name=TestCaseMetaDataAsJson,proto3" json:"TestCaseMetaDataAsJson,omitempty"` // All supported metadata in json-format
+}
+
+func (x *TestCaseMetaDataForOneDomainMessage) Reset() {
+	*x = TestCaseMetaDataForOneDomainMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestCaseMetaDataForOneDomainMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestCaseMetaDataForOneDomainMessage) ProtoMessage() {}
+
+func (x *TestCaseMetaDataForOneDomainMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestCaseMetaDataForOneDomainMessage.ProtoReflect.Descriptor instead.
+func (*TestCaseMetaDataForOneDomainMessage) Descriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *TestCaseMetaDataForOneDomainMessage) GetDomainUuid() string {
+	if x != nil {
+		return x.DomainUuid
+	}
+	return ""
+}
+
+func (x *TestCaseMetaDataForOneDomainMessage) GetDomainName() string {
+	if x != nil {
+		return x.DomainName
+	}
+	return ""
+}
+
+func (x *TestCaseMetaDataForOneDomainMessage) GetTestCaseMetaDataAsJson() string {
+	if x != nil {
+		return x.TestCaseMetaDataAsJson
+	}
+	return ""
+}
+
 var File_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto protoreflect.FileDescriptor
 
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_rawDesc = []byte{
@@ -127,8 +249,35 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x70, 0x69, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x74,
 	0x75, 0x72, 0x65, 0x44, 0x61, 0x74, 0x61, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x14,
 	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x53, 0x69, 0x67, 0x6e, 0x61, 0x74, 0x75, 0x72, 0x65,
-	0x44, 0x61, 0x74, 0x61, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70,
-	0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x44, 0x61, 0x74, 0x61, 0x22, 0x8c, 0x02, 0x0a, 0x23, 0x4c, 0x69, 0x73, 0x74, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x5c, 0x0a, 0x0f,
+	0x61, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x42, 0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63,
+	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0f, 0x61, 0x63, 0x6b, 0x4e, 0x61,
+	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x86, 0x01, 0x0a, 0x1a, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x46,
+	0x6f, 0x72, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
+	0x46, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x42,
+	0x75, 0x69, 0x6c, 0x64, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x72, 0x70, 0x63,
+	0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61,
+	0x44, 0x61, 0x74, 0x61, 0x46, 0x6f, 0x72, 0x4f, 0x6e, 0x65, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x1a, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
+	0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x46, 0x6f, 0x72, 0x44, 0x6f, 0x6d, 0x61,
+	0x69, 0x6e, 0x73, 0x22, 0x9d, 0x01, 0x0a, 0x23, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65,
+	0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x46, 0x6f, 0x72, 0x4f, 0x6e, 0x65, 0x44, 0x6f,
+	0x6d, 0x61, 0x69, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x1e, 0x0a, 0x0a, 0x44,
+	0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0a, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x36, 0x0a, 0x16, 0x54,
+	0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x41,
+	0x73, 0x4a, 0x73, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x16, 0x54, 0x65, 0x73,
+	0x74, 0x43, 0x61, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x61, 0x44, 0x61, 0x74, 0x61, 0x41, 0x73, 0x4a,
+	0x73, 0x6f, 0x6e, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63,
+	0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -143,20 +292,25 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_rawDescData
 }
 
-var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_goTypes = []interface{}{
-	(*SupportedTestCaseMetaData)(nil),         // 0: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData
-	(*ClientSystemIdentificationMessage)(nil), // 1: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
-	(*MessageSignatureDataMessage)(nil),       // 2: fenixTestCaseBuilderServerGrpcApi.MessageSignatureDataMessage
+	(*SupportedTestCaseMetaData)(nil),           // 0: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData
+	(*ListTestCaseMetaDataResponseMessage)(nil), // 1: fenixTestCaseBuilderServerGrpcApi.ListTestCaseMetaDataResponseMessage
+	(*TestCaseMetaDataForOneDomainMessage)(nil), // 2: fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataForOneDomainMessage
+	(*ClientSystemIdentificationMessage)(nil),   // 3: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	(*MessageSignatureDataMessage)(nil),         // 4: fenixTestCaseBuilderServerGrpcApi.MessageSignatureDataMessage
+	(*AckNackResponse)(nil),                     // 5: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_depIdxs = []int32{
-	1, // 0: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData.ClientSystemIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
-	2, // 1: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData.MessageSignatureData:type_name -> fenixTestCaseBuilderServerGrpcApi.MessageSignatureDataMessage
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	3, // 0: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData.ClientSystemIdentification:type_name -> fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	4, // 1: fenixTestCaseBuilderServerGrpcApi.SupportedTestCaseMetaData.MessageSignatureData:type_name -> fenixTestCaseBuilderServerGrpcApi.MessageSignatureDataMessage
+	5, // 2: fenixTestCaseBuilderServerGrpcApi.ListTestCaseMetaDataResponseMessage.ackNackResponse:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	2, // 3: fenixTestCaseBuilderServerGrpcApi.ListTestCaseMetaDataResponseMessage.TestCaseMetaDataForDomains:type_name -> fenixTestCaseBuilderServerGrpcApi.TestCaseMetaDataForOneDomainMessage
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() {
@@ -180,6 +334,30 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 				return nil
 			}
 		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ListTestCaseMetaDataResponseMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestCaseMetaDataForOneDomainMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -187,7 +365,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
