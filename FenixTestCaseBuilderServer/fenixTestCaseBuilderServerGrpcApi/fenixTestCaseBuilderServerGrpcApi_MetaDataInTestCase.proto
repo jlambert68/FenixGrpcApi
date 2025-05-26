@@ -5,8 +5,9 @@ option go_package = "./go_grpc_api";
 // UserSpecifiedTestCaseMetaDataMessage
 // The users specified values for the TestCase MedataData
 message UserSpecifiedTestCaseMetaDataMessage {
-  string CurrentSelectedDomainUuid = 1;  // Specifies the current selected Owner Domain for the TestCase
-  map<string, MetaDataGroupMessage> MetaDataGroupsMap = 2; // holding MetaDataGroups and their MetaData. The key is the MetaDataGroupName
+  string CurrentSelectedDomainUuid = 1;  // Specifies the current selected Owner Domain, Uuid, for the TestCase
+  string CurrentSelectedDomainName = 2;  // Specifies the current selected Owner Domain, Name, for the TestCase
+  map<string, MetaDataGroupMessage> MetaDataGroupsMap = 3; // holding MetaDataGroups and their MetaData. The key is the MetaDataGroupName
 }
 
 // MetaDataGroupMessage
