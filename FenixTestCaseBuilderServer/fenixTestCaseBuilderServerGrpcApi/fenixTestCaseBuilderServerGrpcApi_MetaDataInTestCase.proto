@@ -1,0 +1,38 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+
+// UserSpecifiedTestCaseMetaDataMessage
+// The users specified values for the TestCase MedataData
+message UserSpecifiedTestCaseMetaDataMessage {
+  string CurrentSelectedDomainUuid = 1;  // Specifies the current selected Owner Domain for the TestCase
+  map<string, MetaDataGroupMessage> MetaDataGroupsMap = 2; // holding MetaDataGroups and their MetaData. The key is the MetaDataGroupName
+}
+
+// MetaDataGroupMessage
+// Message holding alla a Group and all of its Items with their values
+message MetaDataGroupMessage {
+  string MetaDataGroupName = 1; // The name of the MetaData-Group
+  map<string, MetaDataInGroupMessage> MetaDataInGroupMap = 2; // Holding all MetaDataName and their values. The key is the MetaDataName
+}
+
+// MetaDataInGroupMessage
+// Message holding an Item and its values
+message MetaDataInGroupMessage {
+  string MetaDataGroupName = 1; // The name of the MetaData-Group
+  string MetaDataName = 2; // The name of the MetaData-post
+  MetaDataSelectTypeEnum SelectType = 3;  // Is the MetaData-post single- or multi-select
+  bool IsMandatory = 4; // Is the MetaData-post mandatory or not
+  repeated string AvailableMetaDataValues = 5; // The available values for the MetaData-post
+  string SelectedMetaDataValueForSingleSelect = 6; // The value selected for single select
+  repeated string SelectedMetaDataValuesForMultiSelect = 7; // The values selected for multi select
+  map<string,string> SelectedMetaDataValuesForMultiSelectMap = 8; // The values selected for multi select, as a map
+}
+
+// MetaDataSelectTypeEnum
+// The type used for SelectType
+enum MetaDataSelectTypeEnum {
+  MetaDataSelectType_NotSelected = 0;
+  MetaDataSelectType_SingleSelect = 1;
+  MetaDataSelectType_MultiSelect = 2;
+}

@@ -11,6 +11,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseExtraInfoMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_MetaDataInTestCase.proto";
 
 
 // All messages in this file is used to define the TestCase
@@ -130,7 +131,7 @@ message BasicTestCaseInformationMessage {
 // ****************************************************************************************************
 // TestCaseMetaDataMessage
 
-// Message holding all MetaDataparameters for the TestCase
+// Message holding all MetaData-parameters for the TestCase
 message TestCaseMetaDataMessage {
   repeated MetaDataItemMessage MetaDataItems = 1; // List of all MetaDataItems with their values
 
@@ -195,8 +196,9 @@ message FullTestCaseMessage {
   TestCaseTemplateFilesMessage TestCaseTemplateFiles = 5; // All template files that are stored in the TestCase
   UsersChosenTestDataForTestCaseMessage TestCaseTestData = 6; // The TestData added to the TestCase. TestData is stored per user in the Database
   TestCasePreviewMessage TestCasePreview = 7; // A preview structure used be shown quickly to user when searching for TestCases
-  string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
-  string DeletedDate = 9; // The Date from when the TestCase should be seen as deleted, YYYY-MM-DD
+  UserSpecifiedTestCaseMetaDataMessage TestCaseMetaData = 8; // The selected MetaData, by the user, for the TestCase
+  string MessageHash = 9; // Holds the hash of the above parts. Used for checking if something is changed in TestCase
+  string DeletedDate = 10; // The Date from when the TestCase should be seen as deleted, YYYY-MM-DD
 }
 
 
