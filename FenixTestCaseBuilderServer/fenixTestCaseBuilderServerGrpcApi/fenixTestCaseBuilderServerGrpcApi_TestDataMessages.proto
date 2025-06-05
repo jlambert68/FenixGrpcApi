@@ -2,6 +2,7 @@ syntax = "proto3";
 package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_MetaDataInTestCase.proto";
 
 // The Message that Connector sends and holds TestData for one TestDataArea from a "simple" TestData-file.
 message TestDataFromSimpleTestDataAreaFileMessage {
@@ -102,6 +103,8 @@ message TestCasePreviewStructureMessage {
   string LastSavedByUserOnComputer = 12; // The logged in user on the computer that last saved the TestCase
   string LastSavedByUserGCPAuthorization = 13; // The authorized user towards GCP that last saved the TestCase
   string LastSavedTimeStamp = 14; // The Timestamp when the TestCase first was last saved
+  map<string, SelectedMetaDataValueMessage> SelectedMetaDataValuesMap = 15; // Map containing all selected MetaDataValues. For MultiSelect each values is added.  The Map key = 'OwnerDomainUuid.MetaDataGroupName.MetaDataName.MetaDataNameValue'
+
 
   // A message holding one TestCaseStructureObject, like TIC, TI or TI's attributes
   message TestCaseStructureObjectMessage {
@@ -121,15 +124,25 @@ message TestCasePreviewStructureMessage {
       string AttributeValue = 2; // The value of the Attribute
       string AttributeGroupName = 3; // The Group name for the Attribute in the UI
     }
-
   }
 
-
+  // The Type of object in the PreView
   enum TestCaseStructureObjectTypeEnum {
     TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
     TestInstructionContainer = 1; // Type is a TestInstructionContainer
     TestInstruction = 2; // Type is a TestInstruction
     TestInstructionAttribute = 3; // Type is a TestInstructionAttribute
+  }
+
+  // The Selected MetaData with all its values
+  message SelectedMetaDataValueMessage {
+    string OwnerDomainUuid = 1; // The Domain, Uuid, that owns the TestCase
+    string OwnerDomainName = 2; // The Domain, Name, that owns the TestCase
+    string MetaDataGroupName = 3; // The name of the MetaData-Group
+    string MetaDataName = 4; // The name of the MetaData-post
+    string MetaDataNameValue = 5; // The MetaDataValue
+    MetaDataSelectTypeEnum SelectType = 6;  // Is the MetaData-post single- or multi-select
+    bool IsMandatory = 7;
   }
 
 }
