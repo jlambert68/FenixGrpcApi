@@ -136,7 +136,7 @@ service FenixTestCaseBuilderServerGrpcWorkerServices {
   }
 
   // Connector Publish Support MetaData for the Domain
-  rpc ConnectorPublishSupportedMetaData (SupportedTestCaseMetaData) returns (AckNackResponse) {
+  rpc ConnectorPublishSupportedMetaData (SupportedTestCaseAndTestSuiteMetaData) returns (AckNackResponse) {
   }
 
   // Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity

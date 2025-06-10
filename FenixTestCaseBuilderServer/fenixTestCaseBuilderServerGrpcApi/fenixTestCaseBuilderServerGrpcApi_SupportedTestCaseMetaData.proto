@@ -6,7 +6,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 
 // SupportedTestCaseMetaData
 // Message holding the supported MetaData for the Domain
-message SupportedTestCaseMetaData {
+message SupportedTestCaseAndTestSuiteMetaData {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   string SupportedTestCaseMetaDataAsJson = 2; // All supported TestCase MetaData in json-format
   string SupportedTestSuiteMetaDataAsJson = 3; // All supported TestSuiteMetaData in json-format

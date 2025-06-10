@@ -860,7 +860,7 @@ type FenixTestCaseBuilderServerGrpcWorkerServicesClient interface {
 	// Connector Publish TestData From a Simple TestData-file for one TestData-area
 	ConnectorPublishTestDataFromSimpleTestDataAreaFile(ctx context.Context, in *TestDataFromSimpleTestDataAreaFileMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Connector Publish Support MetaData for the Domain
-	ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedTestCaseMetaData, opts ...grpc.CallOption) (*AckNackResponse, error)
+	ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedTestCaseAndTestSuiteMetaData, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
 	GetMessageToSignToProveCallerIdentity(ctx context.Context, in *EmptyParameter, opts ...grpc.CallOption) (*GetMessageToSignToProveCallerIdentityResponse, error)
 }
@@ -900,7 +900,7 @@ func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) ConnectorPublishTes
 	return out, nil
 }
 
-func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedTestCaseMetaData, opts ...grpc.CallOption) (*AckNackResponse, error) {
+func (c *fenixTestCaseBuilderServerGrpcWorkerServicesClient) ConnectorPublishSupportedMetaData(ctx context.Context, in *SupportedTestCaseAndTestSuiteMetaData, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishSupportedMetaData_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -929,7 +929,7 @@ type FenixTestCaseBuilderServerGrpcWorkerServicesServer interface {
 	// Connector Publish TestData From a Simple TestData-file for one TestData-area
 	ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error)
 	// Connector Publish Support MetaData for the Domain
-	ConnectorPublishSupportedMetaData(context.Context, *SupportedTestCaseMetaData) (*AckNackResponse, error)
+	ConnectorPublishSupportedMetaData(context.Context, *SupportedTestCaseAndTestSuiteMetaData) (*AckNackResponse, error)
 	// Worker ask TestCaseBuilderServer for a Message to Sign to be able to prove identity
 	GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error)
 	mustEmbedUnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer()
@@ -948,7 +948,7 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) Connector
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) ConnectorPublishTestDataFromSimpleTestDataAreaFile(context.Context, *TestDataFromSimpleTestDataAreaFileMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishTestDataFromSimpleTestDataAreaFile not implemented")
 }
-func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) ConnectorPublishSupportedMetaData(context.Context, *SupportedTestCaseMetaData) (*AckNackResponse, error) {
+func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) ConnectorPublishSupportedMetaData(context.Context, *SupportedTestCaseAndTestSuiteMetaData) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConnectorPublishSupportedMetaData not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcWorkerServicesServer) GetMessageToSignToProveCallerIdentity(context.Context, *EmptyParameter) (*GetMessageToSignToProveCallerIdentityResponse, error) {
@@ -1023,7 +1023,7 @@ func _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishTestDataFromS
 }
 
 func _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishSupportedMetaData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SupportedTestCaseMetaData)
+	in := new(SupportedTestCaseAndTestSuiteMetaData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1035,7 +1035,7 @@ func _FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishSupportedMeta
 		FullMethod: FenixTestCaseBuilderServerGrpcWorkerServices_ConnectorPublishSupportedMetaData_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).ConnectorPublishSupportedMetaData(ctx, req.(*SupportedTestCaseMetaData))
+		return srv.(FenixTestCaseBuilderServerGrpcWorkerServicesServer).ConnectorPublishSupportedMetaData(ctx, req.(*SupportedTestCaseAndTestSuiteMetaData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
