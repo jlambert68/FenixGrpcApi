@@ -8,8 +8,9 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 // Message holding the supported MetaData for the Domain
 message SupportedTestCaseMetaData {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
-  string SupportedMetaDataAsJson = 2; // All supported metadata in json-format
-  MessageSignatureDataMessage MessageSignatureData = 3; // The message with the message that was signed and the signature
+  string SupportedTestCaseMetaDataAsJson = 2; // All supported TestCase MetaData in json-format
+  string SupportedTestSuiteMetaDataAsJson = 3; // All supported TestSuiteMetaData in json-format
+  MessageSignatureDataMessage MessageSignatureData = 4; // The message with the message that was signed and the signature
 }
 
 // ListTestCaseMetaDataResponseMessage
