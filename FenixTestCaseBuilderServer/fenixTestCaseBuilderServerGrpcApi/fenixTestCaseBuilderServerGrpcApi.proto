@@ -55,7 +55,7 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // The TestCase Builder asks for a list of all TestCaseMetaData and TestSuiteMetaData that the user can use for different Domains
-  rpc ListTestCaseMetaData(UserIdentificationMessage)  returns (ListTestCaseAndTestSuiteMetaDataResponseMessage) {
+  rpc ListTestCaseAndTestSuiteMetaData(UserIdentificationMessage)  returns (ListTestCaseAndTestSuiteMetaDataResponseMessage) {
   }
 
 
