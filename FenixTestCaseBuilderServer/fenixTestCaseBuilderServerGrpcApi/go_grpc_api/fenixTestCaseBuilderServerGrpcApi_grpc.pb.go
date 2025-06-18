@@ -33,6 +33,7 @@ const (
 	FenixTestCaseBuilderServerGrpcServices_ListAllTestCaseTestInstructionContainers_FullMethodName                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListAllTestCaseTestInstructionContainers"
 	FenixTestCaseBuilderServerGrpcServices_ListTestCasesThatCanBeEdited_FullMethodName                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/ListTestCasesThatCanBeEdited"
 	FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_FullMethodName                                                   = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveFullTestCase"
+	FenixTestCaseBuilderServerGrpcServices_SaveFullTestSuite_FullMethodName                                                  = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveFullTestSuite"
 	FenixTestCaseBuilderServerGrpcServices_SaveTestCase_FullMethodName                                                       = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveTestCase"
 	FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructions_FullMethodName                                    = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllTestCaseTestInstructions"
 	FenixTestCaseBuilderServerGrpcServices_SaveAllTestCaseTestInstructionContainers_FullMethodName                           = "/fenixTestCaseBuilderServerGrpcApi.FenixTestCaseBuilderServerGrpcServices/SaveAllTestCaseTestInstructionContainers"
@@ -72,6 +73,8 @@ type FenixTestCaseBuilderServerGrpcServicesClient interface {
 	ListTestCasesThatCanBeEdited(ctx context.Context, in *ListTestCasesRequestMessage, opts ...grpc.CallOption) (*ListTestCasesThatCanBeEditedResponseMessage, error)
 	// Save full TestCase in DB
 	SaveFullTestCase(ctx context.Context, in *FullTestCaseMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
+	// Save full TestSuite in DB
+	SaveFullTestSuite(ctx context.Context, in *FullTestSuiteMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Save a Basic TestCase info in DB
 	SaveTestCase(ctx context.Context, in *TestCaseBasicInformationMessage, opts ...grpc.CallOption) (*AckNackResponse, error)
 	// Save all TestInstructions from the TestCase
@@ -241,6 +244,15 @@ func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveFullTestCase(ctx cont
 	return out, nil
 }
 
+func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveFullTestSuite(ctx context.Context, in *FullTestSuiteMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
+	out := new(AckNackResponse)
+	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_SaveFullTestSuite_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *fenixTestCaseBuilderServerGrpcServicesClient) SaveTestCase(ctx context.Context, in *TestCaseBasicInformationMessage, opts ...grpc.CallOption) (*AckNackResponse, error) {
 	out := new(AckNackResponse)
 	err := c.cc.Invoke(ctx, FenixTestCaseBuilderServerGrpcServices_SaveTestCase_FullMethodName, in, out, opts...)
@@ -318,6 +330,8 @@ type FenixTestCaseBuilderServerGrpcServicesServer interface {
 	ListTestCasesThatCanBeEdited(context.Context, *ListTestCasesRequestMessage) (*ListTestCasesThatCanBeEditedResponseMessage, error)
 	// Save full TestCase in DB
 	SaveFullTestCase(context.Context, *FullTestCaseMessage) (*AckNackResponse, error)
+	// Save full TestSuite in DB
+	SaveFullTestSuite(context.Context, *FullTestSuiteMessage) (*AckNackResponse, error)
 	// Save a Basic TestCase info in DB
 	SaveTestCase(context.Context, *TestCaseBasicInformationMessage) (*AckNackResponse, error)
 	// Save all TestInstructions from the TestCase
@@ -376,6 +390,9 @@ func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) ListTestCasesTh
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveFullTestCase(context.Context, *FullTestCaseMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveFullTestCase not implemented")
+}
+func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveFullTestSuite(context.Context, *FullTestSuiteMessage) (*AckNackResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SaveFullTestSuite not implemented")
 }
 func (UnimplementedFenixTestCaseBuilderServerGrpcServicesServer) SaveTestCase(context.Context, *TestCaseBasicInformationMessage) (*AckNackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveTestCase not implemented")
@@ -661,6 +678,24 @@ func _FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_Handler(srv interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FenixTestCaseBuilderServerGrpcServices_SaveFullTestSuite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FullTestSuiteMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveFullTestSuite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixTestCaseBuilderServerGrpcServices_SaveFullTestSuite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixTestCaseBuilderServerGrpcServicesServer).SaveFullTestSuite(ctx, req.(*FullTestSuiteMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _FenixTestCaseBuilderServerGrpcServices_SaveTestCase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TestCaseBasicInformationMessage)
 	if err := dec(in); err != nil {
@@ -809,6 +844,10 @@ var FenixTestCaseBuilderServerGrpcServices_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SaveFullTestCase",
 			Handler:    _FenixTestCaseBuilderServerGrpcServices_SaveFullTestCase_Handler,
+		},
+		{
+			MethodName: "SaveFullTestSuite",
+			Handler:    _FenixTestCaseBuilderServerGrpcServices_SaveFullTestSuite_Handler,
 		},
 		{
 			MethodName: "SaveTestCase",

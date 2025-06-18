@@ -13,6 +13,7 @@ import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCa
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_SupportedTestCaseMetaData.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestSuiteMessages.proto";
 
 // ****************************************************************************************************
 // Fenix TestCase-builder server service definition. (Will support Test Suite building in feature, and will then be renamed)
@@ -95,6 +96,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc SaveFullTestCase(FullTestCaseMessage) returns (AckNackResponse) {
   }
 
+  // Save full TestSuite in DB
+  rpc SaveFullTestSuite(FullTestSuiteMessage) returns (AckNackResponse) {
+  }
+
   // Save a Basic TestCase info in DB
   rpc SaveTestCase(TestCaseBasicInformationMessage) returns (AckNackResponse) {
   }
@@ -114,6 +119,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   // *** TesterGui send Delete-command that updates database that TestCase will be delete per a certain date ***
   rpc DeleteTestCaseAtThisDate(DeleteTestCaseAtThisDateRequest) returns (AckNackResponse) {
   }
+
+  // *** TesterGui send Delete-command that updates database that TestSuite will be delete per a certain date ***
+  //rpc DeleteTestSuiteAtThisDate(DeleteTestSuiteAtThisDateRequest) returns (AckNackResponse) {
+  //}
 
 
 

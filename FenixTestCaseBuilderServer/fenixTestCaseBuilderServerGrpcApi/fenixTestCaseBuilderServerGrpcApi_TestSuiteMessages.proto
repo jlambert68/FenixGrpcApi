@@ -1,0 +1,262 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+
+
+import "google/protobuf/timestamp.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseModelMessages.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionMessages.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestInstructionContainerMessages.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCaseExtraInfoMessages.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TemplateRepositoryConnectionParameters.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_MetaDataInTestCaseAndTestSuite.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestDataInTestCaseAndTestSuiteMessages.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestSuitePreviewMessages.proto";
+
+// All messages in this file is used to define the TestSuite
+
+// ****************************************************************************************************
+// Get TestSuite Request Message
+
+// Message holding information about who is the user and which TestSuite that is requested
+message GetTestSuiteRequestMessage {
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
+  string TestSuiteUuid = 4; // The TestSuite, UUID, that is requested from DB-Server
+}
+// ****************************************************************************************************
+// List all TestSuite Request Message
+
+// Message holding information about who is the user and which TestSuite that is requested
+message ListTestSuitesRequestMessage {
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
+  google.protobuf.Timestamp TestSuiteUpdatedMinTimeStamp = 4; // The TimeStamp when the TestSuite was latest updated. Used to be able to get only part, new, of the data set
+  google.protobuf.Timestamp TestSuiteExecutionUpdatedMinTimeStamp = 6; // The TimeStamp when the TestSuiteExecution was latest updated. Used to be able to get only part, new, of the data set
+}
+
+// ****************************************************************************************************
+// List all TestSuites Response Message
+
+// Message a list of TestSuites
+message ListTestSuitesResponseMessage {
+  repeated BasicTestSuiteInformationMessage BasicTestSuiteInformation = 1; // List of TestSuites with their Basic information
+}
+
+
+// ****************************************************************************************************
+// Get MetadataItems-Request Message
+
+// Message holding information about who is the user and from which Domain and System to request the MetaDataItems
+message GetTestSuiteMetaDataItemsRequestMessage {
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 3; // The latest proto file version number to be used
+  string DomainUuid = 4; // The Domain, UUID, who has the MetaDataItems
+  string DomainName = 5; // The Domain, Name, who has the MetaDataItems
+}
+
+// ****************************************************************************************************
+// TestCaseMessage
+
+// A message holding one TestCase
+message TestSuiteBasicInformationMessage {
+
+  string DomainUuid = 2; // The Domain, UUID, where the TestSuite 'has its home'
+  string DomainName = 3; // The Domain, Name, where the TestSuite 'has its home'
+  string TestSuiteUuid = 1; // The TestSuite, UUID, set by TestSuite-builder
+  uint32 TestSuiteVersion = 4; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  string TestSuiteName = 5; // The TestSuite, Name, set in TestCase-builder
+  string TestSuiteDescription = 6; // The description of the TestSuite
+
+}
+
+// ****************************************************************************************************
+// BasicTestSuiteInformationMessage
+
+// Message holding Basic information for one TestCase
+message BasicTestSuiteInformationMessage {
+  NonEditableBasicInformationMessage NonEditableInformation = 1; // All Basic information that can be shown in GUI but can't be changed by the user
+  EditableBasicInformationMessage EditableInformation = 2; // All Basic information that can be shown in GUI and can be changed by the user
+  // Not used right now - InvisibleBasicInformationMessage InvisibleBasicInformation = 3; // All Basic information that is not directly shown in GUI and can't be changed by the user
+
+  // Message holding All basic information that can be shown in GUI but can't be changed by the user
+  message NonEditableBasicInformationMessage {
+    string TestCaseUuid = 1; // The TestSuite, UUID, set by TestSuite-builder
+    string DomainUuid = 2; // The Domain, UUID, where the TestSuite 'has its home'
+    string DomainName = 3; // The Domain, Name, where the TestSuite 'has its home'
+    uint32  TestSuiteVersion = 4; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  }
+
+  // Message holding all Basic information that can be shown in GUI and can be changed by the user
+  message EditableBasicInformationMessage {
+    string TestSuiteName = 1; // The TestSuite, Name, set in TestCase-builder
+    string TestSuiteDescription = 2; // The description of the TestSuite
+    //string TestCaseMouseOverText = 2; // The mouse over text when hovering over TestSuite
+  }
+
+  // Message holding all Basic information that is not directly shown in GUI and can't be changed by the user
+  /* Not used right now
+    message InvisibleBasicInformationMessage{
+      bool Enabled = 1; // TestCase can be disabled when the user shouldn't use it anymore
+    }
+
+   */
+}
+
+
+// ****************************************************************************************************
+// TestSuiteMetaDataMessage
+
+// Message holding all MetaData-parameters for the TestSuite
+message TestSuiteMetaDataMessage {
+  repeated MetaDataItemMessage MetaDataItems = 1; // List of all MetaDataItems with their values
+
+  message MetaDataItemMessage {
+    string MetaDataUuid = 1; // UUID for this MetaDataItem
+    string MetaDataName = 2; // Name for this MetaDataItem
+    string MetaDataGroupUuid = 3; // The group, UUID,  for this MetaDataItem, used to group stuff in the GUI
+    string MetaDataGroupName = 4; // The group, Name  for this MetaDataItem, used as Label for the group in the GUI
+    repeated MetaDataItemMessage AvailableMetaDataItems = 5; // A list of the available MetaDataItems that the user can chose from
+    MetaDataItemMessage ChosenMetaDataItem = 6; // The chosen, by user, MetaDataItems
+
+    // Message holding one MetaDataItem
+    message MetaDataItemMessage {
+      string MetaDataItemUuid = 1; // Unique UUID for the MetaDataItem
+      string MetaDataItemValue = 2; // The value presented in the GUI and for the user to pick
+      uint32 MetaDataItemIndex = 3; // A number deciding the presentation order
+    }
+
+  }
+
+}
+
+
+
+// ****************************************************************************************************
+//  FullTestSuiteMessage
+
+// Message containing the full TestSuite with all of its information
+
+message FullTestSuiteMessage {
+  TestSuiteBasicInformationMessage TestSuiteBasicInformation = 1; // The basic information regarding the TestSuite
+  UsersChosenTestDataForTestSuiteMessage TestSuiteTestData = 2; // The TestData added to the TestSuite. TestData is stored per TestSuite in the Database
+  TestSuitePreviewMessage TestSuitePreview = 3; // A preview structure used be shown quickly to user when searching for TestSuites
+  UserSpecifiedTestSuiteMetaDataMessage TestSuiteMetaData = 4; // The selected MetaData, by the user, for the TestSuite
+  TestCasesInTestSuiteMessage TestCasesInTestSuite = 5; // All TestCases in the TestSuite
+  string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
+  string MessageHash = 7; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+
+}
+
+// ****************************************************************************************************
+// TestCasesInTestSuiteMessage
+
+// Message holding all TestCases that is added to a TestSuite
+message TestCasesInTestSuiteMessage {
+  repeated TestCaseInTestSuiteMessage TestCasesInTestSuite = 1; // All the TestCases in the TestSuite
+}
+
+// ****************************************************************************************************
+// TestCaseInTestSuiteMessage
+
+// Message holding one TestCase that is added to a TestSuite
+message TestCaseInTestSuiteMessage {
+  string DomainUuid = 1; // The Domain, UUID, where the TestCase 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestCase 'has its home'
+  string TestCaseUuid = 3; // The TestCase, UUID, set by TestCase-builder
+  string TestCaseName = 4; // The TestCase, Name, set in TestCase-builder
+}
+
+/*
+// ****************************************************************************************************
+//  GetDetailedTestSuiteResponse
+
+// Message response when TesterGui request a saved TestSuite from Database
+
+message GetDetailedTestSuiteResponse {
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  FullTestSuiteMessage DetailedTestSuite = 2; // Holds one full TestSuite with all data belonging to that TestSuite
+}
+
+// ****************************************************************************************************
+//  TestSuitesHashRequest
+
+// Message containing a list of TestSuiteUuid's for which to get their Hashes as response
+
+message TestSuitesHashRequest {
+  UserIdentificationMessage UserIdentification = 1; // User identification and users proto-file version
+  repeated string TestSuiteUuids = 2; // Holds a list of UUIDs for TestSuites
+}
+
+// ****************************************************************************************************
+//  TestSuitesHashResponse
+
+// Message containing a list of TestSuite-Hash's
+
+message TestSuitesHashResponse {
+  AckNackResponse AckNack = 1; // User identification and users proto-file version
+  repeated TestSuitesHashMessage TestSuitesHashes = 2; // Holds a list of UUIDs and Hashes for TestSuites
+
+  message TestSuitesHashMessage {
+    string  TestSuiteUuid = 1; // Holds the Uuid for the TestSuite
+    string  TestSuiteHash = 2; // Holds the Hash for the TestSuite
+  }
+}
+
+
+// ****************************************************************************************************
+//  ListTestSuitesThatCanBeEditedResponseMessage
+
+// Message containing a list of TestSuites that the user can edit
+
+message ListTestSuitesThatCanBeEditedResponseMessage {
+
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestSuiteThatCanBeEditedByUserMessage TestSuiteThatCanBeEditedByUser = 2; // Holds a list of all TestSuites that can be edited by the user
+}
+
+
+// ****************************************************************************************************
+//  TestSuiteThatCanBeEditedByUserMessage
+
+// Message containing a message of TestSuite that the user can edit
+
+message TestSuiteThatCanBeEditedByUserMessage {
+
+  string DomainUuid = 1; // The Domain, UUID, where the TestSuite 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestSuite 'has its home'
+  string TestSuiteUuid = 3; // The TestSuite, UUID, set by TestCase-builder
+  string TestSuiteName = 4; // The TestSuite, Name, set by user in TestCase-builder
+  uint32 TestSuiteVersion = 5; // Each time a TestSuite is saved then the 'TestSuiteVersion' will be incremented by +1
+  TestSuiteExecutionStatusEnum LatestTestSuiteExecutionStatus = 6; // The latest ExecutionStatus for the TestSuite
+  google.protobuf.Timestamp LatestTestSuiteExecutionStatusInsertTimeStamp = 7; // The TimeStamp when this 'TestSuiteExecution' was inserted into the Database
+  google.protobuf.Timestamp LatestFinishedOkTestSuiteExecutionStatusInsertTimeStamp = 8; // The TimeStamp when the latest OK 'TestSuiteExecution' was inserted into the Database
+  google.protobuf.Timestamp LastSavedTimeStamp = 9; // The TimeStamp when the TestSuite was last saved into the Database
+  TestCasePreviewMessage TestSuitePreview = 10; // The Preview message of the TestSuite
+}
+
+
+// ****************************************************************************************************
+//  DeleteTestSuiteAtThisDateRequest
+
+// Message containing which TestSuite that should be deleted and on what date
+
+message DeleteTestSuiteAtThisDateRequest {
+  UserIdentificationMessage UserIdentification = 1; // User identification and users proto-file version
+  DeleteTestSuiteAtThisDateRequestMessage DeleteThisTestCaseAtThisDate = 2; // Holds which TestCase that should be deleted and on what date
+}
+
+message DeleteTestSuiteAtThisDateRequestMessage {
+  string DomainUuid = 1; // The Domain, UUID, where the TestSuite 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestSuite 'has its home'
+  string TestCaseUuid = 3; // The TestSuite, UUID, that should be deleted
+  uint32 TestCaseVersion = 4; // The version of the TestSuite, must match the latest version in the Database
+  string DeletedDate = 5; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
+}
+
+*/

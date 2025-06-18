@@ -643,6 +643,86 @@ func (TestCaseExecutionStatusEnum) EnumDescriptor() ([]byte, []int) {
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_rawDescGZIP(), []int{8}
 }
 
+// Execution Enum for a TestCase Execution
+type TestSuiteExecutionStatusEnum int32
+
+const (
+	TestSuiteExecutionStatusEnum_TestSuiteExecutionStatusEnum_DEFAULT_NOT_SET TestSuiteExecutionStatusEnum = 0  //Value used for when the variable is not actively set
+	TestSuiteExecutionStatusEnum_TSE_INITIATED                                TestSuiteExecutionStatusEnum = 1  // All set up for execution, but has not been triggered to start execution
+	TestSuiteExecutionStatusEnum_TSE_EXECUTING                                TestSuiteExecutionStatusEnum = 2  // TestCase is execution
+	TestSuiteExecutionStatusEnum_TSE_CONTROLLED_INTERRUPTION                  TestSuiteExecutionStatusEnum = 3  // Interrupted by in a controlled way
+	TestSuiteExecutionStatusEnum_TSE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN     TestSuiteExecutionStatusEnum = 4  // Interrupted by in a controlled way, but can be rerun
+	TestSuiteExecutionStatusEnum_TSE_FINISHED_OK                              TestSuiteExecutionStatusEnum = 5  // Finish as expected to TestCase definition
+	TestSuiteExecutionStatusEnum_TSE_FINISHED_OK_CAN_BE_RERUN                 TestSuiteExecutionStatusEnum = 6  // Finish as expected to TestCase definition, but can be rerun
+	TestSuiteExecutionStatusEnum_TSE_FINISHED_NOT_OK                          TestSuiteExecutionStatusEnum = 7  // Finish with errors in validations
+	TestSuiteExecutionStatusEnum_TSE_FINISHED_NOT_OK_CAN_BE_RERUN             TestSuiteExecutionStatusEnum = 8  // Finish with errors in validations, but can be rerun
+	TestSuiteExecutionStatusEnum_TSE_UNEXPECTED_INTERRUPTION                  TestSuiteExecutionStatusEnum = 9  // The TestCase stopped executed in an unexpected way
+	TestSuiteExecutionStatusEnum_TSE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN     TestSuiteExecutionStatusEnum = 10 // The TestCase stopped executed in an unexpected way, but can be rerun
+	TestSuiteExecutionStatusEnum_TSE_TIMEOUT_INTERRUPTION                     TestSuiteExecutionStatusEnum = 11 // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
+	TestSuiteExecutionStatusEnum_TSE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN        TestSuiteExecutionStatusEnum = 12 // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
+)
+
+// Enum value maps for TestSuiteExecutionStatusEnum.
+var (
+	TestSuiteExecutionStatusEnum_name = map[int32]string{
+		0:  "TestSuiteExecutionStatusEnum_DEFAULT_NOT_SET",
+		1:  "TSE_INITIATED",
+		2:  "TSE_EXECUTING",
+		3:  "TSE_CONTROLLED_INTERRUPTION",
+		4:  "TSE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN",
+		5:  "TSE_FINISHED_OK",
+		6:  "TSE_FINISHED_OK_CAN_BE_RERUN",
+		7:  "TSE_FINISHED_NOT_OK",
+		8:  "TSE_FINISHED_NOT_OK_CAN_BE_RERUN",
+		9:  "TSE_UNEXPECTED_INTERRUPTION",
+		10: "TSE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN",
+		11: "TSE_TIMEOUT_INTERRUPTION",
+		12: "TSE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN",
+	}
+	TestSuiteExecutionStatusEnum_value = map[string]int32{
+		"TestSuiteExecutionStatusEnum_DEFAULT_NOT_SET": 0,
+		"TSE_INITIATED":                            1,
+		"TSE_EXECUTING":                            2,
+		"TSE_CONTROLLED_INTERRUPTION":              3,
+		"TSE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN": 4,
+		"TSE_FINISHED_OK":                          5,
+		"TSE_FINISHED_OK_CAN_BE_RERUN":             6,
+		"TSE_FINISHED_NOT_OK":                      7,
+		"TSE_FINISHED_NOT_OK_CAN_BE_RERUN":         8,
+		"TSE_UNEXPECTED_INTERRUPTION":              9,
+		"TSE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN": 10,
+		"TSE_TIMEOUT_INTERRUPTION":                 11,
+		"TSE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN":    12,
+	}
+)
+
+func (x TestSuiteExecutionStatusEnum) Enum() *TestSuiteExecutionStatusEnum {
+	p := new(TestSuiteExecutionStatusEnum)
+	*p = x
+	return p
+}
+
+func (x TestSuiteExecutionStatusEnum) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TestSuiteExecutionStatusEnum) Descriptor() protoreflect.EnumDescriptor {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes[9].Descriptor()
+}
+
+func (TestSuiteExecutionStatusEnum) Type() protoreflect.EnumType {
+	return &file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes[9]
+}
+
+func (x TestSuiteExecutionStatusEnum) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TestSuiteExecutionStatusEnum.Descriptor instead.
+func (TestSuiteExecutionStatusEnum) EnumDescriptor() ([]byte, []int) {
+	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_rawDescGZIP(), []int{9}
+}
+
 // Parameter used for Empty inputs, only containing current proto-file version
 type EmptyParameter struct {
 	state         protoimpl.MessageState
@@ -1321,9 +1401,38 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x54, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x52, 0x55, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x0b,
 	0x12, 0x29, 0x0a, 0x25, 0x54, 0x43, 0x45, 0x5f, 0x54, 0x49, 0x4d, 0x45, 0x4f, 0x55, 0x54, 0x5f,
 	0x49, 0x4e, 0x54, 0x45, 0x52, 0x52, 0x55, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x43, 0x41, 0x4e,
-	0x5f, 0x42, 0x45, 0x5f, 0x52, 0x45, 0x52, 0x55, 0x4e, 0x10, 0x0c, 0x42, 0x0f, 0x5a, 0x0d, 0x2e,
-	0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x5f, 0x42, 0x45, 0x5f, 0x52, 0x45, 0x52, 0x55, 0x4e, 0x10, 0x0c, 0x2a, 0xd3, 0x03, 0x0a, 0x1c,
+	0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x45, 0x6e, 0x75, 0x6d, 0x12, 0x30, 0x0a, 0x2c,
+	0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x45, 0x6e, 0x75, 0x6d, 0x5f, 0x44, 0x45, 0x46,
+	0x41, 0x55, 0x4c, 0x54, 0x5f, 0x4e, 0x4f, 0x54, 0x5f, 0x53, 0x45, 0x54, 0x10, 0x00, 0x12, 0x11,
+	0x0a, 0x0d, 0x54, 0x53, 0x45, 0x5f, 0x49, 0x4e, 0x49, 0x54, 0x49, 0x41, 0x54, 0x45, 0x44, 0x10,
+	0x01, 0x12, 0x11, 0x0a, 0x0d, 0x54, 0x53, 0x45, 0x5f, 0x45, 0x58, 0x45, 0x43, 0x55, 0x54, 0x49,
+	0x4e, 0x47, 0x10, 0x02, 0x12, 0x1f, 0x0a, 0x1b, 0x54, 0x53, 0x45, 0x5f, 0x43, 0x4f, 0x4e, 0x54,
+	0x52, 0x4f, 0x4c, 0x4c, 0x45, 0x44, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x52, 0x55, 0x50, 0x54,
+	0x49, 0x4f, 0x4e, 0x10, 0x03, 0x12, 0x2c, 0x0a, 0x28, 0x54, 0x53, 0x45, 0x5f, 0x43, 0x4f, 0x4e,
+	0x54, 0x52, 0x4f, 0x4c, 0x4c, 0x45, 0x44, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x52, 0x55, 0x50,
+	0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x43, 0x41, 0x4e, 0x5f, 0x42, 0x45, 0x5f, 0x52, 0x45, 0x52, 0x55,
+	0x4e, 0x10, 0x04, 0x12, 0x13, 0x0a, 0x0f, 0x54, 0x53, 0x45, 0x5f, 0x46, 0x49, 0x4e, 0x49, 0x53,
+	0x48, 0x45, 0x44, 0x5f, 0x4f, 0x4b, 0x10, 0x05, 0x12, 0x20, 0x0a, 0x1c, 0x54, 0x53, 0x45, 0x5f,
+	0x46, 0x49, 0x4e, 0x49, 0x53, 0x48, 0x45, 0x44, 0x5f, 0x4f, 0x4b, 0x5f, 0x43, 0x41, 0x4e, 0x5f,
+	0x42, 0x45, 0x5f, 0x52, 0x45, 0x52, 0x55, 0x4e, 0x10, 0x06, 0x12, 0x17, 0x0a, 0x13, 0x54, 0x53,
+	0x45, 0x5f, 0x46, 0x49, 0x4e, 0x49, 0x53, 0x48, 0x45, 0x44, 0x5f, 0x4e, 0x4f, 0x54, 0x5f, 0x4f,
+	0x4b, 0x10, 0x07, 0x12, 0x24, 0x0a, 0x20, 0x54, 0x53, 0x45, 0x5f, 0x46, 0x49, 0x4e, 0x49, 0x53,
+	0x48, 0x45, 0x44, 0x5f, 0x4e, 0x4f, 0x54, 0x5f, 0x4f, 0x4b, 0x5f, 0x43, 0x41, 0x4e, 0x5f, 0x42,
+	0x45, 0x5f, 0x52, 0x45, 0x52, 0x55, 0x4e, 0x10, 0x08, 0x12, 0x1f, 0x0a, 0x1b, 0x54, 0x53, 0x45,
+	0x5f, 0x55, 0x4e, 0x45, 0x58, 0x50, 0x45, 0x43, 0x54, 0x45, 0x44, 0x5f, 0x49, 0x4e, 0x54, 0x45,
+	0x52, 0x52, 0x55, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x10, 0x09, 0x12, 0x2c, 0x0a, 0x28, 0x54, 0x53,
+	0x45, 0x5f, 0x55, 0x4e, 0x45, 0x58, 0x50, 0x45, 0x43, 0x54, 0x45, 0x44, 0x5f, 0x49, 0x4e, 0x54,
+	0x45, 0x52, 0x52, 0x55, 0x50, 0x54, 0x49, 0x4f, 0x4e, 0x5f, 0x43, 0x41, 0x4e, 0x5f, 0x42, 0x45,
+	0x5f, 0x52, 0x45, 0x52, 0x55, 0x4e, 0x10, 0x0a, 0x12, 0x1c, 0x0a, 0x18, 0x54, 0x53, 0x45, 0x5f,
+	0x54, 0x49, 0x4d, 0x45, 0x4f, 0x55, 0x54, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x52, 0x55, 0x50,
+	0x54, 0x49, 0x4f, 0x4e, 0x10, 0x0b, 0x12, 0x29, 0x0a, 0x25, 0x54, 0x53, 0x45, 0x5f, 0x54, 0x49,
+	0x4d, 0x45, 0x4f, 0x55, 0x54, 0x5f, 0x49, 0x4e, 0x54, 0x45, 0x52, 0x52, 0x55, 0x50, 0x54, 0x49,
+	0x4f, 0x4e, 0x5f, 0x43, 0x41, 0x4e, 0x5f, 0x42, 0x45, 0x5f, 0x52, 0x45, 0x52, 0x55, 0x4e, 0x10,
+	0x0c, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f, 0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61,
+	0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1338,7 +1447,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 	return file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_rawDescData
 }
 
-var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes = make([]protoimpl.EnumInfo, 9)
+var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_enumTypes = make([]protoimpl.EnumInfo, 10)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_goTypes = []interface{}{
 	(CurrentFenixTestCaseBuilderProtoFileVersionEnum)(0), // 0: fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
@@ -1350,13 +1459,14 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	(TestCaseCommandTypeEnum)(0),                          // 6: fenixTestCaseBuilderServerGrpcApi.TestCaseCommandTypeEnum
 	(TestInstructionAttributeTypeEnum)(0),                 // 7: fenixTestCaseBuilderServerGrpcApi.TestInstructionAttributeTypeEnum
 	(TestCaseExecutionStatusEnum)(0),                      // 8: fenixTestCaseBuilderServerGrpcApi.TestCaseExecutionStatusEnum
-	(*EmptyParameter)(nil),                                // 9: fenixTestCaseBuilderServerGrpcApi.EmptyParameter
-	(*AckNackResponse)(nil),                               // 10: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
-	(*UserIdentificationMessage)(nil),                     // 11: fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
-	(*TestInstructionContainerChildMessage)(nil),          // 12: fenixTestCaseBuilderServerGrpcApi.TestInstructionContainerChildMessage
-	(*ClientSystemIdentificationMessage)(nil),             // 13: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
-	(*GetMessageToSignToProveCallerIdentityResponse)(nil), // 14: fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse
-	(*MessageSignatureDataMessage)(nil),                   // 15: fenixTestCaseBuilderServerGrpcApi.MessageSignatureDataMessage
+	(TestSuiteExecutionStatusEnum)(0),                     // 9: fenixTestCaseBuilderServerGrpcApi.TestSuiteExecutionStatusEnum
+	(*EmptyParameter)(nil),                                // 10: fenixTestCaseBuilderServerGrpcApi.EmptyParameter
+	(*AckNackResponse)(nil),                               // 11: fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	(*UserIdentificationMessage)(nil),                     // 12: fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage
+	(*TestInstructionContainerChildMessage)(nil),          // 13: fenixTestCaseBuilderServerGrpcApi.TestInstructionContainerChildMessage
+	(*ClientSystemIdentificationMessage)(nil),             // 14: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage
+	(*GetMessageToSignToProveCallerIdentityResponse)(nil), // 15: fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse
+	(*MessageSignatureDataMessage)(nil),                   // 16: fenixTestCaseBuilderServerGrpcApi.MessageSignatureDataMessage
 }
 var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_depIdxs = []int32{
 	0,  // 0: fenixTestCaseBuilderServerGrpcApi.EmptyParameter.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
@@ -1365,7 +1475,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0,  // 3: fenixTestCaseBuilderServerGrpcApi.UserIdentificationMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
 	3,  // 4: fenixTestCaseBuilderServerGrpcApi.TestInstructionContainerChildMessage.TestInstructionContainerChildType:type_name -> fenixTestCaseBuilderServerGrpcApi.TestInstructionContainerChildTypeEnum
 	0,  // 5: fenixTestCaseBuilderServerGrpcApi.ClientSystemIdentificationMessage.ProtoFileVersionUsedByClient:type_name -> fenixTestCaseBuilderServerGrpcApi.CurrentFenixTestCaseBuilderProtoFileVersionEnum
-	10, // 6: fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse.AckNack:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
+	11, // 6: fenixTestCaseBuilderServerGrpcApi.GetMessageToSignToProveCallerIdentityResponse.AckNack:type_name -> fenixTestCaseBuilderServerGrpcApi.AckNackResponse
 	7,  // [7:7] is the sub-list for method output_type
 	7,  // [7:7] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
@@ -1471,7 +1581,7 @@ func file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTest
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums_proto_rawDesc,
-			NumEnums:      9,
+			NumEnums:      10,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,

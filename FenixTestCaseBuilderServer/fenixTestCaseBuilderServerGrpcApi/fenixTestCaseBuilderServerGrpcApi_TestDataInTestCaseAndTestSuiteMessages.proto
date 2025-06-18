@@ -1,0 +1,53 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_MetaDataInTestCaseAndTestSuite.proto";
+
+// Message holding Groups and their TestDataPoints for TestCase
+message UsersChosenTestDataForTestCaseMessage {
+  map<string, TestDataPointNameMapMessage> ChosenTestDataPointsPerGroupMap = 1; // The 'Map[TestDataGroupName]TestDataPointNameMapMessage' is map holding maps with TestDataPoints
+  UsersSelectedTestDataPointRowMessage UsersSelectedTestDataPointRow = 2; // The Selected TestData by the user for the TestCase to/from TesterGui
+  string HashOfThisMessageWithEmptyHashField = 3; // The hash of this message but with hash-field set to empty string.
+}
+
+// Message holding Groups and their TestDataPoints for TestStuie
+message UsersChosenTestDataForTestSuiteMessage {
+  map<string, TestDataPointNameMapMessage> ChosenTestDataPointsPerGroupMap = 1; // The 'Map[TestDataGroupName]TestDataPointNameMapMessage' is map holding maps with TestDataPoints
+  UsersSelectedTestDataPointRowMessage UsersSelectedTestDataPointRow = 2; // The Selected TestData by the user for the TestCase to/from TesterGui
+  string HashOfThisMessageWithEmptyHashField = 3; // The hash of this message but with hash-field set to empty string.
+}
+
+// Message holding one TestDataPoint and indirect its TestDataRows
+message TestDataPointNameMapMessage {
+  map<string, TestDataRowsMessage> ChosenTestDataRowsPerTestDataPointMap = 1; // The 'Map[TestDataPointName]TestDataRowsMessage' is map holding TestDataRows for a TestDataPoint
+
+}
+
+// Message holding all TestDataRows for one TestDataPoint
+message TestDataRowsMessage {
+  repeated TestDataRowMessage TestDataRows = 1; // All TestDataRows for one TestDataPoints
+}
+
+// Message holding one TestDataRow and all data needed
+message TestDataRowMessage {
+  string TestDataDomainUuid = 1; // The DomainUuid for the TestDataRow
+  string TestDataDomainName = 2; // The DomainName for the TestDataRow
+  string TestDataAreaUuid = 3; // The TestDataArea, Uuid, for the Domain
+  string TestDataAreaName = 4; //  The TestDataArea, Name, for the Domain
+  string TestDataPointName = 5; // The name for the TestDataRow. It create using filter parameters for that row, e.g. 'Sub Custody/Main TestData Area/SEK/AccTest/SE/CRDT/EU/Euroclear/Other bank/NOK/EUR/SEK'
+  map<string, TestDataPointRowValueSummaryMapMessage> TestDataPointRowValueSummaryMap = 6; // The Map['TestDataPointRowUuid']TestDataPointRowValueSummaryMapMessage
+}
+
+// Message holding
+message    TestDataPointRowValueSummaryMapMessage {
+  string TestDataPointRowUuid = 1; // The TestDataRows Uuid
+  string TestDataPointRowValuesSummary = 2; // The summary of the data, used for filtering, e.g. '613/3010001/5010001/SEK/AccTest/SE/CRDT/MGTCBEBEXXX/EU/Euroclear/Other bank/C/1182633/52018108263/NOK/NO9900027190/RÄNTEBÄRANDE/EUR/SEK/PRINCIPAL/NULL/No/6752528,843/Sub Custody/Main TestData Area/SEK/AccTest/SE/CRDT/EU/Euroclear/Other bank/NOK/EUR/SEK/655345d3-664d-521b-9cd7-50ba40689ff1'
+}
+
+// Message holding the Selected TestDataGroup, TestDataPoint and TestDataPointSummary
+message   UsersSelectedTestDataPointRowMessage {
+   string TestDataGroup = 1; // The Selected TestData Group in the TesterGui
+   string  TestDataPoint = 2; // The Selected TestDataPoint in the TesterGui
+   string TestDataPointSummary = 3; // The Selected TestDataPointSummary in the TesterGui
+}

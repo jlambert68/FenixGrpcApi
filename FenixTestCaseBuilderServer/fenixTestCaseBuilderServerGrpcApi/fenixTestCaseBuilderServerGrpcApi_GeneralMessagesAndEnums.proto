@@ -129,6 +129,24 @@ enum TestCaseExecutionStatusEnum {
 
 }
 
+// Execution Enum for a TestCase Execution
+enum TestSuiteExecutionStatusEnum {
+  TestSuiteExecutionStatusEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
+  TSE_INITIATED = 1; // All set up for execution, but has not been triggered to start execution
+  TSE_EXECUTING = 2; // TestCase is execution
+  TSE_CONTROLLED_INTERRUPTION = 3; // Interrupted by in a controlled way
+  TSE_CONTROLLED_INTERRUPTION_CAN_BE_RERUN = 4; // Interrupted by in a controlled way, but can be rerun
+  TSE_FINISHED_OK = 5; // Finish as expected to TestCase definition
+  TSE_FINISHED_OK_CAN_BE_RERUN = 6; // Finish as expected to TestCase definition, but can be rerun
+  TSE_FINISHED_NOT_OK = 7; // Finish with errors in validations
+  TSE_FINISHED_NOT_OK_CAN_BE_RERUN = 8; // Finish with errors in validations, but can be rerun
+  TSE_UNEXPECTED_INTERRUPTION = 9; // The TestCase stopped executed in an unexpected way
+  TSE_UNEXPECTED_INTERRUPTION_CAN_BE_RERUN = 10; // The TestCase stopped executed in an unexpected way, but can be rerun
+  TSE_TIMEOUT_INTERRUPTION = 11; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE
+  TSE_TIMEOUT_INTERRUPTION_CAN_BE_RERUN = 12; // The TestCase had a forced stop because of timeout due to {time.Now() > 'ExpectedExecutionEndTimeStamp'} for a TIE, but can be rerun
+
+}
+
 // Parameter used for Empty inputs, only containing current proto-file version
 message EmptyParameter {
   CurrentFenixTestCaseBuilderProtoFileVersionEnum ProtoFileVersionUsedByClient = 1; // The latest proto file version number to be used
