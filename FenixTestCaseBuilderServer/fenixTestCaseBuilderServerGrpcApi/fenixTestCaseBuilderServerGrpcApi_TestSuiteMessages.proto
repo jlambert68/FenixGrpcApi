@@ -149,7 +149,8 @@ message FullTestSuiteMessage {
   UserSpecifiedTestSuiteMetaDataMessage TestSuiteMetaData = 4; // The selected MetaData, by the user, for the TestSuite
   TestCasesInTestSuiteMessage TestCasesInTestSuite = 5; // All TestCases in the TestSuite
   string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
-  string MessageHash = 7; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+  string SupportedTestSuiteDataToBeStoredAsJsonString = 7; // A json  holding the parts that have been saved
+  string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
 
 }
 
