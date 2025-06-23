@@ -143,14 +143,15 @@ message TestSuiteMetaDataMessage {
 // Message containing the full TestSuite with all of its information
 
 message FullTestSuiteMessage {
-  TestSuiteBasicInformationMessage TestSuiteBasicInformation = 1; // The basic information regarding the TestSuite
-  UsersChosenTestDataForTestSuiteMessage TestSuiteTestData = 2; // The TestData added to the TestSuite. TestData is stored per TestSuite in the Database
-  TestSuitePreviewMessage TestSuitePreview = 3; // A preview structure used be shown quickly to user when searching for TestSuites
-  UserSpecifiedTestSuiteMetaDataMessage TestSuiteMetaData = 4; // The selected MetaData, by the user, for the TestSuite
-  TestCasesInTestSuiteMessage TestCasesInTestSuite = 5; // All TestCases in the TestSuite
-  string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
-  string SupportedTestSuiteDataToBeStoredAsJsonString = 7; // A json  holding the parts that have been saved
-  string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+  UserIdentificationMessage UserIdentification = 1; // Identifies the current user and which proto-file version that is used by client
+  TestSuiteBasicInformationMessage TestSuiteBasicInformation = 2; // The basic information regarding the TestSuite
+  UsersChosenTestDataForTestSuiteMessage TestSuiteTestData = 3; // The TestData added to the TestSuite. TestData is stored per TestSuite in the Database
+  TestSuitePreviewMessage TestSuitePreview = 4; // A preview structure used be shown quickly to user when searching for TestSuites
+  UserSpecifiedTestSuiteMetaDataMessage TestSuiteMetaData = 5; // The selected MetaData, by the user, for the TestSuite
+  TestCasesInTestSuiteMessage TestCasesInTestSuite = 6; // All TestCases in the TestSuite
+  string DeletedDate = 7; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
+  string SupportedTestSuiteDataToBeStoredAsJsonString = 8; // A json  holding the parts that have been saved
+  string MessageHash = 9; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
 
 }
 
