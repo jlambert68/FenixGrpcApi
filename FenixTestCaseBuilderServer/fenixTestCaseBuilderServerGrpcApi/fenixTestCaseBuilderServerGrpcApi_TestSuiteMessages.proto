@@ -173,6 +173,9 @@ message UpdatedByAndWhenMessage {
   string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
   string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
   string UpdateTimeStamp = 3; // The timestamp when the TestSuite was saved to the database
+  string CreatedByGcpLogin = 4; // The person that did log in towards GCP
+  string CreatedByComputerLogin = 5; // The person that is logged into the computer
+  string CreatedDate = 6; // The date when the TestSuite was first created
 }
 
 // ****************************************************************************************************
