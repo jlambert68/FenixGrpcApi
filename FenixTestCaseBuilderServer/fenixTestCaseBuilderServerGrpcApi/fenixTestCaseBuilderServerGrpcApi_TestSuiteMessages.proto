@@ -162,7 +162,6 @@ message FullTestSuiteMessage {
   TestCasesInTestSuiteMessage TestCasesInTestSuite = 5; // All TestCases in the TestSuite
   string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
   string MessageHash = 7; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
-
 }
 
 // ****************************************************************************************************
