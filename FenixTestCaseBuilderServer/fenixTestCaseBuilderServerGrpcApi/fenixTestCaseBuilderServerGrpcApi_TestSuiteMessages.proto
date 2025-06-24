@@ -161,7 +161,18 @@ message FullTestSuiteMessage {
   UserSpecifiedTestSuiteMetaDataMessage TestSuiteMetaData = 4; // The selected MetaData, by the user, for the TestSuite
   TestCasesInTestSuiteMessage TestCasesInTestSuite = 5; // All TestCases in the TestSuite
   string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
-  string MessageHash = 7; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+  UpdatedByAndWhenMessage UpdatedByAndWhen = 7; // Information about when and who updated the TestSuite. Only used when loading TestSuite
+  string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+}
+
+// ****************************************************************************************************
+// UpdateByAndWhenMessage
+// Information about when and who updated the TestSuite. Only used when loading TestSuite
+
+message UpdatedByAndWhenMessage {
+  string UserIdOnComputer = 1; // The Users Id, SEB S-id will be used for SEB
+  string GCPAuthenticatedUser = 2; // The User that was identified towards GCP; the e-mail address
+  string UpdateTimeStamp = 3; // The timestamp when the TestSuite was saved to the database
 }
 
 // ****************************************************************************************************
