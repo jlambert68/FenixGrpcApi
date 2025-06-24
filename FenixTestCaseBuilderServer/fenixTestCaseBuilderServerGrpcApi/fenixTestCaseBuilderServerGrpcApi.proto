@@ -78,6 +78,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc GetDetailedTestCase(GetTestCaseRequestMessage) returns (GetDetailedTestCaseResponse) {
   }
 
+  // The TestSuite Builder asks for one complete TestSuite
+  rpc GetDetailedTestSuite(GetTestSuiteRequestMessage) returns (GetDetailedTestSuiteResponse) {
+  }
+
   // List all TestInstructions in the TestCase
   rpc ListAllTestCaseTestInstructions(ListAllTestInstructionsForSpecificTestCaseRequestMessage) returns (MatureTestInstructionsMessage) {
   }
@@ -97,7 +101,7 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // Save full TestSuite in DB
-  rpc SaveFullTestSuite(FullTestSuiteMessage) returns (AckNackResponse) {
+  rpc SaveFullTestSuite(SaveFullTestSuiteMessageRequest) returns (AckNackResponse) {
   }
 
   // Save a Basic TestCase info in DB
