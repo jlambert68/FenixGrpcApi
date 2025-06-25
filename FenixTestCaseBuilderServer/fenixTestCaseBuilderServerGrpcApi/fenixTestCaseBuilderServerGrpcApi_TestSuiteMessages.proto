@@ -163,7 +163,8 @@ message FullTestSuiteMessage {
   string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
   UpdatedByAndWhenMessage UpdatedByAndWhen = 7; // Information about when and who updated the TestSuite. Only used when loading TestSuite
   TestSuiteTypeMessage TestSuiteType = 8; // The type of TestSuite; Standard, Pig....
-  string MessageHash = 9; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+  map<string, bool> TestSuiteImplementedFunctionsMap = 9; // The Map holding the used functions within the TestSuite
+  string MessageHash = 10; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
 }
 
 // ****************************************************************************************************
