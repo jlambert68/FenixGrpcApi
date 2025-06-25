@@ -603,16 +603,16 @@ type FullTestSuiteMessage struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	TestSuiteBasicInformation        *TestSuiteBasicInformationMessage       `protobuf:"bytes,1,opt,name=TestSuiteBasicInformation,proto3" json:"TestSuiteBasicInformation,omitempty"`                                                                                                        // The basic information regarding the TestSuite
-	TestSuiteTestData                *UsersChosenTestDataForTestSuiteMessage `protobuf:"bytes,2,opt,name=TestSuiteTestData,proto3" json:"TestSuiteTestData,omitempty"`                                                                                                                        // The TestData added to the TestSuite. TestData is stored per TestSuite in the Database
-	TestSuitePreview                 *TestSuitePreviewMessage                `protobuf:"bytes,3,opt,name=TestSuitePreview,proto3" json:"TestSuitePreview,omitempty"`                                                                                                                          // A preview structure used be shown quickly to user when searching for TestSuites
-	TestSuiteMetaData                *UserSpecifiedTestSuiteMetaDataMessage  `protobuf:"bytes,4,opt,name=TestSuiteMetaData,proto3" json:"TestSuiteMetaData,omitempty"`                                                                                                                        // The selected MetaData, by the user, for the TestSuite
-	TestCasesInTestSuite             *TestCasesInTestSuiteMessage            `protobuf:"bytes,5,opt,name=TestCasesInTestSuite,proto3" json:"TestCasesInTestSuite,omitempty"`                                                                                                                  // All TestCases in the TestSuite
-	DeletedDate                      string                                  `protobuf:"bytes,6,opt,name=DeletedDate,proto3" json:"DeletedDate,omitempty"`                                                                                                                                    // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
-	UpdatedByAndWhen                 *UpdatedByAndWhenMessage                `protobuf:"bytes,7,opt,name=UpdatedByAndWhen,proto3" json:"UpdatedByAndWhen,omitempty"`                                                                                                                          // Information about when and who updated the TestSuite. Only used when loading TestSuite
-	TestSuiteType                    *TestSuiteTypeMessage                   `protobuf:"bytes,8,opt,name=TestSuiteType,proto3" json:"TestSuiteType,omitempty"`                                                                                                                                // The type of TestSuite; Standard, Pig....
-	TestSuiteImplementedFunctionsMap map[string]bool                         `protobuf:"bytes,9,rep,name=TestSuiteImplementedFunctionsMap,proto3" json:"TestSuiteImplementedFunctionsMap,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"` // The Map holding the used functions within the TestSuite
-	MessageHash                      string                                  `protobuf:"bytes,10,opt,name=MessageHash,proto3" json:"MessageHash,omitempty"`                                                                                                                                   // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+	TestSuiteBasicInformation        *TestSuiteBasicInformationMessage       `protobuf:"bytes,1,opt,name=TestSuiteBasicInformation,proto3" json:"TestSuiteBasicInformation,omitempty"`                                                                                                         // The basic information regarding the TestSuite
+	TestSuiteTestData                *UsersChosenTestDataForTestSuiteMessage `protobuf:"bytes,2,opt,name=TestSuiteTestData,proto3" json:"TestSuiteTestData,omitempty"`                                                                                                                         // The TestData added to the TestSuite. TestData is stored per TestSuite in the Database
+	TestSuitePreview                 *TestSuitePreviewMessage                `protobuf:"bytes,3,opt,name=TestSuitePreview,proto3" json:"TestSuitePreview,omitempty"`                                                                                                                           // A preview structure used be shown quickly to user when searching for TestSuites
+	TestSuiteMetaData                *UserSpecifiedTestSuiteMetaDataMessage  `protobuf:"bytes,4,opt,name=TestSuiteMetaData,proto3" json:"TestSuiteMetaData,omitempty"`                                                                                                                         // The selected MetaData, by the user, for the TestSuite
+	TestCasesInTestSuite             *TestCasesInTestSuiteMessage            `protobuf:"bytes,5,opt,name=TestCasesInTestSuite,proto3" json:"TestCasesInTestSuite,omitempty"`                                                                                                                   // All TestCases in the TestSuite
+	DeletedDate                      string                                  `protobuf:"bytes,6,opt,name=DeletedDate,proto3" json:"DeletedDate,omitempty"`                                                                                                                                     // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
+	UpdatedByAndWhen                 *UpdatedByAndWhenMessage                `protobuf:"bytes,7,opt,name=UpdatedByAndWhen,proto3" json:"UpdatedByAndWhen,omitempty"`                                                                                                                           // Information about when and who updated the TestSuite. Only used when loading TestSuite
+	TestSuiteType                    *TestSuiteTypeMessage                   `protobuf:"bytes,8,opt,name=TestSuiteType,proto3" json:"TestSuiteType,omitempty"`                                                                                                                                 // The type of TestSuite; Standard, Pig....
+	TestSuiteImplementedFunctionsMap map[int32]bool                          `protobuf:"bytes,9,rep,name=TestSuiteImplementedFunctionsMap,proto3" json:"TestSuiteImplementedFunctionsMap,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"` // The Map holding the used functions within the TestSuite
+	MessageHash                      string                                  `protobuf:"bytes,10,opt,name=MessageHash,proto3" json:"MessageHash,omitempty"`                                                                                                                                    // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
 }
 
 func (x *FullTestSuiteMessage) Reset() {
@@ -703,7 +703,7 @@ func (x *FullTestSuiteMessage) GetTestSuiteType() *TestSuiteTypeMessage {
 	return nil
 }
 
-func (x *FullTestSuiteMessage) GetTestSuiteImplementedFunctionsMap() map[string]bool {
+func (x *FullTestSuiteMessage) GetTestSuiteImplementedFunctionsMap() map[int32]bool {
 	if x != nil {
 		return x.TestSuiteImplementedFunctionsMap
 	}
@@ -1639,7 +1639,7 @@ var file_FenixTestCaseBuilderServer_fenixTestCaseBuilderServerGrpcApi_fenixTestC
 	0x61, 0x73, 0x68, 0x1a, 0x53, 0x0a, 0x25, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65,
 	0x49, 0x6d, 0x70, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x65, 0x64, 0x46, 0x75, 0x6e, 0x63, 0x74,
 	0x69, 0x6f, 0x6e, 0x73, 0x4d, 0x61, 0x70, 0x45, 0x6e, 0x74, 0x72, 0x79, 0x12, 0x10, 0x0a, 0x03,
-	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14,
+	0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14,
 	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x08, 0x52, 0x05, 0x76,
 	0x61, 0x6c, 0x75, 0x65, 0x3a, 0x02, 0x38, 0x01, 0x22, 0xa0, 0x01, 0x0a, 0x14, 0x54, 0x65, 0x73,
 	0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x54, 0x79, 0x70, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
