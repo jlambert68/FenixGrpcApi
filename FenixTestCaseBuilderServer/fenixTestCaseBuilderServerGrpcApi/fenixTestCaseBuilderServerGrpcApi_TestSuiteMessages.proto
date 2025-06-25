@@ -162,8 +162,25 @@ message FullTestSuiteMessage {
   TestCasesInTestSuiteMessage TestCasesInTestSuite = 5; // All TestCases in the TestSuite
   string DeletedDate = 6; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
   UpdatedByAndWhenMessage UpdatedByAndWhen = 7; // Information about when and who updated the TestSuite. Only used when loading TestSuite
-  string MessageHash = 8; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
+  TestSuiteTypeMessage TestSuiteType = 8; // The type of TestSuite; Standard, Pig....
+  string MessageHash = 9; // Holds the hash of the above parts. Used for checking if something is changed in TestSuite
 }
+
+// ****************************************************************************************************
+// TestSuiteTypeMessage
+// The type of TestSuite; Standard, Pig....
+message TestSuiteTypeMessage {
+  TestSuiteTypeEnum TestSuiteType = 1; // The underlay type definition
+  string TestSuiteTypeName = 2; // Textual name for the type
+}
+
+enum TestSuiteTypeEnum {
+  TestSuiteType_NotDefined = 0; // The TestSuite-type was never properly defined
+  TestSuiteType_Standard= 1; // A 'Standard' TestSuite
+  TestSuiteType_Pig = 2; // A TestSuite that is used for controlling environments. Is often run like every 10 minutes
+}
+
+
 
 // ****************************************************************************************************
 // UpdateByAndWhenMessage
