@@ -84,6 +84,7 @@ message TestSuiteBasicInformationMessage {
   uint32 TestSuiteVersion = 4; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
   string TestSuiteName = 5; // The TestSuite, Name, set in TestCase-builder
   string TestSuiteDescription = 6; // The description of the TestSuite
+  string TestSuiteExecutionEnvironment = 7; // The chosen execution environment for the TestSuite
 
 }
 
