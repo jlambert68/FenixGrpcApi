@@ -125,8 +125,8 @@ service FenixTestCaseBuilderServerGrpcServices {
   }
 
   // *** TesterGui send Delete-command that updates database that TestSuite will be delete per a certain date ***
-  //rpc DeleteTestSuiteAtThisDate(DeleteTestSuiteAtThisDateRequest) returns (AckNackResponse) {
-  //}
+  rpc DeleteTestSuiteAtThisDate(DeleteTestSuiteAtThisDateRequest) returns (AckNackResponse) {
+  }
 
 
 

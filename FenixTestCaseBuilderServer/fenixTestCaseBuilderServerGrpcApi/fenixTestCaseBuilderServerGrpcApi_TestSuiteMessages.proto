@@ -285,6 +285,7 @@ message TestSuiteThatCanBeEditedByUserMessage {
   TestCasePreviewMessage TestSuitePreview = 10; // The Preview message of the TestSuite
 }
 
+*/
 
 // ****************************************************************************************************
 //  DeleteTestSuiteAtThisDateRequest
@@ -293,15 +294,14 @@ message TestSuiteThatCanBeEditedByUserMessage {
 
 message DeleteTestSuiteAtThisDateRequest {
   UserIdentificationMessage UserIdentification = 1; // User identification and users proto-file version
-  DeleteTestSuiteAtThisDateRequestMessage DeleteThisTestCaseAtThisDate = 2; // Holds which TestCase that should be deleted and on what date
+  DeleteTestSuiteAtThisDateRequestMessage DeleteThisTestSuiteAtThisDate = 2; // Holds which TestSuite that should be deleted and on what date
 }
 
 message DeleteTestSuiteAtThisDateRequestMessage {
   string DomainUuid = 1; // The Domain, UUID, where the TestSuite 'has its home'
   string DomainName = 2; // The Domain, Name, where the TestSuite 'has its home'
-  string TestCaseUuid = 3; // The TestSuite, UUID, that should be deleted
-  uint32 TestCaseVersion = 4; // The version of the TestSuite, must match the latest version in the Database
+  string TestSuiteUuid = 3; // The TestSuite, UUID, that should be deleted
+  uint32 TestSuiteVersion = 4; // The version of the TestSuite, must match the latest version in the Database
   string DeletedDate = 5; // The Date from when the TestSuite should be seen as deleted, YYYY-MM-DD
 }
 
-*/
