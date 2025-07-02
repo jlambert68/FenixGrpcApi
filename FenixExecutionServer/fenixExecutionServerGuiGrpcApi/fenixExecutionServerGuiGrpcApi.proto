@@ -5,6 +5,7 @@ option go_package = "./go_grpc_api";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_ListTestCaseExecutions.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages.proto";
 
 // ****************************************************************************************************
 // Fenix Execution Server service definition. (Will support Test Suite building in feature, and will then be renamed)
@@ -44,6 +45,10 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
 
   // Initiate a single TestCase Execution with one specific TestDataSet
   rpc InitiateTestCaseExecution (InitiateSingleTestCaseExecutionRequestMessage) returns (InitiateSingleTestCaseExecutionResponseMessage) {
+  }
+
+  // Initiate a single TestSuite Execution with all its TestDataSets
+  rpc InitiateTestSuiteExecution (InitiateSingleTestSuiteExecutionRequestMessage) returns (InitiateSingleTestSuiteExecutionResponseMessage) {
   }
 
   // Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
