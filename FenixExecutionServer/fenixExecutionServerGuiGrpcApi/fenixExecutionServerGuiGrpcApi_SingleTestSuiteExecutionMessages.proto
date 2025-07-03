@@ -13,7 +13,8 @@ message InitiateSingleTestSuiteExecutionRequestMessage {
   TestDataForTestCaseExecutionMessage TestDataForTestCaseExecution = 4; // The TestData used when doing one TestSuite execution
 }
 
-// Message response from initiating a single TestCase Execution
+// Message response from initiating a single TestSuiteExecution Execution
 message InitiateSingleTestSuiteExecutionResponseMessage {
   AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestCaseExecutionBasicInformationMessage TestCasesInExecutionQueue = 2; // The Basic information regarding the TestCase-Executions
 }
