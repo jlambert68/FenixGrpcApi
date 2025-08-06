@@ -19,19 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	FenixExecutionServerGuiGrpcServicesForGuiClient_AreYouAlive_FullMethodName                         = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/AreYouAlive"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesOnExecutionQueue_FullMethodName       = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesOnExecutionQueue"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesUnderExecution_FullMethodName         = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesUnderExecution"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesWithFinishedExecutions_FullMethodName = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesWithFinishedExecutions"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_FullMethodName          = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/GetSingleTestCaseExecution"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_FullMethodName           = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestCaseExecution"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecution_FullMethodName          = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestSuiteExecution"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStream_FullMethodName            = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessageStream"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_FullMethodName                 = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_UnSubscribeToMessages_FullMethodName               = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/UnSubscribeToMessages"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsClosingDown_FullMethodName              = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/TesterGuiIsClosingDown"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_FullMethodName               = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/TesterGuiIsStartingUp"
-	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCaseExecutions_FullMethodName              = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCaseExecutions"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_AreYouAlive_FullMethodName                                   = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/AreYouAlive"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesOnExecutionQueue_FullMethodName                 = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesOnExecutionQueue"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesUnderExecution_FullMethodName                   = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesUnderExecution"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesWithFinishedExecutions_FullMethodName           = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesWithFinishedExecutions"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_FullMethodName                    = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/GetSingleTestCaseExecution"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_FullMethodName                     = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestCaseExecution"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithOneTestDataSet_FullMethodName  = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestSuiteExecutionWithOneTestDataSet"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithAllTestDataSets_FullMethodName = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestSuiteExecutionWithAllTestDataSets"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStream_FullMethodName                      = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessageStream"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessages_FullMethodName                           = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/SubscribeToMessages"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_UnSubscribeToMessages_FullMethodName                         = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/UnSubscribeToMessages"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsClosingDown_FullMethodName                        = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/TesterGuiIsClosingDown"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_TesterGuiIsStartingUp_FullMethodName                         = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/TesterGuiIsStartingUp"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCaseExecutions_FullMethodName                        = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCaseExecutions"
 )
 
 // FenixExecutionServerGuiGrpcServicesForGuiClientClient is the client API for FenixExecutionServerGuiGrpcServicesForGuiClient service.
@@ -50,8 +51,10 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientClient interface {
 	GetSingleTestCaseExecution(ctx context.Context, in *GetSingleTestCaseExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestCaseExecutionResponse, error)
 	// Initiate a single TestCase Execution with one specific TestDataSet
 	InitiateTestCaseExecution(ctx context.Context, in *InitiateSingleTestCaseExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestCaseExecutionResponseMessage, error)
+	// Initiate a single TestSuite Execution with one TestDataSet
+	InitiateTestSuiteExecutionWithOneTestDataSet(ctx context.Context, in *InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestSuiteExecutionResponseMessage, error)
 	// Initiate a single TestSuite Execution with all its TestDataSets
-	InitiateTestSuiteExecution(ctx context.Context, in *InitiateSingleTestSuiteExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestSuiteExecutionResponseMessage, error)
+	InitiateTestSuiteExecutionWithAllTestDataSets(ctx context.Context, in *InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestSuiteExecutionResponseMessage, error)
 	// Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
 	// Messages can be everything from execution status, information messages or Environment status
 	SubscribeToMessageStream(ctx context.Context, in *UserAndApplicationRunTimeIdentificationMessage, opts ...grpc.CallOption) (FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamClient, error)
@@ -129,9 +132,18 @@ func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) InitiateTestCase
 	return out, nil
 }
 
-func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) InitiateTestSuiteExecution(ctx context.Context, in *InitiateSingleTestSuiteExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestSuiteExecutionResponseMessage, error) {
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) InitiateTestSuiteExecutionWithOneTestDataSet(ctx context.Context, in *InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestSuiteExecutionResponseMessage, error) {
 	out := new(InitiateSingleTestSuiteExecutionResponseMessage)
-	err := c.cc.Invoke(ctx, FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecution_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithOneTestDataSet_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) InitiateTestSuiteExecutionWithAllTestDataSets(ctx context.Context, in *InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestSuiteExecutionResponseMessage, error) {
+	out := new(InitiateSingleTestSuiteExecutionResponseMessage)
+	err := c.cc.Invoke(ctx, FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithAllTestDataSets_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -231,8 +243,10 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientServer interface {
 	GetSingleTestCaseExecution(context.Context, *GetSingleTestCaseExecutionRequest) (*GetSingleTestCaseExecutionResponse, error)
 	// Initiate a single TestCase Execution with one specific TestDataSet
 	InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error)
+	// Initiate a single TestSuite Execution with one TestDataSet
+	InitiateTestSuiteExecutionWithOneTestDataSet(context.Context, *InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage) (*InitiateSingleTestSuiteExecutionResponseMessage, error)
 	// Initiate a single TestSuite Execution with all its TestDataSets
-	InitiateTestSuiteExecution(context.Context, *InitiateSingleTestSuiteExecutionRequestMessage) (*InitiateSingleTestSuiteExecutionResponseMessage, error)
+	InitiateTestSuiteExecutionWithAllTestDataSets(context.Context, *InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage) (*InitiateSingleTestSuiteExecutionResponseMessage, error)
 	// Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer
 	// Messages can be everything from execution status, information messages or Environment status
 	SubscribeToMessageStream(*UserAndApplicationRunTimeIdentificationMessage, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamServer) error
@@ -271,8 +285,11 @@ func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) GetSin
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestCaseExecution not implemented")
 }
-func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestSuiteExecution(context.Context, *InitiateSingleTestSuiteExecutionRequestMessage) (*InitiateSingleTestSuiteExecutionResponseMessage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestSuiteExecution not implemented")
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestSuiteExecutionWithOneTestDataSet(context.Context, *InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage) (*InitiateSingleTestSuiteExecutionResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestSuiteExecutionWithOneTestDataSet not implemented")
+}
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestSuiteExecutionWithAllTestDataSets(context.Context, *InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage) (*InitiateSingleTestSuiteExecutionResponseMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestSuiteExecutionWithAllTestDataSets not implemented")
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) SubscribeToMessageStream(*UserAndApplicationRunTimeIdentificationMessage, FenixExecutionServerGuiGrpcServicesForGuiClient_SubscribeToMessageStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method SubscribeToMessageStream not implemented")
@@ -414,20 +431,38 @@ func _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitiateSingleTestSuiteExecutionRequestMessage)
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithOneTestDataSet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestSuiteExecution(ctx, in)
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestSuiteExecutionWithOneTestDataSet(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecution_FullMethodName,
+		FullMethod: FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithOneTestDataSet_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestSuiteExecution(ctx, req.(*InitiateSingleTestSuiteExecutionRequestMessage))
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestSuiteExecutionWithOneTestDataSet(ctx, req.(*InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithAllTestDataSets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestSuiteExecutionWithAllTestDataSets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithAllTestDataSets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).InitiateTestSuiteExecutionWithAllTestDataSets(ctx, req.(*InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -575,8 +610,12 @@ var FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc = grpc.ServiceDe
 			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_Handler,
 		},
 		{
-			MethodName: "InitiateTestSuiteExecution",
-			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecution_Handler,
+			MethodName: "InitiateTestSuiteExecutionWithOneTestDataSet",
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithOneTestDataSet_Handler,
+		},
+		{
+			MethodName: "InitiateTestSuiteExecutionWithAllTestDataSets",
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithAllTestDataSets_Handler,
 		},
 		{
 			MethodName: "SubscribeToMessages",

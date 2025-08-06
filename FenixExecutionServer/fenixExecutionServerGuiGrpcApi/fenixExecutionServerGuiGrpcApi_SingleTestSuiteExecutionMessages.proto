@@ -6,11 +6,18 @@ import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServer
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto";
 
 // Message used for initiating a single TestSuiteExecution, with a specific TestData-point
-message InitiateSingleTestSuiteExecutionRequestMessage {
+message InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage {
   UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
   string TestSuiteUuid = 2; // The UUID for the TestSuite to be Executed
   ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 3; // Used to tell ExecutionServer what level of ExecutionStatus should be reported back
   TestDataForTestCaseExecutionMessage TestDataForTestCaseExecution = 4; // The TestData used when doing one TestSuite execution
+}
+
+// Message used for initiating a single TestSuiteExecution, with all its TestData-points
+message InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage {
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
+  string TestSuiteUuid = 2; // The UUID for the TestSuite to be Executed
+  ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 3; // Used to tell ExecutionServer what level of ExecutionStatus should be reported back
 }
 
 // Message response from initiating a single TestSuiteExecution Execution

@@ -47,8 +47,12 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
   rpc InitiateTestCaseExecution (InitiateSingleTestCaseExecutionRequestMessage) returns (InitiateSingleTestCaseExecutionResponseMessage) {
   }
 
+  // Initiate a single TestSuite Execution with one TestDataSet
+  rpc InitiateTestSuiteExecutionWithOneTestDataSet (InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage) returns (InitiateSingleTestSuiteExecutionResponseMessage) {
+  }
+
   // Initiate a single TestSuite Execution with all its TestDataSets
-  rpc InitiateTestSuiteExecution (InitiateSingleTestSuiteExecutionRequestMessage) returns (InitiateSingleTestSuiteExecutionResponseMessage) {
+  rpc InitiateTestSuiteExecutionWithAllTestDataSets (InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage) returns (InitiateSingleTestSuiteExecutionResponseMessage) {
   }
 
   // Execution TesterGui opens the gPRC-channel and messages are then streamed back to TestGui from GuiExecutionServer

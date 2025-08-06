@@ -59,7 +59,7 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x5f, 0x53, 0x69, 0x6e, 0x67,
 	0x6c, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75,
 	0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x73, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x32, 0x88, 0x11, 0x0a, 0x2f, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63,
+	0x74, 0x6f, 0x32, 0x88, 0x13, 0x0a, 0x2f, 0x46, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63,
 	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72,
 	0x70, 0x63, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x46, 0x6f, 0x72, 0x47, 0x75, 0x69,
 	0x43, 0x6c, 0x69, 0x65, 0x6e, 0x74, 0x12, 0x70, 0x0a, 0x0b, 0x41, 0x72, 0x65, 0x59, 0x6f, 0x75,
@@ -125,13 +125,29 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x49, 0x6e,
 	0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x54, 0x65, 0x73, 0x74,
 	0x43, 0x61, 0x73, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0xbf,
-	0x01, 0x0a, 0x1a, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53,
-	0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x4e, 0x2e,
-	0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x49,
-	0x6e, 0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x54, 0x65, 0x73,
-	0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0xdd,
+	0x01, 0x0a, 0x2c, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53,
+	0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x69, 0x74,
+	0x68, 0x4f, 0x6e, 0x65, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65, 0x74, 0x12,
+	0x5a, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
+	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69,
+	0x2e, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69,
+	0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x69, 0x74, 0x68, 0x4f,
+	0x6e, 0x65, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65, 0x74, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x4f, 0x2e, 0x66, 0x65,
+	0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x49, 0x6e, 0x69,
+	0x74, 0x69, 0x61, 0x74, 0x65, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53,
+	0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x22, 0x00, 0x12, 0xdf,
+	0x01, 0x0a, 0x2d, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53,
+	0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x69, 0x74,
+	0x68, 0x41, 0x6c, 0x6c, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65, 0x74, 0x73,
+	0x12, 0x5b, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f,
+	0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70,
+	0x69, 0x2e, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x74, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75,
+	0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x57, 0x69, 0x74, 0x68,
+	0x41, 0x6c, 0x6c, 0x54, 0x65, 0x73, 0x74, 0x44, 0x61, 0x74, 0x61, 0x53, 0x65, 0x74, 0x73, 0x52,
 	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x1a, 0x4f, 0x2e,
 	0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x49,
@@ -222,21 +238,22 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	(*ListTestCasesWithFinishedExecutionsRequest)(nil),                        // 3: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest
 	(*GetSingleTestCaseExecutionRequest)(nil),                                 // 4: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest
 	(*InitiateSingleTestCaseExecutionRequestMessage)(nil),                     // 5: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionRequestMessage
-	(*InitiateSingleTestSuiteExecutionRequestMessage)(nil),                    // 6: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionRequestMessage
-	(*UserAndApplicationRunTimeIdentificationMessage)(nil),                    // 7: fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	(*SubscribeToMessagesRequest)(nil),                                        // 8: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest
-	(*UnSubscribeToMessagesRequest)(nil),                                      // 9: fenixExecutionServerGuiGrpcApi.UnSubscribeToMessagesRequest
-	(*ListTestCaseExecutionsRequest)(nil),                                     // 10: fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsRequest
-	(*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage)(nil), // 11: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
-	(*AckNackResponse)(nil),                                                   // 12: fenixExecutionServerGuiGrpcApi.AckNackResponse
-	(*ListTestCasesInExecutionQueueResponse)(nil),                             // 13: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse
-	(*ListTestCasesUnderExecutionResponse)(nil),                               // 14: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse
-	(*ListTestCasesWithFinishedExecutionsResponse)(nil),                       // 15: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse
-	(*GetSingleTestCaseExecutionResponse)(nil),                                // 16: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse
-	(*InitiateSingleTestCaseExecutionResponseMessage)(nil),                    // 17: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage
-	(*InitiateSingleTestSuiteExecutionResponseMessage)(nil),                   // 18: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage
-	(*SubscribeToMessagesStreamResponse)(nil),                                 // 19: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse
-	(*ListTestCaseExecutionsResponse)(nil),                                    // 20: fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsResponse
+	(*InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage)(nil),        // 6: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage
+	(*InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage)(nil),       // 7: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage
+	(*UserAndApplicationRunTimeIdentificationMessage)(nil),                    // 8: fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	(*SubscribeToMessagesRequest)(nil),                                        // 9: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest
+	(*UnSubscribeToMessagesRequest)(nil),                                      // 10: fenixExecutionServerGuiGrpcApi.UnSubscribeToMessagesRequest
+	(*ListTestCaseExecutionsRequest)(nil),                                     // 11: fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsRequest
+	(*TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage)(nil), // 12: fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
+	(*AckNackResponse)(nil),                                                   // 13: fenixExecutionServerGuiGrpcApi.AckNackResponse
+	(*ListTestCasesInExecutionQueueResponse)(nil),                             // 14: fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse
+	(*ListTestCasesUnderExecutionResponse)(nil),                               // 15: fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse
+	(*ListTestCasesWithFinishedExecutionsResponse)(nil),                       // 16: fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse
+	(*GetSingleTestCaseExecutionResponse)(nil),                                // 17: fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse
+	(*InitiateSingleTestCaseExecutionResponseMessage)(nil),                    // 18: fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage
+	(*InitiateSingleTestSuiteExecutionResponseMessage)(nil),                   // 19: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage
+	(*SubscribeToMessagesStreamResponse)(nil),                                 // 20: fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse
+	(*ListTestCaseExecutionsResponse)(nil),                                    // 21: fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsResponse
 }
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_proto_depIdxs = []int32{
 	0,  // 0: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.AreYouAlive:input_type -> fenixExecutionServerGuiGrpcApi.EmptyParameter
@@ -245,30 +262,32 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	3,  // 3: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesWithFinishedExecutions:input_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsRequest
 	4,  // 4: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.GetSingleTestCaseExecution:input_type -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionRequest
 	5,  // 5: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestCaseExecution:input_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionRequestMessage
-	6,  // 6: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestSuiteExecution:input_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionRequestMessage
-	7,  // 7: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessageStream:input_type -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	8,  // 8: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessages:input_type -> fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest
-	9,  // 9: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.UnSubscribeToMessages:input_type -> fenixExecutionServerGuiGrpcApi.UnSubscribeToMessagesRequest
-	7,  // 10: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsClosingDown:input_type -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	7,  // 11: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsStartingUp:input_type -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	10, // 12: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCaseExecutions:input_type -> fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsRequest
-	11, // 13: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer.SendExecutionStatusTowardsGuiClient:input_type -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
-	12, // 14: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.AreYouAlive:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	13, // 15: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesOnExecutionQueue:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse
-	14, // 16: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesUnderExecution:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse
-	15, // 17: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesWithFinishedExecutions:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse
-	16, // 18: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.GetSingleTestCaseExecution:output_type -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse
-	17, // 19: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestCaseExecution:output_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage
-	18, // 20: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestSuiteExecution:output_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage
-	19, // 21: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessageStream:output_type -> fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse
-	12, // 22: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessages:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	12, // 23: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.UnSubscribeToMessages:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	12, // 24: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsClosingDown:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	12, // 25: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsStartingUp:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	20, // 26: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCaseExecutions:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsResponse
-	12, // 27: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer.SendExecutionStatusTowardsGuiClient:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	14, // [14:28] is the sub-list for method output_type
-	0,  // [0:14] is the sub-list for method input_type
+	6,  // 6: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestSuiteExecutionWithOneTestDataSet:input_type -> fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage
+	7,  // 7: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestSuiteExecutionWithAllTestDataSets:input_type -> fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage
+	8,  // 8: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessageStream:input_type -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	9,  // 9: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessages:input_type -> fenixExecutionServerGuiGrpcApi.SubscribeToMessagesRequest
+	10, // 10: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.UnSubscribeToMessages:input_type -> fenixExecutionServerGuiGrpcApi.UnSubscribeToMessagesRequest
+	8,  // 11: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsClosingDown:input_type -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	8,  // 12: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsStartingUp:input_type -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	11, // 13: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCaseExecutions:input_type -> fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsRequest
+	12, // 14: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer.SendExecutionStatusTowardsGuiClient:input_type -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionsStatusAndTestInstructionExecutionsStatusMessage
+	13, // 15: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.AreYouAlive:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	14, // 16: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesOnExecutionQueue:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesInExecutionQueueResponse
+	15, // 17: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesUnderExecution:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesUnderExecutionResponse
+	16, // 18: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCasesWithFinishedExecutions:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCasesWithFinishedExecutionsResponse
+	17, // 19: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.GetSingleTestCaseExecution:output_type -> fenixExecutionServerGuiGrpcApi.GetSingleTestCaseExecutionResponse
+	18, // 20: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestCaseExecution:output_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestCaseExecutionResponseMessage
+	19, // 21: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestSuiteExecutionWithOneTestDataSet:output_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage
+	19, // 22: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.InitiateTestSuiteExecutionWithAllTestDataSets:output_type -> fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage
+	20, // 23: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessageStream:output_type -> fenixExecutionServerGuiGrpcApi.SubscribeToMessagesStreamResponse
+	13, // 24: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.SubscribeToMessages:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	13, // 25: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.UnSubscribeToMessages:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	13, // 26: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsClosingDown:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	13, // 27: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.TesterGuiIsStartingUp:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	21, // 28: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient.ListTestCaseExecutions:output_type -> fenixExecutionServerGuiGrpcApi.ListTestCaseExecutionsResponse
+	13, // 29: fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForExecutionServer.SendExecutionStatusTowardsGuiClient:output_type -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	15, // [15:30] is the sub-list for method output_type
+	0,  // [0:15] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
