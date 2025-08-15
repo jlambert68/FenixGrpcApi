@@ -3,6 +3,7 @@ package fenixTestCaseBuilderServerGrpcApi;
 option go_package = "./go_grpc_api";
 //import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_MetaDataInTestCaseAndTestSuite.proto";
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestCasePreviewMessages.proto";
 
 
 // Message holden a preview and the hash of the preview  of the TestSuite. Only used for looking at and no editing
@@ -29,37 +30,9 @@ message TestSuitePreviewStructureMessage {
   // A message holding one TestSuiteStructureObject and its TestCase
   message TestSuiteStructureObjectMessage {
 
-    repeated TestCaseStructureObjectMessage TestCasePreViews = 1; // A list of all TestCases-previews and their TI, TIC and Attributes
+    repeated TestCasePreviewMessage TestCasePreViews = 1; // A list of all TestCases-previews and their TI, TIC and Attributes
 
-    // A message holding one TestCaseStructureObject, like TIC, TI or TI's attributes
-    message TestCaseStructureObjectMessage {
-      TestCaseStructureObjectTypeEnum TestCaseStructureObjectType = 1; // The type of TestCaseStructureObject, TIC, TI, Attribute
-      uint32 IndentationLevel = 2; // How much should the object be move to create the tree like structure
-      string TestInstructionContainerName = 3; // The Name of the TestInstructionContainer
-      string TestInstructionContainerUuid = 4; // The Uuid of the TestInstructionContainer
-      bool TestInstructionIsSerialProcessed = 5; // Is the TestInstructionContainer 'serial' or 'parallel' processed
-      string TestInstructionName = 6; // The Name of the TestInstruction
-      string TestInstructionUuid = 7; // The Uuid of the TestInstruction
-      string TestInstructionColor = 8; // The color code used for the TestInstruction
-      repeated TestInstructionAttributeMessage TestInstructionAttributes = 9; // The Attributes for the TestInstruction
-
-      // Message holding one TestInstructionAttribute
-      message TestInstructionAttributeMessage {
-        string AttributeName = 1; // The name of the Attribute
-        string AttributeValue = 2; // The value of the Attribute
-        string AttributeGroupName = 3; // The Group name for the Attribute in the UI
-      }
-    }
   }
-
-  // The Type of object in the PreView
-  enum TestCaseStructureObjectTypeEnum {
-    TestCaseStructureObjectTypeEnum_DEFAULT_NOT_SET = 0; //Value used for when the variable is not actively set
-    TestInstructionContainer = 1; // Type is a TestInstructionContainer
-    TestInstruction = 2; // Type is a TestInstruction
-    TestInstructionAttribute = 3; // Type is a TestInstructionAttribute
-  }
-
   // The Selected MetaData with all its values
   message SelectedTestSuiteMetaDataValueMessage {
     string OwnerDomainUuid = 1; // The Domain, Uuid, that owns the TestCase
@@ -70,8 +43,9 @@ message TestSuitePreviewStructureMessage {
     MetaDataSelectTypeEnum SelectType = 6;  // Is the MetaData-post single- or multi-select
     bool IsMandatory = 7;
   }
-
 }
+
+//}
 
 /*
 TestCaseName
