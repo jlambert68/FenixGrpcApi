@@ -15,16 +15,17 @@ message TestSuitePreviewMessage {
 // Message holding the full preview of the TestSuite and its TestCases
 // Update and sync with 'fenixExecutionServerGrpcApi_Messages.proto'
 message TestSuitePreviewStructureMessage {
-  string TestSuiteName = 1; // The name of the Suite
-  string DomainThatOwnTheTestSuite = 2; // The Domain that owns the Suite
-  string TestSuiteDescription = 3; // The Description of the TestCase
-  repeated TestSuiteStructureObjectMessage TestSuiteStructureObjects = 4; // A list of the different TestCases and their components of the TestCase, TIC, TI and Attributes
-  string TestSuiteUuid = 6; // The TestSuiteUuid
-  string TestSuiteVersion = 7; // The version of the Suite
-  string LastSavedByUserOnComputer = 12; // The logged in user on the computer that last saved the TestSuite
-  string LastSavedByUserGCPAuthorization = 13; // The authorized user towards GCP that last saved the TestSuite
-  string LastSavedTimeStamp = 14; // The Timestamp when the TestSuite was last saved
-  map<string, SelectedTestSuiteMetaDataValueMessage> SelectedTestSuiteMetaDataValuesMap = 15; // Map containing all selected MetaDataValues. For MultiSelect each values is added.  The Map key = 'OwnerDomainUuid.MetaDataGroupName.MetaDataName.MetaDataNameValue'
+  string TestSuiteUuid = 1; // The TestSuiteUuid
+  string TestSuiteName = 2; // The name of the Suite
+  string TestSuiteVersion = 3; // The version of the Suite
+  string DomainUuidThatOwnTheTestSuite = 4; // The Domain that owns the Suite
+  string DomainNameThatOwnTheTestSuite = 5; // The Domain that owns the Suite
+  string TestSuiteDescription = 6; // The Description of the TestCase
+  TestSuiteStructureObjectMessage TestSuiteStructureObjects = 7; // A list of the different TestCases and their components of the TestCase, TIC, TI and Attributes
+  string LastSavedByUserOnComputer = 8; // The logged in user on the computer that last saved the TestSuite
+  string LastSavedByUserGCPAuthorization = 9; // The authorized user towards GCP that last saved the TestSuite
+  string LastSavedTimeStamp = 10; // The Timestamp when the TestSuite was last saved
+  map<string, SelectedTestSuiteMetaDataValueMessage> SelectedTestSuiteMetaDataValuesMap = 11; // Map containing all selected MetaDataValues. For MultiSelect each values is added.  The Map key = 'OwnerDomainUuid.MetaDataGroupName.MetaDataName.MetaDataNameValue'
 
 
   // A message holding one TestSuiteStructureObject and its TestCase

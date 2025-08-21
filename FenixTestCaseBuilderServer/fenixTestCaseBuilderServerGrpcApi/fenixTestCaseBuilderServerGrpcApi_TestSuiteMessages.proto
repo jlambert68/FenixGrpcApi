@@ -99,7 +99,7 @@ message BasicTestSuiteInformationMessage {
 
   // Message holding All basic information that can be shown in GUI but can't be changed by the user
   message NonEditableBasicInformationMessage {
-    string TestCaseUuid = 1; // The TestSuite, UUID, set by TestSuite-builder
+    string TestSuiteUuid = 1; // The TestSuite, UUID, set by TestSuite-builder
     string DomainUuid = 2; // The Domain, UUID, where the TestSuite 'has its home'
     string DomainName = 3; // The Domain, Name, where the TestSuite 'has its home'
     uint32  TestSuiteVersion = 4; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
