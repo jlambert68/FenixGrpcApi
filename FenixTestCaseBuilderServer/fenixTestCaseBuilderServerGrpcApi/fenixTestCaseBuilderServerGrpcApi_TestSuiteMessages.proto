@@ -103,6 +103,7 @@ message BasicTestSuiteInformationMessage {
     string DomainUuid = 2; // The Domain, UUID, where the TestSuite 'has its home'
     string DomainName = 3; // The Domain, Name, where the TestSuite 'has its home'
     uint32  TestSuiteVersion = 4; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+    string TestSuiteExecutionEnvironment = 7; // The chosen execution environment for the TestSuite
   }
 
   // Message holding all Basic information that can be shown in GUI and can be changed by the user
@@ -111,6 +112,12 @@ message BasicTestSuiteInformationMessage {
     string TestSuiteDescription = 2; // The description of the TestSuite
     //string TestCaseMouseOverText = 2; // The mouse over text when hovering over TestSuite
   }
+
+  TestSuiteExecutionStatusEnum LatestTestSuiteExecutionStatus = 3; // The latest ExecutionStatus for the TestSuite
+  google.protobuf.Timestamp LatestTestSuiteExecutionStatusInsertTimeStamp = 4; // The TimeStamp when this 'TestSuiteExecution' was inserted into the Database
+  google.protobuf.Timestamp LatestFinishedOkTestSuiteExecutionStatusInsertTimeStamp = 5; // The TimeStamp when the latest OK 'TestSuiteExecution' was inserted into the Database
+  google.protobuf.Timestamp LastSavedTimeStamp = 6; // The TimeStamp when the TestSuite was last saved into the Database
+  TestSuitePreviewMessage TestSuitePreview = 7; // The Preview message of the TestSuite
 
   // Message holding all Basic information that is not directly shown in GUI and can't be changed by the user
   /* Not used right now

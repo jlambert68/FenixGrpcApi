@@ -94,6 +94,10 @@ service FenixTestCaseBuilderServerGrpcServices {
   rpc ListTestCasesThatCanBeEdited(ListTestCasesRequestMessage) returns (ListTestCasesThatCanBeEditedResponseMessage) {
   }
 
+  // List TestSuites that the user can edit
+  rpc ListTestSuitesThatCanBeEdited(ListTestSuitesRequestMessage) returns (ListTestSuitesResponseMessage) {
+  }
+
   // *** Send data to server ***
 
   // Save full TestCase in DB
