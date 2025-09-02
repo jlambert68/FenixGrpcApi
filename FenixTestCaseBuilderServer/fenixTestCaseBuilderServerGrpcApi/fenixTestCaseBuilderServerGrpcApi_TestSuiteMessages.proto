@@ -120,6 +120,8 @@ message BasicTestSuiteInformationMessage {
   google.protobuf.Timestamp LastSavedTimeStamp = 6; // The TimeStamp when the TestSuite was last saved into the Database
   TestSuitePreviewMessage TestSuitePreview = 7; // The Preview message of the TestSuite
 
+
+
   // Message holding all Basic information that is not directly shown in GUI and can't be changed by the user
   /* Not used right now
     message InvisibleBasicInformationMessage{
