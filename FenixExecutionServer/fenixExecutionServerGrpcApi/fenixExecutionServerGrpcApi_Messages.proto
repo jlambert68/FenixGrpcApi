@@ -181,6 +181,7 @@ message TestCasePreviewStructureMessage {
   string LastSavedByUserOnComputer = 12; // The logged in user on the computer that last saved the TestCase
   string LastSavedByUserGCPAuthorization = 13; // The authorized user towards GCP that last saved the TestCase
   string LastSavedTimeStamp = 14; // The Timestamp when the TestCase first was last saved
+  map<string, SelectedMetaDataValueMessage> SelectedMetaDataValuesMap = 15; // Map containing all selected MetaDataValues. For MultiSelect each values is added.  The Map key = 'OwnerDomainUuid.MetaDataGroupName.MetaDataName.MetaDataNameValue'
 
   // A message holding one TestCaseStructureObject, like TIC, TI or TI's attributes
   message TestCaseStructureObjectMessage {
@@ -208,6 +209,25 @@ message TestCasePreviewStructureMessage {
     TestInstructionContainer = 1; // Type is a TestInstructionContainer
     TestInstruction = 2; // Type is a TestInstruction
     TestInstructionAttribute = 3; // Type is a TestInstructionAttribute
+  }
+
+  // The Selected MetaData with all its values
+  message SelectedMetaDataValueMessage {
+    string OwnerDomainUuid = 1; // The Domain, Uuid, that owns the TestCase
+    string OwnerDomainName = 2; // The Domain, Name, that owns the TestCase
+    string MetaDataGroupName = 3; // The name of the MetaData-Group
+    string MetaDataName = 4; // The name of the MetaData-post
+    string MetaDataNameValue = 5; // The MetaDataValue
+    MetaDataSelectTypeEnum SelectType = 6;  // Is the MetaData-post single- or multi-select
+    bool IsMandatory = 7;
+  }
+
+  // MetaDataSelectTypeEnum
+  // The type used for SelectType
+  enum MetaDataSelectTypeEnum {
+    MetaDataSelectType_NotSelected = 0;
+    MetaDataSelectType_SingleSelect = 1;
+    MetaDataSelectType_MultiSelect = 2;
   }
 
 }

@@ -66,6 +66,7 @@ message TestCasePreviewStructureMessage {
     bool IsMandatory = 7;
   }
 
+
 }
 
 /*
