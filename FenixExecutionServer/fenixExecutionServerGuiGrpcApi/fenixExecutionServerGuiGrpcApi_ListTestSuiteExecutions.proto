@@ -1,0 +1,138 @@
+syntax = "proto3";
+package fenixExecutionServerGuiGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "google/protobuf/timestamp.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_ListTestCaseExecutions.proto";
+//import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_TestSuitePreviewMessages.proto";
+
+
+// Message to be used for requesting a list of all TestSuiteExecutions with their current execution status
+message ListTestSuiteExecutionsRequest {
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
+  int32 LatestUniqueTestSuiteExecutionDatabaseRowId = 2 ; //  Specifies the latest database row id for executions that the TesterGui has  in its memory, if zero then TesterGui has no Executions
+  bool OnlyRetrieveLimitedSizedBatch = 3; // Inform that only a limited number of rows should be retrieved. Used to give a fast response for the user
+  int32 BatchSize = 4; // If limited batch is wanted by caller then use this batch size
+  bool RetrieveAllExecutionsForSpecificTestSuiteUuid = 5; // Should all TestSuiteExecutions be retrieved for attached TestSuiteUuid?
+  string SpecificTestSuiteUuid = 6; // TestSuiteUuid for which all  all TestSuiteExecutions should be retrieved
+  google.protobuf.Timestamp TestSuiteExecutionFromTimeStamp = 7; // Execution From TimeStamp in Request. Filter to be able to select a narrow date span
+  google.protobuf.Timestamp TestSuiteExecutionToTimeStamp = 8; // Execution To TimeStamp in Request. Filter to be able to select a narrow date span
+}
+
+
+// Message to be used in the response when requesting a list of all TestSuiteExecutions with their current execution status
+message ListTestSuiteExecutionsResponse {
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  repeated TestSuiteExecutionsListMessage TestSuiteExecutionsList = 2; // A list with all requested TestSuiteExecutions
+  int32   LatestUniqueTestSuiteExecutionDatabaseRowId = 3; // Tha last unique row id for the response
+  bool MoreRowsExists = 4; // An indicator what tells if there are more rows that can be retrieve. Is used to quickly get the latest rows and present to the user and the in the background retrieve the rest.
+}
+
+// Message holding one TestSuiteExecution
+// Owner is ExecutionServer due to it's that server that store the information in the database
+// Sync with parent 'TestSuiteExecutionsListMessage'
+message  TestSuiteExecutionsListMessage {
+  string DomainUUID = 1; // The DomainUUID where the TestSuite belongs
+  string DomainName = 2; // The DomainName where the TestSuite belongs
+  string  TestSuiteUuid = 3; // The SuiteUuid when the TestSuite was executed in  suite
+  string  TestSuiteName = 4; // The SuiteName when the TestSuite was executed in  suite
+  int32  TestSuiteVersion = 5; // The SuiteVersion when the TestSuite was executed in  suite
+  string  TestSuiteExecutionUuid = 6; // The SuiteExecution Uuid when the TestSuite was executed in  suite
+  int32  TestSuiteExecutionVersion = 7; // The SuiteExecutionVersion when the TestSuite was executed in  suite
+  string  UpdatingTestCaseUuid = 8; // The Updating TestCaseUuid
+  string  UpdatingTestCaseName = 9; // The Updating TestCaseName
+  int32  UpdatingTestCaseVersion = 10; // The Updating TestCaseVersion
+  string  UpdatingTestCaseExecutionUuid = 11; // The Updating TestCaseExecutionUuid
+  int32 UpdatingTestCaseExecutionVersion = 12; // The Updating TestCaseExecutionVersion
+  google.protobuf.Timestamp QueueTimeStamp = 13; // The TimeStamp when the Updating TestCaseExecution was put on the Execution-queue
+  string TestDataSetUuid = 14; // TestDataSet Uuid - Not used
+  ExecutionPriorityEnum ExecutionPriority = 15; // The execution priority. Helps the execution engine to prioritize the executions between different TestCaseExecutions
+  google.protobuf.Timestamp ExecutionStartTimeStamp = 16; // The Start TimeStamp of the execution
+  google.protobuf.Timestamp ExecutionStopTimeStamp = 17; // The Stop TimeStamp of the execution
+  TestSuiteExecutionStatusEnum TestSuiteExecutionStatus = 18; // Execution Status for the TestSuiteExecution
+  bool ExecutionHasFinished = 19; // Boolean telling if the TestSuite is finished its execution
+  int32 UniqueCounter = 20; // A unique counter coming from the database table for ongoing executions
+  google.protobuf.Timestamp ExecutionStatusUpdateTimeStamp = 21; // The timeStamo when the executions status was last updated
+  ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 22; // Helps the execution engine to decide if real time execution status updates should be sent using the postgres broadcast system
+  TestSuitePreviewMessage TestSuitePreview = 23; // The Preview message of the TestSuite
+  repeated TestCasePreviewStructureMessage TestCasePreview = 24; // All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
+  TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 25; // All TestInstructionExecutions and their execution status.
+  int32 UniqueExecutionCounter = 26; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
+  string   TestSuitePreviewHash = 27; // Comes from TestSuitePreview in Database, but is not used here. But is need due to Unmarshal into Proto-message
+  int32 NumberOfTestSuiteExecutionForTestSuite = 28; // The number of TestSuiteExecutions this specific TestSuiteUuid has produced
+}
+
+
+// Message holden a preview and the hash of the preview  of the TestSuite. Only used for looking at and no editing
+message TestSuitePreviewMessage {
+  TestSuitePreviewStructureMessage TestSuitePreview = 1; // The Preview message of the TestCase
+  string TestSuitePreviewHash = 2; // The hash of the Preview message
+
+
+  // Message holding the full preview of the TestSuite and its TestCases
+  // Update and sync with 'fenixExecutionServerGrpcApi_Messages.proto'
+  message TestSuitePreviewStructureMessage {
+    string TestSuiteUuid = 1; // The TestSuiteUuid
+    string TestSuiteName = 2; // The name of the Suite
+    string TestSuiteVersion = 3; // The version of the Suite
+    string DomainUuidThatOwnTheTestSuite = 4; // The Domain that owns the Suite
+    string DomainNameThatOwnTheTestSuite = 5; // The Domain that owns the Suite
+    string TestSuiteDescription = 6; // The Description of the TestCase
+    TestCasesInTestSuiteMessage TestCasesInTestSuite = 7; // A list of the different TestCases used in the TestSuite
+    string CreatedByGcpLoginUser = 8; // The person that did log in towards GCP
+    string CreatedByComputerLoginUser = 9; // The person that is logged into the computer
+    string CreatedDate = 10; // The date when the TestSuite was first created
+    string LastSavedByUserOnComputer = 11; // The logged in user on the computer that last saved the TestSuite
+    string LastSavedByUserGCPAuthorization = 12; // The authorized user towards GCP that last saved the TestSuite
+    string LastSavedTimeStamp = 13; // The Timestamp when the TestSuite was last saved
+    TestSuiteTypeMessage TestSuiteType = 14; // The type of TestSuite; Standard, Pig....
+    map<string, SelectedTestSuiteMetaDataValueMessage> SelectedTestSuiteMetaDataValuesMap = 15; // Map containing all selected MetaDataValues. For MultiSelect each values is added.  The Map key = 'OwnerDomainUuid.MetaDataGroupName.MetaDataName.MetaDataNameValue'
+
+
+    // Message holding all TestCases that is added to a TestSuite
+    message TestCasesInTestSuiteMessage {
+      repeated TestCaseInTestSuiteMessage TestCasesInTestSuite = 1; // All the TestCases in the TestSuite
+    }
+
+    // Message holding one TestCase that is added to a TestSuite
+    message TestCaseInTestSuiteMessage {
+      string DomainUuid = 1; // The Domain, UUID, where the TestCase 'has its home'
+      string DomainName = 2; // The Domain, Name, where the TestCase 'has its home'
+      string TestCaseUuid = 3; // The TestCase, UUID, set by TestCase-builder
+      string TestCaseName = 4; // The TestCase, Name, set in TestCase-builder
+    }
+
+    // TestSuiteTypeMessage
+    // The type of TestSuite; Standard, Pig....
+    message TestSuiteTypeMessage {
+      TestSuiteTypeEnum TestSuiteType = 1; // The underlay type definition
+      string TestSuiteTypeName = 2; // Textual name for the type
+    }
+
+    enum TestSuiteTypeEnum {
+      TestSuiteType_NotDefined = 0; // The TestSuite-type was never properly defined
+      TestSuiteType_Standard = 1; // A 'Standard' TestSuite
+      TestSuiteType_Pig = 2; // A TestSuite that is used for controlling environments. Is often run like every 10 minutes
+    }
+
+    // The Selected MetaData with all its values
+    message SelectedTestSuiteMetaDataValueMessage {
+      string OwnerDomainUuid = 1; // The Domain, Uuid, that owns the TestCase
+      string OwnerDomainName = 2; // The Domain, Name, that owns the TestCase
+      string MetaDataGroupName = 3; // The name of the MetaData-Group
+      string MetaDataName = 4; // The name of the MetaData-post
+      string MetaDataNameValue = 5; // The MetaDataValue
+      MetaDataSelectTypeEnum SelectType = 6;  // Is the MetaData-post single- or multi-select
+      bool IsMandatory = 7;
+    }
+
+    // MetaDataSelectTypeEnum
+    // The type used for SelectType
+    enum MetaDataSelectTypeEnum {
+      MetaDataSelectType_NotSelected = 0;
+      MetaDataSelectType_SingleSelect = 1;
+      MetaDataSelectType_MultiSelect = 2;
+    }
+  }
+}
