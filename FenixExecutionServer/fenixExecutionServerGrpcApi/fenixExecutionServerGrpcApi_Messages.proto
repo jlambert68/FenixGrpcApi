@@ -168,6 +168,11 @@ message    TestInstructionExecutionStatusPreviewValueMessage {
 }
 
 
+// Message holding all TestCasePreView-messages for the TestSuite
+message   TestCasePreviewMessage {
+  repeated TestCasePreviewStructureMessage TestCasePreviewMessages = 1; //  All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
+}
+
 // Message holding the full preview of the TestCase
 // Update and sync with 'fenixTestCaseBuilderServerGrpcApi_TestDataMessages.proto'
 message TestCasePreviewStructureMessage {
