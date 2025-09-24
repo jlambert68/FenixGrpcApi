@@ -25,3 +25,20 @@ message InitiateSingleTestSuiteExecutionResponseMessage {
   AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
   repeated TestCaseExecutionBasicInformationMessage TestCasesInExecutionQueue = 2; // The Basic information regarding the TestCase-Executions
 }
+
+// Message holding a request to get a Single TestSuite Execution
+message GetSingleTestSuiteExecutionRequest {
+  UserAndApplicationRunTimeIdentificationMessage UserAndApplicationRunTimeIdentification = 1; // Identifies User, Application Runt time instance and Proto-file version used
+  TestSuiteExecutionKeyMessage TestSuiteExecutionKey = 2; // The key data to find one specific TestSuiteExecution
+}
+
+message TestSuiteExecutionKeyMessage {
+  string TestSuiteExecutionUuid = 1; // The Unique UUID for the TestSuite Execution
+  uint32 TestSuiteExecutionVersion = 2; // The Unique Version for the TestSuite Execution
+}
+
+// Message holding a full response for a Single TestSuite Execution
+message GetSingleTestSuiteExecutionResponse {
+  AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
+  //TestCaseExecutionResponseMessage TestCaseExecutionResponse = 2; // Holds one full TestSuiteExecution with all data belonging to that execution
+}

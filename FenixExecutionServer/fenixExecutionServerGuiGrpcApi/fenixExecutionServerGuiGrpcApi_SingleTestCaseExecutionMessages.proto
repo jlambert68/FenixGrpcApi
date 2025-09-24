@@ -281,6 +281,6 @@ message TestDataValueMapValueMessage {
   string HeaderDataName = 1; // The column for the TestData
   string TestDataValue = 2; // The TestData value to be used
   bool TestDataValueIsReplaced = 3; // Has the user manually replaced the data in the TesterGui
-  string TestDataOriginalValueWhenReplaced = 4; // If TestData value was replaced by the user then this shows the origiinal value
+  string TestDataOriginalValueWhenReplaced = 4; // If TestData value was replaced by the user then this shows the original value
 }
 

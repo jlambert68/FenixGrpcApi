@@ -24,6 +24,7 @@ const (
 	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesUnderExecution_FullMethodName                   = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesUnderExecution"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_ListTestCasesWithFinishedExecutions_FullMethodName           = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/ListTestCasesWithFinishedExecutions"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_FullMethodName                    = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/GetSingleTestCaseExecution"
+	FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestSuiteExecution_FullMethodName                   = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/GetSingleTestSuiteExecution"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestCaseExecution_FullMethodName                     = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestCaseExecution"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithOneTestDataSet_FullMethodName  = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestSuiteExecutionWithOneTestDataSet"
 	FenixExecutionServerGuiGrpcServicesForGuiClient_InitiateTestSuiteExecutionWithAllTestDataSets_FullMethodName = "/fenixExecutionServerGuiGrpcApi.FenixExecutionServerGuiGrpcServicesForGuiClient/InitiateTestSuiteExecutionWithAllTestDataSets"
@@ -50,6 +51,8 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientClient interface {
 	ListTestCasesWithFinishedExecutions(ctx context.Context, in *ListTestCasesWithFinishedExecutionsRequest, opts ...grpc.CallOption) (*ListTestCasesWithFinishedExecutionsResponse, error)
 	// Get a single TestCase Execution
 	GetSingleTestCaseExecution(ctx context.Context, in *GetSingleTestCaseExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestCaseExecutionResponse, error)
+	// Get a single TestSuite Execution
+	GetSingleTestSuiteExecution(ctx context.Context, in *GetSingleTestSuiteExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestSuiteExecutionResponse, error)
 	// Initiate a single TestCase Execution with one specific TestDataSet
 	InitiateTestCaseExecution(ctx context.Context, in *InitiateSingleTestCaseExecutionRequestMessage, opts ...grpc.CallOption) (*InitiateSingleTestCaseExecutionResponseMessage, error)
 	// Initiate a single TestSuite Execution with one TestDataSet
@@ -120,6 +123,15 @@ func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) ListTestCasesWit
 func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) GetSingleTestCaseExecution(ctx context.Context, in *GetSingleTestCaseExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestCaseExecutionResponse, error) {
 	out := new(GetSingleTestCaseExecutionResponse)
 	err := c.cc.Invoke(ctx, FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *fenixExecutionServerGuiGrpcServicesForGuiClientClient) GetSingleTestSuiteExecution(ctx context.Context, in *GetSingleTestSuiteExecutionRequest, opts ...grpc.CallOption) (*GetSingleTestSuiteExecutionResponse, error) {
+	out := new(GetSingleTestSuiteExecutionResponse)
+	err := c.cc.Invoke(ctx, FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestSuiteExecution_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -253,6 +265,8 @@ type FenixExecutionServerGuiGrpcServicesForGuiClientServer interface {
 	ListTestCasesWithFinishedExecutions(context.Context, *ListTestCasesWithFinishedExecutionsRequest) (*ListTestCasesWithFinishedExecutionsResponse, error)
 	// Get a single TestCase Execution
 	GetSingleTestCaseExecution(context.Context, *GetSingleTestCaseExecutionRequest) (*GetSingleTestCaseExecutionResponse, error)
+	// Get a single TestSuite Execution
+	GetSingleTestSuiteExecution(context.Context, *GetSingleTestSuiteExecutionRequest) (*GetSingleTestSuiteExecutionResponse, error)
 	// Initiate a single TestCase Execution with one specific TestDataSet
 	InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error)
 	// Initiate a single TestSuite Execution with one TestDataSet
@@ -295,6 +309,9 @@ func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) ListTe
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) GetSingleTestCaseExecution(context.Context, *GetSingleTestCaseExecutionRequest) (*GetSingleTestCaseExecutionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSingleTestCaseExecution not implemented")
+}
+func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) GetSingleTestSuiteExecution(context.Context, *GetSingleTestSuiteExecutionRequest) (*GetSingleTestSuiteExecutionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSingleTestSuiteExecution not implemented")
 }
 func (UnimplementedFenixExecutionServerGuiGrpcServicesForGuiClientServer) InitiateTestCaseExecution(context.Context, *InitiateSingleTestCaseExecutionRequestMessage) (*InitiateSingleTestCaseExecutionResponseMessage, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitiateTestCaseExecution not implemented")
@@ -426,6 +443,24 @@ func _FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).GetSingleTestCaseExecution(ctx, req.(*GetSingleTestCaseExecutionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestSuiteExecution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSingleTestSuiteExecutionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).GetSingleTestSuiteExecution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestSuiteExecution_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FenixExecutionServerGuiGrpcServicesForGuiClientServer).GetSingleTestSuiteExecution(ctx, req.(*GetSingleTestSuiteExecutionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -639,6 +674,10 @@ var FenixExecutionServerGuiGrpcServicesForGuiClient_ServiceDesc = grpc.ServiceDe
 		{
 			MethodName: "GetSingleTestCaseExecution",
 			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestCaseExecution_Handler,
+		},
+		{
+			MethodName: "GetSingleTestSuiteExecution",
+			Handler:    _FenixExecutionServerGuiGrpcServicesForGuiClient_GetSingleTestSuiteExecution_Handler,
 		},
 		{
 			MethodName: "InitiateTestCaseExecution",

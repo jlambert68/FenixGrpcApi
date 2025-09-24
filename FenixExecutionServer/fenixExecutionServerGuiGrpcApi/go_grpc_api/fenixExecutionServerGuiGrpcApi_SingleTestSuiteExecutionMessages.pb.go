@@ -212,6 +212,165 @@ func (x *InitiateSingleTestSuiteExecutionResponseMessage) GetTestCasesInExecutio
 	return nil
 }
 
+// Message holding a request to get a Single TestSuite Execution
+type GetSingleTestSuiteExecutionRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserAndApplicationRunTimeIdentification *UserAndApplicationRunTimeIdentificationMessage `protobuf:"bytes,1,opt,name=UserAndApplicationRunTimeIdentification,proto3" json:"UserAndApplicationRunTimeIdentification,omitempty"` // Identifies User, Application Runt time instance and Proto-file version used
+	TestSuiteExecutionKey                   *TestSuiteExecutionKeyMessage                   `protobuf:"bytes,2,opt,name=TestSuiteExecutionKey,proto3" json:"TestSuiteExecutionKey,omitempty"`                                     // The key data to find one specific TestSuiteExecution
+}
+
+func (x *GetSingleTestSuiteExecutionRequest) Reset() {
+	*x = GetSingleTestSuiteExecutionRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSingleTestSuiteExecutionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSingleTestSuiteExecutionRequest) ProtoMessage() {}
+
+func (x *GetSingleTestSuiteExecutionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSingleTestSuiteExecutionRequest.ProtoReflect.Descriptor instead.
+func (*GetSingleTestSuiteExecutionRequest) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetSingleTestSuiteExecutionRequest) GetUserAndApplicationRunTimeIdentification() *UserAndApplicationRunTimeIdentificationMessage {
+	if x != nil {
+		return x.UserAndApplicationRunTimeIdentification
+	}
+	return nil
+}
+
+func (x *GetSingleTestSuiteExecutionRequest) GetTestSuiteExecutionKey() *TestSuiteExecutionKeyMessage {
+	if x != nil {
+		return x.TestSuiteExecutionKey
+	}
+	return nil
+}
+
+type TestSuiteExecutionKeyMessage struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TestSuiteExecutionUuid    string `protobuf:"bytes,1,opt,name=TestSuiteExecutionUuid,proto3" json:"TestSuiteExecutionUuid,omitempty"`        // The Unique UUID for the TestSuite Execution
+	TestSuiteExecutionVersion uint32 `protobuf:"varint,2,opt,name=TestSuiteExecutionVersion,proto3" json:"TestSuiteExecutionVersion,omitempty"` // The Unique Version for the TestSuite Execution
+}
+
+func (x *TestSuiteExecutionKeyMessage) Reset() {
+	*x = TestSuiteExecutionKeyMessage{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TestSuiteExecutionKeyMessage) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TestSuiteExecutionKeyMessage) ProtoMessage() {}
+
+func (x *TestSuiteExecutionKeyMessage) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TestSuiteExecutionKeyMessage.ProtoReflect.Descriptor instead.
+func (*TestSuiteExecutionKeyMessage) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *TestSuiteExecutionKeyMessage) GetTestSuiteExecutionUuid() string {
+	if x != nil {
+		return x.TestSuiteExecutionUuid
+	}
+	return ""
+}
+
+func (x *TestSuiteExecutionKeyMessage) GetTestSuiteExecutionVersion() uint32 {
+	if x != nil {
+		return x.TestSuiteExecutionVersion
+	}
+	return 0
+}
+
+// Message holding a full response for a Single TestSuite Execution
+type GetSingleTestSuiteExecutionResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AckNackResponse *AckNackResponse `protobuf:"bytes,1,opt,name=ackNackResponse,proto3" json:"ackNackResponse,omitempty"` // Hold all error messages, if there are any. Message also gives of everything was OK or not
+}
+
+func (x *GetSingleTestSuiteExecutionResponse) Reset() {
+	*x = GetSingleTestSuiteExecutionResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSingleTestSuiteExecutionResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSingleTestSuiteExecutionResponse) ProtoMessage() {}
+
+func (x *GetSingleTestSuiteExecutionResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSingleTestSuiteExecutionResponse.ProtoReflect.Descriptor instead.
+func (*GetSingleTestSuiteExecutionResponse) Descriptor() ([]byte, []int) {
+	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetSingleTestSuiteExecutionResponse) GetAckNackResponse() *AckNackResponse {
+	if x != nil {
+		return x.AckNackResponse
+	}
+	return nil
+}
+
 var File_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto protoreflect.FileDescriptor
 
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_rawDesc = []byte{
@@ -315,7 +474,45 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0x61, 0x73, 0x69, 0x63, 0x49, 0x6e, 0x66,
 	0x6f, 0x72, 0x6d, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52,
 	0x19, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x73, 0x49, 0x6e, 0x45, 0x78, 0x65, 0x63,
-	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x51, 0x75, 0x65, 0x75, 0x65, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x51, 0x75, 0x65, 0x75, 0x65, 0x22, 0xc3, 0x02, 0x0a, 0x22, 0x47,
+	0x65, 0x74, 0x53, 0x69, 0x6e, 0x67, 0x6c, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74,
+	0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0xa8, 0x01, 0x0a, 0x27, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x70, 0x70,
+	0x6c, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x75, 0x6e, 0x54, 0x69, 0x6d, 0x65, 0x49,
+	0x64, 0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x4e, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75,
+	0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70,
+	0x63, 0x41, 0x70, 0x69, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x70, 0x70, 0x6c,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x75, 0x6e, 0x54, 0x69, 0x6d, 0x65, 0x49, 0x64,
+	0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x73, 0x73,
+	0x61, 0x67, 0x65, 0x52, 0x27, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x70, 0x70, 0x6c,
+	0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x75, 0x6e, 0x54, 0x69, 0x6d, 0x65, 0x49, 0x64,
+	0x65, 0x6e, 0x74, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x72, 0x0a, 0x15,
+	0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69,
+	0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x3c, 0x2e, 0x66, 0x65,
+	0x6e, 0x69, 0x78, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76,
+	0x65, 0x72, 0x47, 0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x54, 0x65, 0x73,
+	0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x4b,
+	0x65, 0x79, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x15, 0x54, 0x65, 0x73, 0x74, 0x53,
+	0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79,
+	0x22, 0x94, 0x01, 0x0a, 0x1c, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x4b, 0x65, 0x79, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67,
+	0x65, 0x12, 0x36, 0x0a, 0x16, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x16, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63,
+	0x75, 0x74, 0x69, 0x6f, 0x6e, 0x55, 0x75, 0x69, 0x64, 0x12, 0x3c, 0x0a, 0x19, 0x54, 0x65, 0x73,
+	0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x56,
+	0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x19, 0x54, 0x65,
+	0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e,
+	0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0x80, 0x01, 0x0a, 0x23, 0x47, 0x65, 0x74, 0x53,
+	0x69, 0x6e, 0x67, 0x6c, 0x65, 0x54, 0x65, 0x73, 0x74, 0x53, 0x75, 0x69, 0x74, 0x65, 0x45, 0x78,
+	0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x59, 0x0a, 0x0f, 0x61, 0x63, 0x6b, 0x4e, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2f, 0x2e, 0x66, 0x65, 0x6e, 0x69, 0x78,
+	0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x47,
+	0x75, 0x69, 0x47, 0x72, 0x70, 0x63, 0x41, 0x70, 0x69, 0x2e, 0x41, 0x63, 0x6b, 0x4e, 0x61, 0x63,
+	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x0f, 0x61, 0x63, 0x6b, 0x4e, 0x61,
+	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0f, 0x5a, 0x0d, 0x2e, 0x2f,
 	0x67, 0x6f, 0x5f, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x70, 0x69, 0x62, 0x06, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x33,
 }
@@ -332,30 +529,36 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 	return file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_rawDescData
 }
 
-var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_goTypes = []interface{}{
 	(*InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage)(nil),  // 0: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage
 	(*InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage)(nil), // 1: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage
 	(*InitiateSingleTestSuiteExecutionResponseMessage)(nil),             // 2: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage
-	(*UserAndApplicationRunTimeIdentificationMessage)(nil),              // 3: fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	(ExecutionStatusReportLevelEnum)(0),                                 // 4: fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
-	(*TestDataForTestCaseExecutionMessage)(nil),                         // 5: fenixExecutionServerGuiGrpcApi.TestDataForTestCaseExecutionMessage
-	(*AckNackResponse)(nil),                                             // 6: fenixExecutionServerGuiGrpcApi.AckNackResponse
-	(*TestCaseExecutionBasicInformationMessage)(nil),                    // 7: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
+	(*GetSingleTestSuiteExecutionRequest)(nil),                          // 3: fenixExecutionServerGuiGrpcApi.GetSingleTestSuiteExecutionRequest
+	(*TestSuiteExecutionKeyMessage)(nil),                                // 4: fenixExecutionServerGuiGrpcApi.TestSuiteExecutionKeyMessage
+	(*GetSingleTestSuiteExecutionResponse)(nil),                         // 5: fenixExecutionServerGuiGrpcApi.GetSingleTestSuiteExecutionResponse
+	(*UserAndApplicationRunTimeIdentificationMessage)(nil),              // 6: fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	(ExecutionStatusReportLevelEnum)(0),                                 // 7: fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
+	(*TestDataForTestCaseExecutionMessage)(nil),                         // 8: fenixExecutionServerGuiGrpcApi.TestDataForTestCaseExecutionMessage
+	(*AckNackResponse)(nil),                                             // 9: fenixExecutionServerGuiGrpcApi.AckNackResponse
+	(*TestCaseExecutionBasicInformationMessage)(nil),                    // 10: fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
 }
 var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_depIdxs = []int32{
-	3, // 0: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	4, // 1: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage.ExecutionStatusReportLevel:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
-	5, // 2: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage.TestDataForTestCaseExecution:type_name -> fenixExecutionServerGuiGrpcApi.TestDataForTestCaseExecutionMessage
-	3, // 3: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
-	4, // 4: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage.ExecutionStatusReportLevel:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
-	6, // 5: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
-	7, // 6: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage.TestCasesInExecutionQueue:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	6,  // 0: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	7,  // 1: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage.ExecutionStatusReportLevel:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
+	8,  // 2: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage.TestDataForTestCaseExecution:type_name -> fenixExecutionServerGuiGrpcApi.TestDataForTestCaseExecutionMessage
+	6,  // 3: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	7,  // 4: fenixExecutionServerGuiGrpcApi.InitiateTestSuiteExecutionWithAllTestDataSetsRequestMessage.ExecutionStatusReportLevel:type_name -> fenixExecutionServerGuiGrpcApi.ExecutionStatusReportLevelEnum
+	9,  // 5: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	10, // 6: fenixExecutionServerGuiGrpcApi.InitiateSingleTestSuiteExecutionResponseMessage.TestCasesInExecutionQueue:type_name -> fenixExecutionServerGuiGrpcApi.TestCaseExecutionBasicInformationMessage
+	6,  // 7: fenixExecutionServerGuiGrpcApi.GetSingleTestSuiteExecutionRequest.UserAndApplicationRunTimeIdentification:type_name -> fenixExecutionServerGuiGrpcApi.UserAndApplicationRunTimeIdentificationMessage
+	4,  // 8: fenixExecutionServerGuiGrpcApi.GetSingleTestSuiteExecutionRequest.TestSuiteExecutionKey:type_name -> fenixExecutionServerGuiGrpcApi.TestSuiteExecutionKeyMessage
+	9,  // 9: fenixExecutionServerGuiGrpcApi.GetSingleTestSuiteExecutionResponse.ackNackResponse:type_name -> fenixExecutionServerGuiGrpcApi.AckNackResponse
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() {
@@ -404,6 +607,42 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 				return nil
 			}
 		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSingleTestSuiteExecutionRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TestSuiteExecutionKeyMessage); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSingleTestSuiteExecutionResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -411,7 +650,7 @@ func file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServ
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServerGuiGrpcApi_SingleTestSuiteExecutionMessages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

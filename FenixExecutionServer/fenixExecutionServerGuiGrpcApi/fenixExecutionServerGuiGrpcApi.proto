@@ -42,6 +42,10 @@ service FenixExecutionServerGuiGrpcServicesForGuiClient {
   rpc GetSingleTestCaseExecution (GetSingleTestCaseExecutionRequest) returns (GetSingleTestCaseExecutionResponse) {
   }
 
+  // Get a single TestSuite Execution
+  rpc GetSingleTestSuiteExecution (GetSingleTestSuiteExecutionRequest) returns (GetSingleTestSuiteExecutionResponse) {
+  }
+
   // *** Send data to Server ***
 
   // Initiate a single TestCase Execution with one specific TestDataSet

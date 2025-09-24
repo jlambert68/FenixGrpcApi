@@ -2356,7 +2356,7 @@ type TestDataValueMapValueMessage struct {
 	HeaderDataName                    string `protobuf:"bytes,1,opt,name=HeaderDataName,proto3" json:"HeaderDataName,omitempty"`                                       // The column for the TestData
 	TestDataValue                     string `protobuf:"bytes,2,opt,name=TestDataValue,proto3" json:"TestDataValue,omitempty"`                                         // The TestData value to be used
 	TestDataValueIsReplaced           bool   `protobuf:"varint,3,opt,name=TestDataValueIsReplaced,proto3" json:"TestDataValueIsReplaced,omitempty"`                    // Has the user manually replaced the data in the TesterGui
-	TestDataOriginalValueWhenReplaced string `protobuf:"bytes,4,opt,name=TestDataOriginalValueWhenReplaced,proto3" json:"TestDataOriginalValueWhenReplaced,omitempty"` // If TestData value was replaced by the user then this shows the origiinal value
+	TestDataOriginalValueWhenReplaced string `protobuf:"bytes,4,opt,name=TestDataOriginalValueWhenReplaced,proto3" json:"TestDataOriginalValueWhenReplaced,omitempty"` // If TestData value was replaced by the user then this shows the original value
 }
 
 func (x *TestDataValueMapValueMessage) Reset() {
