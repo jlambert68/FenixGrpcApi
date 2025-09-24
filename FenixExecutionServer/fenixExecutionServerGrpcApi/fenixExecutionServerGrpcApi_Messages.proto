@@ -168,9 +168,14 @@ message    TestInstructionExecutionStatusPreviewValueMessage {
 }
 
 
-// Message holding all TestCasePreView-messages for the TestSuite
+// Message holding one TestCasePreView-message
 message   TestCasePreview {
   TestCasePreviewStructureMessage TestCasePreview = 1; //  All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
+}
+
+// Message holding all TestCasePreView-messages for the TestSuite
+message   TestCasePreviews {
+  repeated TestCasePreviewStructureMessage TestCasePreviews = 1; //  All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
 }
 
 // Message holding the full preview of the TestCase
