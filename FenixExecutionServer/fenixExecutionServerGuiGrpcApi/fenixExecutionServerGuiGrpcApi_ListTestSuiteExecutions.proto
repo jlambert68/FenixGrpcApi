@@ -65,7 +65,7 @@ message  TestSuiteExecutionsListMessage {
 
 // Message holding all TestCasePreView-messages for the TestSuite
  message   TestCasePreviews {
-  repeated TestCasePreviewStructureMessage TestCasePreviewMessages = 1; //  All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
+  repeated TestCasePreviewStructureMessage TestCasePreview = 1; //  All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
  }
 
 // Message holden a preview and the hash of the preview  of the TestSuite. Only used for looking at and no editing
