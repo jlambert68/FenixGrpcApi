@@ -147,8 +147,13 @@ message  TestCaseExecutionsListMessage {
   int32 UniqueExecutionCounter = 25; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
 }
 
-// Message holding all TestInstructionExecutions, and their execution status, for one TestCase
+// Message holding one TestInstructionExecutions, and its execution status, for one TestCase
 message TestInstructionsExecutionStatusPreviewValuesMessage {
+  TestInstructionExecutionStatusPreviewValueMessage TestInstructionExecutionStatusPreviewValue = 1; // A list of all TestInstructionExecutions, and their status, belonging to TestCaseExecution
+}
+
+// Message holding all TestInstructionExecutions, and their execution status, for one TestCase
+message TestInstructionsExecutionStatusPreviewValuesMessages {
   repeated TestInstructionExecutionStatusPreviewValueMessage TestInstructionExecutionStatusPreviewValues = 1; // A list of all TestInstructionExecutions, and their status, belonging to TestCaseExecution
 }
 
