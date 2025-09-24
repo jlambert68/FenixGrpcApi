@@ -171,7 +171,7 @@ message    TestInstructionExecutionStatusPreviewValueMessage {
 // Message holding one TestCasePreView-message
 message   TestCasePreview {
   TestCasePreviewStructureMessage TestCasePreview = 1; //  All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
-  string TestSuitePreviewHash = 2; // The hash of the Preview message
+  string TestCasePreviewHash = 2; // The hash of the Preview message
 }
 
 // Message holding all TestCasePreView-messages for the TestSuite
