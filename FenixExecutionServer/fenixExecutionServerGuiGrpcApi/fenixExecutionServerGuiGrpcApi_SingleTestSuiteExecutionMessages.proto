@@ -2,8 +2,12 @@ syntax = "proto3";
 package fenixExecutionServerGuiGrpcApi;
 option go_package = "./go_grpc_api";
 
+import "google/protobuf/timestamp.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_GeneralMessagesAndEnums.proto";
 import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_SingleTestCaseExecutionMessages.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_ListTestCaseExecutions.proto";
+import "FenixExecutionServer/fenixExecutionServerGuiGrpcApi/fenixExecutionServerGuiGrpcApi_ListTestSuiteExecutions.proto";
+
 
 // Message used for initiating a single TestSuiteExecution, with a specific TestData-point
 message InitiateTestSuiteExecutionWithOneTestDataSetRequestMessage {
@@ -40,5 +44,47 @@ message TestSuiteExecutionKeyMessage {
 // Message holding a full response for a Single TestSuite Execution
 message GetSingleTestSuiteExecutionResponse {
   AckNackResponse ackNackResponse = 1; // Hold all error messages, if there are any. Message also gives of everything was OK or not
-  //TestCaseExecutionResponseMessage TestCaseExecutionResponse = 2; // Holds one full TestSuiteExecution with all data belonging to that execution
+  TestSuiteExecutionResponseMessage TestSuiteExecutionResponse = 2; // Holds one full TestSuiteExecution with all data belonging to that execution
 }
+
+//  Message holding a full response for a one TestSuite Execution
+message TestSuiteExecutionResponseMessage {
+  TestSuiteExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestSuite-Execution
+  repeated TestSuiteExecutionDetailsMessage TestCaseExecutionDetails = 2; // The execution information for The Detailed information about the Execution
+  repeated TestCaseExecutionResponseMessage TestCaseExecutions = 3; // All TestInstructionExecutions for the TestCaseExecution
+}
+
+
+// One single TestCase Execution Summary
+message TestSuiteExecutionBasicInformationMessage {
+  string DomainUuid = 1; // The Domain, UUID, where the TestSuite 'has its home'
+  string DomainName = 2; // The Domain, Name, where the TestSuite 'has its home'
+  string TestSuiteUuid = 3; // The TestSuite, UUID
+  string TestSuiteName = 4; // The TestSuite, Name
+  uint32 TestSuiteVersion = 5; // The TestSuites version number
+  string TestSuiteExecutionUuid = 6; // The Unique UUID for the TestSuite Execution
+  uint32 TestSuiteExecutionVersion = 7; // The TestSuites execution version
+  string UpdatingTestCaseUuid = 8; // The TestCase, UUID, set by TestCase-builder
+  string UpdatingTestCaseName = 9; // The TestCase, Name, set in TestCase-builder
+  uint32 UpdatingTestCaseVersion = 10; // Each time a TestCase is saved then the 'TestCaseVersion' will be incremented by +1
+  string UpdatingTestCaseExecutionUuid = 11; // The Unique UUID for the TestCase Execution
+  uint32 UpdatingTestCaseExecutionVersion = 12; // The Unique Version for the TestCase Execution
+  google.protobuf.Timestamp PlacedOnTestExecutionQueueTimeStamp = 13; // The timestamp when the TestCase was placed on queue for execution
+  string TestDataSetUuid = 14; // The UUID for the specific TestDataSet that was used for the Execution
+  ExecutionPriorityEnum ExecutionPriority = 15; // The priority for the execution. Depends on who started it and if it belongs to a suite, scheduled or not
+  ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 16; // What level of real time reporting, regarding ExecutionStatus-changes, should ExecutionServer do
+  TestSuitePreviewMessage TestSuitePreview = 17; // The Preview message of the TestSuite
+  TestCasePreviews TestCasesPreviews = 18; // All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
+  TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 25; // All TestInstructionExecutions and their execution status.
+}
+
+message TestSuiteExecutionDetailsMessage {
+  google.protobuf.Timestamp ExecutionStartTimeStamp = 1; // The timestamp when the execution was put for execution, not on queue for execution
+  google.protobuf.Timestamp ExecutionStopTimeStamp = 2; // The timestamp when the execution was ended, in anyway
+  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 3; // The status of the ongoing  TestSuite execution
+  bool ExecutionHasFinished = 4; // A simple status telling if the execution has ended or not
+  google.protobuf.Timestamp  ExecutionStatusUpdateTimeStamp = 5; // The timestamp when the status was last updated
+  uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
+}
+
+
