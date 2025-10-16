@@ -49,8 +49,8 @@ message GetSingleTestSuiteExecutionResponse {
 
 //  Message holding a full response for a one TestSuite Execution
 message TestSuiteExecutionResponseMessage {
-  TestSuiteExecutionBasicInformationMessage TestCaseExecutionBasicInformation = 1; // The Basic information regarding the TestSuite-Execution
-  repeated TestSuiteExecutionDetailsMessage TestCaseExecutionDetails = 2; // The execution information for The Detailed information about the Execution
+  TestSuiteExecutionBasicInformationMessage TestSuiteExecutionBasicInformation = 1; // The Basic information regarding the TestSuite-Execution
+  repeated TestSuiteExecutionDetailsMessage TestSuiteExecutionDetails = 2; // The execution information for The Detailed information about the Execution
   repeated TestCaseExecutionResponseMessage TestCaseExecutions = 3; // All TestInstructionExecutions for the TestCaseExecution
 }
 
