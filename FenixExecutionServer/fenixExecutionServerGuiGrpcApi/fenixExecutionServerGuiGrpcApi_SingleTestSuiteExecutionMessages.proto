@@ -81,7 +81,7 @@ message TestSuiteExecutionBasicInformationMessage {
 message TestSuiteExecutionDetailsMessage {
   google.protobuf.Timestamp ExecutionStartTimeStamp = 1; // The timestamp when the execution was put for execution, not on queue for execution
   google.protobuf.Timestamp ExecutionStopTimeStamp = 2; // The timestamp when the execution was ended, in anyway
-  TestCaseExecutionStatusEnum TestCaseExecutionStatus = 3; // The status of the ongoing  TestSuite execution
+  TestSuiteExecutionStatusEnum TestSuiteExecutionStatus = 3; // The status of the ongoing  TestSuite execution
   bool ExecutionHasFinished = 4; // A simple status telling if the execution has ended or not
   google.protobuf.Timestamp  ExecutionStatusUpdateTimeStamp = 5; // The timestamp when the status was last updated
   uint64 UniqueDatabaseRowCounter = 6; // A unique counter for every database row
