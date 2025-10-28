@@ -57,7 +57,7 @@ message  TestSuiteExecutionsListMessage {
   ExecutionStatusReportLevelEnum ExecutionStatusReportLevel = 22; // Helps the execution engine to decide if real time execution status updates should be sent using the postgres broadcast system
   TestSuitePreviewMessage TestSuitePreview = 23; // The Preview message of the TestSuite
   TestCasePreviews TestCasesPreviews = 24; // All TestCase-preview structures from the TestCase-data. Used in TestSuiteExecutions.list to create a preview of execution status for TestSuite.
-  repeated TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 25; // All TestInstructionExecutions and their execution status.
+  TestInstructionsExecutionStatusPreviewValuesMessage TestInstructionsExecutionStatusPreviewValues = 25; // All TestInstructionExecutions and their execution status.
   int32 UniqueExecutionCounter = 26; // The unique database row indicator. Used to be able for TesterGui to only retrieve the latest and updated rows from the database
   string   TestSuitePreviewHash = 27; // Comes from TestSuitePreview in Database, but is not used here. But is need due to Unmarshal into Proto-message
   int32 NumberOfTestSuiteExecutionForTestSuite = 28; // The number of TestSuiteExecutions this specific TestSuiteUuid has produced
