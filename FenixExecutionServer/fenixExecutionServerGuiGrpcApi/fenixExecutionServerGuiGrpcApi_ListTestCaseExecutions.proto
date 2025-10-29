@@ -83,6 +83,9 @@ message    TestInstructionExecutionStatusPreviewValueMessage {
   TestInstructionExecutionStatusEnum TestInstructionExecutionStatus = 9; // The execution status for the TestInstruction
   string ExecutionDomainUuid = 10; // The Domain Uuid responsible for execution
   string ExecutionDomainName = 11; // The Domain Name responsible for execution
+  string TestCaseUuid = 12; // The Uuid of the TestCase that is responsible for the TestCaseExecution
+  string TestCaseVersion = 13; // The Version of the TestCase that is responsible for the TestCaseExecution
+  string TestCaseName = 14; // The Name of the TestCase that is responsible for the TestCaseExecution
 }
 
 
