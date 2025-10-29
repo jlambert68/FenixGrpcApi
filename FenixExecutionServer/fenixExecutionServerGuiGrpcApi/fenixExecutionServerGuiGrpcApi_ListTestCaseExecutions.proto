@@ -71,7 +71,7 @@ message TestInstructionsExecutionStatusPreviewValuesMessage {
 }
 
 // A Message holding one TestInstructionExecutions and its execution status
-message    TestInstructionExecutionStatusPreviewValueMessage {
+message TestInstructionExecutionStatusPreviewValueMessage {
   string TestCaseExecutionUuid = 1; // The TestCaseExecution Uuid responsible for this TestInstructionExecution
   int32 TestCaseExecutionVersion = 2; // The TestCaseExecution Version responsible for this TestInstructionExecution
   string TestInstructionExecutionUuid = 3; // TestInstructionExecution Uuid
