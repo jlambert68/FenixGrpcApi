@@ -656,7 +656,7 @@ type TestInstructionExecutionStatusPreviewValueMessage struct {
 	ExecutionDomainUuid                        string                             `protobuf:"bytes,10,opt,name=ExecutionDomainUuid,proto3" json:"ExecutionDomainUuid,omitempty"`                                                                                              // The Domain Uuid responsible for execution
 	ExecutionDomainName                        string                             `protobuf:"bytes,11,opt,name=ExecutionDomainName,proto3" json:"ExecutionDomainName,omitempty"`                                                                                              // The Domain Name responsible for execution
 	TestCaseUuid                               string                             `protobuf:"bytes,12,opt,name=TestCaseUuid,proto3" json:"TestCaseUuid,omitempty"`                                                                                                            // The Uuid of the TestCase that is responsible for the TestCaseExecution
-	TestCaseVersion                            string                             `protobuf:"bytes,13,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                                                                      // The Version of the TestCase that is responsible for the TestCaseExecution
+	TestCaseVersion                            int32                              `protobuf:"varint,13,opt,name=TestCaseVersion,proto3" json:"TestCaseVersion,omitempty"`                                                                                                     // The Version of the TestCase that is responsible for the TestCaseExecution
 	TestCaseName                               string                             `protobuf:"bytes,14,opt,name=TestCaseName,proto3" json:"TestCaseName,omitempty"`                                                                                                            // The Name of the TestCase that is responsible for the TestCaseExecution
 }
 
@@ -776,11 +776,11 @@ func (x *TestInstructionExecutionStatusPreviewValueMessage) GetTestCaseUuid() st
 	return ""
 }
 
-func (x *TestInstructionExecutionStatusPreviewValueMessage) GetTestCaseVersion() string {
+func (x *TestInstructionExecutionStatusPreviewValueMessage) GetTestCaseVersion() int32 {
 	if x != nil {
 		return x.TestCaseVersion
 	}
-	return ""
+	return 0
 }
 
 func (x *TestInstructionExecutionStatusPreviewValueMessage) GetTestCaseName() string {
@@ -1489,7 +1489,7 @@ var file_FenixExecutionServer_fenixExecutionServerGuiGrpcApi_fenixExecutionServe
 	0x65, 0x12, 0x22, 0x0a, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x55, 0x75, 0x69,
 	0x64, 0x18, 0x0c, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
 	0x65, 0x55, 0x75, 0x69, 0x64, 0x12, 0x28, 0x0a, 0x0f, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73,
-	0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f,
+	0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x0d, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0f,
 	0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x12,
 	0x22, 0x0a, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4e, 0x61, 0x6d, 0x65, 0x18,
 	0x0e, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x54, 0x65, 0x73, 0x74, 0x43, 0x61, 0x73, 0x65, 0x4e,
