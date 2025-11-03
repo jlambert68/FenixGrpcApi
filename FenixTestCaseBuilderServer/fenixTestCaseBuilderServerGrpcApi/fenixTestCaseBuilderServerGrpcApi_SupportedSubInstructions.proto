@@ -1,0 +1,16 @@
+syntax = "proto3";
+package fenixTestCaseBuilderServerGrpcApi;
+option go_package = "./go_grpc_api";
+
+import "FenixTestCaseBuilderServer/fenixTestCaseBuilderServerGrpcApi/fenixTestCaseBuilderServerGrpcApi_GeneralMessagesAndEnums.proto";
+
+// SupportedSubInstructions
+// Message holding the supported SubInstructions for the Domain
+message SupportedSubInstructions {
+  ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
+  string SupportedSubInstructionsAsJson = 2; // All supported SubInstructions in json-format
+  string SupportedSubInstructionsPerTestInstructionAsJson = 3; // All supported SubInstructions per TestInstruction in json-format
+  MessageSignatureDataMessage MessageSignatureData = 4; // The message with the message that was signed and the signature
+}
+
+
