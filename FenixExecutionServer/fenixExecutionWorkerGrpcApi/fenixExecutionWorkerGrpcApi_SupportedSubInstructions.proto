@@ -10,7 +10,7 @@ import "FenixExecutionServer/fenixExecutionWorkerGrpcApi/fenixExecutionWorkerGrp
 message SupportedSubInstructions {
   ClientSystemIdentificationMessage ClientSystemIdentification = 1; // Identifies Client System and Proto-file version used
   string SupportedSubInstructionsAsJson = 2; // All supported SubInstructions in json-format
-  string SupportedSubInstructionsPerTestInstructionAsJson = 3; // All supported SubInstructions per TestInstruction in json-format
+  repeated string SupportedSubInstructionsPerTestInstructionAsJson = 3; // All supported SubInstructions per TestInstruction in json-format
   MessageSignatureDataMessage MessageSignatureData = 4; // The message with the message that was signed and the signature
 }
 
